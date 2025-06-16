@@ -2,8 +2,8 @@ import { Facebook, Twitter, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className=" bg-white text-gray-700 border-t border-gray-200 p-2 bg-gradient-to-br from-[#FBF2C5] via-[#FFCCCC] to-[#925FEA]">
-      <div className="border border-gray-300 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 rounded-xl bg-gradient-to-br from-[#f4eee1] to-[#F5E3F7]">
+    <footer className="bg-white text-gray-700 border-t border-gray-200 p-2 bg-gradient-to-br from-[#FBF2C5] via-[#FFCCCC] to-[#925FEA]">
+      <div className="border border-gray-300 w-full px-4 sm:px-6 lg:px-8 py-16 rounded-xl bg-gradient-to-br from-[#f4eee1] to-[#F5E3F7]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Info */}
           <div>
@@ -31,7 +31,10 @@ const Footer = () => {
           {[
             {
               title: "Product",
-              links: ["Instrument and generator package Accessories ", "Genrator Enclosure, Pumps skids & E-House / E-POD "],
+              links: [
+                "Instrument and generator package Accessories",
+                "Genrator Enclosure, Pumps skids & E-House / E-POD",
+              ],
             },
             {
               title: "Company",
