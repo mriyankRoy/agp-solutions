@@ -6,7 +6,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-10 left-0 w-full z-50 backdrop-blur-md">
+    <header className="absolute top-15 left-0 w-full z-50 backdrop-blur-md">
       {/* Top double border */}
       <div className="flex flex-col gap-2">
         <div className="h-[1px] bg-gray-300" />
