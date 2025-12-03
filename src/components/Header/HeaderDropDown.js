@@ -52,19 +52,19 @@ const HeaderDropDown = () => {
                   to={`/products?category=${category.slug}`}
                   onMouseEnter={() => setActiveCategory(category.slug)}
                   className={`
-                    text-left px-3 py-2 rounded-lg text-[14px] font-medium
+                    text-left px-3 py-2 rounded-lg
                     flex items-center justify-between gap-2
                     transition-all
                     ${
                       isActive
-                        ? "bg-white/10 text-white shadow-lg backdrop-blur-md scale-[1.1]"
-                        : "text-gray-200 hover:bg-white/5 hover:text-white"
+                        ? "bg-black text-white shadow-lg backdrop-blur-md scale-[1.1]"
+                        : "text-white hover:bg-white/5 hover:text-white"
                     }
                   `}
                 >
-                  {category.category}
+                  {category.category.toUpperCase()}
                   <ChevronRight
-                    className={`w-4 h-4 transition-transform ${
+                    className={` transition-transform ${
                       isActive ? "opacity-100 text-white" : "opacity-0"
                     }`}
                   />
