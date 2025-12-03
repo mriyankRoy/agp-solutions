@@ -91,8 +91,8 @@ export default function GraphiteScrollingFeatures() {
           className="sticky top-0 h-screen flex items-center justify-center"
         >
           {" "}
-          <div className="flex flex-col md:flex-row gap-6 w-full max-w-[1280px] px-4 sm:px-6">
-            {/* RIGHT COLUMN (Preview) */}
+          <div className="flex flex-col md:flex-row gap-7 w-full max-w-[1280px] px-4 sm:px-6">
+            {/* LEFT COLUMN (Preview) */}
             <div className="grow mt-10 md:mt-0 px-4 sm:px-6 py-6 sm:py-10 rounded-xl border border-neutral-800 bg-neutral-950/60 backdrop-blur-sm relative overflow-hidden shadow-[0_0_40px_-12px_rgba(0,0,0,0.7)]">
               {/* Dotted Overlay */}
               <div
@@ -106,7 +106,7 @@ export default function GraphiteScrollingFeatures() {
 
               {/* Preview Container */}
               <div className="flex justify-center items-center h-full relative">
-                <div className="relative" style={{ height: 270, width: 420 }}>
+                <div className="relative" style={{ height: 270, width: 450 }}>
                   {/* Title Under Image */}
                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full text-sm text-neutral-300 pt-4">
                     {cardsData[activeIndex]?.title}
@@ -142,7 +142,7 @@ export default function GraphiteScrollingFeatures() {
                 </div>
               </div>
             </div>
-            {/* LEFT COLUMN */}
+            {/* RIGHT COLUMN */}
             <div className="flex-0 w-full md:flex-[1_1_42%] flex flex-col gap-4">
               {cardsData.map((c, i) => {
                 const isActive = i === activeIndex;

@@ -23,18 +23,25 @@ const HomePageSection1 = () => {
       <section className="relative rounded-4xl sm:rounded-4xl isolate overflow-hidden py-24 sm:py-32 bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] sm:bg-linear-145 shadow-xl">
         <div className="max-w-7xl mx-auto text-left px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-12">
           <h1
-            className="relative
-                       h-[80px] xs:h-[100px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[200px]
-                       font-display font-medium text-gray-950
-                       text-4xl/[1.1] xs:text-5xl/[1.05] sm:text-6xl/[1.0] md:text-7xl/[0.95] lg:text-8xl/[0.9] xl:text-9xl/[0.85]
-                       break-words hyphens-auto"
+            className=" relative
+                        min-h-[70px] sm:min-h-[100px] md:min-h-[140px] lg:min-h-[160px]
+                        font-display font-medium text-gray-950
+                        text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
+                        leading-[1.15] sm:leading-[1.1] md:leading-[1.05] lg:leading-[1.0]
+                        break-words hyphens-auto
+                      "
           >
             {heroSentences.map((text, index) => (
               <span
                 key={index}
-                className={`absolute inset-0 flex items-center transition-opacity duration-1000 ease-in-out ${
-                  index === currentIndex ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out
+        ${index === currentIndex ? "opacity-100" : "opacity-0"}
+      `}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                }}
               >
                 {text}
               </span>
