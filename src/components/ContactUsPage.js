@@ -75,18 +75,6 @@ export default function ContactUsPage() {
     <div
       className="min-h-screen relative overflow-hidden px-6 lg:px-20 py-50"
     >
-       {/* Background grid + radial gradient */}
-      <div
-        className="-z-10 absolute inset-0 
-       bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)]
-       bg-[size:40px_40px]
-       before:content-[''] before:absolute before:inset-0 
-       before:bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.05),transparent_60%)]
-  "
-      ></div>
-      {/* FIXED: Gradient blob div closed properly */}
-      <div className="absolute -top-44 -right-60 h-60 w-xl transform-gpu md:right-0 bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] rotate-[-10deg] rounded-full blur-3xl"></div>
-    
 
       <main className="relative max-w-6xl mx-auto">
         {/* Header */}

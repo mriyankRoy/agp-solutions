@@ -26,7 +26,7 @@ export default function SkillsTabs() {
       className={`group relative px-4 py-3 text-left rounded-2xl transition-all duration-500 overflow-hidden z-10 ${
         selected === actualIndex
           ? "bg-white text-blue-900 shadow-2xl"
-          : "text-blue-100 hover:text-white hover:bg-white/10"
+          : "text-black hover:text-gray-500 hover:bg-white/10 cursor-pointer"
       }`}
       style={{
         transitionDelay: `${actualIndex * 50}ms`,
@@ -184,10 +184,10 @@ export default function SkillsTabs() {
                 </div>
 
                 <div className="flex-1">
-                  <h4 className="text-xl font-bold text-white mb-2">
+                  <h4 className="text-xl font-medium mb-2 tracking-tighter text-pretty text-gray-950">
                     {skills[selected].title}
                   </h4>
-                  <p className="text-blue-100 text-base leading-relaxed">
+                  <p className="text-gray-600 text-base leading-relaxed">
                     {skills[selected].description}
                   </p>
                 </div>

@@ -81,19 +81,19 @@ const HeaderSearch = () => {
   };
 
   return (
-    <div className="relative ml-6 flex items-center gap-3">
+    <div className="relative flex items-center gap-3">
       {/* SEARCH INPUT */}
       <div className="relative">
         <input
           type="text"
           placeholder="Search products, categories..."
-          className="pl-10 pr-4 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition w-72"
+          className="pl-10 pr-4 py-2 text-center rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:white focus:white transition w-150"
           value={query}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown}
         />
 
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-100 w-5 h-5" />
 
         {/* RESULTS DROPDOWN */}
         {results.length > 0 && (
@@ -115,7 +115,7 @@ const HeaderSearch = () => {
         )}
       </div>
 
-      {/* ✨ SLEEK MATCHING SEARCH BUTTON */}
+      {/* ✨ SLEEK MATCHING SEARCH BUTTON
       <button
         onClick={executeSearch}
         className="
@@ -133,9 +133,9 @@ const HeaderSearch = () => {
     flex items-center gap-2
   "
       >
-        <Search className="w-4 h-4 text-gray-700" />
+        <Search className="w-4 h-4 text-gray-100" />
         Search
-      </button>
+      </button> */}
     </div>
   );
 };

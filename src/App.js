@@ -9,8 +9,7 @@ import ContactUsPage from "./components/ContactUsPage";
 import AboutUsPage from "./components/AboutUsPage";
 import ScrollToTop from "./components/ScrollToTop";
 import SearchResultsPage from "./components/Header/SearchResultsPage";
-import { Projects } from "./components/Projects/Projects";
-import ProjectDetails from "./components/Projects/ProjectDetails";
+import ProjectsCarousel from "./components/Projects/ProjectsCarousel";
 
 const AppLayout = () => {
   return (
@@ -40,8 +39,8 @@ const appRouter = createBrowserRouter([
       },
       { path: "/contact", element: <ContactUsPage /> },
       { path: "/search/:query", element: <SearchResultsPage /> },
-      { path: "/projects", element: <Projects /> },
-      { path: "/projects/:id", element: <ProjectDetails /> },
+      { path: "/project", element: <ProjectsCarousel /> },
+      // { path: "/projects/:id", element: <ProjectDetails /> },
     ],
   },
 ]);

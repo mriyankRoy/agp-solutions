@@ -66,9 +66,7 @@ export default function AboutUsPage() {
   ];
 
   return (
-    <div
-      className="pt-40 min-h-screen px-6 lg:px-20 py-32 relative overflow-hidden"
-    >
+    <div className="pt-40 min-h-screen px-6 lg:px-20 py-32 relative overflow-hidden">
       {/* Background grid + radial gradient */}
       <div
         className="-z-10 absolute inset-0 
@@ -81,27 +79,41 @@ export default function AboutUsPage() {
       {/* FIXED: Gradient blob div closed properly */}
       <div className="absolute -top-44 -right-60 h-60 w-xl transform-gpu md:right-0 bg-linear-115 from-[#fff1be] from-28% via-[#ee87cb] via-70% to-[#b060ff] rotate-[-10deg] rounded-full blur-3xl"></div>
       {/* HEADER */}
+      {/* HEADER + RIGHT IMAGE */}
       <section
         className={`p-7 relative transition-all duration-1000 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
         }`}
       >
-        <h1 className="text-6xl font-bold tracking-tight text-gray-950 pb-4">
-          ABOUT US
-        </h1>
-        <div className="h-[2px] w-24 bg-neutral-900/20 rounded-full mb-4"></div>
-        <p className="mt-3 text-lg font-medium text-gray-700 max-w-3xl leading-relaxed">
-          Art GenPower Solutions delivers premium containerized power systems
-          engineered for durability, performance, and reliability across the UK
-          and Europe.
-        </p>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/* LEFT — TEXT */}
+          <div>
+            <h1 className="text-4xl font-medium tracking-tighter text-pretty text-gray-950 data-dark:text-white sm:text-6xl">
+              ABOUT US
+            </h1>
+
+            <p className="mt-3 text-lg font-medium text-gray-500 leading-relaxed max-w-xl">
+              Art GenPower Solutions delivers premium containerized power
+              systems engineered for durability, performance, and reliability
+              across the UK and Europe.
+            </p>
+          </div>
+
+          {/* RIGHT — BIG CONTAINER IMAGE */}
+          <div>
+            <img
+              src="https://res.cloudinary.com/dc912sjxj/image/upload/v1764892396/Container_8_gb7qwa-removebg-preview_w3vlp1.png" // REPLACE WITH YOUR CONTAINER IMAGE
+              alt="Container System"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
       </section>
 
       <SkillsShowcase />
 
       {/* INTRO GRID */}
       <div className="pt-40 grid grid-cols-1 lg:grid-cols-2 gap-10 mt-20 relative">
-        
         {/* LEFT – MISSION BLOCK */}
         <div
           className="rounded-2xl border border-neutral-200/60 bg-white/70 backdrop-blur-lg p-10 shadow-xl
