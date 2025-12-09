@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import HeaderDropDown from "./HeaderDropDown";
 import HeaderSearch from "./HeaderSearch";
+import HeaderFacilitiesDropdown from "./HeaderFacilitiesDropdown";
+import HeaderProjectsDropdown from "./HeaderProjectsDropdown";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,15 +39,11 @@ const Header = () => {
 
             <HeaderDropDown />
 
-            <Link to="/project" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
-              Projects
-            </Link>
+            <HeaderProjectsDropdown />
 
-            <Link to="/facility" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
-              Facility
-            </Link>
+            <HeaderFacilitiesDropdown />
 
-            <Link to="/career" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
+            <Link to="/careers" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
               Career
             </Link>
 

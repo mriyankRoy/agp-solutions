@@ -3,7 +3,7 @@ import CompanyVideoSection from "./CompanyVideoSection";
 import FeaturesSection from "./FeaturesSection";
 import AboutSection from "./AboutSection";
 import TrustedPartners from "./TrustedPartners";
-import GraphiteScrollingFeatures from "./GraphiteScrollingFeatures";
+import GraphiteScrollingFeatures from "./FacilitiesPage";
 
 const HomePage = () => {
   

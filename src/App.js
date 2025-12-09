@@ -9,7 +9,11 @@ import ContactUsPage from "./components/ContactUsPage";
 import AboutUsPage from "./components/AboutUsPage";
 import ScrollToTop from "./components/ScrollToTop";
 import SearchResultsPage from "./components/Header/SearchResultsPage";
-import ProjectsCarousel from "./components/Projects/ProjectsCarousel";
+import FacilitiesPage from "./components/Facilities/FacilitiesPage";
+import FacilityDetailsPage from "./components/Facilities/FacilityDetailsPage";
+import CareersPage from "./components/CareersPage";
+import ProjectsPage from "./components/Projects/ProjectsPage";
+import ProjectDetailPage from "./components/Projects/ProjectDetailPage";
 
 const AppLayout = () => {
   return (
@@ -32,15 +36,17 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/about", element: <AboutUsPage /> },
       { path: "/products", element: <ProductPage /> },
-      // Dynamic route for each product
       {
         path: "/products/:categorySlug/:productName",
         element: <ProductDetailPage />,
       },
       { path: "/contact", element: <ContactUsPage /> },
       { path: "/search/:query", element: <SearchResultsPage /> },
-      { path: "/project", element: <ProjectsCarousel /> },
-      // { path: "/projects/:id", element: <ProjectDetails /> },
+      { path: "/facilities", element: <FacilitiesPage />},
+      { path: "/facilities/:id", element: <FacilityDetailsPage />},
+      { path: "/careers", element: <CareersPage />},
+      { path: "/projects", element: <ProjectsPage />},
+      { path: "/projects/:id", element: <ProjectDetailPage />}
     ],
   },
 ]);
