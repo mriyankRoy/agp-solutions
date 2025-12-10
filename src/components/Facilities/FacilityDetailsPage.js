@@ -9,16 +9,16 @@ export default function FacilityDetailsPage() {
   const facility = facilities.find((f) => f.id === id);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentImg, setCurrentImg] = useState(null);
+  const [currentData, setCurrentData] = useState(null);
 
-  const openLightbox = (src) => {
-    setCurrentImg(src);
+  const openLightbox = (data) => {
+    setCurrentData(data); // can be { img } OR full cap object
     setLightboxOpen(true);
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    setCurrentImg(null);
+    setCurrentData(null);
   };
 
   useEffect(() => {
@@ -35,6 +35,7 @@ export default function FacilityDetailsPage() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 p-6 max-w-7xl mx-auto pt-40">
+
       {/* LIGHTBOX MODAL */}
       {lightboxOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -44,10 +45,21 @@ export default function FacilityDetailsPage() {
           >
             ✕
           </button>
-          <img
-            src={currentImg}
-            className="max-w-5xl max-h-[85vh] rounded-xl shadow-2xl border border-white/20"
-          />
+
+          <div className="max-w-5xl max-h-[85vh] flex flex-col items-center space-y-5">
+            <img
+              src={currentData?.img}
+              className="max-h-[60vh] rounded-xl shadow-2xl border border-white/20"
+            />
+
+            {/* Title + desc ONLY for capability items */}
+            {currentData?.title && (
+              <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-center text-white max-w-2xl">
+                <h2 className="text-2xl font-bold">{currentData.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed">{currentData.desc}</p>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
@@ -60,7 +72,7 @@ export default function FacilityDetailsPage() {
           📍 {facility.location}
         </p>
 
-        {/* Dropdown for other facilities */}
+        {/* Facility Dropdown */}
         <div className="pt-4 border-t border-[#44444E]/10">
           <label
             htmlFor="facilityDropdown"
@@ -101,12 +113,13 @@ export default function FacilityDetailsPage() {
               <strong>Total Area:</strong> {facility.totalArea}
             </li>
             <li>
-              <strong>Production Capacity:</strong>{" "}
-              {facility.productionCapacity}
+              <strong>Production Capacity:</strong> {facility.productionCapacity}
             </li>
-            <li>
-              <strong>Specializations:</strong> {facility.specializations}
-            </li>
+            {facility.specializations && (
+              <li>
+                <strong>Specializations:</strong> {facility.specializations}
+              </li>
+            )}
           </ul>
         </div>
 
@@ -127,6 +140,7 @@ export default function FacilityDetailsPage() {
 
       {/* Main Content */}
       <main className="lg:col-span-3 space-y-16">
+
         {/* Page Title */}
         <div
           className="p-6 rounded-2xl shadow-sm border border-[#B45253]/20"
@@ -152,7 +166,7 @@ export default function FacilityDetailsPage() {
               <div
                 key={index}
                 className="overflow-hidden rounded-xl shadow-md hover:scale-[1.02] transition-all duration-300 cursor-pointer"
-                onClick={() => openLightbox(src)}
+                onClick={() => openLightbox({ img: src })} // only image
               >
                 <img src={src} className="w-full h-52 object-cover" />
               </div>
@@ -174,7 +188,7 @@ export default function FacilityDetailsPage() {
                 <img
                   src={cap.img}
                   alt={cap.title}
-                  onClick={() => openLightbox(cap.img)}
+                  onClick={() => openLightbox(cap)} // full capability object
                   className="w-full h-44 object-cover rounded-lg cursor-pointer"
                 />
                 <h4 className="text-xl font-semibold text-[#44444E]">
@@ -187,6 +201,7 @@ export default function FacilityDetailsPage() {
             ))}
           </div>
         </section>
+
       </main>
     </div>
   );

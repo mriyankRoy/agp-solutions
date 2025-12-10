@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
-import { MapPin, Tag } from "lucide-react"; // Imported for visual flair
+import { MapPin, Tag } from "lucide-react";
 import { projects } from "../../utils/projects";
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Ensure id is treated as a string for comparison
+  // Ensure id matches string form
   const project = projects.find((p) => String(p.id) === id);
+
+  // Lightbox state
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImg, setCurrentImg] = useState(null);
+
+  const openLightbox = (src) => {
+    setCurrentImg(src);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setCurrentImg(null);
+  };
+
+  // Close on ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   if (!project)
     return (
@@ -19,8 +42,29 @@ export default function ProjectDetailPage() {
 
   return (
     <div className="min-h-screen bg-white text-black pt-20 sm:pt-24 lg:pt-32">
+
+      {/* 🔍 LIGHTBOX MODAL */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-8 right-8 text-white text-3xl font-bold hover:text-[#B45253] transition"
+          >
+            ✕
+          </button>
+
+          {/* Enlarged Image */}
+          <img
+            src={currentImg}
+            className="max-w-5xl max-h-[85vh] rounded-xl shadow-2xl border border-white/20"
+          />
+        </div>
+      )}
+
+      {/* PAGE CONTENT */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        
+
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
@@ -54,18 +98,21 @@ export default function ProjectDetailPage() {
         {/* Gallery Section */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold mb-6 text-[#44444E]">Project Gallery</h2>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {project.imageUrls.map((url, i) => (
               <img
                 key={i}
                 src={url}
                 alt={`${project.name}-${i}`}
+                onClick={() => openLightbox(url)}
                 className="
                   w-full h-64 object-cover 
                   rounded-xl shadow-xl hover:shadow-2xl 
                   transition-all duration-300 
                   transform hover:scale-[1.02]
                   border-2 border-white 
+                  cursor-pointer
                 "
               />
             ))}
@@ -78,8 +125,8 @@ export default function ProjectDetailPage() {
           <div className="space-y-6 text-lg leading-relaxed">
             {project.description.map((desc, idx) =>
               Array.isArray(desc) ? (
-                <ul 
-                  key={idx} 
+                <ul
+                  key={idx}
                   className="list-none space-y-2 p-4 bg-[#44444E]/5 rounded-xl border-l-4 border-[#B45253]"
                 >
                   {desc.map((d, i) => (
