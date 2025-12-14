@@ -12,13 +12,17 @@ export default function FacilityDetailsPage() {
   const [currentData, setCurrentData] = useState(null);
 
   const openLightbox = (data) => {
-    setCurrentData(data); // can be { img } OR full cap object
+    setCurrentData(data); // data can be { img: 'url' } OR full capability object { img, title, desc }
     setLightboxOpen(true);
+    // Prevent background scrolling when modal is open
+    document.body.style.overflow = "hidden";
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
     setCurrentData(null);
+    // Restore background scrolling
+    document.body.style.overflow = "unset";
   };
 
   useEffect(() => {
@@ -26,7 +30,10 @@ export default function FacilityDetailsPage() {
       if (e.key === "Escape") closeLightbox();
     };
     window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "unset"; // Ensure cleanup
+    };
   }, []);
 
   if (!facility) {
@@ -36,20 +43,48 @@ export default function FacilityDetailsPage() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 p-6 max-w-7xl mx-auto pt-40">
 
-      {/* LIGHTBOX MODAL */}
+      {/* LIGHTBOX MODAL (Updated Design) */}
       {lightboxOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div 
+          // New overlay styles: dark, blur, and click closes modal
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-300"
+          onClick={closeLightbox}
+        >
+          {/* Close Button: Styled like ProductDetailPage */}
           <button
             onClick={closeLightbox}
-            className="absolute top-8 right-8 text-white text-3xl font-bold hover:text-[#B45253] transition"
+            className="
+              absolute top-6 right-6 text-white hover:text-red-400 p-2 
+              rounded-full bg-white/10 transition-colors duration-200 z-[60]
+              shadow-lg hover:bg-white/20
+            "
+            aria-label="Close image viewer"
           >
-            ✕
+            {/* Using a clean SVG for the X icon */}
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
 
-          <div className="max-w-5xl max-h-[85vh] flex flex-col items-center space-y-5">
+          <div 
+            className="max-w-5xl max-h-[90vh] flex flex-col items-center space-y-5 p-4"
+            onClick={(e) => e.stopPropagation()} // Prevent modal closing when clicking the image/info
+          >
             <img
               src={currentData?.img}
-              className="max-h-[60vh] rounded-xl shadow-2xl border border-white/20"
+              // Added object-contain for full image visibility and consistency
+              className="w-full max-h-[75vh] object-contain rounded-xl shadow-2xl border border-white/20"
+              alt={currentData?.title || "Facility Image"}
             />
 
             {/* Title + desc ONLY for capability items */}
@@ -63,7 +98,7 @@ export default function FacilityDetailsPage() {
         </div>
       )}
 
-      {/* Sticky Sidebar */}
+      {/* Sticky Sidebar (Unchanged) */}
       <aside className="lg:col-span-1 h-fit lg:sticky lg:top-32 space-y-6 bg-white border border-[#44444E]/20 p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
         <h2 className="text-3xl font-bold text-[#44444E] leading-snug">
           {facility.title}
@@ -138,7 +173,7 @@ export default function FacilityDetailsPage() {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content (Unchanged) */}
       <main className="lg:col-span-3 space-y-16">
 
         {/* Page Title */}
@@ -168,7 +203,7 @@ export default function FacilityDetailsPage() {
                 className="overflow-hidden rounded-xl shadow-md hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                 onClick={() => openLightbox({ img: src })} // only image
               >
-                <img src={src} className="w-full h-52 object-cover" />
+                <img src={src} className="w-full h-52 object-cover" alt={`Facility image ${index + 1}`}/>
               </div>
             ))}
           </div>

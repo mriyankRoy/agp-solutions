@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
+// Import the MapPin icon from lucide-react
+import { MapPin } from "lucide-react"; 
 
 export default function ProjectCard({ project }) {
   const navigate = useNavigate();
@@ -26,34 +28,21 @@ export default function ProjectCard({ project }) {
 
       {/* Content */}
       <div className="relative z-10 p-4 sm:p-5 flex flex-col gap-2">
-        <span className="inline-block px-2 py-1 text-xs font-semibold uppercase rounded-md bg-[#B45253] text-white">
+        <span className="inline-block px-2 py-1 text-xs font-semibold uppercase rounded-md bg-[#CF0F0F] text-white">
           {project.type}
         </span>
         <h3 className="text-white text-lg sm:text-xl lg:text-2xl font-bold truncate">
           {project.name}
         </h3>
+        {/* Updated Location Icon using Lucide React's MapPin */}
         <div className="flex items-center gap-1.5 text-gray-300 text-xs sm:text-sm">
-          <svg
-            className="w-3.5 h-3.5 text-[#B45253] flex-shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
+          <MapPin 
+            className="w-3.5 h-3.5 text-[#CF0F0F] flex-shrink-0"
+            size={16} // Standard size, though w-3.5/h-3.5 classes will control it
+          />
           <span className="truncate">{project.location}</span>
         </div>
+        {/* End of updated section */}
       </div>
     </article>
   );

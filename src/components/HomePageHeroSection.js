@@ -32,13 +32,12 @@ const HomePageSection1 = () => {
 
       {/* Thin RED Diagonal Strip */}
       <div
-        className="absolute -z-10"
+        className="absolute -z-10 bg-red-700"
         style={{
           top: "-10%",
           left: "80%", // moved right
           width: "2.5%", // slightly thicker so edges can touch
           height: "160%",
-          background: "#CF0F0F",
           transform: "rotate(20deg)",
           transformOrigin: "top left",
         }}
@@ -52,7 +51,7 @@ const HomePageSection1 = () => {
           left: "82.5%", // EXACTLY aligned to touch red strip after rotation
           width: "2.5%", // same width for symmetry
           height: "160%",
-          background: "#44444E",
+          background: "#181C14",
           transform: "rotate(20deg)",
           transformOrigin: "top left",
         }}

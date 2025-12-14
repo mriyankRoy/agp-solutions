@@ -5,133 +5,177 @@ export const products = [
   {
     category: "Instrument & Generator Package Accessories",
     slug: "instrument-generator-accessories",
+    categoryId: "CAT-ACC",
     items: [
       {
-        id: "Level Switch",
-        name: "Level Switch",
-        image: "https://res.cloudinary.com/dc912sjxj/image/upload/v1764170355/cld-sample-5.jpg",
-        shortDescription:
-          "High-precision level switch used to monitor fluid or fuel levels with exceptional reliability in industrial systems.",
-        description:
-          "A Level Switch is a precision point-level detection device engineered to sense the presence or absence of liquid at specific preset positions within tanks. Built with advanced technologies such as float-type mechanisms, capacitive sensing, and conductive probes, it offers instant and accurate switching to protect equipment from dry-run, cavitation, or overflow conditions. Its rugged industrial build enables stable performance even in high-temperature, high-vibration, or chemically reactive environments. These switches are essential safety components in generator day tanks, hydraulic reservoirs, chemical reactors, and large industrial fuel farms. They help ensure automated control, prevent environmental accidents, and maintain the longevity of expensive machinery by ensuring the fluid levels remain within safe operating limits.",
-        uses: [
-          "Point-level monitoring in diesel day tanks for generator systems",
-          "High and low-level safety interlocks for industrial fuel storage",
-          "Process tanks in manufacturing plants (water, chemicals, oils)",
-          "Safety automation in pumping systems to prevent dry-run",
-          "Municipal water treatment level control",
-          "Marine and offshore vessel tank monitoring",
-          "HVAC system condensate and coolant level detection"
+        id: "CP5340-CF005F",
+        name: "Hydrostatic Level Transmitter",
+        manufacturerPartNumber: "CP5340-CF005F",
+        AGPPartNumber: "AGP-ACC-001",
+        Make: "Hitec",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Hitec_Hydrostatic_Level_Transmitter_sorctl.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Hitec_Hydrostatic_Level_Transmitter_sorctl.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Hitec_Hydrostatic_Level_Transmitter_sorctl.png",
         ],
-        pdfLink: "https://res.cloudinary.com/dc912sjxj/image/upload/v1764507267/AGP_Profile_-_2025_drozrg.pdf"
+        shortDescription:
+          "High-precision hydrostatic level transmitter with 4-20mA output for continuous tank monitoring.",
+        description:
+          "The Hitec CP5340-CF005F is a precision hydrostatic level transmitter designed for continuous immersion in fuel and water tanks. It features a robust 4-20mA output signal for seamless integration with BMS and PLC systems. The unit comes with 5 meters of cable and includes the PE1 (HITE0018) mounting accessory, ensuring stable installation even in turbulent tank environments.",
+        uses: [
+          "Continuous level monitoring in diesel day tanks",
+          "Hydrostatic pressure measurement for industrial fluids",
+          "Remote inventory management via BMS",
+          "Underground and above-ground storage tank monitoring"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/hitec-cp5340.pdf" }
+        ],
+        details: {
+          PowerSupply: "12-30V DC",
+          OutputSignal: "4-20mA (2-wire)",
+          MeasurementRange: "0-5m H2O (Customizable)",
+          Accuracy: "±0.5% F.S.",
+          OperatingTemperature: "-20°C to +70°C",
+          ProtectionRating: "IP68 (Submersible)"
+        }
       },
       {
-        name: "Level Transmitter",
-        image: "https://res.cloudinary.com/dc912sjxj/image/upload/v1764170349/samples/man-portrait.jpg",
-        shortDescription:
-          "Advanced continuous-level measurement device providing real-time monitoring for industrial tanks.",
-        description:
-          "A Level Transmitter is a continuous-level measurement instrument designed to monitor fluid levels with high precision and transmit real-time data to industrial control systems. Using ultrasonic, radar, differential pressure, magnetostrictive, or hydrostatic sensing technologies, level transmitters provide stable and accurate readings regardless of fluid characteristics, temperature fluctuations, or tank geometry. They eliminate manual gauging, reduce human error, and support predictive maintenance. Essential in mission-critical operations, they ensure uninterrupted generator function, maintain precise chemical dosing, and support remote monitoring through SCADA, PLC, and IIoT-based automatic control systems.",
-        uses: [
-          "Continuous monitoring of generator fuel tanks",
-          "Real-time tank level integration with PLC/SCADA systems",
-          "Industrial chemical processing plants for precise dosing",
-          "Municipal water supply and wastewater management",
-          "Fuel farms and bulk liquid storage terminals",
-          "Oil & gas upstream and downstream tank farms",
-          "Remote tank monitoring for telecom and data center generators"
+        id: "GMS-4-40-EU",
+        name: "Gasmaster 4 Control Panel",
+        manufacturerPartNumber: "GMS-4-40-EU R-C",
+        AGPPartNumber: "AGP-ACC-002",
+        Make: "Crowcon",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765717438/Crowcon_Gasmaster_4_Control_Panel_ugauxx.jpg",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765717438/Crowcon_Gasmaster_4_Control_Panel_ugauxx.jpg",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765717438/Crowcon_Gasmaster_4_Control_Panel_ugauxx.jpg",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Advanced 4-channel gas detection control panel with mA inputs for hazardous area monitoring.",
+        description:
+          "The Crowcon Gasmaster 4 is a versatile gas detection control panel capable of monitoring up to four gas detectors simultaneously. Capable of accepting 4-20mA inputs, it is designed to protect plant rooms and generator enclosures. It features comprehensive communication ports and relay outputs to trigger ventilation or emergency shutdowns upon gas detection.",
+        uses: [
+          "Central monitoring for generator room gas detection",
+          "Control of ventilation fans upon gas leak detection",
+          "Industrial plant safety systems",
+          "Integration with fire and gas safety matrices"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/crowcon-gasmaster.pdf" }
+        ],
+        details: {
+          InputChannels: "4 (4-20mA)",
+          OperatingVoltage: "230V AC",
+          RelayOutputs: "3 (Alarm 1, 2, Fault)",
+          OperatingTemperature: "-10°C to +50°C",
+          ProtectionRating: "IP55",
+          Dimensions: "220mm x 250mm x 80mm"
+        }
       },
       {
-        name: "OPV – Overfill Protection Valve",
-        image: "/images/opv.jpg",
-        shortDescription:
-          "Mechanical safety valve designed to prevent tank overfilling and accidental spills.",
-        description:
-          "The Overfill Protection Valve (OPV) is a critical safety mechanism engineered to automatically shut off incoming liquid flow once a tank reaches its maximum safe capacity. It prevents fuel spills, environmental contamination, and costly mechanical failures. Designed for reliability, OPVs operate mechanically without requiring electrical power—making them ideal for remote or hazardous environments. Constructed using corrosion-resistant alloys, they are suitable for diesel, aviation fuel, lubricant oils, and various industrial liquids. OPVs are mandatory in many international fuel handling safety standards, ensuring facility compliance and operational safety.",
-        uses: [
-          "Automatic shutoff during diesel tank refilling for generator systems",
-          "Environmental protection in industrial fuel farms",
-          "Petroleum terminals and fuel distribution centers",
-          "Chemical processing storage tanks",
-          "Remote mining, oilfield, and construction site fuel storage",
-          "Aviation fuel handling and airport fuel farms",
-          "Marine bunkering tanks and offshore storage"
+        id: "XG5-A1-01-FA",
+        name: "Xgard Type 5 Gas Detector (H2)",
+        manufacturerPartNumber: "XG5-A1-01-FA",
+        AGPPartNumber: "AGP-ACC-003",
+        Make: "Crowcon",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Crowcon_Xgard_Type_5_Gas_Detector_l5pyt9.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Crowcon_Xgard_Type_5_Gas_Detector_l5pyt9.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Crowcon_Xgard_Type_5_Gas_Detector_l5pyt9.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Aluminium explosion-proof gas detector calibrated for Hydrogen (H2) 0-100% LEL.",
+        description:
+          "The Crowcon Xgard Type 5 is a robust, explosion-proof gas detector housed in durable aluminium alloy with an M20 cable entry. It is specifically calibrated for Hydrogen (H2) detection (0-100% LEL), making it an essential safety device for battery rooms and industrial areas where combustible gases may accumulate.",
+        uses: [
+          "Hydrogen gas detection in battery charging rooms",
+          "Hazardous area (Zone 1/2) monitoring",
+          "Petrochemical and industrial safety",
+          "Leak detection in hydrogen fuel cell applications"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/crowcon-xgard.pdf" }
+        ],
+        details: {
+          GasDetected: "Hydrogen (H2)",
+          DetectionRange: "0-100% LEL",
+          SensorType: "Catalytic Bead",
+          HousingMaterial: "Die-cast Aluminium",
+          ATEXCertification: "II 2 G EEx d IIC T6",
+          ProtectionRating: "IP65"
+        }
       },
       {
-        name: "Flame Arrestor, Vent and Desiccant Breather",
-        image: "/images/flame-arrestor.jpg",
-        shortDescription:
-          "Flame arrestors and breathing vents that prevent explosions while enabling safe tank ventilation.",
-        description:
-          "Flame Arrestors and Desiccant Breathers form an essential safety system for fuel and chemical storage tanks. Flame arrestors stop flame propagation by absorbing heat and extinguishing flames before they enter the tank—preventing catastrophic explosions. Vent valves regulate internal tank pressure during thermal expansion and liquid transfer. Desiccant breathers eliminate moisture, dust, and airborne contaminants, ensuring the tank receives only clean, dry air. Combined, these components dramatically enhance tank safety, extend fuel shelf life, and protect critical industrial systems from ignition hazards, corrosion, and microbial contamination.",
-        uses: [
-          "Explosion prevention in diesel and chemical tanks",
-          "Safe ventilation during tank filling and draining",
-          "Moisture and particulate filtration for fuel quality protection",
-          "Hazardous-area installations (ATEX-certified environments)",
-          "Oil & gas refineries and petrochemical facilities",
-          "Pharmaceutical and food-grade liquid storage",
-          "Marine storage tanks and offshore platforms"
+        id: "AFRISO-LEAK",
+        name: "Tank Bund Leak Detection Sensor",
+        manufacturerPartNumber: "AFR-FLOAT-TYPE",
+        AGPPartNumber: "AGP-ACC-004",
+        Make: "Afriso",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Afriso_Tank_Bund_Leak_Detection_mq9ekl.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Afriso_Tank_Bund_Leak_Detection_mq9ekl.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716273/Afriso_Tank_Bund_Leak_Detection_mq9ekl.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Float-type sensor for immediate detection of liquid accumulation in tank bunds.",
+        description:
+          "The Afriso Leak Detection Sensor is a float-type device designed for the interstice or bund of fuel tanks. Featuring a standard 0.5-inch or 1-inch BSPT/NPT connection, it provides immediate alerts if fuel or water accumulates in the containment area, preventing environmental contamination and ensuring regulatory compliance.",
+        uses: [
+          "Double-wall tank interstitial monitoring",
+          "Generator drip tray leak detection",
+          "Sumps and containment bund monitoring",
+          "Environmental compliance for fuel storage"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/afriso-leak-detection.pdf" }
+        ],
+        details: {
+          SensorType: "Float Switch (NO/NC)",
+          Output: "Potential-free contact",
+          Connection: "1-inch NPT Male",
+          OperatingFluids: "Diesel, Oil, Water",
+          Material: "Polypropylene (PP)",
+          MaxPressure: "1 bar"
+        }
       },
       {
-        name: "Tank Alarm",
-        image: "/images/tank-alarm.jpg",
-        shortDescription:
-          "Electronic alarm system providing high/low level alerts for industrial liquid storage.",
-        description:
-          "A Tank Alarm System is an intelligent monitoring device that provides audio, visual, and remote alerts when tank levels reach critical high or low points. It integrates sensors, control circuitry, industrial-grade indicators, and communication interfaces to ensure safe and uninterrupted operation. Tank alarms prevent spills, pump dry-run, fuel shortages, and unauthorized fuel usage. Advanced systems may include GSM notifications, IoT cloud integration, and compatibility with BMS or SCADA platforms. These alarms are vital for facilities where fuel reliability, safety, and compliance are non-negotiable.",
-        uses: [
-          "High/low-level alerts for generator fuel tanks",
-          "Avoiding diesel spillage in industrial facilities",
-          "Fuel theft or tamper monitoring in remote sites",
-          "Chemical and water treatment process monitoring",
-          "BMS/SCADA integration for centralized monitoring",
-          "Commercial building backup generator systems",
-          "Marine fuel tanks and ship engine rooms"
+        id: "TH109-009",
+        name: "Multi-Use Industrial Thermostat",
+        manufacturerPartNumber: "TH109-009",
+        AGPPartNumber: "AGP-ACC-005",
+        Make: "PECO",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716274/PECO_Multi-Use_Industrial_Thermostat_ufbshm.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716274/PECO_Multi-Use_Industrial_Thermostat_ufbshm.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/v1765716274/PECO_Multi-Use_Industrial_Thermostat_ufbshm.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
-      },
-      {
-        name: "Fuel Shutoff Actuators",
-        image: "/images/fuel-shutoff.jpg",
         shortDescription:
-          "Automatic actuators that shut down fuel flow during emergencies or abnormal conditions.",
+          "Rugged industrial thermostat for reliable temperature control in plant rooms and enclosures.",
         description:
-          "Fuel Shutoff Actuators are precision-engineered electromechanical devices that ensure instant isolation of fuel flow in emergency shutdown scenarios. Activated through fire detection systems, temperature sensors, manual triggers, or automated safety circuits, they play a vital role in industrial hazard prevention. Built with high-torque motors, corrosion-resistant bodies, and rapid response mechanisms, these actuators protect generator engines, fuel lines, and equipment from runaway fuel flow. They are essential in safety-critical industries where fire protection and environmental integrity are required.",
+          "The PECO TH109-009 is a heavy-duty multi-use thermostat engineered for industrial environments. It provides precise temperature control for heating and cooling systems within generator enclosures and mechanical rooms, ensuring equipment operates within safe thermal limits regardless of external weather conditions.",
         uses: [
-          "Emergency fuel cutoff for diesel and gas generators",
-          "Fire protection systems interfaced with fuel supply lines",
-          "Industrial ESD (Emergency Shutdown) systems",
-          "Oil & gas facilities requiring rapid isolation",
-          "Automated safety interlocks in industrial plants",
-          "Marine engine fuel line protection",
-          "Hazardous-area compliant generator installations"
+          "HVAC control in generator enclosures",
+          "Temperature regulation in pump rooms",
+          "Frost protection activation",
+          "Industrial heater control circuits"
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
-      },
-      {
-        name: "Fuel Polisher",
-        image: "/images/fuel-polisher.jpg",
-        shortDescription:
-          "High-efficiency system that filters, cleans, and conditions diesel fuel to ensure generator readiness.",
-        description:
-          "A Fuel Polisher is an advanced diesel cleaning system designed to remove water, sludge, microbial growth, and particulates that accumulate during storage. Diesel fuel naturally degrades over time, especially in warm or humid conditions. Contaminants can clog filters, damage injectors, and cause generator failure during emergency start-up. Fuel polishers use multi-stage filtration, water separation, and circulation technology to maintain fuel purity and extend its shelf life. Ideal for mission-critical facilities, they reduce maintenance downtime and ensure seamless generator operation during power outages.",
-        uses: [
-          "Diesel purification for standby generator tanks",
-          "Fuel maintenance in data centers and hospitals",
-          "Long-term fuel storage in industrial and military facilities",
-          "Preventing microbial growth ('diesel bug')",
-          "Reducing engine wear and injector clogging",
-          "Bulk fuel storage terminals and fuel distribution systems",
-          "Marine diesel tank fuel polishing"
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/peco-thermostat.pdf" }
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        details: {
+          ControlRange: "0°C to +40°C",
+          SwitchAction: "Single Pole Double Throw (SPDT)",
+          ElectricalRating: "22A @ 120-277V AC",
+          SensingElement: "Vapour-filled bellows",
+          Enclosure: "NEMA 1 / IP40",
+          Mounting: "Surface Mount"
+        }
       }
     ]
   },
@@ -142,99 +186,177 @@ export const products = [
   {
     category: "Electrical Items and Accessories",
     slug: "electrical-items-accessories",
+    categoryId: "CAT-ELEC",
     items: [
       {
-        name: "Load Bank",
-        image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3UXHne8Iwx5h6Kk0KwkfOaHthuEX1pfQ4VQ&s",
-        shortDescription:
-          "Industrial load bank used for testing and commissioning generators and UPS systems.",
-        description:
-          "A Load Bank is an essential electrical testing device designed to simulate real electrical loads for verifying the performance of generators, UPS systems, and power distribution equipment. By applying controlled loads, load banks help identify issues such as improper voltage regulation, fuel system inefficiencies, unstable frequency output, and cooling system faults. They are indispensable for periodic generator exercising, commissioning new power systems, and preventing wet stacking in diesel engines. Load banks can be resistive, inductive, capacitive, or a combination, offering tailored testing solutions for industrial, commercial, and data center environments.",
-        uses: [
-          "Commissioning testing of new generator installations",
-          "Routine maintenance and exercising of standby generators",
-          "UPS discharge testing for battery performance validation",
-          "Preventing wet stacking in diesel engines",
-          "Load testing for data centers and telecom facilities",
-          "Testing power quality in industrial plants",
-          "Training facilities for electrical engineering simulations"
+        id: "DURITE-0-605-53",
+        name: "Battery Isolator Switch (Heavy-Duty)",
+        manufacturerPartNumber: "0-605-53",
+        AGPPartNumber: "AGP-ELEC-001",
+        Make: "Durite",
+        images: [
+          "https://www.arc-components.com/user/products/large/0-605-53-durite-heavy-duty-battery-isolator-250a-at-24vdc-main.jpg",
+          "https://www.arc-components.com/user/products/large/0-605-53-durite-heavy-duty-battery-isolator-250a-at-24vdc-main.jpg",
+          "https://www.arc-components.com/user/products/large/0-605-53-durite-heavy-duty-battery-isolator-250a-at-24vdc-main.jpg",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Heavy-duty 400A battery disconnect switch with removable key for secure isolation.",
+        description:
+          "The Durite 0-605-53 is a high-capacity battery isolator switch capable of handling 400A continuous load at 24V DC. It features a removable key, providing both safety during maintenance and security against unauthorized equipment operation. It is an industry-standard component for heavy diesel generators and industrial vehicles.",
+        uses: [
+          "Main battery disconnect for diesel generators",
+          "Heavy construction machinery safety lockout",
+          "Marine battery isolation",
+          "Emergency power cut-off"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/durite-isolator.pdf" }
+        ],
+        details: {
+          VoltageRating: "48V DC Max",
+          ContinuousCurrent: "400A @ 24V DC",
+          IntermittentCurrent: "2500A (5 seconds)",
+          Operation: "Removable Key",
+          TerminalSize: "M10 Studs",
+          MountingHoleDiameter: "55mm"
+        }
       },
       {
-        name: "Transformer",
-        image:
-          "https://t3.ftcdn.net/jpg/04/97/30/98/240_F_497309808_aw53b7UXBfKeLrCLTWv2mBiDzjEKaCW2.jpg",
-        shortDescription:
-          "Reliable transformer for stepping voltage up or down in commercial and industrial grids.",
-        description:
-          "Industrial Transformers are electrical devices engineered to efficiently transfer energy between circuits through electromagnetic induction. They adjust voltage levels to meet system requirements—either stepping up for long-distance transmission or stepping down for safe distribution. Built with high-grade core materials and advanced cooling systems, transformers ensure consistent performance, reduced losses, and operational reliability. They are vital for industrial plants, backup power systems, commercial facilities, and renewable energy installations. Modern transformers also incorporate protection relays, fire-resistant oils, and monitoring systems for enhanced safety and longevity.",
-        uses: [
-          "Voltage step-up/step-down in industrial power distribution",
-          "Grid-to-generator synchronization",
-          "Power supply for commercial buildings and data centers",
-          "Renewable energy systems such as solar and wind farms",
-          "Oil & gas plant electrical distribution",
-          "Industrial automation equipment",
-          "Large HVAC and motor-driven systems"
+        id: "LITTELFUSE-880175",
+        name: "Waterproof Battery Isolator (IP69K)",
+        manufacturerPartNumber: "880175-0002",
+        AGPPartNumber: "AGP-ELEC-002",
+        Make: "Littelfuse",
+        images: [
+          "https://cdn2.webdamdb.com/1280_wKXtSXekYAm51M9z.jpg?1759442014",
+          "https://cdn2.webdamdb.com/1280_wKXtSXekYAm51M9z.jpg?1759442014",
+          "https://cdn2.webdamdb.com/1280_wKXtSXekYAm51M9z.jpg?1759442014",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "IP67/IP69K rated battery switch designed for extreme environments and wash-down areas.",
+        description:
+          "The Littelfuse 880175-0002 is an ultra-rugged battery isolator switch engineered for the harshest environments. With an IP67/IP69K rating, it is completely dust-tight and can withstand high-pressure water jets, making it ideal for external mounting on pump skids, mining equipment, and marine generators.",
+        uses: [
+          "External generator enclosure isolation",
+          "Mining and off-highway equipment",
+          "Marine and offshore power systems",
+          "Wash-down areas in food processing plants"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/littelfuse-isolator.pdf" }
+        ],
+        details: {
+          VoltageRating: "12-48V DC",
+          ContinuousCurrent: "300A",
+          ProtectionRating: "IP67 / IP69K",
+          Operation: "Rotary Switch (Locking)",
+          TerminalSize: "M10 Studs",
+          OperatingTemperature: "-40°C to +85°C"
+        }
       },
       {
-        name: "Battery Isolation Switch",
-        image:
-          "https://t4.ftcdn.net/jpg/18/04/46/35/240_F_1804463589_O8SJcu3Ur0YAvXkyH6g6pM0auU0PHl2e.jpg",
-        shortDescription:
-          "Switch that safely isolates batteries from electrical circuits during maintenance.",
-        description:
-          "A Battery Isolation Switch is a critical safety component that enables complete disconnection of a battery from its electrical circuit. It helps prevent accidental short circuits, electrical fires, and damage during maintenance or emergencies. Built with high ampacity and durable contact materials, it ensures reliable operation even in harsh conditions such as high vibration, moisture exposure, or heavy industrial usage. These switches are widely used in generator starter systems, industrial vehicles, telecom backup systems, and solar battery banks to ensure safe electrical management.",
-        uses: [
-          "Isolating generator starter batteries during servicing",
-          "Preventing electrical hazards in industrial machines",
-          "Telecommunication battery backup systems",
-          "Marine and automotive battery disconnect applications",
-          "Solar and renewable energy battery banks",
-          "Emergency shutdown systems",
-          "Construction and mining equipment electrical safety"
+        id: "FRICO-C5N",
+        name: "Industrial Fan Heater (5kW, 400V)",
+        manufacturerPartNumber: "C5N",
+        AGPPartNumber: "AGP-ELEC-003",
+        Make: "Frico",
+        images: [
+          "https://www.frico.net/_next/image?url=https%3A%2F%2Fstepimassets.blob.core.windows.net%2Fdsassetsprod%2FPRODUCT-MAIN-IMAGE_CAT.JPG&w=640&q=80",
+          "https://www.frico.net/_next/image?url=https%3A%2F%2Fstepimassets.blob.core.windows.net%2Fdsassetsprod%2FPRODUCT-MAIN-IMAGE_CAT.JPG&w=640&q=80",
+          "https://www.frico.net/_next/image?url=https%3A%2F%2Fstepimassets.blob.core.windows.net%2Fdsassetsprod%2FPRODUCT-MAIN-IMAGE_CAT.JPG&w=640&q=80",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "5kW, 3-Phase 400V industrial fan heater with IP44 rating for plant room heating.",
+        description:
+          "The Frico C5N is a powerful 5kW fan heater designed for stationary use in industrial environments. Operating on a 3-phase 400V supply with an IP44 rating, it is resilient against dampness and dust. It is essential for maintaining optimal operating temperatures in large generator rooms and preventing condensation in electrical switchgear rooms.",
+        uses: [
+          "Heating large generator acoustic enclosures",
+          "Plant room frost protection",
+          "Drying and heating in workshops",
+          "Temperature maintenance in pump houses"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/frico-heater.pdf" }
+        ],
+        details: {
+          PowerOutput: "5kW",
+          Voltage: "400V 3-Phase",
+          Airflow: "400 m³/h",
+          ProtectionRating: "IP44",
+          Dimensions: "350mm x 320mm x 250mm",
+          ThermostatRange: "5°C to +35°C"
+        }
       },
       {
-        name: "Cable Gland and Cable Grommet",
-        image: "https://images.pexels.com/photos/858598/pexels-photo-858598.jpeg",
-        shortDescription:
-          "Durable cable entry solutions offering sealing, strain relief, and protection from moisture.",
-        description:
-          "Cable Glands and Grommets are mechanical fittings designed to securely route and protect electrical cables entering enclosures, panels, or machinery. They provide strain relief, environmental sealing, and mechanical protection to ensure electrical integrity in demanding applications. Manufactured using brass, stainless steel, nylon, or polymer composites, these glands prevent moisture ingress, mechanical stress, dust entry, and cable damage. They are essential in environments where cables are exposed to vibration, heat, oil, chemicals, or outdoor conditions.",
-        uses: [
-          "Sealing cable entries in generator control panels",
-          "Industrial automation panels and junction boxes",
-          "Outdoor electrical installations exposed to weather",
-          "Marine and offshore electrical systems",
-          "Hazardous locations requiring explosion-proof glands",
-          "Data center cable routing and protection",
-          "Telecom installations with armored cable entries"
+        id: "SCHNEIDER-EXN30T3H",
+        name: "Dry Type Transformer (30kVA)",
+        manufacturerPartNumber: "EXN30T3H",
+        AGPPartNumber: "AGP-ELEC-004",
+        Make: "Schneider",
+        images: [
+          "https://download.schneider-electric.com/files?p_Doc_Ref=EXN30T_DA21&p_File_Type=rendition_369_jpg&default_image=DefaultProductImage.png",
+          "https://download.schneider-electric.com/files?p_Doc_Ref=EXN30T_DA21&p_File_Type=rendition_369_jpg&default_image=DefaultProductImage.png",
+          "https://download.schneider-electric.com/files?p_Doc_Ref=EXN30T_DA21&p_File_Type=rendition_369_jpg&default_image=DefaultProductImage.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "30kVA Dry Type Transformer stepping down 480V Delta to 208Y/120V.",
+        description:
+          "The Schneider EXN30T3H is a high-efficiency 30kVA ventilated dry-type transformer. It is engineered to step down high industrial voltages (480V Delta) to usable distribution voltages (208Y/120V). Its robust construction ensures reliable power distribution for lighting panels, receptacles, and auxiliary equipment within E-Houses and industrial facilities.",
+        uses: [
+          "Power distribution in E-House modules",
+          "Stepping down generator output for auxiliary loads",
+          "Industrial lighting and control power",
+          "Data center power distribution units"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "/pdfs/schneider-transformer.pdf" }
+        ],
+        details: {
+          kVARating: "30 kVA",
+          PrimaryVoltage: "480V Delta",
+          SecondaryVoltage: "208Y/120V",
+          Phase: "Three-Phase",
+          InsulationClass: "220°C (NEMA TP-1)",
+          EnclosureType: "NEMA 3R (Ventilated)"
+        }
       },
       {
-        name: "LED Lights & Emergency Exit Lights",
-        image: "https://images.pexels.com/photos/845265/pexels-photo-845265.jpeg",
-        shortDescription:
-          "Energy-efficient LED and emergency exit lighting systems for industrial and commercial safety.",
-        description:
-          "LED Lights and Emergency Exit Lights provide efficient, long-lasting illumination for both normal operations and emergency scenarios. Industrial-grade LED lighting offers superior brightness, low energy consumption, and long service life, while emergency exit lights ensure safe evacuation during power failures. These lights often incorporate battery backup systems, photoluminescent signage, high-output LED modules, and fire-resistant housings. Essential in ensuring safety compliance, they support visibility in hazardous environments, industrial workshops, powerhouses, and commercial buildings.",
-        uses: [
-          "Factory and warehouse lighting solutions",
-          "Emergency lighting for commercial buildings",
-          "Backup illumination for generator rooms and electrical areas",
-          "Outdoor pathway and perimeter lighting",
-          "Safety exit routes in malls, hospitals, and offices",
-          "Marine and offshore platforms emergency lighting",
-          "Data centers and industrial control rooms"
+        id: "LITHONIA-WST",
+        name: "LED Wall Pack (4000K)",
+        manufacturerPartNumber: "WST LED P1 40K",
+        AGPPartNumber: "AGP-ELEC-005",
+        Make: "Lithonia",
+        images: [
+          "https://img.acuitybrands.com/public-assets/catalog/114966/wst-led_mid.jpg?abl_version=06%2f30%2f2025+15%3a58%3a44",
+          "https://img.acuitybrands.com/public-assets/catalog/114966/wst-led_mid.jpg?abl_version=06%2f30%2f2025+15%3a58%3a44",
+          "https://img.acuitybrands.com/public-assets/catalog/114966/wst-led_mid.jpg?abl_version=06%2f30%2f2025+15%3a58%3a44",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Energy-efficient LED wall pack for perimeter and security lighting.",
+        description:
+          "The Lithonia WST LED is a high-performance wall pack designed for exterior lighting. Featuring a 4000K cool white output and rugged housing, it provides superior visibility for building perimeters, generator yards, and walkways while minimizing energy consumption and maintenance needs.",
+        uses: [
+          "Exterior lighting for generator enclosures",
+          "Security lighting for industrial facilities",
+          "Perimeter illumination",
+          "Loading dock and walkway lighting"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Product Spec Sheet", url: "https://img.acuitybrands.com/public-assets/catalog/114966/wst-led.pdf" }
+        ],
+        details: {
+          LightSource: "LED",
+          LumenOutput: "Approx 10,000 lumens",
+          ColorTemperature: "4000K (Cool White)",
+          Voltage: "120-277V AC",
+          ProtectionRating: "IP66",
+          Lifespan: "L70 > 100,000 hours"
+        }
       }
     ]
   },
@@ -245,60 +367,211 @@ export const products = [
   {
     category: "Mechanical Items and Accessories",
     slug: "mechanical-items-accessories",
+    categoryId: "CAT-MECH",
     items: [
       {
-        name: "Door Closure and Control",
-        image: "/images/door-closure.jpg",
-        shortDescription:
-          "Heavy-duty door closure systems designed for controlled, smooth, and secure operation.",
-        description:
-          "Door Closures and Control Systems are engineered to ensure smooth, controlled, and safe door movement in industrial enclosures. These closers prevent slamming, increase door life, reduce noise, and improve operator safety. With hydraulic damping, adjustable speed control, corrosion-resistant bodies, and heavy-duty arms, they are designed to function reliably in the harshest industrial environments—including generator housings, pump rooms, and outdoor enclosures exposed to weather. They provide fire safety compliance, access control, and enhanced system durability.",
-        uses: [
-          "Generator and acoustic enclosure door mechanisms",
-          "Industrial building fire-rated doors",
-          "Pump rooms and equipment housings",
-          "HVAC access panels and mechanical cabinets",
-          "Marine and offshore steel doors",
-          "Commercial facility access doors",
-          "Security infrastructure requiring controlled access"
+        id: "RIS-STOP-2SF",
+        name: "Overfill Prevention Valve (2-inch)",
+        manufacturerPartNumber: "RIS-STOP-2SF-R-AF",
+        AGPPartNumber: "AGP-MECH-001",
+        Make: "Risbridger",
+        images: [
+          "https://risbridger.com/wp-content/uploads/2018/01/OverfillPreventsionValve.png",
+          "https://risbridger.com/wp-content/uploads/2018/01/OverfillPreventsionValve.png",
+          "https://risbridger.com/wp-content/uploads/2018/01/OverfillPreventsionValve.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "2-inch mechanical overfill prevention valve with high flow rate capacity (600 L/min).",
+        description:
+          "The Risbridger RIS-STOP-2SF-R-AF is a premium mechanical overfill prevention device designed for pressure delivery. It utilizes a magnetic shut-off mechanism to stop fuel flow instantly when the tank reaches capacity. With a flow range of 10-600 liters per minute, it allows for rapid refuelling while strictly preventing environmental spills.",
+        uses: [
+          "Overfill protection for diesel bulk tanks",
+          "High-speed refuelling of generator belly tanks",
+          "Fuel farm safety compliance",
+          "Prevents soil contamination and fuel wastage"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "https://risbridger.com/wp-content/uploads/2021/01/DATA-RIS-STOP-2SF-R-190523.pdf" }
+        ],
+        details: {
+          NominalSize: "2-inch BSPT",
+          MaxFlowRate: "600 L/min",
+          ClosureType: "Magnetic Mechanical Shut-off",
+          Material: "Anodized Aluminium",
+          OperatingPressure: "0.5 to 10 bar",
+          FuelCompatibility: "Diesel, Petrol, Biofuels"
+        }
       },
       {
-        name: "Door Hinges and Door Stoppers",
-        image: "/images/door-hinges.jpg",
-        shortDescription:
-          "Heavy-duty hinges and stoppers engineered to support industrial doors reliably.",
-        description:
-          "Industrial Door Hinges and Stoppers are precision-machined mechanical components designed to withstand heavy loads, frequent usage, vibration, and outdoor conditions. Built from stainless steel, galvanized steel, or heavy-duty alloys, these components ensure smooth rotation, stability, and long life. Door stoppers protect walls and equipment from impact damage, while high-quality hinges prevent sagging and ensure secure alignment. These are essential for generator enclosures, E-houses, pump skids, and industrial machinery housings.",
-        uses: [
-          "Heavy steel door support for generator enclosures",
-          "Industrial building access door assemblies",
-          "Marine-rated enclosures and ship engine room doors",
-          "Electrical control room and substation panel doors",
-          "Mechanical equipment housings and pump skids",
-          "Outdoor machinery cabinets",
-          "High-load industrial access doors"
+        id: "ELMAC-ERB050",
+        name: "Deflagration Flame Arrestor (2-inch)",
+        manufacturerPartNumber: "ERB-050FS-125(W)",
+        AGPPartNumber: "AGP-MECH-002",
+        Make: "Elmac",
+        images: [
+          "https://elmactechnologies.com/wp-content/uploads/2017/11/ERB-1.png",
+          "https://elmactechnologies.com/wp-content/uploads/2017/11/ERB-1.png",
+          "https://elmactechnologies.com/wp-content/uploads/2017/11/ERB-1.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "2-inch End-of-Line deflagration flame arrestor for tank vent protection.",
+        description:
+          "The Elmac ERB-050FS is a high-specification deflagration flame arrestor with 2-inch NPT connections. Installed on tank vent lines, it uses a precision-crimped metal ribbon element to extinguish subsonic flames, preventing external fires from propagating into the fuel storage tank and causing explosions.",
+        uses: [
+          "Vent line protection for flammable liquid tanks",
+          "Oil & Gas refinery storage safety",
+          "Diesel generator fuel tank venting",
+          "Chemical processing tank safety"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "https://elmactechnologies.com/wp-content/uploads/2021/07/ERB-Series-Datasheet-1.pdf" }
+        ],
+        details: {
+          NominalSize: "2-inch NPT",
+          ArrestorType: "End-of-Line Deflagration",
+          Material: "Carbon Steel / Stainless Steel 316",
+          ElementType: "Crimped Metal Ribbon (Removable)",
+          Certifications: "ISO 16852 (ATEX)",
+          MaxOperatingTemperature: "+60°C"
+        }
       },
       {
-        name: "Exhaust Flexible and Bellows",
-        image: "/images/exhaust-bellows.jpg",
-        shortDescription:
-          "Flexible exhaust solutions designed to absorb vibration, thermal expansion, and mechanical stress.",
-        description:
-          "Exhaust Flexibles and Bellows are engineered to absorb vibration, thermal expansion, and mechanical displacement in generator and industrial exhaust systems. Constructed using stainless steel multilayer mesh, corrugated bellows, and braided reinforcement, they prevent cracks, pipe misalignment, and excessive stress on engine manifolds. These components are essential for enhancing exhaust system longevity, reducing noise transfer, and minimizing maintenance downtime. They are widely used in applications subject to high heat, vibration, and dynamic movement.",
-        uses: [
-          "Exhaust systems of diesel and gas generators",
-          "Industrial boiler exhaust lines",
-          "Marine engines and ship exhaust systems",
-          "HVAC and ventilation duct vibration isolation",
-          "Automotive and heavy machinery exhaust assemblies",
-          "Chemical plant exhaust pipelines",
-          "Power plant turbine exhaust flexibility management"
+        id: "LK-FIRE-VALVE",
+        name: "Free Fall Fire Valve Kit",
+        manufacturerPartNumber: "10903709H",
+        AGPPartNumber: "AGP-MECH-003",
+        Make: "Landon Kingsway",
+        images: [
+          "https://www.landonkingsway.com/wordpress/wp-content/uploads/2020/02/freefall-fire-valve.png",
+          "https://www.landonkingsway.com/wordpress/wp-content/uploads/2020/02/freefall-fire-valve.png",
+          "https://www.landonkingsway.com/wordpress/wp-content/uploads/2020/02/freefall-fire-valve.png",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Gravity-operated fire safety valve kit with fusible link activation.",
+        description:
+          "The Landon Kingsway Free Fall Fire Valve is a gravity-actuated safety device. It is installed in fuel supply lines and held open by a tension cable connected to a fusible link (typically rated at 72°C or 145°C). In the event of a fire, the link melts, releasing the tension and allowing the valve to snap shut instantly, isolating the fuel supply to the generator.",
+        uses: [
+          "Emergency fuel isolation for boiler rooms",
+          "Diesel generator fire safety systems",
+          "Burner fuel line protection",
+          "Compliance with building fire safety codes"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "https://www.landonkingsway.com/wordpress/wp-content/uploads/2021/08/109037XX-FREEFALL-FIRE-VALVE-MKII-1.pdf" }
+        ],
+        details: {
+          ValveSize: "1/2 inch",
+          Actuation: "Gravity-Free Fall",
+          FusibleLinkRating: "72°C Standard (Optional 145°C)",
+          BodyMaterial: "Brass",
+          MaxOperatingPressure: "10 bar",
+          InletOutlet: "BSP Female"
+        }
+      },
+      {
+        id: "RIDART-197VA",
+        name: "Vent Valve & Flame Arrester (Combined)",
+        manufacturerPartNumber: "197VA-50-AL",
+        AGPPartNumber: "AGP-MECH-004",
+        Make: "Ridart",
+        images: [
+          "https://www.ridart.it/images/CAT-197OLD.jpg",
+          "https://www.ridart.it/images/CAT-197OLD.jpg",
+          "https://www.ridart.it/images/CAT-197OLD.jpg",
+        ],
+        shortDescription:
+          "Combined 2-inch pressure/vacuum vent valve with integrated flame arrestor.",
+        description:
+          "The Ridart 197VA-50-AL combines two critical safety functions in one unit. It acts as a breather valve to regulate internal tank pressure during filling and emptying, and includes an integrated flame arrestor to block external ignition sources. The aluminium construction ensures durability and corrosion resistance.",
+        uses: [
+          "Atmospheric venting for above-ground tanks",
+          "Combined pressure/vacuum relief",
+          "Fire protection for diesel storage",
+          "Vapour control in fuel systems"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "https://www.ridart.it/datasheet/vacuum_vent_197.pdf" }
+        ],
+        details: {
+          NominalSize: "2-inch Flange (DN50)",
+          SettingPressure: "+30 mbar",
+          SettingVacuum: "-2 mbar",
+          FlameArrestor: "Integrated",
+          Material: "Aluminium Body",
+          FlowRate: "500 m³/h"
+        }
+      },
+      {
+        id: "BELIMO-SRFA",
+        name: "Spring-Return Rotary Actuator (20Nm)",
+        manufacturerPartNumber: "SRFA-S2-R",
+        AGPPartNumber: "AGP-MECH-005",
+        Make: "Belimo",
+        images: [
+          "https://www.belimo.com/pim/mam/europe/pictures-and-graphics/product/water_solutions/Actuators/Rotary-Spring/PIC_EU_SRF24A-R_ZSF_4C-product.jpg",
+          "https://www.belimo.com/pim/mam/europe/pictures-and-graphics/product/water_solutions/Actuators/Rotary-Spring/PIC_EU_SRF24A-R_ZSF_4C-product.jpg",
+          "https://www.belimo.com/pim/mam/europe/pictures-and-graphics/product/water_solutions/Actuators/Rotary-Spring/PIC_EU_SRF24A-R_ZSF_4C-product.jpg",
+        ],
+        shortDescription:
+          "20Nm fail-safe rotary actuator for automated damper and valve control.",
+        description:
+          "The Belimo SRFA-S2-R is a heavy-duty rotary actuator designed for fail-safe applications. With 20Nm of torque and a spring-return mechanism, it ensures that dampers or valves return to a safe 'closed' or 'open' position in the event of power loss. It allows for precise automated control of airflow and fluid flow in critical systems.",
+        uses: [
+          "Automating air intake/outlet dampers on generators",
+          "Actuating large ball valves for fluid control",
+          "Emergency isolation in HVAC systems",
+          "Fire and smoke damper actuation"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "https://www.belimo.com/mam/general-documents/datasheets/en-gb/belimo_SRFA-S2-R_datasheet_en-gb.pdf" }
+        ],
+        details: {
+          Torque: "20 Nm",
+          ControlSignal: "0-10V DC Modulating",
+          PowerSupply: "24V AC/DC",
+          SpringReturnTime: "< 15 seconds",
+          ProtectionRating: "IP54",
+          OperatingTemperature: "-30°C to +50°C"
+        }
+      },
+      {
+        id: "LEENGATE-LV8635",
+        name: "Carbon Steel Ball Valve (Flanged 1.5-inch)",
+        manufacturerPartNumber: "LV8635",
+        AGPPartNumber: "AGP-MECH-006",
+        Make: "Leengate",
+        images: [
+          "https://www.leengatevalves.co.uk/wp-content/uploads/2016/10/LV8635-600x600.jpg",
+          "https://www.leengatevalves.co.uk/wp-content/uploads/2016/10/LV8635-600x600.jpg",
+          "https://www.leengatevalves.co.uk/wp-content/uploads/2016/10/LV8635-600x600.jpg",
+        ],
+        shortDescription:
+          "Industrial 1.5-inch flanged carbon steel ball valve with ISO mounting top.",
+        description:
+          "The Leengate LV8635 is a robust carbon steel ball valve featuring PN16 flanges for secure pipeline connection. It includes an ISO top mounting pad, making it ready for direct actuation (electric or pneumatic). Its carbon steel body ensures high pressure and temperature resistance suitable for industrial fuel and water lines.",
+        uses: [
+          "Main fuel line isolation",
+          "Automated fuel transfer systems",
+          "Industrial water and chemical piping",
+          "High-pressure fluid control"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Datasheet", url: "https://www.leengatevalves.co.uk/wp-content/uploads/LV8635.pdf" }
+        ],
+        details: {
+          NominalSize: "1.5-inch",
+          EndConnection: "Flanged PN16",
+          BodyMaterial: "Carbon Steel A216 WCB",
+          OperatingPressure: "PN16 (16 bar)",
+          TemperatureRange: "-29°C to +200°C",
+          ActuationMount: "ISO 5211 Pad"
+        }
       }
     ]
   },
@@ -309,78 +582,188 @@ export const products = [
   {
     category: "Generator Enclosures, Pump Skids, E-House/E-POD",
     slug: "generator-systems",
+    categoryId: "CAT-ENCL",
     items: [
       {
-        name: "Generator Acoustic Enclosure",
-        image: "/images/acoustic-enclosure.jpg",
-        shortDescription:
-          "Acoustic enclosure designed to reduce generator noise while providing full weather protection.",
-        description:
-          "A Generator Acoustic Enclosure is a specialized housing designed to significantly reduce noise generated by industrial diesel or gas generators. Manufactured using sound-absorbing materials, thermal insulation panels, and high-strength steel structures, these enclosures ensure compliance with noise regulations in residential, commercial, and industrial locations. They provide weatherproofing, ventilation control, fire resistance, and security while ensuring optimal airflow to maintain generator performance. Acoustic enclosures are essential in sensitive or urban environments where operational noise must be minimized without compromising equipment safety and reliability.",
-        uses: [
-          "Noise reduction for generators in residential areas",
-          "Backup power installations in hospitals, schools, and offices",
-          "Outdoor generator protection from weather elements",
-          "Telecom tower generator housings",
-          "Industrial and commercial standby power systems",
-          "Data center noise-regulated generator installations",
-          "Construction site power equipment enclosures"
+        id: "ATEX-DAMPER",
+        name: "ATEX Zone 2 Gas Retention Damper",
+        manufacturerPartNumber: "Custom-ATEX-GRD",
+        AGPPartNumber: "AGP-ENCL-001",
+        Make: "Engineered Air Treatment",
+        images: [
+          "https://www.engineeredairtreatment.co.uk/wp-content/uploads/2020/10/damperopenclosed_1.gif",
+          "https://www.engineeredairtreatment.co.uk/wp-content/uploads/2020/10/damperopenclosed_1.gif",
+          "https://www.engineeredairtreatment.co.uk/wp-content/uploads/2020/10/damperopenclosed_1.gif",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Certified ATEX Zone 2 dampers for gas retention and hazardous area ventilation.",
+        description:
+          "These heavy-duty dampers are custom-engineered for ATEX Zone 2 hazardous environments. They provide precise airflow control for generator enclosures and feature gas retention capabilities to seal off the enclosure in case of an emergency shutdown or gas leak, preventing the spread of hazardous fumes.",
+        uses: [ 
+          "Ventilation control in Oil & Gas generator enclosures",
+          "Emergency air shut-off for hazardous areas",
+          "Gas retention during fire suppression release",
+          "Offshore platform HVAC protection"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Product Brochure", url: "https://engineeredairtreatment.co.uk/wp-content/uploads/2021/02/Gas-Retention-Dampers-v1.pdf" }
+        ],
+        details: {
+          ATEXZone: "Zone 2 (Gas)",
+          Function: "Gas Retention / Shut-off",
+          BladeOperation: "Opposed Blade (Low Leakage)",
+          Material: "Galvanized or Stainless Steel",
+          Actuation: "Pneumatic or Electric Actuator (Sold Separately)",
+          Certifications: "Ex II 3G"
+        }
       },
       {
-        name: "Gas Genset Enclosure",
-        image: "/images/gas-genset.jpg",
-        shortDescription:
-          "Durable enclosure built specifically for gas-powered generator systems.",
-        description:
-          "Gas Genset Enclosures are purpose-built protective structures designed for housing gas-powered generators. They ensure safe operation by providing proper ventilation, explosion-proof construction options, gas detection systems, and weatherproof protection. Made from corrosion-resistant steel, these enclosures safeguard sensitive engine components from environmental hazards, extend equipment lifespan, and enhance site safety. They also help maintain stable generator operating temperatures, protect against unauthorized access, and comply with industrial safety standards for gas-powered equipment.",
-        uses: [
-          "Gas generator protection for industrial plants",
-          "Backup power systems in commercial facilities",
-          "Remote power installations in oil & gas operations",
-          "Temperature and access-controlled generator rooms",
-          "Outdoor gas genset installations for utilities",
-          "Mining and construction camp power systems",
-          "Critical infrastructure needing reliable gas-based backup"
+        id: "KASON-LATCH",
+        name: "Door Latch & Cylinder (Stainless Steel)",
+        manufacturerPartNumber: "10056CL902205",
+        AGPPartNumber: "AGP-ENCL-002",
+        Make: "Kason",
+        images: [
+          "https://www.cateringhardwaredirect.co.uk/cdn/shop/products/black-powder-coated-cylinder-locking-latch-latches-410780_800x.jpg?v=1750922891",
+          "https://www.cateringhardwaredirect.co.uk/cdn/shop/products/black-powder-coated-cylinder-locking-latch-latches-410780_800x.jpg?v=1750922891",
+          "https://www.cateringhardwaredirect.co.uk/cdn/shop/products/black-powder-coated-cylinder-locking-latch-latches-410780_800x.jpg?v=1750922891",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Polished stainless steel heavy-duty door latch with locking cylinder.",
+        description:
+          "The Kason 10056 series latch is a premium door locking mechanism designed for heavy insulated walk-in doors. Finished in polished stainless steel, it offers superior corrosion resistance and durability. It includes a cylinder lock for security and an inside release mechanism to prevent accidental entrapment.",
+        uses: [
+          "Walk-in generator enclosure doors",
+          "E-House access doors",
+          "Cold storage and industrial cabinets",
+          "Sound-proof acoustic doors"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Installation Guide", url: "https://www.kasonind.com/files/pdf/Kason_IS_0056_SafeGuardLatch.pdf" }
+        ],
+        details: {
+          Finish: "Polished Stainless Steel (or Black Powder Coated)",
+          Function: "Cylinder Lock with Safety Release",
+          Locking: "Keyed Cylinder Lock",
+          DoorThickness: "Up to 150mm (adjustable)",
+          Handing: "Reversible",
+          Series: "SafeGuard™ 10056"
+        }
       },
       {
-        name: "E-House Module",
-        image: "/images/e-house.jpg",
-        shortDescription:
-          "Modular electrical house providing secure housing for switchgear and control systems.",
-        description:
-          "An E-House (Electrical House) is a modular, factory-built electrical substation designed to house medium-voltage switchgear, control panels, VFDs, batteries, SCADA systems, and other mission-critical electrical components. E-Houses offer rapid deployment, cost savings, and reduced on-site construction time compared to traditional buildings. Constructed with fire-resistant panels, climate control systems, and heavy-duty steel frames, they protect sensitive electrical infrastructure from dust, moisture, vibration, and extreme weather. They are widely used in oil & gas fields, mining operations, renewable energy farms, and industrial facilities requiring portable or expandable power distribution systems.",
-        uses: [
-          "Portable electrical substations for oil & gas operations",
-          "Temporary or permanent electrical rooms for mining sites",
-          "Data center auxiliary electrical infrastructure",
-          "Renewable energy grid integration systems",
-          "Industrial automation and power distribution control rooms",
-          "Construction sites needing rapid electrical deployment",
-          "Remote site power management and distribution"
+        id: "POMMIER-HINGE",
+        name: "Stainless Steel Hinge System (300mm)",
+        manufacturerPartNumber: "082005700 Series",
+        AGPPartNumber: "AGP-ENCL-003",
+        Make: "Pommier",
+        images: [
+          "https://www.pommier.eu/sites/default/files/pim/thumbs_380_380/G/0820_05700.jpg",
+          "https://www.pommier.eu/sites/default/files/pim/thumbs_380_380/G/0820_05700.jpg",
+          "https://www.pommier.eu/sites/default/files/pim/thumbs_380_380/G/0820_05700.jpg",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Heavy-duty stainless steel hinge system (blade, bracket, pin) for large industrial doors.",
+        description:
+          "The Pommier hinge system is a modular, high-load bearing solution for heavy industrial doors. Comprising a 300mm stainless steel blade, robust bracket, and pin, it is engineered to support the weight of acoustic and armored doors on generator enclosures and containers without sagging or corrosion.",
+        uses: [
+          "Containerized generator doors",
+          "Heavy acoustic enclosure access points",
+          "Truck body and trailer doors",
+          "Marine grade external cabinetry"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Product Data", url: "https://www.pommier.eu/sites/default/files/downloads-documentions/pdf/AGS01-Web_082005700_en.pdf" }
+        ],
+        details: {
+          BladeLength: "300mm",
+          Material: "Stainless Steel",
+          LoadCapacity: "Heavy-Duty (Spec varies by assembly)",
+          Mounting: "Weld-on or Bolt-on",
+          CorrosionResistance: "Excellent (Marine Grade)",
+          PinType: "Non-removable safety pin"
+        }
       },
       {
-        name: "Battery Compartment",
-        image: "/images/battery-compartment.jpg",
-        shortDescription:
-          "Secure housing for industrial batteries, protecting them from environmental exposure and ensuring safe operation.",
-        description:
-          "Industrial Battery Compartments are engineered enclosures designed to safely store and protect batteries used in generator systems, UPS units, telecom equipment, and renewable energy installations. Built with fire-retardant materials, ventilation systems, cable entry provisions, and corrosion-resistant coatings, they maintain optimal operating conditions for batteries. These compartments shield batteries from heat, dust, moisture, and physical damage while enabling organized and secure installation. They also support maintenance operations by providing easy access and compliance with safety standards for battery storage.",
-        uses: [
-          "Generator starter battery housing",
-          "Battery storage for solar and renewable energy systems",
-          "UPS room battery banks",
-          "Telecom tower battery enclosures",
-          "Industrial power backup infrastructure",
-          "Marine and offshore battery storage",
-          "Electric utility substation battery banks"
+        id: "BLOXWICH-GASKET",
+        name: "Strike Gasket (Heavy-Duty Rubber)",
+        manufacturerPartNumber: "BCP20103E",
+        AGPPartNumber: "AGP-ENCL-004",
+        Make: "Bloxwich",
+        images: [
+          "https://www.bloxwichdoorgear.com/acatalog/mzi_db45e6f10cef0f50184496a27826e5fc_162_162_ffffff_75.jpg",
+          "https://www.bloxwichdoorgear.com/acatalog/mzi_db45e6f10cef0f50184496a27826e5fc_162_162_ffffff_75.jpg",
+          "https://www.bloxwichdoorgear.com/acatalog/mzi_db45e6f10cef0f50184496a27826e5fc_162_162_ffffff_75.jpg",
         ],
-        pdfLink: "/pdfs/level-switch.pdf" // <-- add this
+        shortDescription:
+          "Heavy-duty rubber gasket for sealing door strikes against weather and vibration.",
+        description:
+          "The Bloxwich BCP20103E is a specialized heavy-duty rubber gasket designed to sit behind door strikes. It provides essential cushioning to absorb the impact of heavy doors closing and ensures a watertight seal around the locking mechanism, protecting the enclosure from moisture and dust ingress.",
+        uses: [
+          "Weatherproofing container door locks",
+          "Vibration dampening for door strikes",
+          "Sealing generator enclosure access points",
+          "Industrial vehicle door assemblies"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Image Reference", url: "https://www.bloxwichdoorgear.com/acatalog/BCP20103E-zoom1.jpg" }
+        ],
+        details: {
+          Material: "Heavy-Duty Rubber (EPDM/Neoprene blend)",
+          Function: "Seal and Vibration Dampener",
+          Application: "Behind Door Strike Plates",
+          Color: "Black",
+          Durability: "UV and Weather Resistant",
+          Dimensions: "Custom cut for standard strike plates"
+        }
+      }
+    ]
+  },
+
+  /* --------------------------------------------------------------------------
+     CATEGORY 5 — TESTING AND MEASUREMENT TOOLS
+  --------------------------------------------------------------------------- */
+  {
+    category: "Testing and Measurement Tools",
+    slug: "testing-measurement-tools",
+    categoryId: "CAT-TEST",
+    items: [
+      {
+        id: "FLEXBAR-17295",
+        name: "Portable Hardness Tester (Quick-Check)",
+        manufacturerPartNumber: "17295",
+        AGPPartNumber: "AGP-TEST-001",
+        Make: "Flexbar",
+        images: [
+          "https://www.flexbar.com/cdn/shop/products/17295_trans_1800x1800.jpg?v=1549385188",
+          "https://www.flexbar.com/cdn/shop/products/17295_trans_1800x1800.jpg?v=1549385188",
+          "https://www.flexbar.com/cdn/shop/products/17295_trans_1800x1800.jpg?v=1549385188",
+        ],
+        shortDescription:
+          "Portable Quick-Check instrument for verifying metal hardness on-site.",
+        description:
+          "The Flexbar 17295 Quick-Check is a precision handheld tool designed for the rapid testing of material hardness. It allows quality control inspectors and engineers to verify the hardness of metals (such as steel, aluminum, and brass) directly on the production floor or job site without needing heavy benchtop equipment. It aids in verifying material compliance for structural components.",
+        uses: [
+          "On-site material quality control",
+          "Verifying hardness of pipework and structural steel",
+          "Incoming goods inspection for metal parts",
+          "Maintenance checks on wear components"
+        ],
+        // UPDATED: Replaced pdfLink with downloads array
+        downloads: [
+          { name: "Product Catalog", url: "https://www.tqscorp.com/docs/products/Flexbar-Catalog.pdf" }
+        ],
+        details: {
+          MeasurementScale: "Rockwell C, B, HRC, HRB (Requires Conversion)",
+          TestMethod: "Rebound / Impact",
+          Accuracy: "±6 HRC (Dependent on Conversion)",
+          Display: "Analog Dial",
+          Portability: "Handheld",
+          Batteries: "N/A (Mechanical)"
+        }
       }
     ]
   }

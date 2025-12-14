@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router";
-import HeaderDropDown from "./HeaderDropDown";
 import HeaderSearch from "./HeaderSearch";
 import HeaderFacilitiesDropdown from "./HeaderFacilitiesDropdown";
 import HeaderProjectsDropdown from "./HeaderProjectsDropdown";
+import HeaderProductsDropDown from "./HeaderProductsDropDown";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,7 +16,9 @@ const Header = () => {
       <div
         className="absolute inset-0 -z-10"
         style={{
-          background: "linear-gradient(100deg, #B45253 85%, #44444E 0%)",
+          // Original: background: "linear-gradient(110deg, #CF0F0F 80.05%, #44444E 0%)",
+          // MODIFIED: Adding a slightly lighter shade for the first color stop
+          background: "linear-gradient(110deg, #BF092F 80.05%, #44444E 0%)",
         }}
       />
 
@@ -37,7 +39,7 @@ const Header = () => {
               About
             </Link>
 
-            <HeaderDropDown />
+            <HeaderProductsDropDown />
 
             <HeaderProjectsDropdown />
 

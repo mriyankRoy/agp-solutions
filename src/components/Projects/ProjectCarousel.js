@@ -78,7 +78,7 @@ export default function ProjectCarousel({ projects }) {
               hover:scale-110 active:scale-95
               border border-white/20 backdrop-blur-xl
             "
-            style={{ background: "linear-gradient(135deg, #B45253, #44444E)" }}
+            style={{ background: "linear-gradient(135deg, #CF0F0F, #44444E)" }}
           >
             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -98,7 +98,7 @@ export default function ProjectCarousel({ projects }) {
               hover:scale-110 active:scale-95
               border border-white/20 backdrop-blur-xl
             "
-            style={{ background: "linear-gradient(135deg, #B45253, #44444E)" }}
+            style={{ background: "linear-gradient(135deg, #CF0F0F, #44444E)" }}
           >
             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

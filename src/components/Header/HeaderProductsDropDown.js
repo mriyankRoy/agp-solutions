@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { products } from "../../utils/products";
 import { useState } from "react";
 
-const HeaderDropDown = () => {
+const HeaderProductsDropDown = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const navigate = useNavigate();
 
@@ -96,4 +96,4 @@ const HeaderDropDown = () => {
   );
 };
 
-export default HeaderDropDown;
+export default HeaderProductsDropDown;
