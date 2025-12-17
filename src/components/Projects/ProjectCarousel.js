@@ -1,155 +1,119 @@
 import ProjectCard from "./ProjectCard";
 import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function ProjectCarousel({ projects }) {
+export default function ProjectCarousel({ projects: projectsProp }) {
+  const projects = projectsProp || []; 
   const scrollContainerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const GAP_SIZE = 24; 
 
-  // Scroll left/right
+  const getCardStepSize = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return { step: 0 };
+    const card = container.querySelector(".card-content");
+    return card ? { step: card.offsetWidth + GAP_SIZE } : { step: 0 };
+  };
+  
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const card = container.querySelector("article");
-    const cardWidth = card ? card.offsetWidth : 400;
-    const gap = 24;
-    const amount = cardWidth + gap;
+    const { step } = getCardStepSize();
+    if (!container || step === 0) return;
 
     const maxScroll = container.scrollWidth - container.clientWidth;
-    const newScrollLeft =
-      direction === "left"
-        ? Math.max(0, container.scrollLeft - amount)
-        : Math.min(maxScroll, container.scrollLeft + amount);
+    const newScrollLeft = direction === "left"
+        ? Math.max(0, container.scrollLeft - step)
+        : Math.min(maxScroll, container.scrollLeft + step);
 
     container.scrollTo({ left: newScrollLeft, behavior: "smooth" });
   };
 
-  // Update arrows visibility and active index
   const updateScrollState = () => {
     const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const card = container.querySelector("article");
-    const cardWidth = card ? card.offsetWidth : 400;
-    const gap = 24;
-    const index = Math.round(container.scrollLeft / (cardWidth + gap));
-    setActiveIndex(index);
-
-    setCanScrollLeft(container.scrollLeft > 0);
-    setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth - 1);
+    const { step } = getCardStepSize();
+    if (!container || step === 0) return;
+    setActiveIndex(Math.round(container.scrollLeft / step));
+    setCanScrollLeft(container.scrollLeft > 5);
+    setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth - 5); 
   };
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
-
+    const handleResize = () => updateScrollState();
+    const initialCheck = setTimeout(updateScrollState, 100);
     container.addEventListener("scroll", updateScrollState, { passive: true });
-    updateScrollState();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(initialCheck);
+      container.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [projects.length]);
 
-    return () => container.removeEventListener("scroll", updateScrollState);
-  }, []);
-
-  const goToSlide = (index) => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const card = container.querySelector("article");
-    const cardWidth = card ? card.offsetWidth : 400;
-    const gap = 24;
-    const scrollAmount = (cardWidth + gap) * index;
-
-    container.scrollTo({ left: scrollAmount, behavior: "smooth" });
-  };
+  if (projects.length === 0) return null;
 
   return (
-    <div className="relative w-full py-12 px-4 sm:px-6 lg:px-10">
-      <div className="relative max-w-[1700px] mx-auto">
-        {/* LEFT ARROW */}
+    <div className="relative w-full px-4 md:px-16"> 
+      <div className="relative">
+        
+        {/* --- LEFT ARROW (Eye-catching glassmorphism) --- */}
         {canScrollLeft && (
           <button
             onClick={() => scroll("left")}
-            aria-label="Scroll left"
-            className="
-              absolute left-0 top-1/2 -translate-y-1/2 z-20
-              w-14 h-14 flex items-center justify-center rounded-full
-              shadow-xl transition-transform duration-300
-              hover:scale-110 active:scale-95
-              border border-white/20 backdrop-blur-xl
-            "
-            style={{ background: "linear-gradient(135deg, #CF0F0F, #44444E)" }}
+            className="absolute -left-4 md:-left-14 top-1/2 -translate-y-1/2 z-30
+                       w-12 h-12  items-center justify-center rounded-full
+                       bg-white/80 backdrop-blur-md border-2 border-[#44444E]/20 text-[#44444E]
+                       shadow-xl transition-all duration-300 group hover:bg-[#CF0F0F] hover:text-white
+                       hover:scale-110 active:scale-95 hidden sm:flex"
           >
-            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
+            <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-1" />
           </button>
         )}
 
-        {/* RIGHT ARROW */}
+        {/* --- RIGHT ARROW --- */}
         {canScrollRight && (
           <button
             onClick={() => scroll("right")}
-            aria-label="Scroll right"
-            className="
-              absolute right-0 top-1/2 -translate-y-1/2 z-20
-              w-14 h-14 flex items-center justify-center rounded-full
-              shadow-xl transition-transform duration-300
-              hover:scale-110 active:scale-95
-              border border-white/20 backdrop-blur-xl
-            "
-            style={{ background: "linear-gradient(135deg, #CF0F0F, #44444E)" }}
+            className="absolute -right-4 md:-right-14 top-1/2 -translate-y-1/2 z-30
+                       w-12 h-12  items-center justify-center rounded-full
+                       bg-white/80 backdrop-blur-md border-2 border-[#44444E]/20 text-[#44444E]
+                       shadow-xl transition-all duration-300 group hover:bg-[#CF0F0F] hover:text-white
+                       hover:scale-110 active:scale-95 hidden sm:flex"
           >
-            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
           </button>
         )}
-
-        {/* CAROUSEL */}
-        <div
-          ref={scrollContainerRef}
-          className="
-            flex gap-6 overflow-x-auto scrollbar-hide
-            px-2 sm:px-4 py-4 snap-x snap-mandatory
-            cursor-grab active:cursor-grabbing
-          "
-          style={{
-            scrollbarWidth: "none",
-            WebkitOverflowScrolling: "touch",
-            msOverflowStyle: "none",
-          }}
-        >
-          {projects.map((proj) => (
-            <div key={proj.id} className="snap-start flex-shrink-0">
-              <ProjectCard project={proj} />
-            </div>
-          ))}
+        
+        {/* --- TRACK --- */}
+        <div className="relative overflow-hidden">
+          <div ref={scrollContainerRef} className="flex gap-6 overflow-x-auto scrollbar-hide py-4 snap-x snap-mandatory">
+            {projects.map((proj) => (
+              <div key={proj.id} className="snap-start flex-shrink-0 card-content-wrapper">
+                <div className="card-content">
+                  <ProjectCard project={proj} />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* DOTS */}
+        {/* --- DOTS --- */}
         <div className="flex justify-center gap-3 mt-6">
           {projects.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goToSlide(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className="w-3 h-3 rounded-full transition-all duration-300"
-              style={{
-                background: i === activeIndex ? "#B45253" : "#44444E",
-                transform: i === activeIndex ? "scale(1.4)" : "scale(1)",
-                boxShadow:
-                  i === activeIndex
-                    ? "0 0 10px rgba(180,82,83,0.6)"
-                    : "0 0 4px rgba(68,68,78,0.3)",
-              }}
-            />
+            <div key={i} className={`h-2 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-8 bg-[#CF0F0F]' : 'w-2 bg-[#44444E]/30'}`} />
           ))}
         </div>
       </div>
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .card-content-wrapper { min-width: 100%; }
+        @media (min-width: 640px) { .card-content-wrapper { min-width: calc(50% - 12px); } }
+        @media (min-width: 1024px) { .card-content-wrapper { min-width: calc(33.333% - 16px); } }
+        .card-content { width: 100%; height: 100%; }
       `}</style>
     </div>
   );

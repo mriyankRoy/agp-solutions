@@ -1,82 +1,121 @@
-import { ChevronRight, ChevronDown } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronDown, ArrowRight, Layers } from "lucide-react";
 import { projects } from "../../utils/projects";
 import { Link, useNavigate } from "react-router";
-import { useState } from "react";
 
 const projectTypes = ["Enclosure", "E-House", "Power-Pack", "Cooling-Shelter"];
 
 const HeaderProjectsDropdown = () => {
-  const [activeType, setActiveType] = useState(null);
+  const [activeType, setActiveType] = useState(projectTypes[0]);
   const navigate = useNavigate();
 
-  const handleCategoryClick = (type) => {
-    navigate(`/projects?type=${encodeURIComponent(type)}`);
-  };
+  // Filter projects based on hovered type
+  const filteredProjects = projects.filter((p) => p.type === activeType);
 
   return (
     <div className="relative group">
+      {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/projects")}
-        className="inline-flex gap-1.5 items-center hover:text-red-500 hover:underline underline-offset-4 transition"
+        className="inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors py-4"
       >
         Projects
-        <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+        <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
       </button>
 
-      <div className="absolute left-0 mt-4 w-[700px] bg-gradient-to-b from-gray-900/95 via-gray-800/80 to-gray-900/70 backdrop-blur-xl border border-gray-700/40 rounded-2xl shadow-lg overflow-hidden opacity-0 translate-y-3 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 ease-out z-50">
-        <div className="h-1 w-full bg-gradient-to-r from-red-600 via-red-500 to-red-600 opacity-70" />
-
-        <div className="grid grid-cols-[200px_1fr]">
-          {/* Categories List */}
-          <div className="bg-gray-800/90 border-r border-gray-700/40 py-6 px-4 flex flex-col gap-2">
-            {projectTypes.map((type) => (
-              <button
-                key={type}
-                onMouseEnter={() => setActiveType(type)}
-                onClick={() => handleCategoryClick(type)}
-                className={`border-gray-400 px-3 py-2 rounded-xl flex items-center justify-between transition-all border text-white ${
-                  activeType === type
-                    ? "bg-red-600 shadow-lg scale-[1.05]"
-                    : "bg-gray-600 hover:bg-gray-700/30"
-                }`}
-              >
-                {type.toUpperCase()}
-                <ChevronRight
-                  className={`transition-transform ${
-                    activeType === type ? "opacity-100" : "opacity-0"
+      {/* --- DROPDOWN CONTAINER --- */}
+      <div className="absolute left-[-50px] w-[750px] bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-sm border-t-4 border-[#CF0F0F] overflow-hidden opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 ease-out z-50">
+        
+        <div className="grid grid-cols-[220px_1fr]">
+          
+          {/* LEFT: CATEGORY SIDEBAR (The Directory) */}
+          <div className="bg-[#44444E] py-6">
+            <div className="px-6 mb-4 flex items-center gap-2">
+               <Layers size={14} className="text-[#CF0F0F]" />
+               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Classifications</p>
+            </div>
+            
+            <nav className="flex flex-col">
+              {projectTypes.map((type) => (
+                <button
+                  key={type}
+                  onMouseEnter={() => setActiveType(type)}
+                  onClick={() => navigate(`/projects?type=${encodeURIComponent(type)}`)}
+                  className={`group/item relative px-6 py-4 flex items-center justify-between transition-all text-left ${
+                    activeType === type
+                      ? "bg-white text-[#44444E]"
+                      : "text-white/60 hover:text-white"
                   }`}
-                />
-              </button>
-            ))}
+                >
+                  <span className="text-xs font-black uppercase tracking-widest transition-transform group-hover/item:translate-x-1">
+                    {type}
+                  </span>
+                  {activeType === type && (
+                    <div className="absolute right-0 w-1.5 h-full bg-[#CF0F0F]" />
+                  )}
+                </button>
+              ))}
+            </nav>
           </div>
 
-          {/* Items Panel */}
-          <div className="p-6 min-h-[260px] bg-gray-600 backdrop-blur-sm grid grid-cols-1 gap-4">
-            {!activeType && (
-              <div className="text-gray-300 text-sm animate-fadeIn">
-                Hover a category to see projects
+          {/* RIGHT: PROJECTS PREVIEW PANEL */}
+          <div className="relative p-8 bg-white overflow-hidden min-h-[380px] flex flex-col">
+            {/* Structural Texture */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+
+            <div className="relative animate-fadeIn h-full flex flex-col">
+              {/* Header */}
+              <div className="mb-6 pb-4 border-b border-gray-100 flex justify-between items-end">
+                <div>
+                  <h4 className="text-2xl font-black text-[#44444E] uppercase tracking-tight">
+                    {activeType} Series
+                  </h4>
+                  <p className="text-[10px] font-bold text-[#CF0F0F] uppercase tracking-widest mt-1">
+                    Deployment History
+                  </p>
+                </div>
+                <span className="text-4xl font-black text-gray-50 uppercase select-none leading-none">
+                  SPEC
+                </span>
               </div>
-            )}
 
-            {projectTypes.map(
-              (type) =>
-                activeType === type && (
-                  <div key={type} className="grid grid-cols-2 gap-x-6 gap-y-4">
-                    {projects
-                      .filter((p) => p.type === type)
-                      .map((project) => (
-                        <Link
-                          key={project.id}
-                          to={`/projects/${project.id}`}
-                          className="relative p-3 rounded-xl bg-gray-800/70 border border-gray-700/40 text-gray-200 hover:text-white hover:bg-red-600 transition-all shadow hover:shadow-lg flex items-center justify-center text-sm font-medium hover:scale-[1.05]"
-                        >
+              {/* Projects List */}
+              <div className="grid grid-cols-2 gap-3">
+                {filteredProjects.length > 0 ? (
+                  filteredProjects.map((project) => (
+                    <Link
+                      key={project.id}
+                      to={`/projects/${project.id}`}
+                      className="group/link flex items-center justify-between p-4 bg-gray-50 border border-transparent hover:border-[#CF0F0F] hover:bg-white transition-all duration-300"
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter mb-0.5 group-hover/link:text-[#CF0F0F]">
+                          Ref: 00{project.id}
+                        </span>
+                        <span className="text-xs font-black text-[#44444E] uppercase tracking-wide">
                           {project.name}
-                        </Link>
-                      ))}
+                        </span>
+                      </div>
+                      <ArrowRight size={14} className="text-gray-300 opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all" />
+                    </Link>
+                  ))
+                ) : (
+                  <div className="col-span-2 py-10 text-center text-gray-300 text-sm font-bold uppercase tracking-widest border-2 border-dashed border-gray-100">
+                    No active projects in this series
                   </div>
-                )
-            )}
+                )}
+              </div>
+
+              {/* View All Footer */}
+              <button 
+                onClick={() => navigate("/projects")}
+                className="mt-auto pt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors group/all"
+              >
+                Explore Full {activeType} Portfolio <ArrowRight size={12} className="group-hover/all:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

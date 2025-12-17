@@ -1,7 +1,6 @@
-// Header.jsx
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Link } from "react-router";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { Link, NavLink } from "react-router";
 import HeaderSearch from "./HeaderSearch";
 import HeaderFacilitiesDropdown from "./HeaderFacilitiesDropdown";
 import HeaderProjectsDropdown from "./HeaderProjectsDropdown";
@@ -10,88 +9,94 @@ import HeaderProductsDropDown from "./HeaderProductsDropDown";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Reusable style for Nav Links to ensure consistency
+  const navLinkStyles = "text-[11px] font-black uppercase tracking-[0.2em] text-white/90 hover:text-white hover:underline underline-offset-8 decoration-2 decoration-[#BF092F] transition-all";
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 shadow-lg">
-      {/* Diagonal Background Layer */}
+    <header className="fixed top-0 left-0 w-full z-50">
+      {/* 🏗️ INDUSTRIAL DIAGONAL BACKGROUND */}
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 shadow-2xl"
         style={{
-          // Original: background: "linear-gradient(110deg, #CF0F0F 80.05%, #44444E 0%)",
-          // MODIFIED: Adding a slightly lighter shade for the first color stop
           background: "linear-gradient(110deg, #BF092F 80.05%, #44444E 0%)",
         }}
       />
+      
+      {/* Structural Texture Overlay (Matches Facilities Page) */}
+      <div className="absolute inset-0 -z-10 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0 pr-8">
+        <div className="flex h-20 items-center justify-between">
+          
+          {/* LOGO SECTION */}
+          <Link to="/" className="flex-shrink-0 pr-8 group">
             <img
               src="https://res.cloudinary.com/dc912sjxj/image/upload/v1764248576/Art_Genpower_Solutions_Ltd_Logo_wswrtz.png"
               alt="AGP Logo"
-              className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto"
+              className="h-10 sm:h-12 md:h-14 w-auto transition-transform group-hover:scale-105"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-x-4 lg:gap-x-6 xl:gap-x-8 text-sm font-medium text-white">
-            <Link to="/about" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
+          {/* 🖥️ DESKTOP NAVIGATION */}
+          <nav className="hidden md:flex items-center gap-x-6 lg:gap-x-8">
+            <Link to="/about" className={navLinkStyles}>
               About
             </Link>
 
             <HeaderProductsDropDown />
-
             <HeaderProjectsDropdown />
-
             <HeaderFacilitiesDropdown />
 
-            <Link to="/careers" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
+            <Link to="/careers" className={navLinkStyles}>
               Career
             </Link>
 
-            <Link to="/contact" className="hover:text-gray-200 hover:underline underline-offset-4 transition">
+            <Link to="/contact" className={navLinkStyles}>
               Contact
             </Link>
 
-            {/* Search bar */}
-            <div className="w-48 sm:w-60 md:w-72 lg:w-96">
+            {/* SEARCH BAR - Integrated with industrial borders */}
+            <div className="pl-4 border-l border-white/20">
               <HeaderSearch />
             </div>
           </nav>
 
-          {/* Mobile Menu Toggle */}
+          {/* MOBILE TOGGLE */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white hover:text-gray-200 transition"
+              className="text-white p-2 bg-black/20 rounded-sm"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* 📱 MOBILE NAVIGATION (INDUSTRIAL OVERLAY) */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-4 pb-4 pt-2 border-t border-gray-200 bg-white/80 backdrop-blur-md">
-          <nav className="flex flex-col gap-3 text-base font-medium text-gray-900">
-            <Link to="/" className="text-left hover:text-red-500 transition">Home</Link>
-            <Link to="/about" className="text-left hover:text-red-500 transition">About</Link>
-            <Link to="/products" className="text-left hover:text-red-500 transition">Products</Link>
-            <Link to="/projects" className="text-left hover:text-red-500 transition">Projects</Link>
-            <Link to="/facility" className="text-left hover:text-red-500 transition">Facility</Link>
-            <Link to="/career" className="text-left hover:text-red-500 transition">Career</Link>
-            <Link to="/contact" className="text-left hover:text-red-500 transition">Contact</Link>
-
-            <button className="mt-2 inline-block rounded-md bg-red-500 px-4 py-2 text-sm font-semibold text-white hover:bg-red-600 transition">
-              Get Started
-            </button>
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#44444E] border-t-4 border-[#BF092F] shadow-2xl animate-fadeIn">
+          <nav className="flex flex-col p-6 gap-4">
+            {["Home", "About", "Products", "Projects", "Facility", "Career", "Contact"].map((item) => (
+              <Link 
+                key={item}
+                to={`/${item === "Home" ? "" : item.toLowerCase()}`} 
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between text-white text-lg font-black uppercase tracking-widest border-b border-white/10 pb-2 hover:text-[#BF092F] transition-colors"
+              >
+                {item}
+                <ArrowRight size={18} className="text-[#BF092F]" />
+              </Link>
+            ))}
           </nav>
         </div>
       )}
 
-      {/* Bottom border */}
-      <div className="h-[2px] bg-gray-300 w-full" />
+      {/* ⚡ BOTTOM ACCENT STRIP (Blueprint Style) */}
+      <div className="h-[3px] w-full flex">
+        <div className="w-3/4 bg-white/20" />
+        <div className="w-1/4 bg-[#BF092F]" />
+      </div>
     </header>
   );
 };

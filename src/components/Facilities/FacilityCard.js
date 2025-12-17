@@ -1,41 +1,59 @@
-import { Link } from "react-router";
-import { motion } from "framer-motion";
+import React from "react";
+import { MapPin, Maximize, ArrowRight, ShieldCheck, HardHat } from "lucide-react";
 
 export default function FacilityCard({ facility }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.03 }}
-      className="bg-white rounded-3xl shadow-2xl border border-[#44444E]/20 overflow-hidden relative cursor-pointer transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
-    >
-      <Link to={`/facilities/${facility.id}`} className="block">
-        {/* Image with overlay and hover effects */}
-        <div className="h-60 w-full overflow-hidden relative">
-          <img
-            src={facility.facilityImg[0]}
-            alt={facility.title}
-            className="h-full w-full object-cover transition-transform duration-700 hover:scale-110 brightness-95"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/30 opacity-80" />
+    <div className="group bg-white shadow-2xl rounded-sm overflow-hidden border-t-4 border-[#CF0F0F] transition-all duration-500 flex flex-col">
+      
+      {/* 🖼️ IMAGE AREA WITH ZOOM EFFECT */}
+      <div className="relative h-64 overflow-hidden bg-black">
+        <img
+          src={facility.image}
+          alt={facility.name}
+          className="w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-80 group-hover:opacity-100"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute bottom-4 left-6">
+           <p className="text-[#CF0F0F] text-xs font-black tracking-widest uppercase mb-1">Infrastructure Unit</p>
+           <h3 className="text-2xl font-black text-white uppercase tracking-tight">{facility.name}</h3>
+        </div>
+      </div>
+
+      {/* 📄 DETAILS AREA */}
+      <div className="p-8 flex-grow">
+        <div className="flex items-center gap-2 text-gray-400 mb-6">
+          <MapPin size={16} className="text-[#CF0F0F]" />
+          <span className="text-xs font-bold uppercase tracking-widest">{facility.location}</span>
         </div>
 
-        {/* Text Content */}
-        <div className="p-6 bg-white/90 backdrop-blur-md -mt-12 rounded-t-3xl relative z-10">
-          <h3 className="text-2xl font-bold text-[#44444E] mb-2 drop-shadow-md">
-            {facility.title}
-          </h3>
-          <p className="text-[#44444E]/80 mb-3 text-sm leading-snug">
-            {facility.desc}
-          </p>
-          <p className="text-[#B45253] font-semibold text-sm tracking-wide">
-            📍 {facility.location}
-          </p>
+        <p className="text-gray-500 text-base leading-relaxed mb-8">
+          {facility.description}
+        </p>
+
+        {/* 📊 TECHNICAL SPEC GRID (Matches Project Blueprint style) */}
+        <div className="grid grid-cols-2 gap-4 border-t border-b border-gray-100 py-6 mb-8">
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 text-gray-400">
+              <Maximize size={14} />
+              <span className="text-[10px] font-bold uppercase tracking-tighter">Footprint</span>
+            </div>
+            <p className="text-sm font-black text-[#44444E]">{facility.area || "45,000"} SQ. FT.</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 text-gray-400">
+              <ShieldCheck size={14} />
+              <span className="text-[10px] font-bold uppercase tracking-tighter">Standard</span>
+            </div>
+            <p className="text-sm font-black text-[#44444E]">ISO 9001:2015</p>
+          </div>
         </div>
 
-        {/* Decorative Bottom Glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-gradient-to-r from-[#B45253] to-[#44444E] rounded-full opacity-70 shadow-lg blur-xl" />
-      </Link>
-    </motion.div>
+        {/* ACTION BUTTON */}
+        <button className="w-full flex items-center justify-between group/btn py-2 border-b-2 border-transparent hover:border-[#CF0F0F] transition-all duration-300">
+          <span className="text-sm font-black uppercase tracking-widest text-[#44444E]">View Unit Specs</span>
+          <ArrowRight size={20} className="text-gray-300 group-hover/btn:text-[#CF0F0F] group-hover/btn:translate-x-2 transition-all" />
+        </button>
+      </div>
+    </div>
   );
 }

@@ -1,70 +1,92 @@
-import { ChevronRight, ChevronDown } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronDown, MapPin, ArrowRight } from "lucide-react";
 import { facilities } from "../../utils/facilities";
 import { Link, useNavigate } from "react-router";
-import { useState } from "react";
 
 const HeaderFacilitiesDropdown = () => {
-  const [activeFacility, setActiveFacility] = useState(null);
+  const [activeFacility, setActiveFacility] = useState(facilities[0].id);
   const navigate = useNavigate();
+
+  const currentFacility = facilities.find((f) => f.id === activeFacility);
 
   return (
     <div className="relative group">
-      {/* Trigger */}
+      {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/facilities")}
-        className="inline-flex gap-1.5 items-center hover:text-red-500 hover:underline underline-offset-4 transition"
+        className="inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors py-4"
       >
         Facilities
-        <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+        <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
       </button>
 
-      {/* Dropdown Container */}
-      <div className="absolute left-0 mt-4 w-[400px] bg-gradient-to-b from-gray-900/95 via-gray-800/80 to-gray-900/70 backdrop-blur-xl border border-gray-700/40 rounded-2xl shadow-lg overflow-hidden opacity-0 translate-y-3 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 ease-out z-50">
-        {/* Top Accent Bar */}
-        <div className="h-1 w-full bg-gradient-to-r from-red-600 via-red-500 to-red-600 opacity-70" />
-
-        <div className="grid grid-cols-[150px_1fr]">
-          {/* Facility List */}
-          <div className="bg-gray-800/90 border-r border-gray-700/40 py-6 px-4 flex flex-col gap-2">
-            {facilities.map((f) => (
+      {/* --- DROPDOWN CONTAINER --- */}
+      <div className="absolute left-0 w-[550px] bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-sm border-t-4 border-[#CF0F0F] overflow-hidden opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 ease-out z-50">
+        
+        <div className="grid grid-cols-[200px_1fr]">
+          
+          {/* LEFT: FACILITY LIST (The Directory) */}
+          <div className="bg-[#44444E] py-4">
+            <div className="px-6 mb-4">
+               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Directory</p>
+            </div>
+            {facilities.slice(0, 3).map((f) => (
               <Link
                 key={f.id}
-                to={`/facilities/${f.id}`}
+                to={`/facilities`}
                 onMouseEnter={() => setActiveFacility(f.id)}
-                className={`border-gray-400 px-3 py-2 rounded-xl flex items-center justify-between transition-all border ${
+                className={`group/item relative px-6 py-4 flex items-center justify-between transition-all ${
                   activeFacility === f.id
-                    ? "bg-red-600 text-white shadow-lg scale-[1.05]"
-                    : "bg-gray-600 text-white hover:bg-gray-700/30 hover:text-white"
+                    ? "bg-white text-[#44444E]"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
-                {f.title}
-                <ChevronRight
-                  className={`transition-transform ${
-                    activeFacility === f.id ? "opacity-100" : "opacity-0"
-                  }`}
-                />
+                <span className="text-xs font-black uppercase tracking-widest transition-transform group-hover/item:translate-x-1">
+                  {f.name || f.title}
+                </span>
+                {activeFacility === f.id && (
+                  <div className="absolute right-0 w-1.5 h-full bg-[#CF0F0F]" />
+                )}
               </Link>
             ))}
           </div>
 
-          {/* Facility Details Panel */}
-          <div className="p-6 min-h-[180px] bg-gray-600 backdrop-blur-sm">
-            {!activeFacility && (
-              <div className="text-gray-300 text-sm animate-fadeIn">
-                Hover a facility to see details
+          {/* RIGHT: PREVIEW PANEL (The Visual) */}
+          <div className="relative p-6 bg-white overflow-hidden">
+            {/* Subtle Grid Texture Background */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+
+            {currentFacility && (
+              <div className="relative animate-fadeIn">
+                <div className="aspect-video w-full overflow-hidden rounded-sm mb-4 bg-gray-100">
+                  <img 
+                    src={currentFacility.image} 
+                    alt={currentFacility.name}
+                    className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+                
+                <h4 className="text-xl font-black text-[#44444E] uppercase tracking-tight leading-none mb-2">
+                  {currentFacility.name}
+                </h4>
+                
+                <div className="flex items-center gap-2 text-[#CF0F0F] mb-4">
+                  <MapPin size={14} />
+                  <span className="text-[10px] font-bold uppercase tracking-widest">
+                    {currentFacility.location}
+                  </span>
+                </div>
+
+                <Link 
+                  to="/facilities"
+                  className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#44444E] hover:text-[#CF0F0F] transition-colors group/link"
+                >
+                  View Infrastructure <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                </Link>
               </div>
             )}
-
-            {facilities.map(
-              (f) =>
-                activeFacility === f.id && (
-                  <div key={f.id} className="space-y-2 text-white">
-                    <h4 className="font-semibold text-lg">{f.title}</h4>
-                    <p className="text-sm">{f.location}</p>
-                  </div>
-                )
-            )}
           </div>
+
         </div>
       </div>
     </div>

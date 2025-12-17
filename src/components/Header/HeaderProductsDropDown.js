@@ -1,95 +1,110 @@
-// HeaderDropDown.jsx
-import { ChevronRight, ChevronDown } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronDown, ArrowRight, Package } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { products } from "../../utils/products";
-import { useState } from "react";
 
 const HeaderProductsDropDown = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
+  // Default to the first category so the panel isn't empty on hover
+  const [activeCategory, setActiveCategory] = useState(products[0]?.slug);
   const navigate = useNavigate();
+
+  const currentCategory = products.find((p) => p.slug === activeCategory);
 
   return (
     <div className="relative group">
-      {/* Trigger */}
+      {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/products")}
-        className="inline-flex gap-1.5 items-center hover:text-red-500 hover:underline underline-offset-4 transition"
+        className="inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-white hover:text-[#CF0F0F] transition-colors py-4"
       >
         Products
-        <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+        <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
       </button>
 
-      {/* Dropdown Container */}
-      <div className="absolute left-0 mt-4 w-[700px] bg-gradient-to-b from-gray-900/95 via-gray-800/80 to-gray-900/70 backdrop-blur-xl border border-gray-700/40 rounded-2xl shadow-lg overflow-hidden opacity-0 translate-y-3 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 ease-out z-50">
-        {/* Top Accent Bar */}
-        <div className="h-1 w-full bg-gradient-to-r from-red-600 via-red-500 to-red-600 opacity-70"></div>
-
-        <div className="grid grid-cols-[200px_1fr]">
-          {/* Category List */}
-          <div className="bg-gray-800/90 border-r border-gray-700/40 py-6 px-4 flex flex-col gap-2">
-            {products.map((category) => (
-              <Link
-                key={category.slug}
-                to={`/products?category=${category.slug}`}
-                onMouseEnter={() => setActiveCategory(category.slug)}
-                className={`border-gray-400 px-3 py-2 rounded-xl flex items-center justify-between transition-all border ${
-                  activeCategory === category.slug
-                    ? "bg-red-600 text-white shadow-lg scale-[1.05]"
-                    : "bg-gray-600 text-white hover:bg-gray-700/30 hover:text-white"
-                }`}
-              >
-                {category.category.toUpperCase()}
-                <ChevronRight
-                  className={`transition-transform ${
+      {/* --- DROPDOWN CONTAINER --- */}
+      <div className="absolute left-[-150px] w-[750px] bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-sm border-t-4 border-[#CF0F0F] overflow-hidden opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 ease-out z-50">
+        
+        <div className="grid grid-cols-[240px_1fr]">
+          
+          {/* LEFT: CATEGORY SELECTION (Industrial Sidebar) */}
+          <div className="bg-[#44444E] py-6">
+            <div className="px-6 mb-4 flex items-center gap-2">
+               <Package size={14} className="text-[#CF0F0F]" />
+               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Solutions</p>
+            </div>
+            
+            <nav className="flex flex-col">
+              {products.map((category) => (
+                <button
+                  key={category.slug}
+                  onMouseEnter={() => setActiveCategory(category.slug)}
+                  onClick={() => navigate(`/products?category=${category.slug}`)}
+                  className={`group/item relative px-6 py-4 flex items-center justify-between transition-all text-left ${
                     activeCategory === category.slug
-                      ? "opacity-100"
-                      : "opacity-0"
+                      ? "bg-white text-[#44444E]"
+                      : "text-white/60 hover:text-white"
                   }`}
-                />
-              </Link>
-            ))}
+                >
+                  <span className="text-xs font-black uppercase tracking-widest transition-transform group-hover/item:translate-x-1">
+                    {category.category}
+                  </span>
+                  {activeCategory === category.slug && (
+                    <div className="absolute right-0 w-1.5 h-full bg-[#CF0F0F]" />
+                  )}
+                </button>
+              ))}
+            </nav>
           </div>
 
-          {/* Items Panel */}
-          <div className="p-6 min-h-[260px] bg-gray-600 backdrop-blur-sm grid grid-cols-1 gap-4">
-            {!activeCategory && (
-              <div className="text-gray-300 text-sm animate-fadeIn">
-                Hover a category to explore products
+          {/* RIGHT: PRODUCT ITEMS PANEL */}
+          <div className="relative p-8 bg-white overflow-hidden min-h-[350px]">
+            {/* Structural Background Pattern */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+
+            {currentCategory && (
+              <div className="relative animate-fadeIn flex flex-col h-full">
+                {/* Header for Category */}
+                <div className="mb-6 pb-4 border-b border-gray-100 flex justify-between items-end">
+                  <div>
+                    <h4 className="text-2xl font-black text-[#44444E] uppercase tracking-tight">
+                      {currentCategory.category}
+                    </h4>
+                    <p className="text-[10px] font-bold text-[#CF0F0F] uppercase tracking-widest mt-1">
+                      Engineered Systems
+                    </p>
+                  </div>
+                  <span className="text-4xl font-black text-gray-50 uppercase select-none leading-none">
+                    PROD
+                  </span>
+                </div>
+
+                {/* Items Grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  {currentCategory.items.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      to={`/products/${currentCategory.slug}/${encodeURIComponent(item.name)}`}
+                      className="group/link flex items-center justify-between p-4 bg-gray-50 border border-transparent hover:border-[#CF0F0F] hover:bg-white transition-all duration-300"
+                    >
+                      <span className="text-xs font-bold text-[#44444E] uppercase tracking-wide group-hover/link:text-[#CF0F0F]">
+                        {item.name}
+                      </span>
+                      <ArrowRight size={14} className="text-gray-300 opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all" />
+                    </Link>
+                  ))}
+                </div>
+
+                {/* View All Footer */}
+                <button 
+                  onClick={() => navigate(`/products?category=${currentCategory.slug}`)}
+                  className="mt-auto pt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors"
+                >
+                  Explore All {currentCategory.category} <ArrowRight size={12} />
+                </button>
               </div>
             )}
-
-            {products.map(
-              (category) =>
-                activeCategory === category.slug && (
-                  <div
-                    key={category.slug}
-                    className="grid grid-cols-2 gap-x-6 gap-y-4"
-                  >
-                    {category.items.map((item, idx) => (
-                      <Link
-                        key={idx}
-                        to={`/products/${category.slug}/${encodeURIComponent(
-                          item.name
-                        )}`}
-                        className="relative p-3 rounded-xl bg-gray-800/70 border border-gray-700/40 text-gray-200 hover:text-white hover:bg-red-600 transition-all shadow hover:shadow-lg flex items-center justify-center text-sm font-medium hover:scale-[1.05]"
-                      >
-                        {item.name}
-
-                        {/* Cluster of tiny dots on lower-right */}
-                        <div className="absolute bottom-2 right-2 flex flex-wrap w-6 h-6 gap-[2px]">
-                          {Array.from({ length: 12 }).map((_, dotIdx) => (
-                            <span
-                              key={dotIdx}
-                              className="w-[2px] h-[2px] bg-red-500 rounded-full"
-                            ></span>
-                          ))}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                )
-            )}
           </div>
+
         </div>
       </div>
     </div>
