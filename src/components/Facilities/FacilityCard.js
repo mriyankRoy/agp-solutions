@@ -13,15 +13,15 @@ export default function FacilityCard({ facility }) {
   return (
     <div 
       onClick={handleNavigation} // Card is now clickable for better UX
-      className="group bg-white border border-gray-200 transition-all duration-500 flex flex-col relative hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] cursor-pointer"
+      className="rounded-xl group bg-white border border-gray-200 transition-all duration-500 flex flex-col relative hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] cursor-pointer"
     >
       
       {/* Top Industrial Accent Bar */}
-      <div className="h-1.5 w-full bg-[#44444E] group-hover:bg-[#CF0F0F] transition-colors duration-300" />
+      <div className="rounded-xl h-1.5 w-full bg-[#44444E] group-hover:bg-[#CF0F0F] transition-colors duration-300" />
 
       {/* 🖼️ IMAGE AREA */}
-      <div className="relative h-64 overflow-hidden bg-gray-100 p-4">
-        <div className="relative w-full h-full overflow-hidden border border-gray-200">
+      <div className="rounded-xl relative h-64 overflow-hidden bg-gray-100 p-4">
+        <div className="rounded-xl relative w-full h-full overflow-hidden border border-gray-200">
           <img
             src={facility.facilityImg[0]}
             alt={facility.name}
@@ -54,8 +54,8 @@ export default function FacilityCard({ facility }) {
         </p>
 
         {/* 📊 TECHNICAL SPEC TABLE */}
-        <div className="grid grid-cols-2 border border-gray-100 mb-8 bg-gray-50/50">
-          <div className="flex flex-col p-4 border-r border-gray-100">
+        <div className="rounded-xl grid grid-cols-2 border border-gray-100 mb-8 bg-gray-50/50">
+          <div className="rounded-xl flex flex-col p-4 border-r border-gray-100">
             <div className="flex items-center gap-2 text-gray-400 mb-1">
               <Maximize size={12} />
               <span className="text-[9px] font-black uppercase tracking-widest">Footprint</span>
@@ -77,7 +77,7 @@ export default function FacilityCard({ facility }) {
             e.stopPropagation(); // Prevents double-triggering if the card also has an onClick
             handleNavigation();
           }}
-          className="w-full flex items-center justify-center gap-3 py-4 bg-[#44444E] text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-[#CF0F0F] active:scale-95 shadow-lg hover:shadow-[#CF0F0F]/20"
+          className="rounded-xl w-full flex items-center justify-center gap-3 py-4 bg-[#44444E] text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-[#CF0F0F] active:scale-95 shadow-lg hover:shadow-[#CF0F0F]/20"
         >
           View Unit Specs
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
