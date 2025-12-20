@@ -50,11 +50,10 @@ export default function FacilitiesPage() {
       <main className="container mx-auto px-4 md:px-6 -translate-y-24 relative z-30">
         
         {/* Sub-heading/Context */}
-        <div className="flex items-center justify-between mb-8 text-[#44444E]">
+        <div className="pt-30 flex items-center justify-between mb-8 text-[#44444E]">
             <h2 className="text-xs font-bold uppercase tracking-widest border-l-4 border-[#CF0F0F] pl-4">
                 Operational Units
             </h2>
-            <div className="text-5xl font-black text-white/50 select-none">02</div>
         </div>
 
         {/* Facilities Grid */}

@@ -6,6 +6,10 @@ import { Link, useNavigate } from "react-router";
 const HeaderFacilitiesDropdown = () => {
   const [activeFacility, setActiveFacility] = useState(facilities[0].id);
   const navigate = useNavigate();
+  const handleNavigation = () => {
+    // Navigates to /facilities/1, /facilities/2, etc.
+    navigate(`/facilities/${facility.id}`);
+  };
 
   const currentFacility = facilities.find((f) => f.id === activeFacility);
 
@@ -60,14 +64,14 @@ const HeaderFacilitiesDropdown = () => {
               <div className="relative animate-fadeIn">
                 <div className="aspect-video w-full overflow-hidden rounded-sm mb-4 bg-gray-100">
                   <img 
-                    src={currentFacility.image} 
-                    alt={currentFacility.name}
+                    src={currentFacility.facilityImg[0]} 
+                    alt={currentFacility.title}
                     className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
                   />
                 </div>
                 
                 <h4 className="text-xl font-black text-[#44444E] uppercase tracking-tight leading-none mb-2">
-                  {currentFacility.name}
+                  {currentFacility.title}
                 </h4>
                 
                 <div className="flex items-center gap-2 text-[#CF0F0F] mb-4">
@@ -78,7 +82,7 @@ const HeaderFacilitiesDropdown = () => {
                 </div>
 
                 <Link 
-                  to="/facilities"
+                  onClick={handleNavigation}
                   className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#44444E] hover:text-[#CF0F0F] transition-colors group/link"
                 >
                   View Infrastructure <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />

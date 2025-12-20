@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { ArrowRight, Zap, ShieldCheck } from "lucide-react";
 
 const heroSentences = [
   "Your Global Partner for Generator Needs.",
@@ -13,119 +14,113 @@ const HomePageSection1 = () => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSentences.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section
-      className="border-black border-2 relative w-full isolate overflow-hidden shadow-xl"
-      style={{ minHeight: "calc(100vh - 150px)" }} // leave space for header
+      className="relative w-full isolate overflow-hidden bg-[#F8F9FA] flex items-center border-b border-gray-200"
+      style={{ minHeight: "calc(100vh - 80px)" }}
     >
-      {/* ───────── BACKGROUND LAYERS ───────── */}
-
-      {/* Left Half - White */}
-      <div className="absolute inset-0 -z-20 bg-white" />
-
-      {/* Right Half - White */}
-      <div className="absolute top-0 right-0 h-full w-1/2 -z-20 bg-white" />
-
-      {/* Thin RED Diagonal Strip */}
-      <div
-        className="absolute -z-10 bg-red-700"
+      {/* ───────── BACKGROUND LAYERS (Z-INDEX NEGATIVE) ───────── */}
+      
+      {/* 1. The Grey Decorative Div - Now Styled & Sent to Back */}
+      <div 
+        className="absolute top-0 left-0 h-full w-1/7 -z-20 border-r border-black/5"
         style={{
-          top: "-10%",
-          left: "80%", // moved right
-          width: "2.5%", // slightly thicker so edges can touch
-          height: "160%",
-          transform: "rotate(20deg)",
-          transformOrigin: "top left",
+          background: "linear-gradient(to bottom right, #44444E 0%, #2A2A32 100%)",
         }}
       />
 
-      {/* Thin GREY Diagonal Strip — touching the red one */}
+      {/* 2. The Diagonals - Styled to match FacilitiesPage accents */}
       <div
-        className="absolute -z-10"
+        className="absolute -z-10 bg-[#BF092F]"
         style={{
           top: "-10%",
-          left: "82.5%", // EXACTLY aligned to touch red strip after rotation
-          width: "2.5%", // same width for symmetry
+          left: "66.7%",
+          width: "45px",
           height: "160%",
-          background: "#181C14",
           transform: "rotate(20deg)",
-          transformOrigin: "top left",
+        }}
+      />
+      <div
+        className="absolute -z-10 bg-[#44444E]"
+        style={{
+          top: "-10%",
+          left: "68.6%", 
+          width: "45px",
+          height: "160%",
+          transform: "rotate(20deg)",
         }}
       />
 
-      {/* Container */}
-      <div className="py-50 flex flex-col justify-center max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
-        {/* HERO HEADING */}
-        <h1
-          className="
-            relative text-center sm:text-left
-            font-display font-medium tracking-tight
-            text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl
-            leading-[1.1] sm:leading-[1.05] lg:leading-[1.0]
-            text-[#CF0F0F]
-            min-h-[100px] sm:min-h-[150px] lg:min-h-[180px]
-          "
-        >
+      {/* 3. Technical Texture Overlay */}
+      {/* <div className="absolute inset-0 -z-30 opacity-[0.04] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" /> */}
+
+      {/* ───────── CONTENT (Z-INDEX POSITIVE) ───────── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-20">
+        
+        {/* Top Tagline */}
+        <div className="pb-7 flex items-center gap-3 mb-10 group cursor-default">
+          <div className="w-8 h-8 bg-[#BF092F] flex items-center justify-center text-white">
+            <ShieldCheck size={16} />
+          </div>
+          <span className="text-[12px] font-black text-[#44444E] uppercase tracking-[0.4em]">
+            Heavy Engineering & Power Systems
+          </span>
+        </div>
+
+        {/* HERO HEADING - Now clearly on top of the grey div */}
+        <div className="relative h-[130px] sm:h-[180px] lg:h-[240px] mb-8">
           {heroSentences.map((text, index) => (
-            <span
+            <h1
               key={index}
-              className={`absolute inset-0 flex justify-center sm:justify-start items-center transition-opacity duration-1000 ease-in-out
-                ${index === currentIndex ? "opacity-100" : "opacity-0"}
+              className={`pt-7 absolute inset-0 flex items-center transition-all duration-1000 ease-in-out font-black uppercase
+                text-5xl sm:text-7xl lg:text-8xl xl:text-9xl tracking-tighter leading-[0.85]
+                ${index === currentIndex 
+                  ? "opacity-100 translate-x-0 text-[#44444E]" 
+                  : "opacity-0 -translate-x-12 text-gray-200"}
               `}
+              style={{
+                textShadow: index === currentIndex ? "10px 10px 0px rgba(0,0,0,0.02)" : "none"
+              }}
             >
               {text}
-            </span>
+            </h1>
           ))}
-        </h1>
+        </div>
 
         {/* SUBTEXT */}
-        <p
-          className="pt-10 
-            mt-6 sm:mt-8 max-w-lg text-center sm:text-left
-            text-lg sm:text-xl md:text-2xl font-medium
-            text-[#44444E]
-            drop-shadow-[0_2px_8px_rgba(255,255,255,0.18)]
-          "
-        >
-          Supplying high-performance generator parts, accessories, and complete
-          containerized solutions—delivered with speed, precision, and global
-          reach.
-        </p>
+        <div className="pt-14 max-w-2xl mt-4">
+          <p className="text-lg sm:text-xl font-bold text-[#44444E]/80 uppercase leading-snug border-l-4 border-[#BF092F] pl-6">
+            Supplying high-performance <span className="text-[#44444E]">generator components</span> and 
+            fully customized <span className="text-[#BF092F]">containerized solutions</span> for 
+            global mission-critical infrastructure.
+          </p>
+        </div>
 
-        {/* CTA BUTTONS */}
-        <div className="mt-10 flex flex-col sm:flex-row justify-center sm:justify-start gap-4">
+        {/* CTA BUTTONS - Industrial Sharp Style */}
+        <div className="mt-14 flex flex-wrap gap-5">
           <Link
             to="/projects"
-            className="relative inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-white
-              bg-[#44444E] border border-[#CF0F0F] shadow-[0_0_15px_-2px_rgba(255,59,63,0.3)]
-              backdrop-blur-md transition-all duration-300
-              hover:bg-[#CF0F0F] hover:text-white hover:border-[#CF0F0F]
-              hover:shadow-[0_0_25px_3px_rgba(255,59,63,0.55)]
-              hover:-translate-y-1 hover:scale-[1.04] active:scale-[0.98]"
+            className="group relative flex items-center gap-6 px-10 py-5 bg-[#44444E] text-white overflow-hidden transition-all hover:bg-[#BF092F]"
           >
-            Delivered Projects
+            <span className="relative z-10 text-[12px] font-black uppercase tracking-[0.2em]">View Projects</span>
+            <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-2" />
           </Link>
 
           <Link
             to="/about"
-            className="relative inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-white
-              bg-[#44444E] border border-[#CF0F0F] shadow-[0_0_15px_-2px_rgba(255,59,63,0.3)]
-              backdrop-blur-md transition-all duration-300
-              hover:bg-[#CF0F0F] hover:text-white hover:border-[#CF0F0F]
-              hover:shadow-[0_0_25px_3px_rgba(255,59,63,0.55)]
-              hover:-translate-y-1 hover:scale-[1.04] active:scale-[0.98]"
+            className="group flex items-center gap-6 px-10 py-5 border-2 border-[#44444E] text-[#44444E] transition-all hover:bg-[#44444E] hover:text-white"
           >
-            Our Facilities
+            <span className="text-[12px] font-black uppercase tracking-[0.2em]">Our Facility</span>
+            <Zap size={16} className="text-[#BF092F] group-hover:animate-pulse" />
           </Link>
         </div>
       </div>
 
-      {/* Soft radial glow */}
-      <div className="absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,white,transparent)] bg-white opacity-40 pointer-events-none"></div>
+      {/* Decorative Technical Line at bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#44444E] via-[#BF092F] to-[#F8F9FA]" />
     </section>
   );
 };

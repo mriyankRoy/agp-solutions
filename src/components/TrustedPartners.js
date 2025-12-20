@@ -1,72 +1,91 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { partners } from "../utils/partners";
+import { Activity, ShieldCheck, Box, Zap } from "lucide-react";
 
 export default function TrustedPartners() {
-
   return (
-    <section className="relative w-full py-24 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
-      {/* Heading */}
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight"
-        >
-          Trusted Partners & Client References
-        </motion.h2>
+    <section className="relative w-full py-24 bg-[#F8F9FA] overflow-hidden">
+      {/* Background Texture */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-gray-600 max-w-2xl mx-auto text-lg mb-16"
-        >
-          Powering excellence alongside world-class industry leaders.
-        </motion.p>
-      </div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* INDUSTRIAL HEADER SECTION */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-l-4 border-[#CF0F0F] pl-8">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <Activity size={16} className="text-[#CF0F0F] animate-pulse" />
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.5em]">Trusted_Partners</span>
+            </div>
+            <h2 className="text-4xl md:text-7xl font-black text-[#44444E] uppercase tracking-tighter leading-none">
+              Strategic <br/> <span className="text-[#CF0F0F]">Alliances</span>
+            </h2>
+          </div>
+          
+          <div className="max-w-xs text-right hidden md:block border-r-2 border-gray-200 pr-6">
+            <p className="text-[10px] font-bold text-[#44444E]/60 uppercase tracking-widest leading-relaxed">
+              Standardized integration with world-class component manufacturers and engineering specialists.
+            </p>
+          </div>
+        </div>
 
-      {/* Edge Fade */}
-      <div className="pointer-events-none absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-white to-transparent z-20" />
-      <div className="pointer-events-none absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-white to-transparent z-20" />
+        {/* LOGO GRID CHASSIS (Replaced Motion with Static Grid) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-t border-l border-gray-200 shadow-2xl">
+          {partners.map((partner, index) => (
+            <div 
+              key={index} 
+              className="group relative aspect-[3/2] bg-white border-r border-b border-gray-200 flex flex-col items-center justify-center p-8 transition-all duration-500 hover:bg-[#44444E]"
+            >
+              {/* Technical Cell Coordinates */}
+              <span className="absolute top-3 left-3 text-[8px] font-mono text-gray-300 group-hover:text-white/20 uppercase">
+                Node_0{index + 1}
+              </span>
+              <Box className="absolute top-3 right-3 text-gray-100 group-hover:text-[#CF0F0F]/20 transition-colors" size={14} />
 
-      {/* Row 1 */}
-      <div className="relative w-full py-4 mb-6 overflow-hidden">
-        <motion.div
-          className="flex space-x-14 items-center whitespace-nowrap"
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-        >
-          {[...partners, ...partners].map((partner, index) => (
-            <img
-              src={partner.logo}
-              alt={partner.name}
-              key={`row1-${index}`}
-              className="h-16 object-contain opacity-80 hover:opacity-100 transition"
-            />
+              {/* Logo */}
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="w-full max-h-16 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+              />
+
+              {/* Hover Metadata Display */}
+              <div className="absolute bottom-4 left-0 w-full px-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300 text-center">
+                <span className="text-[8px] font-black text-[#CF0F0F] uppercase tracking-[0.2em]">Validated Partner</span>
+              </div>
+            </div>
           ))}
-        </motion.div>
-      </div>
 
-      {/* Row 2 */}
-      <div className="relative w-full py-4 overflow-hidden">
-        <motion.div
-          className="flex space-x-14 items-center whitespace-nowrap"
-          animate={{ x: ["-100%", "0%"] }}
-          transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
-        >
-          {[...partners, ...partners].map((partner, index) => (
-            <img
-              src={partner.logo}
-              alt={partner.name}
-              key={`row2-${index}`}
-              className="h-16 object-contain opacity-80 hover:opacity-100 transition"
-            />
-          ))}
-        </motion.div>
+          {/* FILLER CELL - Technical Data */}
+          <div className="hidden lg:flex aspect-[3/2] bg-gray-50 border-r border-b border-gray-200 items-center justify-center p-8">
+            <div className="text-center">
+                <Zap size={24} className="text-[#CF0F0F] mx-auto mb-3 opacity-20" />
+                <p className="text-[9px] font-mono text-gray-400 uppercase tracking-widest leading-tight">
+                    Syncing... <br/>
+                    Global_Supply_Chain
+                </p>
+            </div>
+          </div>
+        </div>
+
+        {/* REGISTRY FOOTER */}
+        <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-gray-100 pt-8">
+            <div className="flex items-center gap-6">
+                <div className="flex gap-1.5">
+                    <div className="w-2 h-2 bg-[#CF0F0F]" />
+                    <div className="w-2 h-2 bg-[#44444E]" />
+                    <div className="w-2 h-2 bg-gray-200" />
+                </div>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">
+                    Our Trusted Partners
+                </p>
+            </div>
+
+            <div className="flex items-center gap-2 bg-[#44444E] px-4 py-2 text-white">
+                <ShieldCheck size={14} className="text-[#CF0F0F]" />
+                <span className="text-[9px] font-black uppercase tracking-widest">Compliance Verified</span>
+            </div>
+        </div>
       </div>
     </section>
   );

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { projects } from "../../utils/projects";
 import ProjectCarousel from "./ProjectCarousel";
-import { useLocation } from "react-router";
-import { Filter, Home } from "lucide-react";
+import { useLocation, useNavigate } from "react-router";
+import { Filter, Home, LayoutGrid } from "lucide-react";
 
 const types = ["All", "Enclosure", "E-House", "Power-Pack", "Cooling-Shelter"];
 
 export default function ProjectsPage() {
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const typeQuery = queryParams.get("type") || "All";
@@ -28,104 +29,104 @@ export default function ProjectsPage() {
       : projects.filter((p) => p.type === selectedType);
 
   return (
-    <div className="min-h-screen bg-white text-black pt-0 overflow-hidden">
-      {/* --- HERO SECTION --- */}
-      <div className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="absolute inset-0 bg-[#44444E] opacity-95"></div>
-        <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] "></div>
-        {/* Animated background pattern (Subtle dots/texture) */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute top-0 left-0 w-full h-full"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, white 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-              animation: "drift 20s linear infinite", // Requires custom CSS for @keyframes drift
-            }}
-          ></div>
-        </div>
-        <div className="relative container mx-auto px-4 lg:px-8">
-          <div className="max-w-7xl">
-            <nav
-              className={`mb-6 transition-all duration-1000 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-4"
-              }`}
-            >
-              <ol className="inline-flex items-center space-x-2 text-sm font-medium text-white/80">
-                <li className="flex items-center gap-1">
-                  <Home className="w-4 h-4" /> Home
-                </li>
-                <li className="text-white/50 px-2">&gt;</li>
-                <li className="px-4 py-1 bg-[#CF0F0F] text-white rounded-full font-semibold">
-                  Projects
-                </li>
-              </ol>
-            </nav>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4">
-              Pioneering Projects
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl">
-              Discover our signature engineered solutions delivered worldwide.
-            </p>
-          </div>
+    <div className="min-h-screen bg-[#F8F9FA] selection:bg-[#BF092F] selection:text-white pt-0 overflow-hidden">
+      
+      {/* 🏗️ INDUSTRIAL HERO SECTION */}
+      <div className="relative h-[35vh] min-h-[450px] flex items-center bg-[#44444E] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+        
+        {/* Carbon Fibre Texture Overlay */}
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
+
+        <div className="relative container mx-auto px-6 z-20 pt-20">
+          <nav className="flex items-center gap-2 text-white/50 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+            <button onClick={() => navigate("/")} className="hover:text-[#BF092F] transition-colors flex items-center gap-1">
+              <Home size={12}/> HOME
+            </button>
+            <span>/</span>
+            <span className="text-[#BF092F]">ENGINEERING LOGS</span>
+          </nav>
+
+          <h1 className={`text-4xl md:text-7xl font-black text-white uppercase tracking-tighter transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            Global Deployments
+          </h1>
+          <div className="w-24 h-2 bg-[#BF092F] mt-6" />
         </div>
       </div>
 
-      {/* --- CONTENT AREA --- */}
-      <div className="container mx-auto px-4 py-12 flex flex-col lg:flex-row gap-8">
-        {/* Sidebar */}
-        <aside className="w-full lg:w-1/4 flex-shrink-0 lg:block hidden">
-          <div className="bg-white shadow-2xl rounded-3xl p-6 border border-[#CF0F0F]/10 sticky top-6 h-fit">
-            <h2 className="text-2xl font-extrabold mb-5 border-b pb-3 text-[#44444E] flex items-center gap-3">
-              <Filter size={24} className="text-[#CF0F0F]" /> Filter
-            </h2>
-            <ul className="space-y-2">
+      {/* --- CONTENT AREA (Overlapping Hero) --- */}
+      <div className="container mx-auto px-4 py-20 flex flex-col lg:flex-row gap-12 -translate-y-24 relative z-30">
+        
+        {/* SIDEBAR - Dark Command Center Style */}
+        <aside className="w-full lg:w-1/4">
+          <div className="bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] sticky top-28 overflow-hidden">
+            <div className="p-6 border-b border-white/10 flex items-center gap-3">
+              <Filter size={18} className="text-[#BF092F]" />
+              <h2 className="text-xs font-black text-white uppercase tracking-[0.3em]">Project Logs</h2>
+            </div>
+            <nav className="flex flex-col">
               {types.map((type) => (
-                <li
+                <button
                   key={type}
                   onClick={() => setSelectedType(type)}
-                  className={`cursor-pointer px-4 py-3 rounded-xl transition-all duration-300 ${
-                    selectedType === type
-                      ? "bg-[#CF0F0F] text-white font-semibold"
-                      : "text-[#44444E] hover:bg-[#44444E]/10"
+                  className={`px-6 py-5 text-left text-[12px] font-black uppercase tracking-[0.2em] transition-all border-b border-white/5 flex items-center justify-between group ${
+                    selectedType === type 
+                      ? "bg-white text-[#44444E]" 
+                      : "text-white/60 hover:text-white hover:bg-black/20"
                   }`}
                 >
                   {type}
-                </li>
+                  <span className={`w-2 h-2 rounded-full ${selectedType === type ? "bg-[#BF092F]" : "bg-white/10 group-hover:bg-white/30"}`} />
+                </button>
               ))}
-            </ul>
+            </nav>
+          </div>
+
+          {/* Technical Note Box */}
+          <div className="mt-8 p-6 bg-white border border-gray-200 shadow-xl hidden lg:block">
+             <LayoutGrid size={24} className="text-[#44444E] mb-4" />
+             <h4 className="text-[10px] font-black uppercase tracking-widest text-[#BF092F] mb-2">Technical Registry</h4>
+             <p className="text-[10px] font-bold text-gray-500 uppercase leading-relaxed tracking-wider">
+               All projects documented here comply with ISO-certified fabrication and engineering standards.
+             </p>
           </div>
         </aside>
 
-        {/* Main Content */}
+        {/* MAIN DISPLAY - Blueprint Style */}
         <main
-          className={`w-full lg:w-3/4 transition-all duration-1000 ${
+          className={`w-full lg:w-3/4 bg-white p-8 md:p-12 shadow-2xl border-t-4 border-[#44444E] transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {/* ALIGNED HEADING: Matches Carousel padding */}
-          <div className="px-4 md:px-16 mb-7">
-            <h2 className="text-3xl font-bold text-black border-l-4 border-[#CF0F0F] pl-4">
-              {selectedType} Projects
-            </h2>
+          {/* Section Header */}
+          <div className="flex items-end justify-between mb-12 border-b border-gray-100 pb-6">
+            <div>
+              <h2 className="text-3xl font-black text-[#44444E] uppercase tracking-tighter">
+                {selectedType === "All" ? "Complete Registry" : `${selectedType} Series`}
+              </h2>
+              <p className="text-[#BF092F] text-[10px] font-black uppercase tracking-[0.3em] mt-2">
+                Active Records: {filteredProjects.length} Deployed
+              </p>
+            </div>
+            <span className="text-5xl font-black text-gray-50 select-none hidden sm:block">ARCH</span>
           </div>
 
           {filteredProjects.length > 0 ? (
-            <div className="space-y-12">
+            <div className="relative">
               <ProjectCarousel projects={filteredProjects} />
             </div>
           ) : (
-            <div className="mx-4 md:mx-16 bg-[#44444E]/10 p-10 rounded-2xl text-center border-l-4 border-[#CF0F0F]">
-              <p className="text-2xl text-[#44444E] font-bold">
-                No Projects Found
+            <div className="bg-[#44444E] p-12 text-center border-t-4 border-[#BF092F]">
+              <p className="text-xs font-black text-white uppercase tracking-[0.5em]">
+                No Projects Logged in this Category
               </p>
             </div>
           )}
         </main>
       </div>
+
+      {/* Visual Watermark */}
+      <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function ProjectCarousel({ projects: projectsProp }) {
   const projects = projectsProp || []; 
@@ -34,9 +34,11 @@ export default function ProjectCarousel({ projects: projectsProp }) {
     const container = scrollContainerRef.current;
     const { step } = getCardStepSize();
     if (!container || step === 0) return;
-    setActiveIndex(Math.round(container.scrollLeft / step));
-    setCanScrollLeft(container.scrollLeft > 5);
-    setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth - 5); 
+    
+    const index = Math.round(container.scrollLeft / step);
+    setActiveIndex(index);
+    setCanScrollLeft(container.scrollLeft > 10);
+    setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth - 10); 
   };
 
   useEffect(() => {
@@ -55,44 +57,50 @@ export default function ProjectCarousel({ projects: projectsProp }) {
 
   if (projects.length === 0) return null;
 
+  // Calculate progress for the blueprint bar
+  const scrollProgress = ((activeIndex + 1) / projects.length) * 100;
+
   return (
-    <div className="relative w-full px-4 md:px-16"> 
-      <div className="relative">
+    <div className="relative w-full"> 
+      <div className="relative group">
         
-        {/* --- LEFT ARROW (Eye-catching glassmorphism) --- */}
-        {canScrollLeft && (
+        {/* --- INDUSTRIAL CONTROLS (Top Right Alignment) --- */}
+        <div className="absolute -top-16 right-4 md:right-16 flex gap-2 z-30">
           <button
             onClick={() => scroll("left")}
-            className="absolute -left-4 md:-left-14 top-1/2 -translate-y-1/2 z-30
-                       w-12 h-12  items-center justify-center rounded-full
-                       bg-white/80 backdrop-blur-md border-2 border-[#44444E]/20 text-[#44444E]
-                       shadow-xl transition-all duration-300 group hover:bg-[#CF0F0F] hover:text-white
-                       hover:scale-110 active:scale-95 hidden sm:flex"
+            disabled={!canScrollLeft}
+            className={`w-12 h-12 flex items-center justify-center transition-all border-t-2
+              ${canScrollLeft 
+                ? "bg-[#44444E] border-[#CF0F0F] text-white hover:bg-[#CF0F0F]" 
+                : "bg-gray-100 border-gray-200 text-gray-300 cursor-not-allowed"}`}
           >
-            <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="w-5 h-5" />
           </button>
-        )}
-
-        {/* --- RIGHT ARROW --- */}
-        {canScrollRight && (
           <button
             onClick={() => scroll("right")}
-            className="absolute -right-4 md:-right-14 top-1/2 -translate-y-1/2 z-30
-                       w-12 h-12  items-center justify-center rounded-full
-                       bg-white/80 backdrop-blur-md border-2 border-[#44444E]/20 text-[#44444E]
-                       shadow-xl transition-all duration-300 group hover:bg-[#CF0F0F] hover:text-white
-                       hover:scale-110 active:scale-95 hidden sm:flex"
+            disabled={!canScrollRight}
+            className={`w-12 h-12 flex items-center justify-center transition-all border-t-2
+              ${canScrollRight 
+                ? "bg-[#44444E] border-[#CF0F0F] text-white hover:bg-[#CF0F0F]" 
+                : "bg-gray-100 border-gray-200 text-gray-300 cursor-not-allowed"}`}
           >
-            <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-5 h-5" />
           </button>
-        )}
+        </div>
         
-        {/* --- TRACK --- */}
-        <div className="relative overflow-hidden">
-          <div ref={scrollContainerRef} className="flex gap-6 overflow-x-auto scrollbar-hide py-4 snap-x snap-mandatory">
-            {projects.map((proj) => (
-              <div key={proj.id} className="snap-start flex-shrink-0 card-content-wrapper">
-                <div className="card-content">
+        {/* --- TRACK WITH OVERFLOW MASK --- */}
+        <div className="relative px-4 md:px-16 overflow-hidden">
+          <div 
+            ref={scrollContainerRef} 
+            className="flex gap-6 overflow-x-auto scrollbar-hide py-8 snap-x snap-mandatory"
+          >
+            {projects.map((proj, idx) => (
+              <div key={proj.id} className="snap-start flex-shrink-0 card-content-wrapper relative">
+                {/* Visual Index Number (Industrial Aesthetic) */}
+                <span className="absolute -top-2 left-0 text-[40px] font-black text-gray-100 select-none z-0">
+                  0{idx + 1}
+                </span>
+                <div className="card-content relative z-10">
                   <ProjectCard project={proj} />
                 </div>
               </div>
@@ -100,19 +108,35 @@ export default function ProjectCarousel({ projects: projectsProp }) {
           </div>
         </div>
 
-        {/* --- DOTS --- */}
-        <div className="flex justify-center gap-3 mt-6">
-          {projects.map((_, i) => (
-            <div key={i} className={`h-2 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-8 bg-[#CF0F0F]' : 'w-2 bg-[#44444E]/30'}`} />
-          ))}
+        {/* --- BLUEPRINT PROGRESS INDICATOR --- */}
+        <div className="container mx-auto px-4 md:px-16 mt-8">
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-black text-[#44444E] uppercase tracking-widest w-12">
+              {String(activeIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+            </span>
+            
+            <div className="flex-grow h-[2px] bg-gray-200 relative">
+              <div 
+                className="absolute top-0 left-0 h-full bg-[#CF0F0F] transition-all duration-500 ease-out"
+                style={{ width: `${scrollProgress}%` }}
+              />
+            </div>
+            
+            <span className="text-[10px] font-black text-[#CF0F0F] uppercase tracking-widest">
+              DEPLOYMENT TRACK
+            </span>
+          </div>
         </div>
       </div>
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
         .card-content-wrapper { min-width: 100%; }
-        @media (min-width: 640px) { .card-content-wrapper { min-width: calc(50% - 12px); } }
-        @media (min-width: 1024px) { .card-content-wrapper { min-width: calc(33.333% - 16px); } }
+        @media (min-width: 768px) { .card-content-wrapper { min-width: calc(50% - 12px); } }
+        @media (min-width: 1280px) { .card-content-wrapper { min-width: calc(33.333% - 16px); } }
+        
         .card-content { width: 100%; height: 100%; }
       `}</style>
     </div>

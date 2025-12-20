@@ -52,17 +52,17 @@ export default function ProjectDetailPage() {
 
       {/* 🏗️ HERO SECTION - TIGHTENED HEIGHT */}
       {/* Changed h-[70vh] to h-[55vh] */}
-      <header className="relative h-[55vh] min-h-[400px] w-full flex items-end bg-[#44444E] overflow-hidden">
+      <header className="relative h-[30vh] min-h-[400px] w-full flex items-end bg-[#44444E] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
         {/* Added a slight parallax effect to the background texture */}
         <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
         
         <div className="container mx-auto px-6 mb-24 relative z-20">
           <button 
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/projects")}
             className="group flex items-center gap-2 text-white/70 hover:text-[#CF0F0F] mb-6 transition-colors"
           >
-            <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft size={20} className="pb-2 group-hover:-translate-x-1 transition-transform" />
             <span className="text-sm font-bold uppercase tracking-widest">Back to Portfolio</span>
           </button>
           
@@ -77,7 +77,7 @@ export default function ProjectDetailPage() {
 
       {/* 📄 MAIN CONTENT AREA - INCREASED OVERLAP */}
       {/* Changed -translate-y-10 to -translate-y-24 to pull content up significantly */}
-      <main className="container mx-auto px-4 md:px-6 -translate-y-24 relative z-30">
+      <main className="container pt-20 mx-auto px-4 md:px-6 -translate-y-24 relative z-30">
         {/* Reduced gap from gap-12 to gap-8 */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           

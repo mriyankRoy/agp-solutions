@@ -3,643 +3,241 @@ import { useNavigate, useParams } from "react-router";
 import { products } from "../../utils/products";
 import {
   X,
-  ChevronDown,
   Download,
-  MessageSquare,
   ChevronLeft,
   ChevronRight,
   ClipboardList,
   FileText,
-  // ADDED HOME ICON
-  Home, 
+  Home,
+  Activity,
+  Cpu,
+  Target,
+  Layers
 } from "lucide-react";
 
-// State for tab control
 const TAB_DETAILS = "details";
 const TAB_DOWNLOADS = "downloads";
 
 const ProductDetailPage = () => {
   const { categorySlug, productName } = useParams();
-  const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // Initial activeIndex is 0
   const [activeIndex, setActiveIndex] = useState(0); 
-  // NEW STATE: Tracks the currently active tab
   const [activeTab, setActiveTab] = useState(TAB_DETAILS);
   const navigate = useNavigate();
 
-  // --- Initial Setup and Scrolling Effects ---
   useEffect(() => {
     setIsVisible(true);
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [productName]);
   
-  // *** FIX: Reset active image index when product changes ***
   useEffect(() => {
-    setActiveIndex(0); // Set the active index to the first image (index 0)
-    // Dependency array includes productName, so this runs every time a new product is loaded
+    setActiveIndex(0);
   }, [productName]);
 
-
-  // --- Modal Logic ---
   const handleCloseModal = () => setIsModalOpen(false);
   const handleOpenModal = () => setIsModalOpen(true);
 
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape" && isModalOpen) {
-        handleCloseModal();
-      }
-    };
-
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden"; // Prevent background scroll
-      window.addEventListener("keydown", handleEscape);
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset"; // Ensure clean up
-    };
-  }, [isModalOpen]);
-
-  // --- Product Finding Logic ---
   const category = products.find((c) => c.slug === categorySlug);
-  if (!category) return <p className="p-6 text-black">Category not found.</p>;
-
-  // Use the new product properties for decoding/finding
-  const product = category.items.find(
-    // Decode the URL parameter to match the product name
+  const product = category?.items.find(
     (item) => item.name === decodeURIComponent(productName)
   );
-  if (!product) return <p className="p-6 text-black">Product not found.</p>;
 
-  // Destructure images safely (use an empty array if not present)
+  if (!category || !product) {
+    return (
+      <div className="min-h-screen bg-[#44444E] flex items-center justify-center font-mono text-white p-20">
+        ERROR_404 // REGISTRY_ENTRY_NOT_FOUND
+      </div>
+    );
+  }
+
   const productImages = product.images || [];
   const totalImages = productImages.length;
 
-  // --- Gallery Navigation Logic ---
-  const goToNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % totalImages);
-  };
+  const goToNext = () => setActiveIndex((prev) => (prev + 1) % totalImages);
+  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
 
-  const goToPrev = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
-  };
-
-  // --- NEW DOWNLOAD HANDLER ---
   const handleDownloadSpecs = () => {
-    // Check if the product has downloads and if the first item has a URL
     if (product.downloads && product.downloads.length > 0) {
-      const firstDownloadUrl = product.downloads[0].url;
-      
-      // Open the URL in a new tab to initiate download
-      window.open(firstDownloadUrl, '_blank');
+      window.open(product.downloads[0].url, '_blank');
     }
   };
   
-  // --- Utility Function to format Detail Keys ---
-  const formatDetailKey = (key) => {
-    // Insert space before capital letters (except the first character) and replace underscores
-    return key
-      .replace(/([A-Z])/g, " $1")
-      .replace(/_/g, " ")
-      .trim();
-  };
-
-  // --- Tab Content Components ---
-
-  // Component to render the Product Details (key/value pairs)
-  const DetailsTab = () => (
-    // Triggering an image for the measurement method
-    <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 text-base">
-      {Object.entries(product.details || {}).map(([key, value]) => (
-        <div key={key} className="flex flex-col border-b border-gray-100 pb-2">
-          <dt className="font-semibold text-[#44444E]">{formatDetailKey(key)}</dt>
-          <dd className="text-[#44444E]/90 mt-0.5">{value}</dd>
-        </div>
-      ))}
-       {/* Instructionally relevant image for the key measurement method */}
-       {product.details.TestMethod === 'Rebound / Impact' && (
-            <div className="md:col-span-2 mt-4 p-4 border border-gray-200 rounded-lg">
-                <p className="font-semibold text-[#44444E] mb-2">Illustration of Rebound/Impact Hardness Testing:</p>
-                
-            </div>
-        )}
-    </dl>
-  );
-
-  // Component to render the Downloads array
-  const DownloadsTab = () => (
-    <div className="space-y-4">
-      {(product.downloads || []).length > 0 ? (
-        product.downloads.map((download, index) => (
-          <a
-            key={index}
-            href={download.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            download // Ensure the download attribute is present for browser handling
-            className="flex items-center justify-between gap-4 p-4 border border-gray-200 rounded-xl hover:border-[#CF0F0F] hover:shadow-md transition-all duration-300 group bg-white"
-          >
-            <div className="flex flex-col">
-              <span className="text-lg font-semibold text-[#44444E] group-hover:text-[#CF0F0F]">
-                {download.name}
-              </span>
-              {/* Optional: Add a descriptive subtitle */}
-              <span className="text-sm text-[#44444E]/70 mt-0.5">
-                {product.manufacturerPartNumber} - {product.name}
-              </span>
-            </div>
-            <Download className="w-6 h-6 text-[#CF0F0F] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-          </a>
-        ))
-      ) : (
-        <p className="text-[#44444E]/70 italic">
-          No official download documents are currently available for this product.
-        </p>
-      )}
-    </div>
-  );
+  const formatDetailKey = (key) => key.replace(/([A-Z])/g, " $1").replace(/_/g, " ").trim();
 
   return (
-    <div className="w-full bg-white min-h-screen pb-20 pt-2 overflow-hidden">
-      {/* Background grid - Keeping it subtle with white/black */}
-      <div
-        className="-z-10 absolute inset-0
-           bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)]
-           bg-[size:40px_40px]
-           before:content-[''] before:absolute before:inset-0
-           before:bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.02),transparent_60%)]
-      "
-      ></div>
-
-      {/* HERO HEADER SECTION */}
-      <div className="relative mb-16 overflow-hidden">
-        {/* Background set to primary dark color for contrast */}
-        <div className="absolute inset-0 bg-[#44444E] opacity-95"></div>
-
-        {/* Animated pattern using the new dark color */}
-        <div
-          className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiIHN0cm9rZS1wd2lkdGg9IjEiLz48L2RlZnM+PjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCIiLz48L2RlZnM+PC9zdmc=')] "
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
-        ></div>
-
-        {/* Animated background pattern (Subtle dots/texture) */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute top-0 left-0 w-full h-full"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, white 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-              animation: "drift 20s linear infinite", // Requires custom CSS for @keyframes drift
-            }}
-          ></div>
+    <div className="min-h-screen bg-[#FDFDFD] pb-20">
+      
+      {/* 🏗️ CINEMATIC HERO SECTION */}
+      <header className="relative h-[35vh] min-h-[500px] w-full flex items-end bg-[#44444E] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
+        <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
+        
+        <div className="absolute inset-0 opacity-20 z-0">
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#CF0F0F] to-transparent animate-pulse" />
+          <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700" />
         </div>
 
-        {/* Animated light beams - Changed colors to white/red */}
-        <div className="absolute inset-0 overflow-hidden opacity-30">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"></div>
-          <div
-            className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-[#CF0F0F] to-transparent animate-pulse"
-            style={{ animationDelay: "1s" }}
-          ></div>
-          <div
-            className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"
-            style={{ animationDelay: "2s" }}
-          ></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 py-25">
-          <div className="max-w-4xl">
-            {/* --- BREADCRUMB --- UPDATED WITH HOME ICON */}
-            <nav
-              className={`mb-6 transition-all duration-1000 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-4"
-              }`}
-              aria-label="Breadcrumb"
-              style={{ transitionDelay: "100ms" }}
-            >
-              <ol className="inline-flex items-center space-x-2 text-sm md:text-base font-medium">
-                {/* 1. HOME Link (Clickable) */}
-                <li className="inline-flex items-center">
-                  <button
-                    onClick={() => navigate("/")} // Navigate to home page
-                    className="flex items-center gap-1 text-white/80 hover:text-[#CF0F0F] transition-colors duration-200 focus:outline-none"
-                  >
-                    <Home className="w-4 h-4" /> {/* Home Icon */}
-                    Home
-                  </button>
-                </li>
-
-                {/* Separator */}
-                <li className="text-white/50">
-                  <span className="mx-2">&gt;</span>
-                </li>
-
-                {/* 2. Products Root Link (Clickable) */}
-                <li className="inline-flex items-center">
-                  <button
-                    onClick={() => navigate("/products")}
-                    className="text-white/80 hover:text-[#CF0F0F] transition-colors duration-200 focus:outline-none"
-                  >
-                    Products
-                  </button>
-                </li>
-
-                {/* Separator */}
-                <li className="text-white/50">
-                  <span className="mx-2">&gt;</span>
-                </li>
-
-                {/* 3. Category Link (Clickable) */}
-                <li className="inline-flex items-center">
-                  <button
-                    onClick={() =>
-                      navigate(`/products?category=${categorySlug}`)
-                    }
-                    className="text-white/80 hover:text-[#CF0F0F] transition-colors duration-200 focus:outline-none"
-                  >
-                    {category.category}
-                  </button>
-                </li>
-
-                {/* Separator */}
-                <li className="text-white/50">
-                  <span className="mx-2">&gt;</span>
-                </li>
-
-                {/* 4. Product Name (Current Page) - RED TAG STYLING */}
-                <li
-                  className={`inline-block px-4 py-1 bg-[#CF0F0F] text-white rounded-full font-semibold whitespace-nowrap`}
-                >
-                  {product.name}
-                </li>
-              </ol>
-            </nav>
-            {/* --- END BREADCRUMB --- */}
-
-            {/* Title */}
-            <h1
-              className={`text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight transition-all duration-1000 delay-150 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-            >
+        <div className="container mx-auto px-6 mb-16 relative z-20">
+          {/* Breadcrumb Navigation */}
+          <nav className="flex items-center gap-4 mb-8">
+            <button onClick={() => navigate("/")} className="text-white/40 hover:text-white transition-colors">
+              <Home size={14} />
+            </button>
+            <span className="text-white/20 text-xs font-mono">//</span>
+            <button onClick={() => navigate("/products")} className="text-[11px] font-black text-white/60 hover:text-white uppercase tracking-[0.3em]">
+              Inventory_Registry
+            </button>
+            <span className="text-white/20 text-xs font-mono">//</span>
+            <button onClick={() => navigate(`/products?category=${categorySlug}`)} className="text-[11px] font-black text-white/60 hover:text-white uppercase tracking-[0.3em]">
+              {category.category}
+            </button>
+            <span className="text-white/20 text-xs font-mono">//</span>
+            <span className="px-3 py-1 bg-[#CF0F0F] text-[11px] font-black text-white uppercase tracking-[0.2em]">
               {product.name}
-            </h1>
+            </span>
+          </nav>
 
-            {/* --- TECHNICAL SUMMARY BAR --- */}
-            <div
-              className={`mt-6 pt-4 border-t border-white/20 flex flex-wrap gap-x-8 gap-y-2 text-base font-mono transition-all duration-1000 delay-500 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-            >
-              {/* Manufacturer */}
-              <div className="text-white/70">
-                <span className="font-bold text-white">Make:</span>{" "}
-                {product.Make}
-              </div>
+          <h1 className={`text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-tight transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+             {product.name.split(' ')[0]} <span className="text-[#CF0F0F] italic">{product.name.split(' ').slice(1).join(' ')}</span>
+          </h1>
 
-              {/* Manufacturer Part Number */}
-              <div className="text-white/70">
-                <span className="font-bold text-white">Mfr Part #:</span>{" "}
-                {product.manufacturerPartNumber}
+          {/* 🛠️ UPDATED DATA SECTION: Product Make, Mfr_PN, AGP_ID */}
+          <div className={`flex flex-wrap gap-10 mt-10 transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            {[
+              { label: "Make", val: product.Make, icon: <Cpu size={14} /> },
+              { label: "Mfr_PN", val: product.manufacturerPartNumber, icon: <Target size={14} /> },
+              { label: "AGP_ID", val: product.AGPPartNumber, icon: <Activity size={14} /> }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col border-l-2 border-[#CF0F0F] pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[#CF0F0F]">{item.icon}</span>
+                  <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">{item.label}</p>
+                </div>
+                <p className="text-lg font-mono font-bold text-white tracking-tight">{item.val || "N/A"}</p>
               </div>
-
-              {/* AGP Part Number */}
-              <div className="text-white/70">
-                <span className="font-bold text-white">AGP Part #:</span>{" "}
-                {product.AGPPartNumber}
-              </div>
-            </div>
-            {/* --- END TECHNICAL SUMMARY BAR --- */}
+            ))}
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="container mx-auto px-6 relative">
-        {/* --- TOP GRID: IMAGE and SUMMARY CARD (UNCHANGED) --- */}
-        <div className="mb-16 -mt-32 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* PRODUCT IMAGE SHOWCASE - 2/3 width */}
-          <div className="lg:col-span-2">
-            <div
-              className={`relative bg-white rounded-3xl shadow-2xl p-6 backdrop-blur-sm border border-gray-200/50 transition-all duration-1000 delay-500 h-[520px] flex gap-6 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              {/* Subtle pulse background - White/light gray gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-black/5 rounded-3xl animate-pulse"></div>
-
-              {/* --- 1. THUMBNAIL GALLERY (Vertical Left) --- */}
-              {totalImages > 0 && (
-                <div
-                  // FIX: Removed mt-2 from the container
-                  className="flex flex-col gap-3 h-[500px] overflow-y-auto pb-4 pr-1 flex-shrink-0 ml-3"
-                  style={{ width: "110px" }}
+      {/* 🏭 MAIN CONTENT AREA */}
+      <div className="pt-7 container mx-auto px-6 lg:px-12 -mt-10 relative z-30">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          {/* GALLERY MODULE */}
+          <div className="lg:col-span-8 bg-white border border-gray-200 shadow-2xl p-2 flex flex-col md:flex-row gap-2 h-[600px]">
+            <div className="w-full md:w-24 flex md:flex-col gap-2 overflow-auto p-2 bg-[#F8F9FA]">
+              {productImages.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  className={`flex-shrink-0 w-16 h-16 md:w-full md:h-20 border-2 transition-all ${i === activeIndex ? 'border-[#CF0F0F] grayscale-0' : 'border-transparent grayscale hover:grayscale-0'}`}
                 >
-                  {productImages.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveIndex(index)}
-                      // The button defines the full, clickable area and the cursor.
-                      // REMOVED p-0.5 HERE for maximum content fill
-                      className={`z-10 m-1 w-20 h-20 flex-shrink-0 rounded-xl transition-all duration-300 focus:outline-none cursor-pointer ${
-                        index === activeIndex
-                          ? "border-4 border-[#CF0F0F] scale-105 shadow-lg bg-white"
-                          : "border-2 border-gray-200 opacity-80 hover:opacity-100 hover:border-[#CF0F0F]/50"
-                      }`}
-                      aria-label={`View image ${index + 1}`}
-                    >
-                      {/* Using div with background image ensures no conflicting child event layer (Final Thumbnail Fix) */}
-                      <div
-                        className="w-full h-full bg-cover bg-center rounded-xl" 
-                        style={{ backgroundImage: `url(${image})` }}
-                        role="img" 
-                        aria-label={`Thumbnail ${index + 1} of ${product.name}`}
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-              {/* --- END THUMBNAIL GALLERY --- */}
-
-              {/* --- 2. MAIN IMAGE DISPLAY (Right Side, filling remaining space) --- */}
-              <div
-                // Keep cursor-pointer on the container (Line 277)
-                className="relative flex-grow overflow-hidden rounded-2xl group w-full flex items-center justify-center bg-white cursor-pointer shadow-inner"
-                onClick={handleOpenModal}
-              >
-                {/* Navigation Buttons for Main Image */}
-                {totalImages > 0 && (
-                  <>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        goToPrev();
-                      }}
-                      // FIX: Explicitly added cursor-pointer to buttons (Line 253)
-                      className="absolute left-4 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-[#CF0F0F]/80 transition-all duration-300 shadow-md cursor-pointer"
-                      aria-label="Previous image"
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        goToNext();
-                      }}
-                      // FIX: Explicitly added cursor-pointer to buttons (Line 263)
-                      className="absolute right-4 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-[#CF0F0F]/80 transition-all duration-300 shadow-md cursor-pointer"
-                      aria-label="Next image"
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </button>
-                  </>
-                )}
-
-                <img
-                  src={productImages[activeIndex]}
-                  alt={product.name}
-                  key={productImages[activeIndex]}
-                  // *** FINAL FIX: Removed cursor-pointer from the child <img> (Line 300) to resolve conflict with parent div's pointer style ***
-                  className="relative h-full w-full object-contain shadow-xl transition-transform duration-700 group-hover:scale-105" 
-                />
-                {/* Shimmer effect on hover */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-              </div>
-              {/* --- END MAIN IMAGE DISPLAY --- */}
+                  <img src={img} className="w-full h-full object-cover" alt="thumb" />
+                </button>
+              ))}
+            </div>
+            <div className="flex-grow relative bg-[#FDFDFD] overflow-hidden group flex items-center justify-center cursor-zoom-in" onClick={handleOpenModal}>
+              <img src={productImages[activeIndex]} className="max-h-full max-w-full object-contain p-10 transition-transform duration-700 group-hover:scale-105" alt="main" />
+              <button onClick={(e) => { e.stopPropagation(); goToPrev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-white/80 hover:bg-[#CF0F0F] hover:text-white shadow-xl"><ChevronLeft size={20}/></button>
+              <button onClick={(e) => { e.stopPropagation(); goToNext(); }} className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-white/80 hover:bg-[#CF0F0F] hover:text-white shadow-xl"><ChevronRight size={20}/></button>
             </div>
           </div>
 
-          {/* SUMMARY CARD MOVED NEXT TO IMAGE (UNCHANGED) - 1/3 width */}
-          <div
-            className={`lg:col-span-1 transition-all duration-500 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-8"
-            }`}
-            style={{ transitionDelay: "700ms" }}
-          >
-            {/* SUMMARY CARD: Fixed height h-[520px] for alignment, sticky removed */}
-            <div
-              className={`bg-white shadow-xl rounded-3xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 h-[520px] flex flex-col justify-between`}
-            >
-              <div>
-                <h3 className="text-3xl font-bold text-[#44444E] mb-4 border-b border-gray-100 pb-3">
-                  Quick Summary
-                </h3>
-                {product.shortDescription && (
-                  <p className="text-[#44444E]/90 text-base leading-relaxed mb-8">
-                    {product.shortDescription}
-                  </p>
-                )}
-                <div className="space-y-4">
-                  <div className="text-[#44444E]/70 font-mono text-sm">
-                    Mfr Part #: {product.manufacturerPartNumber}
-                  </div>
-                  <div className="text-[#44444E]/70 font-mono text-sm">
-                    AGP Part #: {product.AGPPartNumber}
-                  </div>
-                </div>
-              </div>
-
-              {/* Call to Action Buttons */}
-              <div className="space-y-4 mt-auto">
-                {/* Pricing Button: Solid Red Primary Button */}
-                <button className="w-full bg-[#CF0F0F] hover:bg-black text-white text-lg font-semibold py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] relative overflow-hidden group">
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Contact for Pricing
-                  </span>
-                  <div className="absolute inset-0 bg-black/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          {/* SIDEBAR: SUMMARY & USES */}
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <div className="bg-[#44444E] p-8 text-white border-b-8 border-[#CF0F0F] shadow-xl">
+              <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-6 text-white/40 italic">Product_Overview</h3>
+              <p className="text-[13px] font-bold uppercase tracking-widest leading-loose mb-10 text-white/80">
+                {product.shortDescription}
+              </p>
+              <div className="space-y-3">
+                <button className="w-full py-5 bg-[#CF0F0F] hover:bg-white hover:text-[#44444E] text-white text-[10px] font-black uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4">
+                  Request_Quotation <Target size={14} />
                 </button>
-
-                {/* Quick link to downloads tab if documents exist */}
-                {(product.downloads || []).length > 0 && (
-                  <button
-                    // *** ACTION: Triggers direct download of the first document (Datasheet) ***
-                    onClick={handleDownloadSpecs}
-                    className="w-full flex items-center justify-center gap-2 bg-[#44444E] hover:bg-black text-white text-base font-semibold py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] relative overflow-hidden group"
-                  >
-                    <FileText
-                      className="w-5 h-5 relative z-10"
-                      strokeWidth={2.5}
-                    />
-                    <span className="relative z-10">View Specifications</span>
-                    <div className="absolute inset-0 bg-black/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                {product.downloads?.length > 0 && (
+                  <button onClick={handleDownloadSpecs} className="w-full py-5 border border-white/20 hover:bg-white/10 text-white text-[10px] font-black uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4">
+                    Download_Technical_Sheet <Download size={14} />
                   </button>
                 )}
               </div>
             </div>
-          </div>
-        </div>
-        {/* --- END OF EYE-CATCHING MAIN GRID --- */}
 
-        {/* --- NEW MAIN CONTENT GRID: TABS vs. DESCRIPTION/USES --- */}
-        <div className="mb-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          {/* 1. LEFT COLUMN: TABS SECTION (Spans 2/3 width) */}
-          <div 
-            className={`lg:col-span-2 space-y-0 transition-all duration-500 delay-[900ms] ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {/* Tabs Container */}
-            <div className="flex flex-col h-full min-h-[400px] bg-white rounded-3xl shadow-xl border border-gray-100">
-                {/* Tab Headers */}
-                <div className="flex border-b border-gray-200 flex-shrink-0 p-4 px-8">
-                    {/* Product Details Tab */}
-                    <button
-                    onClick={() => setActiveTab(TAB_DETAILS)}
-                    className={`flex items-center gap-2 px-6 py-4 text-lg font-semibold transition-all duration-300 -mb-4 ${
-                        activeTab === TAB_DETAILS
-                        ? "text-[#CF0F0F] border-b-4 border-[#CF0F0F]"
-                        : "text-[#44444E]/70 hover:text-[#CF0F0F]/80 hover:border-b-4 hover:border-gray-200"
-                    }`}
-                    >
-                    <ClipboardList className="w-5 h-5" />
-                    Technical Specifications
-                    </button>
-
-                    {/* Downloads Tab */}
-                    <button
-                    onClick={() => setActiveTab(TAB_DOWNLOADS)}
-                    className={`flex items-center gap-2 px-6 py-4 text-lg font-semibold transition-all duration-300 -mb-4 ${
-                        activeTab === TAB_DOWNLOADS
-                        ? "text-[#CF0F0F] border-b-4 border-[#CF0F0F]"
-                        : "text-[#44444E]/70 hover:text-[#CF0F0F]/80 hover:border-b-4 hover:border-gray-200"
-                    }`}
-                    >
-                    <FileText className="w-5 h-5" />
-                    Documents & Downloads
-                    {/* Optional: Show number of downloads */}
-                    {product.downloads && product.downloads.length > 0 && (
-                        <span className="ml-1 px-2 py-0.5 text-xs font-bold text-white bg-[#CF0F0F] rounded-full">
-                        {product.downloads.length}
-                        </span>
-                    )}
-                    </button>
-                </div>
-
-                {/* Tab Content Area */}
-                <div
-                    className={`p-8 flex-grow overflow-y-auto transition-opacity duration-500`}
-                >
-                    {activeTab === TAB_DETAILS && <DetailsTab />}
-                    {activeTab === TAB_DOWNLOADS && <DownloadsTab />}
-                </div>
-            </div>
-          </div>
-
-
-          {/* 2. RIGHT COLUMN GROUP: DESCRIPTION and USES (Spans 1/3 width) */}
-          <div className="lg:col-span-1 space-y-8">
-            
-            {/* PRODUCT LONG DESCRIPTION (Detailed Product Overview) */}
-            <div
-              className={`group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 border border-gray-100 hover:border-[#CF0F0F]/50 hover:-translate-y-1 relative overflow-hidden ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
-              }`}
-              style={{ transitionDelay: "100ms" }}
-            >
-              <div className="flex items-center gap-3 mb-4 relative z-10">
-                <div className="w-1 h-6 bg-[#CF0F0F] rounded-full group-hover:h-8 transition-all duration-300"></div>
-                <h2 className="text-2xl font-bold text-[#44444E]">
-                  Detailed Overview
-                </h2>
-              </div>
-              <p className="text-base text-[#44444E]/90 leading-relaxed whitespace-pre-line">
-                {product.description}
-              </p>
-              {/* Animated corner accent - Dark Gray subtle gradient */}
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tr from-[#BF092F]/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
-
-            {/* USES SECTION (Applications & Uses) */}
-            {product.uses && product.uses.length > 0 && (
-              <div
-                className={`group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 border border-gray-100 hover:border-[#44444E]/50 hover:-translate-y-1 relative overflow-hidden ${
-                  isVisible
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-8"
-                }`}
-                style={{ transitionDelay: "1300ms" }}
-              >
-                <div className="flex items-center gap-3 mb-4 relative z-10">
-                  {/* Accent Line: Dark Gray */}
-                  <div className="w-1 h-6 bg-[#44444E] rounded-full group-hover:h-8 transition-all duration-300"></div>
-                  <h2 className="text-2xl font-bold text-[#44444E]">
-                    Applications & Uses
-                  </h2>
-                </div>
-                <div className="grid grid-cols-1 gap-3 relative z-10">
-                  {product.uses.map((use, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 bg-white/50 px-3 py-2 rounded-lg border border-gray-100 group/item"
-                    >
-                      {/* List bullet: Red dot */}
-                      <div className="w-2 h-2 bg-[#CF0F0F] rounded-full mt-2 flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300"></div>
-                      <span className="text-[#44444E]/90 text-sm leading-relaxed">
-                        {use}
-                      </span>
+            <div className="bg-white border border-gray-200 p-8 shadow-sm">
+               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#44444E] mb-6 flex items-center gap-2">
+                 <Layers size={14} className="text-[#CF0F0F]" /> Operational_Uses
+               </h4>
+               <div className="space-y-3">
+                  {product.uses?.map((use, i) => (
+                    <div key={i} className="flex gap-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                      <span className="text-[#CF0F0F] font-black">/</span> {use}
                     </div>
                   ))}
-                </div>
-                {/* Animated corner accent - Dark Gray subtle gradient */}
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#44444E]/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* DATA TABS */}
+        <div className="mt-12 bg-white border border-gray-200 overflow-hidden shadow-sm">
+          <div className="flex bg-gray-50 border-b border-gray-200">
+            <button
+              onClick={() => setActiveTab(TAB_DETAILS)}
+              className={`px-10 py-6 text-[12px] font-black uppercase tracking-[0.3em] transition-all ${activeTab === TAB_DETAILS ? 'bg-white text-[#CF0F0F] border-t-2 border-[#CF0F0F]' : 'text-gray-400'}`}
+            >
+              <ClipboardList size={14} className="inline mr-2" /> Technical_Specifications
+            </button>
+            <button
+              onClick={() => setActiveTab(TAB_DOWNLOADS)}
+              className={`px-10 py-6 text-[12px] font-black uppercase tracking-[0.3em] transition-all ${activeTab === TAB_DOWNLOADS ? 'bg-white text-[#CF0F0F] border-t-2 border-[#CF0F0F]' : 'text-gray-400'}`}
+            >
+              <FileText size={14} className="inline mr-2" /> Registry_Documents
+            </button>
+          </div>
+          
+          <div className="p-12">
+            {activeTab === TAB_DETAILS ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-gray-200">
+                {Object.entries(product.details || {}).map(([key, value]) => (
+                  <div key={key} className="flex flex-col border-r border-b border-gray-200 p-6 bg-white hover:bg-gray-50 transition-colors">
+                    <dt className="text-[10px] font-black text-[#CF0F0F] uppercase tracking-[0.2em] mb-1">{formatDetailKey(key)}</dt>
+                    <dd className="text-sm font-bold text-[#44444E] uppercase tracking-tight">{value}</dd>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-4">
+                {product.downloads?.map((d, i) => (
+                  <a key={i} href={d.url} target="_blank" rel="noreferrer" className="flex items-center justify-between p-6 bg-[#44444E] border-l-4 border-[#CF0F0F] text-white hover:bg-black transition-all">
+                    <span className="text-xs font-black uppercase tracking-[0.3em]">{d.name}</span>
+                    <Download size={18} className="text-[#CF0F0F]" />
+                  </a>
+                ))}
               </div>
             )}
           </div>
-          {/* END RIGHT COLUMN GROUP (DESCRIPTION + USES) */}
-
         </div>
-        {/* --- END NEW MAIN CONTENT GRID --- */}
+
+        {/* ANALYSIS SECTION */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-gray-100 pt-16">
+           <div className="lg:col-span-4">
+             <h2 className="text-3xl font-black text-[#44444E] uppercase tracking-tighter">Product_Details</h2>
+             <div className="w-16 h-1 bg-[#CF0F0F] mt-3" />
+           </div>
+           <div className="lg:col-span-8">
+             <p className="text-[17px] text-gray-600 font-medium leading-[1.8] whitespace-pre-line">
+               {product.description}
+             </p>
+           </div>
+        </div>
       </div>
 
-      {/* 5. Conditional Modal Component (UNCHANGED) */}
+      {/* MODAL */}
       {isModalOpen && (
-        <div
-          // Modal Background: fixed, covers screen, dark overlay
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity duration-300"
-          onClick={handleCloseModal} // Close on clicking outside the image
-        >
-          {/* Close Button: Styled red/white button */}
-          <button
-            onClick={handleCloseModal}
-            className="absolute top-6 right-6 text-white hover:text-[#CF0F0F] p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 z-[60]"
-            aria-label="Close image viewer"
-          >
-            <X className="w-8 h-8" strokeWidth={2.5} />
-          </button>
-
-          {/* Enlarged Image Container */}
-          <div
-            className="p-4 max-w-7xl max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()} // Prevent modal closing when clicking the image itself
-          >
-            <img
-              src={productImages[activeIndex]}
-              alt={`Enlarged view of ${product.name}`}
-              key={productImages[activeIndex]} // Important for smooth transitions
-              className="w-full h-full object-contain rounded-lg shadow-2xl"
-            />
-          </div>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#44444E]/95 backdrop-blur-xl" onClick={handleCloseModal}>
+          <button className="absolute top-10 right-10 text-white"><X size={40} /></button>
+          <img src={productImages[activeIndex]} className="max-w-5xl max-h-[85vh] object-contain shadow-2xl" alt="enlarged" />
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { facilities } from "../utils/facilities";
+import { ShieldCheck, ArrowRight, Monitor } from "lucide-react";
 
 export default function GraphiteScrollingFeatures() {
   const containerRef = useRef(null);
@@ -8,11 +9,10 @@ export default function GraphiteScrollingFeatures() {
   const [progresses, setProgresses] = useState(() =>
     Array(facilities.length).fill(0)
   );
-  const [fromAngle, setFromAngle] = useState(0);
   const [containerHeight, setContainerHeight] = useState(3600);
 
+  // --- STICKY LOGIC PRESERVED ---
   useEffect(() => {
-    // dynamic container height so we have a long scroll area
     const base = Math.max(window.innerHeight * 3.6, 3600);
     const dynamic = Math.round(facilities.length * (window.innerHeight * 0.95));
     setContainerHeight(Math.max(base, dynamic));
@@ -21,7 +21,6 @@ export default function GraphiteScrollingFeatures() {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-
     let rafId = null;
 
     function onScroll() {
@@ -32,14 +31,9 @@ export default function GraphiteScrollingFeatures() {
         const scrollable = Math.max(1, rect.height - window.innerHeight);
         const pct = Math.min(1, Math.max(0, top / scrollable));
 
-        // which card should be active
-        const idx = Math.min(
-          facilities.length - 1,
-          Math.floor(pct * facilities.length)
-        );
+        const idx = Math.min(facilities.length - 1, Math.floor(pct * facilities.length));
         setActiveIndex(idx);
 
-        // calculate per-item progress (0-100)
         const itemSize = 1 / facilities.length;
         const newProgresses = facilities.map((_, i) => {
           const start = i * itemSize;
@@ -48,194 +42,143 @@ export default function GraphiteScrollingFeatures() {
           return Math.round(Math.max(0, Math.min(1, local)) * 10000) / 100;
         });
         setProgresses(newProgresses);
-
-        // spinning conic gradient angle (makes glow animate with scroll)
-        const angle = Math.round((pct * 360 + idx * 12) % 360);
-        setFromAngle(angle);
       });
     }
 
-    // run once and attach listeners
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [containerRef]);
+  }, []);
 
-  // click to activate: scroll to the center of that item's section so the onScroll mapping picks it
   function activateCard(i) {
     const rect = containerRef.current.getBoundingClientRect();
     const scrollable = Math.max(0, rect.height - window.innerHeight);
-    // center the clicked card in its segment so Math.floor(pct * n) -> i
     const targetPct = (i + 0.5) / facilities.length;
-    const targetScroll =
-      containerRef.current.offsetTop + targetPct * scrollable;
-
-    window.scrollTo({
-      top: Math.max(0, Math.round(targetScroll - 24)),
-      behavior: "smooth",
-    });
+    const targetScroll = containerRef.current.offsetTop + targetPct * scrollable;
+    window.scrollTo({ top: Math.max(0, Math.round(targetScroll - 24)), behavior: "smooth" });
   }
 
   return (
-    <section className="flex flex-col py-16 px-6 md:px-16 lg:px-24">
+    <section className="bg-[#F8F9FA] px-6 md:px-16 lg:px-24 py-20">
       <div
         ref={containerRef}
         className="w-full relative"
-        style={{
-          height: `${containerHeight}px`,
-          ["--from-angle"]: `${fromAngle}deg`,
-        }}
+        style={{ height: `${containerHeight}px` }}
       >
+        {/* THE STICKY WRAPPER - Functionality Restored */}
         <div
           ref={stickyRef}
           className="sticky top-0 h-screen flex items-center justify-center"
         >
-          <div className="flex flex-col md:flex-row gap-7 w-full max-w-[1280px] px-4 sm:px-6">
-            {/* LEFT COLUMN (Preview) */}
-            <div className="grow mt-10 md:mt-0 px-4 sm:px-6 py-6 sm:py-10 rounded-2xl border border-neutral-800 bg-gradient-to-r from-[#B45253] to-[#44444E] backdrop-blur-sm relative overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75)]">
-              {/* Dotted Overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-[0.12] rounded-2xl"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.18) 1px, transparent 1px)",
-                  backgroundSize: "14px 14px",
-                }}
+          <div className="flex flex-col md:flex-row gap-10 w-full max-w-[1300px] items-stretch">
+            
+            {/* 1. LEFT COLUMN: INDUSTRIAL VIEWPORT CHASSIS */}
+            <div className="hidden md:flex flex-[1.3] bg-[#44444E] border border-neutral-800 shadow-2xl p-4 flex-col relative overflow-hidden h-[550px]">
+              
+              {/* Technical Dotted Overlay */}
+              <div className="absolute inset-0 opacity-[0.1] pointer-events-none"
+                style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 1px)", backgroundSize: "20px 20px" }}
               />
 
-              {/* Animated Conic Glow (uses CSS variable fromAngle) */}
-              <div
-                aria-hidden
-                className="absolute inset-[-20%] blur-[36px] opacity-70 transition-all duration-700 bg-gradient-to-r"
-              />
-
-              {/* Glass Frame */}
-              <div className="relative flex justify-center items-center h-full">
-                <div className="relative px-4 py-8 mt-12 rounded-lg border grow-1 shrink-1 lg:basis-[60%] basis-[40%] md:mt-0 md:p-12 inset-shadow-[0_0_12px_var(--color-neutral-800)] bg-neutral-950 border-neutral-800 h-full w-full relative" style={{ height: 320, width: 540 }}>
-                  {/* Title Under Image */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full text-base text-neutral-200 font-semibold py-7">
-                    {facilities[activeIndex]?.title}
-                  </div>
-
-                  {/* Outer glowing ring */}
-                  <div className="absolute -inset-2 rounded-2xl pointer-events-none">
-                    <div
-                      className="w-full h-full rounded-2xl border border-transparent/0"
-                      style={{
-                        boxShadow:
-                          "0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02)",
-                      }}
-                    />
-                  </div>
-
-                  {/* Glass viewport */}
-                  <div className="absolute inset-0 rounded-2xl border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-md overflow-hidden shadow-[0_18px_60px_-24px_rgba(0,0,0,0.7)]">
-                    {facilities.map((c, i) => {
-                      const visible = i === activeIndex;
-                      return (
-                        <div
-                          key={i}
-                          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 ease-out"
-                          style={{
-                            opacity: visible ? 1 : 0,
-                            transform: visible ? "scale(1)" : "scale(1.06)",
-                            filter: visible
-                              ? "saturate(1) contrast(1)"
-                              : "grayscale(0.7) brightness(.8)",
-                            backgroundImage: `url(${c.facilityImg[0]})`,
-                          }}
-                        />
-                      );
-                    })}
-                  </div>
-
-                  {/* subtle foreground shine */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute left-0 top-0 w-2/3 h-full bg-gradient-to-r from-white/6 to-transparent opacity-6 mix-blend-overlay" />
-                  </div>
+              {/* Viewport Header */}
+              <div className="flex justify-between items-center mb-4 px-2">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#BF092F]" />
+                  <div className="w-2 h-2 rounded-full bg-white/10" />
                 </div>
+                <span className="text-[9px] font-black text-white/30 uppercase tracking-[0.4em]">Optic Feed 0{activeIndex + 1}</span>
+              </div>
+
+              {/* Main Image Viewport */}
+              <div className="relative flex-grow bg-black overflow-hidden border border-black shadow-2xl">
+                {facilities.map((c, i) => (
+                  <div
+                    key={i}
+                    className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out"
+                    style={{
+                      opacity: i === activeIndex ? 1 : 0,
+                      transform: i === activeIndex ? "scale(1)" : "scale(1.1)",
+                      filter: i === activeIndex ? "none" : "grayscale(0.5) brightness(0.4)",
+                      backgroundImage: `url(${c.facilityImg[0]})`,
+                    }}
+                  />
+                ))}
+                
+                {/* Title Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent z-20">
+                  <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
+                    {facilities[activeIndex]?.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* System Loader Line */}
+              <div className="mt-4 h-1 bg-white/5 relative overflow-hidden">
+                <div 
+                  className="absolute inset-y-0 left-0 bg-[#BF092F] transition-all duration-300"
+                  style={{ width: `${progresses[activeIndex]}%` }}
+                />
               </div>
             </div>
 
-            {/* RIGHT COLUMN */}
-            <div className="flex-0 w-full md:flex-[1_1_42%] flex flex-col gap-4">
+            {/* 2. RIGHT COLUMN: INTERACTIVE TERMINAL LIST */}
+            <div className="flex-1 flex flex-col justify-center gap-4">
               {facilities.map((c, i) => {
                 const isActive = i === activeIndex;
                 const progress = progresses[i] ?? 0;
                 return (
                   <div
                     key={i}
-                    role="button"
-                    tabIndex={0}
                     onClick={() => activateCard(i)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") activateCard(i);
-                    }}
-                    data-active={isActive}
-                    aria-pressed={isActive}
-                    className={`group px-4 py-4 sm:px-6 sm:py-5 border rounded-xl flex gap-4 relative transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-orange-400/20
-                      ${
-                        isActive
-                          ? "bg-gradient-to-b from-neutral-900 to-neutral-800 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.8)] scale-[1.03] border-neutral-700"
-                          : "bg-neutral-950 hover:bg-neutral-900/60 hover:scale-[1.01] border-neutral-800"
-                      }
-                    `}
+                    className={`relative p-6 transition-all duration-500 cursor-pointer border flex flex-col ${
+                      isActive 
+                        ? "bg-[#44444E] border-[#BF092F] translate-x-3 shadow-2xl" 
+                        : "bg-white border-gray-100 opacity-60 hover:opacity-100"
+                    }`}
                   >
-                    {/* Vertical Progress Bar + percentage */}
-                    <div className="absolute left-3 top-3 bottom-3 w-[4px] bg-neutral-800 rounded-full overflow-hidden">
-                      <div
-                        className="w-full rounded-full transition-all duration-500 ease-out"
-                        style={{ height: `${progress}%` }}
-                      />
+                    {/* Vertical Progress Accent */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 overflow-hidden">
+                      <div className="w-full bg-[#BF092F] transition-all duration-500" style={{ height: `${progress}%` }} />
                     </div>
 
-                    <div className="flex flex-col w-full">
-                      <div className="flex items-start justify-between gap-3">
-                        <h3
-                          className={`py-5 font-semibold transition-colors duration-200 text-pretty ${
-                            isActive ? "text-white" : "text-neutral-300"
-                          }`}
-                        >
+                    <div className="flex items-center justify-between pl-2">
+                      <div className="flex flex-col">
+                        <span className={`text-[8px] font-black uppercase tracking-[0.3em] mb-1 ${isActive ? "text-[#BF092F]" : "text-gray-400"}`}>
+                          Station {i + 1}
+                        </span>
+                        <h4 className={`text-sm font-black uppercase tracking-widest ${isActive ? "text-white" : "text-[#44444E]"}`}>
                           {c.title}
-                        </h3>
+                        </h4>
+                      </div>
+                      <span className={`text-[10px] font-black ${isActive ? "text-white/40" : "text-gray-300"}`}>
+                        {Math.round(progress)}%
+                      </span>
+                    </div>
 
-                        <div className="flex items-center gap-3 shrink-0">
-                          {/* Circular mini-progress */}
-                          <div className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-900/40 border border-neutral-800">
-                            <div className="text-[0.82rem] font-medium text-neutral-200">
-                              {Math.round(progress)}%
-                            </div>
-                          </div>
+                    {isActive && (
+                      <div className="mt-4 pl-2 space-y-4 animate-in fade-in slide-in-from-top-1 duration-500">
+                        <p className="text-[11px] font-bold text-white/70 uppercase leading-snug tracking-wider">
+                          {c.desc}
+                        </p>
+                        <div className="flex items-center justify-between pt-3 border-t border-white/10">
+                           <div className="flex items-center gap-2 text-[#BF092F]">
+                              <ShieldCheck size={14} />
+                              <span className="text-[9px] font-black uppercase tracking-tighter text-white/40">Verified Facility</span>
+                           </div>
+                           <ArrowRight size={18} className="text-white transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
-
-                      <div
-                        className={`overflow-hidden transition-all duration-500 text-neutral-400 ${
-                          isActive ? "h-auto mt-3 opacity-100" : "h-0 opacity-0"
-                        }`}
-                      >
-                        <p className="leading-snug text-[0.95rem]">{c.desc}</p>
-
-                        <a
-                          href={c.href}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="text-orange-400 mt-2 text-sm inline-flex items-center gap-1 opacity-90 hover:opacity-100"
-                        >
-                          Learn more →
-                        </a>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 );
               })}
             </div>
+
           </div>
         </div>
       </div>

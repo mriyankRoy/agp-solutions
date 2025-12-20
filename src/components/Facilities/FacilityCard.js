@@ -1,57 +1,86 @@
 import React from "react";
-import { MapPin, Maximize, ArrowRight, ShieldCheck, HardHat } from "lucide-react";
+import { useNavigate } from "react-router"; // Added for routing
+import { MapPin, Maximize, ArrowRight, ShieldCheck, Activity } from "lucide-react";
 
 export default function FacilityCard({ facility }) {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    // Navigates to /facilities/1, /facilities/2, etc.
+    navigate(`/facilities/${facility.id}`);
+  };
+
   return (
-    <div className="group bg-white shadow-2xl rounded-sm overflow-hidden border-t-4 border-[#CF0F0F] transition-all duration-500 flex flex-col">
+    <div 
+      onClick={handleNavigation} // Card is now clickable for better UX
+      className="group bg-white border border-gray-200 transition-all duration-500 flex flex-col relative hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] cursor-pointer"
+    >
       
-      {/* 🖼️ IMAGE AREA WITH ZOOM EFFECT */}
-      <div className="relative h-64 overflow-hidden bg-black">
-        <img
-          src={facility.image}
-          alt={facility.name}
-          className="w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-80 group-hover:opacity-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="absolute bottom-4 left-6">
-           <p className="text-[#CF0F0F] text-xs font-black tracking-widest uppercase mb-1">Infrastructure Unit</p>
-           <h3 className="text-2xl font-black text-white uppercase tracking-tight">{facility.name}</h3>
+      {/* Top Industrial Accent Bar */}
+      <div className="h-1.5 w-full bg-[#44444E] group-hover:bg-[#CF0F0F] transition-colors duration-300" />
+
+      {/* 🖼️ IMAGE AREA */}
+      <div className="relative h-64 overflow-hidden bg-gray-100 p-4">
+        <div className="relative w-full h-full overflow-hidden border border-gray-200">
+          <img
+            src={facility.facilityImg[0]}
+            alt={facility.name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
         </div>
       </div>
 
       {/* 📄 DETAILS AREA */}
       <div className="p-8 flex-grow">
-        <div className="flex items-center gap-2 text-gray-400 mb-6">
-          <MapPin size={16} className="text-[#CF0F0F]" />
-          <span className="text-xs font-bold uppercase tracking-widest">{facility.location}</span>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Activity size={14} className="text-[#CF0F0F] animate-pulse" />
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Operational Unit</span>
+          </div>
+          <span className="text-[10px] font-mono text-gray-300">Facility - {facility.title}</span>
         </div>
 
-        <p className="text-gray-500 text-base leading-relaxed mb-8">
+        <h3 className="text-2xl font-black text-[#44444E] uppercase tracking-tighter mb-4 group-hover:text-[#CF0F0F] transition-colors">
+          {facility.name}
+        </h3>
+
+        <div className="flex items-center gap-2 text-gray-500 mb-6">
+          <MapPin size={14} className="text-[#CF0F0F]" />
+          <span className="text-[11px] font-bold uppercase tracking-wider">{facility.location}</span>
+        </div>
+
+        <p className="text-gray-500 text-sm leading-relaxed mb-8 line-clamp-3">
           {facility.description}
         </p>
 
-        {/* 📊 TECHNICAL SPEC GRID (Matches Project Blueprint style) */}
-        <div className="grid grid-cols-2 gap-4 border-t border-b border-gray-100 py-6 mb-8">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 text-gray-400">
-              <Maximize size={14} />
-              <span className="text-[10px] font-bold uppercase tracking-tighter">Footprint</span>
+        {/* 📊 TECHNICAL SPEC TABLE */}
+        <div className="grid grid-cols-2 border border-gray-100 mb-8 bg-gray-50/50">
+          <div className="flex flex-col p-4 border-r border-gray-100">
+            <div className="flex items-center gap-2 text-gray-400 mb-1">
+              <Maximize size={12} />
+              <span className="text-[9px] font-black uppercase tracking-widest">Footprint</span>
             </div>
-            <p className="text-sm font-black text-[#44444E]">{facility.area || "45,000"} SQ. FT.</p>
+            <p className="text-xs font-black text-[#44444E] uppercase">{facility.area || "45,000"} SQ. FT.</p>
           </div>
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 text-gray-400">
-              <ShieldCheck size={14} />
-              <span className="text-[10px] font-bold uppercase tracking-tighter">Standard</span>
+          <div className="flex flex-col p-4">
+            <div className="flex items-center gap-2 text-gray-400 mb-1">
+              <ShieldCheck size={12} />
+              <span className="text-[9px] font-black uppercase tracking-widest">Standard</span>
             </div>
-            <p className="text-sm font-black text-[#44444E]">ISO 9001:2015</p>
+            <p className="text-xs font-black text-[#44444E] uppercase">ISO 9001:2015</p>
           </div>
         </div>
 
         {/* ACTION BUTTON */}
-        <button className="w-full flex items-center justify-between group/btn py-2 border-b-2 border-transparent hover:border-[#CF0F0F] transition-all duration-300">
-          <span className="text-sm font-black uppercase tracking-widest text-[#44444E]">View Unit Specs</span>
-          <ArrowRight size={20} className="text-gray-300 group-hover/btn:text-[#CF0F0F] group-hover/btn:translate-x-2 transition-all" />
+        <button 
+          onClick={(e) => {
+            e.stopPropagation(); // Prevents double-triggering if the card also has an onClick
+            handleNavigation();
+          }}
+          className="w-full flex items-center justify-center gap-3 py-4 bg-[#44444E] text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-[#CF0F0F] active:scale-95 shadow-lg hover:shadow-[#CF0F0F]/20"
+        >
+          View Unit Specs
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
     </div>
