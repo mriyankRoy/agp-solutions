@@ -63,7 +63,7 @@ export default function FacilityDetailsPage() {
         {/* 1. STICKY TECHNICAL SIDEBAR */}
         <aside className="lg:col-span-3 space-y-8">
           <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-[#44444E] hover:text-[#BF092F] font-black uppercase text-[10px] tracking-widest mb-10 transition-colors">
-            <ArrowLeft size={14} /> Back to Hub
+            <ArrowLeft size={14} /> Back to Projects
           </button>
 
           <div className="bg-white border border-gray-200 p-8 shadow-sm">

@@ -15,30 +15,25 @@ const HeaderProductsDropDown = () => {
       {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/products")}
-        className="inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-white hover:text-[#CF0F0F] transition-colors py-4"
+        className="inline-flex gap-1 items-center text-sm font-black uppercase tracking-[0.2em] text-white hover:text-[#44444E] transition-colors py-4"
       >
         Products
         <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
       </button>
 
       {/* --- DROPDOWN CONTAINER --- */}
-      <div className="absolute left-[-150px] w-[750px] bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-sm border-t-4 border-[#CF0F0F] overflow-hidden opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 ease-out z-50">
-        
+      <div className="absolute left-[-150px] w-[750px] bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-xl border-t-4 border-[#CF0F0F] overflow-hidden opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 ease-out z-50">
         <div className="grid grid-cols-[240px_1fr]">
-          
           {/* LEFT: CATEGORY SELECTION (Industrial Sidebar) */}
           <div className="bg-[#44444E] py-6">
-            <div className="px-6 mb-4 flex items-center gap-2">
-               <Package size={14} className="text-[#CF0F0F]" />
-               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Solutions</p>
-            </div>
-            
             <nav className="flex flex-col">
               {products.map((category) => (
                 <button
                   key={category.slug}
                   onMouseEnter={() => setActiveCategory(category.slug)}
-                  onClick={() => navigate(`/products?category=${category.slug}`)}
+                  onClick={() =>
+                    navigate(`/products?category=${category.slug}`)
+                  }
                   className={`group/item relative px-6 py-4 flex items-center justify-between transition-all text-left ${
                     activeCategory === category.slug
                       ? "bg-white text-[#44444E]"
@@ -58,9 +53,6 @@ const HeaderProductsDropDown = () => {
 
           {/* RIGHT: PRODUCT ITEMS PANEL */}
           <div className="relative p-8 bg-white overflow-hidden min-h-[350px]">
-            {/* Structural Background Pattern */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-
             {currentCategory && (
               <div className="relative animate-fadeIn flex flex-col h-full">
                 {/* Header for Category */}
@@ -70,7 +62,7 @@ const HeaderProductsDropDown = () => {
                       {currentCategory.category}
                     </h4>
                     <p className="text-[10px] font-bold text-[#CF0F0F] uppercase tracking-widest mt-1">
-                      Engineered Systems
+                      Category Items
                     </p>
                   </div>
                   <span className="text-4xl font-black text-gray-50 uppercase select-none leading-none">
@@ -79,32 +71,39 @@ const HeaderProductsDropDown = () => {
                 </div>
 
                 {/* Items Grid */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-3 rounded-xl">
                   {currentCategory.items.map((item, idx) => (
                     <Link
                       key={idx}
-                      to={`/products/${currentCategory.slug}/${encodeURIComponent(item.name)}`}
-                      className="group/link flex items-center justify-between p-4 bg-gray-50 border border-transparent hover:border-[#CF0F0F] hover:bg-white transition-all duration-300"
+                      to={`/products/${
+                        currentCategory.slug
+                      }/${encodeURIComponent(item.name)}`}
+                      className="group/link flex items-center justify-between p-4 bg-gray-50 border border-transparent hover:border-[#CF0F0F] hover:bg-white transition-all duration-300 hover:rounded-xl"
                     >
                       <span className="text-xs font-bold text-[#44444E] uppercase tracking-wide group-hover/link:text-[#CF0F0F]">
                         {item.name}
                       </span>
-                      <ArrowRight size={14} className="text-gray-300 opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all" />
+                      <ArrowRight
+                        size={14}
+                        className="text-gray-300 opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all"
+                      />
                     </Link>
                   ))}
                 </div>
 
                 {/* View All Footer */}
-                <button 
-                  onClick={() => navigate(`/products?category=${currentCategory.slug}`)}
+                <button
+                  onClick={() =>
+                    navigate(`/products?category=${currentCategory.slug}`)
+                  }
                   className="mt-auto pt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors"
                 >
-                  Explore All {currentCategory.category} <ArrowRight size={12} />
+                  Explore All {currentCategory.category}{" "}
+                  <ArrowRight size={12} />
                 </button>
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>

@@ -87,13 +87,13 @@ const HeaderSearch = () => {
         <input
           type="text"
           placeholder="Search products, categories..."
-          className="pl-10 pr-4 py-2 text-center rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:white focus:white transition w-150"
+          className="pl-10 pr-4 py-2 bg-white text-center rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:white focus:white transition w-150"
           value={query}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown}
         />
 
-        <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-100 w-5 h-5" />
+        <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-[#44444E] w-5 h-5" />
 
         {/* RESULTS DROPDOWN */}
         {results.length > 0 && (
@@ -114,28 +114,6 @@ const HeaderSearch = () => {
           </ul>
         )}
       </div>
-
-      {/* ✨ SLEEK MATCHING SEARCH BUTTON
-      <button
-        onClick={executeSearch}
-        className="
-        border-gray-300 
-    h-[40px] px-6
-    rounded-full 
-    border 
-    bg-white/20 
-    backdrop-blur-xl
-    shadow-[0_4px_10px_rgba(0,0,0,0.1)]
-    text-gray-800 font-medium
-    hover:bg-white/30
-    hover:shadow-[0_6px_16px_rgba(0,0,0,0.15)]
-    transition-all
-    flex items-center gap-2
-  "
-      >
-        <Search className="w-4 h-4 text-gray-100" />
-        Search
-      </button> */}
     </div>
   );
 };

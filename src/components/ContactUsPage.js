@@ -42,7 +42,7 @@ export default function ContactUsPage() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] selection:bg-[#BF092F] selection:text-white overflow-hidden">
       {/* 🏗️ INDUSTRIAL HERO SECTION */}
-      <div className="relative h-[35vh] min-h-[400px] flex items-center bg-[#44444E] overflow-hidden">
+      <div className="relative h-[30vh] min-h-[400px] flex items-center bg-[#44444E] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
 
@@ -62,10 +62,10 @@ export default function ContactUsPage() {
       </div>
 
       {/* --- CONTENT AREA (Overlapping Hero) --- */}
-      <main className="container mx-auto px-4 py-20 flex flex-col lg:flex-row gap-12 -translate-y-24 relative z-30">
+      <main className="container mx-auto px-4 pt-32 flex flex-col lg:flex-row gap-12 -translate-y-24 relative z-30">
         {/* SIDEBAR - Dark Command Center Style */}
         <aside className="w-full lg:w-1/3 space-y-8">
-          <div className="bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] overflow-hidden">
+          <div className="rounded-lg bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] overflow-hidden">
             <div className="p-8 border-b border-white/10">
               <h2 className="text-[14px] font-black text-[#BF092F] uppercase tracking-[0.4em] mb-6">
                 Get in touch

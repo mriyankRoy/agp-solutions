@@ -10,7 +10,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Reusable style for Nav Links to ensure consistency
-  const navLinkStyles = "text-[11px] font-black uppercase tracking-[0.2em] text-white/90 hover:text-white hover:underline underline-offset-8 decoration-2 decoration-[#BF092F] transition-all";
+  const navLinkStyles =
+    "inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-white hover:text-[#44444E] transition-colors py-4";
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -21,13 +22,9 @@ const Header = () => {
           background: "linear-gradient(110deg, #BF092F 80.05%, #44444E 0%)",
         }}
       />
-      
-      {/* Structural Texture Overlay (Matches Facilities Page) */}
-      {/* <div className="absolute inset-0 -z-10 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none" /> */}
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          
           {/* LOGO SECTION */}
           <Link to="/" className="flex-shrink-0 pr-8 group">
             <img
@@ -38,7 +35,7 @@ const Header = () => {
           </Link>
 
           {/* 🖥️ DESKTOP NAVIGATION */}
-          <nav className="hidden md:flex items-center gap-x-6 lg:gap-x-8">
+          <nav className="hidden md:flex items-center gap-x-5 lg:gap-x-7">
             <Link to="/about" className={navLinkStyles}>
               About
             </Link>
@@ -77,10 +74,18 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#44444E] border-t-4 border-[#BF092F] shadow-2xl animate-fadeIn">
           <nav className="flex flex-col p-6 gap-4">
-            {["Home", "About", "Products", "Projects", "Facility", "Career", "Contact"].map((item) => (
-              <Link 
+            {[
+              "Home",
+              "About",
+              "Products",
+              "Projects",
+              "Facility",
+              "Career",
+              "Contact",
+            ].map((item) => (
+              <Link
                 key={item}
-                to={`/${item === "Home" ? "" : item.toLowerCase()}`} 
+                to={`/${item === "Home" ? "" : item.toLowerCase()}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between text-white text-lg font-black uppercase tracking-widest border-b border-white/10 pb-2 hover:text-[#BF092F] transition-colors"
               >

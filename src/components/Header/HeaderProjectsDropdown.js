@@ -17,7 +17,7 @@ const HeaderProjectsDropdown = () => {
       {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/projects")}
-        className="inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors py-4"
+        className="inline-flex gap-1 items-center text-sm font-black uppercase tracking-[0.2em] text-white hover:text-[#44444E] transition-colors py-4"
       >
         Projects
         <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
@@ -30,10 +30,10 @@ const HeaderProjectsDropdown = () => {
           
           {/* LEFT: CATEGORY SIDEBAR (The Directory) */}
           <div className="bg-[#44444E] py-6">
-            <div className="px-6 mb-4 flex items-center gap-2">
+            {/* <div className="px-6 mb-4 flex items-center gap-2">
                <Layers size={14} className="text-[#CF0F0F]" />
                <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Classifications</p>
-            </div>
+            </div> */}
             
             <nav className="flex flex-col">
               {projectTypes.map((type) => (

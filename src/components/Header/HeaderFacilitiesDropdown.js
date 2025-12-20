@@ -18,7 +18,7 @@ const HeaderFacilitiesDropdown = () => {
       {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/facilities")}
-        className="inline-flex gap-2 items-center text-sm font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors py-4"
+        className="inline-flex gap-1 items-center text-sm font-black uppercase tracking-[0.2em] text-white hover:text-[#44444E] transition-colors py-4"
       >
         Facilities
         <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
@@ -26,14 +26,9 @@ const HeaderFacilitiesDropdown = () => {
 
       {/* --- DROPDOWN CONTAINER --- */}
       <div className="absolute left-0 w-[550px] bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-sm border-t-4 border-[#CF0F0F] overflow-hidden opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 ease-out z-50">
-        
         <div className="grid grid-cols-[200px_1fr]">
-          
           {/* LEFT: FACILITY LIST (The Directory) */}
           <div className="bg-[#44444E] py-4">
-            <div className="px-6 mb-4">
-               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Directory</p>
-            </div>
             {facilities.slice(0, 3).map((f) => (
               <Link
                 key={f.id}
@@ -63,17 +58,17 @@ const HeaderFacilitiesDropdown = () => {
             {currentFacility && (
               <div className="relative animate-fadeIn">
                 <div className="aspect-video w-full overflow-hidden rounded-sm mb-4 bg-gray-100">
-                  <img 
-                    src={currentFacility.facilityImg[0]} 
+                  <img
+                    src={currentFacility.facilityImg[0]}
                     alt={currentFacility.title}
                     className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
                   />
                 </div>
-                
+
                 <h4 className="text-xl font-black text-[#44444E] uppercase tracking-tight leading-none mb-2">
                   {currentFacility.title}
                 </h4>
-                
+
                 <div className="flex items-center gap-2 text-[#CF0F0F] mb-4">
                   <MapPin size={14} />
                   <span className="text-[10px] font-bold uppercase tracking-widest">
@@ -81,16 +76,19 @@ const HeaderFacilitiesDropdown = () => {
                   </span>
                 </div>
 
-                <Link 
+                <Link
                   onClick={handleNavigation}
                   className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#44444E] hover:text-[#CF0F0F] transition-colors group/link"
                 >
-                  View Infrastructure <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                  View Infrastructure{" "}
+                  <ArrowRight
+                    size={14}
+                    className="group-hover/link:translate-x-1 transition-transform"
+                  />
                 </Link>
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>

@@ -18,9 +18,9 @@ export default function FacilitiesPage() {
     <div className="min-h-screen bg-[#F8F9FA] text-[#44444E] font-sans selection:bg-[#CF0F0F] selection:text-white">
       
       {/* 🏗️ CINEMATIC HERO SECTION */}
-      <header className="relative h-[35vh] min-h-[400px] w-full flex items-end bg-[#44444E] overflow-hidden">
+      <header className="relative h-[30vh] min-h-[400px] w-full flex items-end bg-[#44444E] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
-        <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
+        {/* <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" /> */}
         
         {/* Animated Red Beams */}
         <div className="absolute inset-0 opacity-20">
