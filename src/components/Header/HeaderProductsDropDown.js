@@ -15,7 +15,7 @@ const HeaderProductsDropDown = () => {
       {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/products")}
-        className="inline-flex gap-1 items-center text-sm uppercase tracking-[0.2em] text-white hover:text-[#44444E] transition-colors py-4"
+        className="cursor-pointer inline-flex gap-1 items-center tracking-widest text-white hover:text-[#44444E] transition-colors py-4 text-[12px] font-bold uppercase whitespace-nowrap"
       >
         Products
         <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180" />
@@ -34,13 +34,13 @@ const HeaderProductsDropDown = () => {
                   onClick={() =>
                     navigate(`/products?category=${category.slug}`)
                   }
-                  className={`group/item relative px-6 py-4 flex items-center justify-between transition-all text-left ${
+                  className={`cursor-pointer group/item relative px-6 py-4 flex items-center justify-between transition-all text-left ${
                     activeCategory === category.slug
                       ? "bg-white text-[#44444E]"
                       : "text-white/60 hover:text-white"
                   }`}
                 >
-                  <span className="text-xs font-black uppercase tracking-widest transition-transform group-hover/item:translate-x-1">
+                  <span className="text-xs tracking-widest transition-transform group-hover/item:translate-x-1">
                     {category.category}
                   </span>
                   {activeCategory === category.slug && (
@@ -58,10 +58,10 @@ const HeaderProductsDropDown = () => {
                 {/* Header for Category */}
                 <div className="mb-6 pb-4 border-b border-gray-100 flex justify-between items-end">
                   <div>
-                    <h4 className="text-2xl font-black text-[#44444E] uppercase tracking-tight">
+                    <h4 className="text-2xl text-[#44444E] tracking-tight">
                       {currentCategory.category}
                     </h4>
-                    <p className="text-[10px] font-bold text-[#CF0F0F] uppercase tracking-widest mt-1">
+                    <p className="text-[12px] text-[#CF0F0F] tracking-widest mt-1">
                       Category Items
                     </p>
                   </div>
@@ -80,7 +80,7 @@ const HeaderProductsDropDown = () => {
                       }/${encodeURIComponent(item.name)}`}
                       className="group/link flex items-center justify-between p-4 bg-gray-50 border border-transparent hover:border-[#CF0F0F] hover:bg-white transition-all duration-300 hover:rounded-xl"
                     >
-                      <span className="text-xs font-bold text-[#44444E] uppercase tracking-wide group-hover/link:text-[#CF0F0F]">
+                      <span className="text-xs text-[#44444E] tracking-wide group-hover/link:text-[#CF0F0F]">
                         {item.name}
                       </span>
                       <ArrowRight
@@ -96,7 +96,7 @@ const HeaderProductsDropDown = () => {
                   onClick={() =>
                     navigate(`/products?category=${currentCategory.slug}`)
                   }
-                  className="mt-auto pt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors"
+                  className="cursor-pointer mt-auto pt-6 flex items-center gap-2 text-[12px] tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors"
                 >
                   Explore All {currentCategory.category}{" "}
                   <ArrowRight size={12} />

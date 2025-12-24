@@ -12,7 +12,8 @@ import {
   Activity,
   Cpu,
   Target,
-  Layers
+  Layers,
+  PackageSearch,
 } from "lucide-react";
 
 const TAB_DETAILS = "details";
@@ -22,7 +23,7 @@ const ProductDetailPage = () => {
   const { categorySlug, productName } = useParams();
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0); 
+  const [activeIndex, setActiveIndex] = useState(0);
   const [activeTab, setActiveTab] = useState(TAB_DETAILS);
   const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const ProductDetailPage = () => {
     setIsVisible(true);
     window.scrollTo(0, 0);
   }, [productName]);
-  
+
   useEffect(() => {
     setActiveIndex(0);
   }, [productName]);
@@ -55,189 +56,320 @@ const ProductDetailPage = () => {
   const totalImages = productImages.length;
 
   const goToNext = () => setActiveIndex((prev) => (prev + 1) % totalImages);
-  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  const goToPrev = () =>
+    setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
 
   const handleDownloadSpecs = () => {
     if (product.downloads && product.downloads.length > 0) {
-      window.open(product.downloads[0].url, '_blank');
+      window.open(product.downloads[0].url, "_blank");
     }
   };
-  
-  const formatDetailKey = (key) => key.replace(/([A-Z])/g, " $1").replace(/_/g, " ").trim();
+
+  const formatDetailKey = (key) =>
+    key
+      .replace(/([A-Z])/g, " $1")
+      .replace(/_/g, " ")
+      .trim();
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] pb-20">
-      
-      {/* 🏗️ CINEMATIC HERO SECTION */}
-      <header className="relative h-[35vh] min-h-[500px] w-full flex items-end bg-[#44444E] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
-        <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
-        
-        <div className="absolute inset-0 opacity-20 z-0">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#CF0F0F] to-transparent animate-pulse" />
-          <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700" />
-        </div>
+    <div className="min-h-screen bg-white text-[#44444E] font-sans selection:bg-[#BF092F] selection:text-white">
+      {/* 🏗️ MATCHED FLOATING HERO SECTION */}
+      <div className="pt-22 px-2 md:px-2">
+        <header className="shadow-xl relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
 
-        <div className="container mx-auto px-6 mb-16 relative z-20">
-          {/* Breadcrumb Navigation */}
-          <nav className="flex items-center gap-4 mb-8">
-            <button onClick={() => navigate("/")} className="text-white/40 hover:text-white transition-colors">
-              <Home size={14} />
-            </button>
-            <span className="text-white/20 text-xs font-mono">//</span>
-            <button onClick={() => navigate("/products")} className="text-[11px] font-black text-white/60 hover:text-white uppercase tracking-[0.3em]">
-              Inventory_Registry
-            </button>
-            <span className="text-white/20 text-xs font-mono">//</span>
-            <button onClick={() => navigate(`/products?category=${categorySlug}`)} className="text-[11px] font-black text-white/60 hover:text-white uppercase tracking-[0.3em]">
-              {category.category}
-            </button>
-            <span className="text-white/20 text-xs font-mono">//</span>
-            <span className="px-3 py-1 bg-[#CF0F0F] text-[11px] font-black text-white uppercase tracking-[0.2em]">
-              {product.name}
-            </span>
-          </nav>
-
-          <h1 className={`text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-tight transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-             {product.name.split(' ')[0]} <span className="text-[#CF0F0F] italic">{product.name.split(' ').slice(1).join(' ')}</span>
-          </h1>
-
-          {/* 🛠️ UPDATED DATA SECTION: Product Make, Mfr_PN, AGP_ID */}
-          <div className={`flex flex-wrap gap-10 mt-10 transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            {[
-              { label: "Make", val: product.Make, icon: <Cpu size={14} /> },
-              { label: "Mfr_PN", val: product.manufacturerPartNumber, icon: <Target size={14} /> },
-              { label: "AGP_ID", val: product.AGPPartNumber, icon: <Activity size={14} /> }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col border-l-2 border-[#CF0F0F] pl-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[#CF0F0F]">{item.icon}</span>
-                  <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">{item.label}</p>
-                </div>
-                <p className="text-lg font-mono font-bold text-white tracking-tight">{item.val || "N/A"}</p>
-              </div>
-            ))}
+          <div className="absolute top-0 right-0 p-4 opacity-10 z-10">
+            <PackageSearch size={400} className="text-white" />
           </div>
-        </div>
-      </header>
+
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse" />
+            <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700" />
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 relative z-20">
+            {/* 🧭 ENHANCED HIERARCHICAL BREADCRUMB */}
+            <nav className="flex items-center flex-wrap gap-3 mb-6">
+              <button
+                onClick={() => navigate("/")}
+                className="group flex items-center gap-1 text-white/50 hover:text-white transition-colors"
+              >
+                <Home size={14} />
+                <span className="text-[10px] md:text-xs tracking-widest uppercase">
+                  Home
+                </span>
+              </button>
+
+              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              <button
+                onClick={() => navigate("/products")}
+                className="text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+              >
+                Product Categories
+              </button>
+
+              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              <button
+                onClick={() => navigate(`/products?category=${categorySlug}`)}
+                className="text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+              >
+                {category.category}
+              </button>
+
+              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              {/* ACTIVE PAGE: RED PILL DESIGN */}
+              <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 font-bold">
+                {product.name}
+              </button>
+            </nav>
+
+            <h1
+              className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
+              }`}
+            >
+              {product.name.split(" ")[0]}{" "}
+              <span className="text-[#BF092F]">
+                {product.name.split(" ").slice(1).join(" ")}
+              </span>
+            </h1>
+
+            <div
+              className={`flex flex-wrap gap-8 mt-8 transition-all duration-1000 delay-300 ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
+              }`}
+            >
+              {[
+                { label: "Make", val: product.Make, icon: <Cpu size={14} /> },
+                {
+                  label: "Mfr_PN",
+                  val: product.manufacturerPartNumber,
+                  icon: <Target size={14} />,
+                },
+                {
+                  label: "AGP_ID",
+                  val: product.AGPPartNumber,
+                  icon: <Activity size={14} />,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col border-l-2 border-[#BF092F] pl-4"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[#BF092F]">{item.icon}</span>
+                    <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">
+                      {item.label}
+                    </p>
+                  </div>
+                  <p className="text-sm md:text-lg font-mono font-bold text-white tracking-tight">
+                    {item.val || "N/A"}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </header>
+      </div>
 
       {/* 🏭 MAIN CONTENT AREA */}
-      <div className="pt-7 container mx-auto px-6 lg:px-12 -mt-10 relative z-30">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
+      <main className="container mx-auto py-7 relative z-30 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* GALLERY MODULE */}
-          <div className="lg:col-span-8 bg-white border border-gray-200 shadow-2xl p-2 flex flex-col md:flex-row gap-2 h-[600px]">
-            <div className="w-full md:w-24 flex md:flex-col gap-2 overflow-auto p-2 bg-[#F8F9FA]">
+          <div className="lg:col-span-8 bg-white border border-gray-100 shadow-xl rounded-2xl p-3 flex flex-col md:flex-row gap-3 h-[500px] md:h-[600px] overflow-hidden">
+            <div className="w-full md:w-24 flex md:flex-col gap-2 overflow-auto p-2 bg-gray-50 rounded-xl">
               {productImages.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveIndex(i)}
-                  className={`flex-shrink-0 w-16 h-16 md:w-full md:h-20 border-2 transition-all ${i === activeIndex ? 'border-[#CF0F0F] grayscale-0' : 'border-transparent grayscale hover:grayscale-0'}`}
+                  className={`cursor-pointer flex-shrink-0 w-16 h-16 md:w-full md:h-20 border-2 transition-all rounded-lg overflow-hidden ${
+                    i === activeIndex
+                      ? "border-[#BF092F]"
+                      : "border-transparent grayscale hover:grayscale-0"
+                  }`}
                 >
-                  <img src={img} className="w-full h-full object-cover" alt="thumb" />
+                  <img
+                    src={img}
+                    className="w-full h-full object-cover"
+                    alt="thumb"
+                  />
                 </button>
               ))}
             </div>
-            <div className="flex-grow relative bg-[#FDFDFD] overflow-hidden group flex items-center justify-center cursor-zoom-in" onClick={handleOpenModal}>
-              <img src={productImages[activeIndex]} className="max-h-full max-w-full object-contain p-10 transition-transform duration-700 group-hover:scale-105" alt="main" />
-              <button onClick={(e) => { e.stopPropagation(); goToPrev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-white/80 hover:bg-[#CF0F0F] hover:text-white shadow-xl"><ChevronLeft size={20}/></button>
-              <button onClick={(e) => { e.stopPropagation(); goToNext(); }} className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-white/80 hover:bg-[#CF0F0F] hover:text-white shadow-xl"><ChevronRight size={20}/></button>
+            <div
+              className="flex-grow relative bg-white overflow-hidden group flex items-center justify-center cursor-zoom-in rounded-xl"
+              onClick={handleOpenModal}
+            >
+              <img
+                src={productImages[activeIndex]}
+                className="max-h-full max-w-full object-contain p-8 transition-transform duration-700 group-hover:scale-105"
+                alt="main"
+              />
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrev();
+                }}
+                className="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-white/90 text-[#44444E] hover:bg-[#BF092F] hover:text-white shadow-lg rounded-full transition-all"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNext();
+                }}
+                className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-white/90 text-[#44444E] hover:bg-[#BF092F] hover:text-white shadow-lg rounded-full transition-all"
+              >
+                <ChevronRight size={20} />
+              </button>
             </div>
           </div>
 
-          {/* SIDEBAR: SUMMARY & USES */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            <div className="bg-[#44444E] p-8 text-white border-b-8 border-[#CF0F0F] shadow-xl">
-              <h3 className="text-xs font-black uppercase tracking-[0.4em] mb-6 text-white/40 italic">Product_Overview</h3>
-              <p className="text-[13px] font-bold uppercase tracking-widest leading-loose mb-10 text-white/80">
+          {/* SIDEBAR */}
+          <div className="lg:col-span-4 flex flex-col gap-8">
+            <div className="bg-[#44444E] p-8 text-white rounded-2xl border-t-4 border-[#BF092F] shadow-2xl">
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.4em] mb-6 text-white/40">
+                Summary
+              </h3>
+              <p className="font-medium tracking-widest leading-loose mb-10 text-white/80">
                 {product.shortDescription}
               </p>
               <div className="space-y-3">
-                <button className="w-full py-5 bg-[#CF0F0F] hover:bg-white hover:text-[#44444E] text-white text-[10px] font-black uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4">
-                  Request_Quotation <Target size={14} />
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="cursor-pointer w-full py-4 bg-white text-[#44444E] hover:bg-[#BF092F] hover:text-white uppercase tracking-[0.3em] transition-all rounded-xl shadow-lg flex items-center justify-center gap-4"
+                >
+                  Request Quote <Target size={14} />
                 </button>
-                {product.downloads?.length > 0 && (
-                  <button onClick={handleDownloadSpecs} className="w-full py-5 border border-white/20 hover:bg-white/10 text-white text-[10px] font-black uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4">
-                    Download_Technical_Sheet <Download size={14} />
-                  </button>
-                )}
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 p-8 shadow-sm">
-               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#44444E] mb-6 flex items-center gap-2">
-                 <Layers size={14} className="text-[#CF0F0F]" /> Operational_Uses
-               </h4>
-               <div className="space-y-3">
-                  {product.uses?.map((use, i) => (
-                    <div key={i} className="flex gap-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
-                      <span className="text-[#CF0F0F] font-black">/</span> {use}
-                    </div>
-                  ))}
-               </div>
+            <div className="bg-white border border-gray-100 p-8 rounded-2xl shadow-xl">
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#44444E] mb-6 flex items-center gap-2">
+                <Layers size={14} className="text-[#BF092F]" /> Operational Uses
+              </h4>
+              <div className="space-y-4">
+                {product.uses?.map((use, i) => (
+                  <div
+                    key={i}
+                    className="flex gap-3 text-[12px] font-bold text-gray-500 tracking-wider"
+                  >
+                    <span className="text-[#BF092F]">/</span> {use}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ANALYSIS SECTION */}
+        <div className="mt-12 bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
+              <h2 className="border-l-4 border-[#BF092F] pl-4 text-[#44444E] uppercase text-sm font-bold">
+                Analysis & Description
+              </h2>
+            </div>
+            <div className="lg:col-span-8">
+              <p className="text-[16px] text-gray-500 font-medium leading-relaxed whitespace-pre-line">
+                {product.description}
+              </p>
             </div>
           </div>
         </div>
 
         {/* DATA TABS */}
-        <div className="mt-12 bg-white border border-gray-200 overflow-hidden shadow-sm">
-          <div className="flex bg-gray-50 border-b border-gray-200">
+        <div className="mt-12 bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-xl">
+          <div className="flex bg-gray-50 border-b border-gray-100">
             <button
               onClick={() => setActiveTab(TAB_DETAILS)}
-              className={`px-10 py-6 text-[12px] font-black uppercase tracking-[0.3em] transition-all ${activeTab === TAB_DETAILS ? 'bg-white text-[#CF0F0F] border-t-2 border-[#CF0F0F]' : 'text-gray-400'}`}
+              className={`cursor-pointer px-8 py-6 text-[11px] font-bold uppercase tracking-[0.3em] transition-all ${
+                activeTab === TAB_DETAILS
+                  ? "bg-white text-[#BF092F] border-t-4 border-[#BF092F]"
+                  : "text-gray-400 hover:text-[#44444E]"
+              }`}
             >
-              <ClipboardList size={14} className="inline mr-2" /> Technical_Specifications
+              <ClipboardList size={14} className="inline mr-2" /> Technical
+              Registry
             </button>
             <button
               onClick={() => setActiveTab(TAB_DOWNLOADS)}
-              className={`px-10 py-6 text-[12px] font-black uppercase tracking-[0.3em] transition-all ${activeTab === TAB_DOWNLOADS ? 'bg-white text-[#CF0F0F] border-t-2 border-[#CF0F0F]' : 'text-gray-400'}`}
+              className={`cursor-pointer px-8 py-6 text-[11px] font-bold uppercase tracking-[0.3em] transition-all ${
+                activeTab === TAB_DOWNLOADS
+                  ? "bg-white text-[#BF092F] border-t-4 border-[#BF092F]"
+                  : "text-gray-400 hover:text-[#44444E]"
+              }`}
             >
-              <FileText size={14} className="inline mr-2" /> Registry_Documents
+              <FileText size={14} className="inline mr-2" /> Documentation
             </button>
           </div>
-          
-          <div className="p-12">
+
+          <div className="p-8 md:p-12">
             {activeTab === TAB_DETAILS ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-100 border border-gray-100">
                 {Object.entries(product.details || {}).map(([key, value]) => (
-                  <div key={key} className="flex flex-col border-r border-b border-gray-200 p-6 bg-white hover:bg-gray-50 transition-colors">
-                    <dt className="text-[10px] font-black text-[#CF0F0F] uppercase tracking-[0.2em] mb-1">{formatDetailKey(key)}</dt>
-                    <dd className="text-sm font-bold text-[#44444E] uppercase tracking-tight">{value}</dd>
+                  <div
+                    key={key}
+                    className="flex flex-col p-6 bg-white hover:bg-gray-50 transition-colors"
+                  >
+                    <dt className="text-[10px] font-bold text-[#BF092F] uppercase tracking-[0.2em] mb-2">
+                      {formatDetailKey(key)}
+                    </dt>
+                    <dd className="text-sm font-bold text-[#44444E] tracking-tight">
+                      {value}
+                    </dd>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-4">
+              <div className="space-y-3">
                 {product.downloads?.map((d, i) => (
-                  <a key={i} href={d.url} target="_blank" rel="noreferrer" className="flex items-center justify-between p-6 bg-[#44444E] border-l-4 border-[#CF0F0F] text-white hover:bg-black transition-all">
-                    <span className="text-xs font-black uppercase tracking-[0.3em]">{d.name}</span>
-                    <Download size={18} className="text-[#CF0F0F]" />
+                  <a
+                    key={i}
+                    href={d.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between p-6 bg-[#44444E] rounded-xl text-white hover:bg-[#BF092F] transition-all group"
+                  >
+                    <span className="text-sm font-bold">{d.name}</span>
+                    <Download
+                      size={18}
+                      className="text-[#BF092F] group-hover:text-white transition-colors"
+                    />
                   </a>
                 ))}
               </div>
             )}
           </div>
         </div>
+      </main>
 
-        {/* ANALYSIS SECTION */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-gray-100 pt-16">
-           <div className="lg:col-span-4">
-             <h2 className="text-3xl font-black text-[#44444E] uppercase tracking-tighter">Product_Details</h2>
-             <div className="w-16 h-1 bg-[#CF0F0F] mt-3" />
-           </div>
-           <div className="lg:col-span-8">
-             <p className="text-[17px] text-gray-600 font-medium leading-[1.8] whitespace-pre-line">
-               {product.description}
-             </p>
-           </div>
-        </div>
-      </div>
+      {/* Global Texture Overlay */}
+      <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
       {/* MODAL */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#44444E]/95 backdrop-blur-xl" onClick={handleCloseModal}>
-          <button className="absolute top-10 right-10 text-white"><X size={40} /></button>
-          <img src={productImages[activeIndex]} className="max-w-5xl max-h-[85vh] object-contain shadow-2xl" alt="enlarged" />
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          onClick={handleCloseModal}
+        >
+          <div className="absolute inset-0 bg-[#44444E]/95 backdrop-blur-sm" />
+          <button className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors">
+            <X size={32} />
+          </button>
+          <img
+            src={productImages[activeIndex]}
+            className="relative max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl bg-white p-4"
+            alt="enlarged"
+          />
         </div>
       )}
     </div>

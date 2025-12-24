@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import { products } from "../../utils/products";
 import ProductCard from "./ProductCard";
 import { useLocation, useNavigate } from "react-router";
-import { Filter, Home, ArrowRight, Activity, Cpu, Layers, ChevronRight } from "lucide-react";
+import {
+  Filter,
+  Home,
+  ArrowRight,
+  Activity,
+  Layers,
+  ChevronRight,
+  ChevronLeft,
+  PackageSearch,
+} from "lucide-react";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -26,27 +35,24 @@ const ProductPage = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(false);
+    setIsVisible(true);
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => setIsVisible(true), 50);
     if (currentCategory) {
       setSelectedCategory(currentCategory.category);
     } else {
       setSelectedCategory("");
     }
-    return () => clearTimeout(timer);
   }, [categorySlug]);
 
   /**
    * INDUSTRIAL OVERVIEW: Category Cards
-   * Sharp edges, technical metadata, and clear GAPS.
    */
   const AllCategoriesOverview = () => (
-    <div className="container mx-auto px-6 py-16 relative z-10">
-      <div className="flex items-center gap-4 mb-12">
-        <div className="h-8 w-1 bg-[#CF0F0F]" />
-        <h2 className="text-3xl font-black text-[#44444E] uppercase tracking-tighter">
-          Product_Categories
+    <div className="container mx-auto px-4 md:px-6 py-7 relative z-10">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="h-8 w-1 bg-[#BF092F]" />
+        <h2 className="text-sm text-[#44444E] uppercase tracking-[0.4em]">
+          Product Categories
         </h2>
       </div>
 
@@ -55,44 +61,46 @@ const ProductPage = () => {
           <div
             key={idx}
             onClick={() => navigate(`/products?category=${category.slug}`)}
-            className="group relative flex flex-col bg-white border border-gray-200 cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+            className="group relative flex flex-col bg-white rounded-2xl shadow-xl border border-gray-100 cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-[#BF092F]/20"
           >
-            {/* Top Indicator */}
-            <div className="absolute top-0 right-0 p-4 z-20">
-              <span className="text-[8px] font-mono font-bold text-gray-300 group-hover:text-[#CF0F0F] transition-colors tracking-widest uppercase">
-                Ref_ID: {200 + idx}
+            <div className="absolute top-4 right-4 z-20">
+              <span className="text-[10px] font-mono font-bold text-gray-300 group-hover:text-[#BF092F] transition-colors tracking-widest uppercase">
+                ID: {200 + idx}
               </span>
             </div>
 
-            {/* Image Section */}
-            <div className="h-56 relative overflow-hidden bg-[#F8F9FA]">
+            <div className="h-56 relative overflow-hidden bg-gray-50">
               {category.image && (
                 <img
                   src={category.image.url}
                   alt={category.category}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-90"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-90"
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#44444E]/10 to-transparent" />
             </div>
 
-            {/* Content Section */}
-            <div className="p-6 flex flex-col justify-between flex-grow border-t border-gray-100">
+            <div className="p-8 flex flex-col justify-between flex-grow">
               <div>
-                <h3 className="text-xl font-black text-[#44444E] uppercase tracking-tight group-hover:text-[#CF0F0F] transition-colors mb-2">
+                <h3 className="text-xl font-bold text-[#44444E] tracking-tight group-hover:text-[#BF092F] transition-colors mb-3">
                   {category.category}
                 </h3>
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider line-clamp-2 leading-relaxed">
-                  {category.description || `${category.items.length} Units Sync_Available.`}
+                <p className="text-[12px] text-gray-400 tracking-widest leading-relaxed line-clamp-2">
+                  {category.description ||
+                    `${category.items.length} Units Sync_Available.`}
                 </p>
               </div>
 
-              <div className="mt-6 flex justify-between items-center pt-4 border-t border-gray-50">
+              <div className="mt-8 flex justify-between items-center pt-6 border-t border-gray-100">
                 <div className="flex items-center gap-2">
-                   <Layers size={14} className="text-[#CF0F0F]" />
-                   <span className="text-[9px] font-black text-[#44444E] uppercase tracking-widest">{category.items.length} Models</span>
+                  <Layers size={14} className="text-[#BF092F]" />
+                  <span className="text-[11px] font-bold text-[#44444E] uppercase tracking-widest">
+                    {category.items.length} Models
+                  </span>
                 </div>
-                <ArrowRight size={18} className="text-gray-300 group-hover:text-[#CF0F0F] group-hover:translate-x-1 transition-all" />
+                <ArrowRight
+                  size={18}
+                  className="text-gray-300 group-hover:text-[#BF092F] group-hover:translate-x-1 transition-all"
+                />
               </div>
             </div>
           </div>
@@ -102,108 +110,162 @@ const ProductPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD]">
-      {/* ─── INDUSTRIAL BLUEPRINT HERO ─── */}
-      <div className="relative pt-44 pb-24 overflow-hidden bg-[#44444E]">
-        {/* Pattern Overlays */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.05]" />
-        
-        {/* Structural Diagonal Strips */}
-        <div className="absolute top-0 right-[15%] w-[12px] h-full bg-[#CF0F0F] skew-x-[-15deg] opacity-60" />
-        <div className="absolute top-0 right-[13%] w-[12px] h-full bg-white skew-x-[-15deg] opacity-10" />
+    <div className="min-h-screen bg-white text-[#44444E] font-sans selection:bg-[#BF092F] selection:text-white">
+      {/* 🏗️ MATCHED FLOATING HERO SECTION */}
+      <div className="pt-22 px-2 md:px-2">
+        <header className="shadow-xl relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
 
-        <div className="relative container mx-auto px-6 lg:px-12">
-          {/* Technical Breadcrumb */}
-          <nav className="flex items-center gap-4 mb-10">
-            <button onClick={() => navigate("/")} className="text-white/40 hover:text-white transition-colors">
-              <Home size={14} />
-            </button>
-            <span className="text-white/20 text-xs tracking-widest">//</span>
-            <button 
-              onClick={() => navigate("/products")}
-              className={`text-[10px] font-black uppercase tracking-[0.3em] ${isGeneralOverview ? "text-[#CF0F0F]" : "text-white/60 hover:text-white"}`}
-            >
-              Registry
-            </button>
-            {!isGeneralOverview && (
-              <>
-                <span className="text-white/20 text-xs tracking-widest">//</span>
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#CF0F0F]">
-                  {currentCategory.category}
-                </span>
-              </>
-            )}
-          </nav>
-
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex items-center gap-3 mb-4">
-              <Activity size={18} className="text-[#CF0F0F] animate-pulse" />
-              <span className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.5em]">
-                System_Status: Operational
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none mb-8">
-              {isGeneralOverview ? "Component_Inventory" : currentCategory.category}
-            </h1>
-            <p className="max-w-2xl text-white/60 font-bold uppercase tracking-[0.15em] text-[11px] md:text-xs leading-loose border-l-2 border-[#CF0F0F] pl-6">
-              {isGeneralOverview 
-                ? "Accessing the unified database for high-performance generator systems, e-houses, and bespoke containerized power solutions."
-                : currentCategory.description}
-            </p>
+          <div className="absolute top-0 right-0 p-4 opacity-10 z-10">
+            <PackageSearch size={450} className="text-white" />
           </div>
-        </div>
+
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse" />
+            <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700" />
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 relative z-20">
+            {/* 🧭 ENHANCED HIERARCHICAL BREADCRUMB */}
+            <nav className="flex items-center flex-wrap gap-3 mb-6">
+              <button
+                onClick={() => navigate("/")}
+                className="group flex items-center gap-1 text-white/50 hover:text-white transition-colors"
+              >
+                <Home size={14} />
+                <span className="text-[10px] md:text-xs tracking-widest uppercase">Home</span>
+              </button>
+
+              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              {/* Product Categories Link (Active styling if general overview) */}
+              <button
+                onClick={() => navigate("/products")}
+                className={`text-[10px] md:text-xs tracking-widest uppercase transition-all duration-300 ${
+                  isGeneralOverview 
+                  ? "bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 font-bold" 
+                  : "text-white/50 hover:text-white"
+                }`}
+              >
+                Product Categories
+              </button>
+
+              {!isGeneralOverview && (
+                <>
+                  <span className="text-white/20 text-xs font-mono">{">"}</span>
+                  <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 font-bold">
+                    {currentCategory.category}
+                  </button>
+                </>
+              )}
+            </nav>
+
+            <div>
+              <h1
+                className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+              >
+                {isGeneralOverview ? "Product" : currentCategory.category}{" "}
+                <span className="text-[#BF092F]">
+                  {isGeneralOverview ? "Registry" : "Catalog"}
+                </span>
+              </h1>
+
+              <p className="text-white/60 text-lg md:text-xl tracking-wide leading-relaxed mt-4 max-w-3xl">
+                {isGeneralOverview
+                  ? "Accessing the unified database for high-performance generator systems and bespoke power solutions."
+                  : currentCategory.description}
+              </p>
+            </div>
+          </div>
+        </header>
       </div>
 
-      {/* ─── MAIN CONTENT ─── */}
-      {isGeneralOverview ? (
-        <AllCategoriesOverview />
-      ) : (
-        <div className="container mx-auto px-6 py-20 flex flex-col lg:flex-row gap-12">
-          {/* Technical Sidebar */}
-          <aside className="w-full lg:w-1/4 hidden lg:block">
-            <div className="sticky top-10 bg-white border border-gray-200 p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-8 border-b border-gray-100 pb-4">
-                <Filter size={16} className="text-[#CF0F0F]" />
-                <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#44444E]">Refine_Registry</h2>
-              </div>
-              <ul className="space-y-1">
-                {products.map((cat, idx) => (
-                  <li
-                    key={idx}
-                    onClick={() => {
-                      setSelectedCategory(cat.category);
-                      navigate(`/products?category=${cat.slug}`);
-                    }}
-                    className={`cursor-pointer px-4 py-3 text-[12px] font-bold uppercase tracking-widest transition-all flex items-center justify-between group ${
-                      selectedCategory === cat.category
-                        ? "bg-[#44444E] text-white border-r-4 border-[#CF0F0F]"
-                        : "text-gray-400 hover:text-[#44444E] hover:bg-gray-50"
-                    }`}
-                  >
-                    {cat.category}
-                    <ChevronRight size={12} className={`opacity-0 group-hover:opacity-100 transition-opacity ${selectedCategory === cat.category ? 'text-[#CF0F0F] opacity-100' : ''}`} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
-
-          {/* Product Grid - MAINTAINING GAPS AS REQUESTED */}
-          <section className="w-full lg:w-3/4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {currentCategory.items.map((item, idx) => (
-                <div key={idx} className="transition-transform duration-500 hover:-translate-y-2">
-                  <ProductCard
-                    product={item}
-                    categorySlug={currentCategory.slug}
-                  />
+      <main className="container mx-auto -translate-y-12 relative z-30">
+        {isGeneralOverview ? (
+          <div className="pt-12">
+            <AllCategoriesOverview />
+          </div>
+        ) : (
+          <div className="pt-20 px-4 flex flex-col lg:grid lg:grid-cols-12 gap-8 items-stretch">
+            <aside className="lg:col-span-3 space-y-8 h-full">
+              <div className="rounded-2xl bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] sticky top-28 overflow-hidden">
+                <div className="p-8 border-b border-white/10">
+                  <div className="flex items-center gap-3 mb-8">
+                    <Filter size={16} className="text-[#BF092F]" />
+                    <h2 className="text-[12px] text-white tracking-[0.4em] uppercase">
+                      Refine Registry
+                    </h2>
+                  </div>
+                  <ul className="space-y-2">
+                    {products.map((cat, idx) => (
+                      <li
+                        key={idx}
+                        onClick={() =>
+                          navigate(`/products?category=${cat.slug}`)
+                        }
+                        className={`cursor-pointer px-4 py-4 rounded-xl text-[12px] uppercase tracking-[0.2em] transition-all flex items-center justify-between group ${
+                          selectedCategory === cat.category
+                            ? "bg-white/10 text-white border-l-4 border-[#BF092F]"
+                            : "text-white/40 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        {cat.category}
+                        <ChevronRight
+                          size={14}
+                          className={`transition-transform duration-300 ${
+                            selectedCategory === cat.category
+                              ? "text-[#BF092F] translate-x-1"
+                              : "opacity-0 group-hover:opacity-100"
+                          }`}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
-          </section>
-        </div>
-      )}
+                <div className="p-8 bg-black/20">
+                  <p className="text-[10px] text-white/30 uppercase tracking-[0.3em] leading-relaxed">
+                    Select a category to view technical specifications and
+                    component models.
+                  </p>
+                </div>
+              </div>
+            </aside>
+
+            <section className="lg:col-span-9">
+              <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100 min-h-[600px]">
+                <div className="flex items-center justify-between mb-12 border-b border-gray-100 pb-8">
+                  <h2 className="tracking-widest border-l-4 border-[#BF092F] pl-4 text-[#44444E] uppercase text-sm font-bold">
+                    Available Items
+                  </h2>
+                  <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+                    Items: {currentCategory.items.length}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                  {currentCategory.items.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="transition-all duration-500 hover:-translate-y-2"
+                    >
+                      <ProductCard
+                        product={item}
+                        categorySlug={currentCategory.slug}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
+        )}
+      </main>
+
+      <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
     </div>
   );
 };

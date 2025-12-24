@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Mail,
   Phone,
@@ -8,12 +8,15 @@ import {
   Twitter,
   Send,
   CheckCircle,
-  ArrowRight,
+  Home,
   Clock,
-  ShieldCheck,
+  ChevronLeft,
+  X,
 } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export default function ContactUsPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,311 +27,350 @@ export default function ContactUsPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleChange = (e) => {
+  useEffect(() => {
+    setIsVisible(true);
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // ... (Your existing fetch logic remains the same)
-    setTimeout(() => {
+
+    const object = {
+      ...formData,
+      access_key: "d6efad2a-df02-4c2c-8ce2-77e9b47e8082",
+      subject: `New Contact Form Submission from ${formData.name}`,
+      from_name: "Art Genpower Solutions Ltd"
+    };
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        alert("Transmission failed. Please try again.");
+      }
+    } catch (error) {
+      alert("Terminal error. Check your connection.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 1000);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] selection:bg-[#BF092F] selection:text-white overflow-hidden">
-      {/* 🏗️ INDUSTRIAL HERO SECTION */}
-      <div className="relative h-[30vh] min-h-[400px] flex items-center bg-[#44444E] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 bg-fixed" />
-
-        <div className="relative container mx-auto px-6 z-20 pt-20">
-          <nav className="flex items-center gap-2 text-white/50 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
-            <span className="hover:text-[#BF092F] cursor-pointer transition-colors">
-              HOME
-            </span>
-            <span>/</span>
-            <span className="text-[#BF092F]">COMMUNICATIONS TERMINAL</span>
-          </nav>
-          <h1 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter">
-            Get In Touch
-          </h1>
-          <div className="w-24 h-2 bg-[#BF092F] mt-6" />
+    <div className="min-h-screen bg-white text-[#44444E] font-sans selection:bg-[#BF092F] selection:text-white">
+      {/* SUCCESS POPUP MODAL */}
+      {submitted && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+          <div
+            className="absolute inset-0 bg-[#44444E]/80 backdrop-blur-sm transition-opacity"
+            onClick={() => setSubmitted(false)}
+          />
+          <div className="relative bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-md w-full text-center transform transition-all border-t-8 border-[#BF092F]">
+            <button
+              onClick={() => setSubmitted(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-[#BF092F] transition-colors"
+            >
+              <X size={24} />
+            </button>
+            <div className="flex justify-center mb-6">
+              <div className="bg-green-100 p-4 rounded-full">
+                <CheckCircle className="text-green-600" size={48} />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold text-[#44444E] mb-2 uppercase tracking-tighter">
+              Transmission Successful
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 uppercase tracking-widest font-medium">
+              Your technical enquiry has been received. Our engineering team
+              will contact you shortly.
+            </p>
+            <button
+              onClick={() => setSubmitted(false)}
+              className="w-full py-4 bg-[#44444E] text-white text-xs font-black uppercase tracking-[0.3em] hover:bg-[#BF092F] transition-all rounded-xl shadow-lg"
+            >
+              Back to Terminal
+            </button>
+          </div>
         </div>
+      )}
+
+      {/* 🏗️ MATCHED FLOATING HERO SECTION */}
+      <div className="pt-22 px-2 md:px-2">
+        <header className="shadow-xl relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
+
+          <div className="absolute top-0 right-0 p-4 opacity-10 z-10">
+            <Phone size={450} className="text-white" />
+          </div>
+
+          {/* Animated Red Beams */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse" />
+            <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700" />
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 relative z-20">
+            {/* 🧭 ENHANCED HIERARCHICAL BREADCRUMB */}
+            <nav className="flex items-center flex-wrap gap-3 mb-6">
+              <button
+                onClick={() => navigate("/")}
+                className="group flex items-center gap-1 text-white/50 hover:text-white transition-colors"
+              >
+                <Home size={14} />
+                <span className="text-[10px] md:text-xs tracking-widest uppercase">Home</span>
+              </button>
+
+              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              {/* ACTIVE PAGE: RED PILL DESIGN */}
+              <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 font-bold">
+                Contact Us
+              </button>
+            </nav>
+
+            <h1
+              className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
+              }`}
+            >
+              Contact <span className="text-[#BF092F]">Us</span>
+            </h1>
+            <p className="text-white/60 text-lg md:text-xl tracking-wide leading-relaxed mt-2">
+              Communications Terminal & Global Support
+            </p>
+          </div>
+        </header>
       </div>
 
-      {/* --- CONTENT AREA (Overlapping Hero) --- */}
-      <main className="container mx-auto px-4 pt-32 flex flex-col lg:flex-row gap-12 -translate-y-24 relative z-30">
-        {/* SIDEBAR - Dark Command Center Style */}
-        <aside className="w-full lg:w-1/3 space-y-8">
-          <div className="rounded-lg bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] overflow-hidden">
-            <div className="p-8 border-b border-white/10">
-              <h2 className="text-[14px] font-black text-[#BF092F] uppercase tracking-[0.4em] mb-6">
-                Get in touch
-              </h2>
-              <div className="space-y-8">
-                <ContactRow
-                  icon={<Phone size={18} />}
-                  label="Direct Line"
-                  value="+44 7492 949230"
-                  href="tel:+447492949230"
-                />
-                <ContactRow
-                  icon={<Mail size={18} />}
-                  label="Enquiries"
-                  value="info@artgpower.co.uk"
-                  href="mailto:info@artgpower.co.uk"
-                />
-                <ContactRow
-                  icon={<MapPin size={18} />}
-                  label="Address"
-                  value="19 Pelham Court, Hemel Hempstead, HP2 4UW, UK"
-                />
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div className="p-8 bg-black/20">
-              <h3 className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-6 flex items-center gap-2">
-                <Clock size={14} /> Operational Hours
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest">
-                  <span className="text-white/50">Mon – Fri</span>
-                  <span className="text-white">09:00 – 17:00</span>
-                </div>
-                <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest">
-                  <span className="text-white/50">Saturday</span>
-                  <span className="text-white">10:00 – 14:00</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Terminal */}
-            <div className="p-6 flex gap-1">
-              <IconButton icon={<Linkedin size={18} />} />
-              <IconButton icon={<Facebook size={18} />} />
-              <IconButton icon={<Twitter size={18} />} />
-            </div>
-          </div>
-
-          {/* Technical Support Box */}
-          {/* <div className="bg-white p-8 border border-gray-200 shadow-xl relative overflow-hidden">
-            <ShieldCheck
-              className="text-gray-100 absolute -right-4 -bottom-4"
-              size={100}
-            />
-            <div className="relative z-10">
-              <h4 className="text-[10px] font-black text-[#BF092F] uppercase tracking-[0.3em] mb-3">
-                Priority Support
-              </h4>
-              <p className="text-[11px] font-bold text-gray-500 uppercase leading-relaxed mb-6">
-                Existing clients with service level agreements have 24/7 access
-                to our technical response team.
-              </p>
-              <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#44444E] hover:text-[#BF092F] transition-colors">
-                Support Portal <ArrowRight size={14} />
-              </button>
-            </div>
-          </div> */}
-        </aside>
-
-        {/* RIGHT SECTION - The Form */}
-        <div className="lg:col-span-2 flex-grow space-y-12">
-          <div className="bg-white p-8 md:p-12 shadow-2xl border-t-4 border-[#44444E] relative">
-            {/* Watermark */}
-            <span className="absolute top-8 right-8 text-6xl font-black text-gray-50 select-none">
-              FORM
-            </span>
-
-            {submitted && (
-              <div className="mb-8 flex items-center gap-4 p-6 bg-green-50 border-l-4 border-green-500 transition-all">
-                <CheckCircle className="text-green-500" />
-                <div>
-                  <p className="text-[11px] font-black uppercase tracking-widest text-green-900">
-                    Transmission Successful
-                  </p>
-                  <p className="text-[10px] font-bold text-green-700 uppercase">
-                    Our team will review your request shortly.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Input
-                  label="Identity / Full Name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="J. DOE"
-                />
-                <Input
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="CONTACT@DOMAIN.COM"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Input
-                  label="Phone Number"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="+44 000 000"
-                />
-                <Input
-                  label="Corporate Entity"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  placeholder="COMPANY LTD"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[10px] font-black text-[#44444E] uppercase tracking-[0.2em] mb-3">
-                  Service Classification / Project Scope
-                </label>
-                <div className="relative">
-                  <select
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    className="w-full bg-gray-50 border-b-2 border-gray-200 px-0 py-4 text-[11px] font-bold uppercase tracking-widest focus:outline-none focus:border-[#BF092F] transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="">Select Project Scope</option>
-
-                    {/* Product Categories */}
-                    <option value="generator-packages">
-                      Instrument & Generator Package Accessories
-                    </option>
-                    <option value="electrical-accessories">
-                      Electrical Items and Accessories
-                    </option>
-                    <option value="mechanical-accessories">
-                      Mechanical Items and Accessories
-                    </option>
-                    <option value="enclosures-skids">
-                      Generator Enclosures & Pump Skids
-                    </option>
-                    <option value="e-houses-pods">
-                      E-House / E-POD Solutions
-                    </option>
-                    <option value="tools-measurement">
-                      Testing and Measurement Tools
-                    </option>
-
-                    {/* Additional Professional Services */}
-                    <option value="bespoke-engineering">
-                      Bespoke Turnkey Projects
-                    </option>
-                    <option value="bulk-supply">Bulk Inventory Supply</option>
-                    <option value="technical-consultancy">
-                      Technical Consultancy
-                    </option>
-                  </select>
-
-                  {/* Custom Dropdown Arrow to match UI */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#44444E]">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+      {/* 🏭 MAIN CONTENT AREA */}
+      <main className="container mx-auto -translate-y-24 relative z-30">
+        <div className="pt-30">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* SIDEBAR */}
+            <aside
+              className={`lg:col-span-4 space-y-8 transition-all duration-1000 delay-300 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <div className="rounded-2xl bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] overflow-hidden h-full">
+                <div className="p-8 border-b border-white/10">
+                  <h2 className="text-[12px] text-white tracking-[0.4em] mb-8 font-bold">
+                    TERMINAL INFO
+                  </h2>
+                  <div className="space-y-8">
+                    <ContactRow
+                      icon={<Phone size={18} />}
+                      label="Direct Line"
+                      value="+44 7492 949230"
+                      href="tel:+447492949230"
+                    />
+                    <ContactRow
+                      icon={<Mail size={18} />}
+                      label="Enquiries"
+                      value="info@artgpower.co.uk"
+                      href="mailto:info@artgpower.co.uk"
+                    />
+                    <ContactRow
+                      icon={<MapPin size={18} />}
+                      label="Address"
+                      value="19 Pelham Court, Hemel Hempstead, HP2 4UW, UK"
+                    />
                   </div>
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-[10px] font-black text-[#44444E] uppercase tracking-[0.2em] mb-3">
-                  Project Requirements
-                </label>
-                <textarea
-                  rows={5}
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  placeholder="PROVIDE DETAILED TECHNICAL REQUIREMENTS..."
-                  className="w-full bg-gray-50 border-b-2 border-gray-200 px-0 py-4 text-[11px] font-bold uppercase tracking-widest focus:outline-none focus:border-[#BF092F] transition-colors resize-none"
-                />
-              </div>
+                <div className="p-8 bg-black/20">
+                  <h3 className="text-[12px] text-white/40 uppercase tracking-[0.4em] mb-6 flex items-center gap-2">
+                    <Clock size={14} /> Operational Hours
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-[11px] uppercase tracking-widest">
+                      <span className="text-white/50">Mon – Fri</span>
+                      <span className="text-white font-bold">09:00 – 17:00</span>
+                    </div>
+                    <div className="flex justify-between text-[11px] uppercase tracking-widest">
+                      <span className="text-white/50">Saturday</span>
+                      <span className="text-white font-bold">10:00 – 14:00</span>
+                    </div>
+                  </div>
+                </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-4 px-12 py-5 bg-[#44444E] text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#BF092F] transition-all shadow-xl group"
+                <div className="p-6 flex gap-2">
+                  <IconButton icon={<Linkedin size={18} />} />
+                  <IconButton icon={<Facebook size={18} />} />
+                  <IconButton icon={<Twitter size={18} />} />
+                </div>
+              </div>
+            </aside>
+
+            {/* RIGHT SECTION - The Form */}
+            <div
+              className={`lg:col-span-8 transition-all duration-1000 delay-500 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <div className="bg-white px-4 md:px-8 py-10 md:py-12 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                <span className="absolute top-8 right-8 text-6xl font-black text-gray-50 select-none hidden md:block">
+                  FORM
+                </span>
+                <h2 className="tracking-widest border-l-4 border-[#BF092F] pl-4 mb-10 text-[#44444E] uppercase text-sm font-bold">
+                  Send Message
+                </h2>
+
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-8 relative z-10"
                 >
-                  {loading ? "Transmitting..." : "Send Message"}
-                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </button>
-              </div>
-            </form>
-          </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <Input
+                      label="Identity / Full Name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="J. Doe"
+                    />
+                    <Input
+                      label="Email Address"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="Contact@domain.com"
+                    />
+                  </div>
 
-          {/* Map Section */}
-          <div className="bg-white p-4 shadow-2xl border-t-4 border-[#44444E]">
-            <div className="w-full h-80 grayscale contrast-125 opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-              <iframe
-                title="Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2469.965180272038!2d-0.4373340221982014!3d51.7519602718698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876412411b387cf%3A0x3236e94b9e54d48e!2sPelham%20Ct%2C%20Hemel%20Hempstead!5e0!3m2!1sen!2suk!4v1766166381102!5m2!1sen!2suk"
-                className="w-full h-full border-0"
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <Input
+                      label="Phone Number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+44 000 000"
+                    />
+                    <Input
+                      label="Corporate Entity"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Company LTD"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[12px] text-[#44444E] uppercase tracking-[0.2em] mb-3 font-bold">
+                      Service Classification
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="service"
+                        required
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 tracking-widest focus:outline-none focus:border-[#BF092F] appearance-none cursor-pointer"
+                      >
+                        <option value="">Select Project Scope</option>
+                        <option value="generator-packages">
+                          Generator Packages
+                        </option>
+                        <option value="electrical-accessories">
+                          Electrical Accessories
+                        </option>
+                        <option value="bespoke-engineering">
+                          Bespoke Turnkey Projects
+                        </option>
+                        <option value="others">Others</option>
+                      </select>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#44444E]">
+                        <ChevronLeft size={16} className="-rotate-90" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <textarea
+                    rows={5}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="PROVIDE DETAILED TECHNICAL REQUIREMENTS..."
+                    className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 tracking-widest focus:outline-none focus:border-[#BF092F] resize-none"
+                  />
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-4 px-10 py-4 bg-[#44444E] text-white uppercase tracking-[0.3em] hover:bg-[#BF092F] hover:shadow-2xl transition-all rounded-xl shadow-xl group font-bold"
+                  >
+                    {loading ? "Transmitting..." : "Send Message"}
+                    <Send
+                      size={16}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Background Watermark Texture */}
       <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
     </div>
   );
 }
 
-/* --- Refined Industrial Sub-Components --- */
+/* --- Reusable Sub-Components --- */
 
 function ContactRow({ icon, label, value, href }) {
   return (
     <div className="flex gap-4 items-start group">
-      <div className="w-10 h-10 bg-black/20 text-[#BF092F] flex items-center justify-center shrink-0 border border-white/5 transition-colors group-hover:bg-[#BF092F] group-hover:text-white">
+      <div className="w-10 h-10 bg-white/10 text-[#BF092F] flex items-center justify-center shrink-0 rounded-lg border border-white/5 group-hover:bg-[#BF092F] group-hover:text-white transition-colors">
         {icon}
       </div>
       <div>
-        <p className="text-[9px] font-black text-white/30 uppercase tracking-[0.3em] mb-1">
+        <p className="text-[12px] text-white/30 uppercase tracking-[0.3em] mb-1 font-bold">
           {label}
         </p>
         {href ? (
           <a
             href={href}
-            className="text-xs font-bold text-white uppercase tracking-widest hover:text-[#BF092F] transition-colors"
+            className="text-xs text-white uppercase tracking-widest hover:text-[#BF092F] transition-colors font-medium"
           >
             {value}
           </a>
         ) : (
-          <span className="text-xs font-bold text-white/80 uppercase tracking-widest leading-relaxed">
+          <span className="text-xs text-white/80 uppercase tracking-widest leading-relaxed font-medium">
             {value}
           </span>
         )}
@@ -339,7 +381,7 @@ function ContactRow({ icon, label, value, href }) {
 
 function IconButton({ icon }) {
   return (
-    <button className="w-12 h-12 flex items-center justify-center bg-black/10 text-white/40 border border-white/5 hover:bg-[#BF092F] hover:text-white transition-all">
+    <button className="w-12 h-12 flex items-center justify-center bg-white/5 text-white/40 border border-white/5 hover:bg-[#BF092F] hover:text-white transition-all rounded-lg">
       {icon}
     </button>
   );
@@ -348,12 +390,12 @@ function IconButton({ icon }) {
 function Input({ label, ...props }) {
   return (
     <div className="w-full">
-      <label className="block text-[10px] font-black text-[#44444E] uppercase tracking-[0.2em] mb-3">
+      <label className="block text-[12px] text-[#44444E] uppercase tracking-[0.2em] mb-2 font-bold">
         {label}
       </label>
       <input
         {...props}
-        className="w-full bg-gray-50 border-b-2 border-gray-200 px-0 py-4 text-[11px] font-bold uppercase tracking-widest placeholder:text-gray-300 focus:outline-none focus:border-[#BF092F] transition-colors"
+        className="w-full bg-gray-50 border-b-2 border-gray-200 py-3 tracking-widest focus:outline-none focus:border-[#BF092F] transition-colors"
       />
     </div>
   );

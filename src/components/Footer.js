@@ -19,9 +19,9 @@ const Footer = () => {
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-4">
               <img
-                src="https://res.cloudinary.com/dc912sjxj/image/upload/v1764248576/Art_Genpower_Solutions_Ltd_Logo_wswrtz.png"
+                src="https://res.cloudinary.com/dc912sjxj/image/upload/v1766520846/AGP_Logo_j44tzo.png"
                 alt="AGP Logo"
-                className="h-12 w-auto brightness-0 invert"
+                className="h-25 w-auto"
               />
               <p className="text-white/60 text-xs font-bold uppercase tracking-[0.2em] leading-relaxed max-w-sm">
                 Engineering excellence in power solutions and industrial enclosures. Built for reliability.

@@ -1,87 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { MapPin, Tag, ArrowRight } from "lucide-react"; // Added Tag and ArrowRight icons
+import { ArrowRight, MapPin, Container } from "lucide-react";
 
 export default function ProjectCard({ project }) {
+  const [hover, setHover] = useState(false);
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleNavigate = () => {
     navigate(`/projects/${project.id}`);
   };
 
   return (
-    <article
-      onClick={handleClick}
-      // ENHANCEMENT 1: STATIC, HIGH-IMPACT HOVER (Removed tilt, maintained scale/shadow)
-      className="relative isolate flex flex-col justify-end overflow-hidden 
-                 rounded-2xl aspect-[4/3] cursor-pointer mx-auto group 
-                 w-full sm:w-80 md:w-96 lg:w-[26rem] xl:w-[28rem] 
-                 shadow-xl hover:shadow-[0_20px_40px_-5px_rgba(0,0,0,0.5)] 
-                 transition-all duration-500 ease-in-out
-                 hover:scale-[1.03]" 
+    <div
+      className="group relative flex flex-col h-full bg-white rounded-2xl shadow-xl border border-gray-100 cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-[#BF092F]/20 hover:-translate-y-2 hover:scale-[1.02]"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onClick={handleNavigate}
     >
-      {/* 1. Image and Overlay */}
-      <div className="absolute inset-0 overflow-hidden rounded-2xl">
+
+      {/* 2. IMAGE SECTION */}
+      <div className="h-64 min-h-[16rem] relative overflow-hidden bg-gray-50 border-b border-gray-50">
         <img
           src={project.imageUrls[0]}
           alt={project.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className={`w-full h-full object-cover grayscale transition-all duration-700 opacity-90 ${
+            hover ? "grayscale-0 scale-110 opacity-100" : ""
+          }`}
         />
-        {/* Dark overlay for text readability (Stronger gradient on hover) */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent 
-                     transition-opacity duration-300 group-hover:from-black/95" 
-        />
-        
-        {/* ENHANCEMENT 2: Strong Red Border Glow on Hover */}
-        <div 
-          className="absolute inset-0 rounded-2xl border-4 border-transparent 
-                     transition-all duration-300 pointer-events-none 
-                     group-hover:border-[#CF0F0F] group-hover:shadow-[0_0_20px_rgba(207,15,15,0.9)]" 
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
       </div>
 
-      {/* 4. Content Container (Modern Bottom Section) */}
-      <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-end h-full">
-        
-        <div className="flex flex-col gap-3 mt-auto">
-             
-            {/* Type Tag */}
-            <span 
-                className="inline-block px-3 py-1 text-xs font-semibold uppercase rounded-full 
-                           bg-[#CF0F0F] text-white self-start tracking-wider 
-                           transition-transform duration-300 group-hover:scale-[1.05]"
-            >
+      {/* 3. CONTENT SECTION */}
+      <div className="p-8 flex flex-col flex-grow">
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <MapPin size={14} className="text-[#BF092F]" />
+            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">
+              {project.location}
+            </span>
+          </div>
+          
+          <h3 className="text-xl font-bold text-[#44444E] tracking-tight group-hover:text-[#BF092F] transition-colors mb-3 leading-snug min-h-[3.5rem] line-clamp-2">
+            {project.name}
+          </h3>
+          
+          <p className="text-[12px] text-gray-400 tracking-widest leading-relaxed line-clamp-3 min-h-[3rem]">
+            {project.description[0] || "Verified industrial deployment and technical installation record."}
+          </p>
+        </div>
+
+        {/* 4. FOOTER ACTION */}
+        <div className="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Container size={14} className="text-[#BF092F]" />
+            <span className="text-[11px] font-bold text-[#44444E] uppercase tracking-widest">
               {project.type}
             </span>
-
-            {/* Title */}
-            <h3 className="text-white text-2xl lg:text-3xl font-extrabold leading-tight">
-              {project.name}
-            </h3>
-
-            {/* Location & CTA (Accent Line & Info) */}
-            <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/20">
-                
-                {/* Location Info */}
-                <div className="flex items-center gap-1.5 text-gray-300 text-sm">
-                    {/* Red Accent Line for Separator */}
-                    <div className="w-1 h-4 bg-[#CF0F0F] flex-shrink-0" />
-                    
-                    <MapPin 
-                        className="w-4 h-4 text-[#CF0F0F] flex-shrink-0"
-                    />
-                    <span className="truncate font-medium">{project.location}</span>
-                </div>
-                
-                {/* Call to Action Arrow */}
-                <ArrowRight 
-                    size={24} 
-                    className="text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[#CF0F0F]"
-                />
-            </div>
+          </div>
+          
+          <div className="flex items-center gap-2 text-[#BF092F] font-bold text-[11px] uppercase tracking-[0.2em] group-hover:translate-x-1 transition-transform">
+            View Log
+            <ArrowRight size={16} />
+          </div>
         </div>
       </div>
-    </article>
+
+      {/* 5. HOVER ACCENT BAR */}
+      <div className={`absolute bottom-0 left-0 h-1 bg-[#BF092F] transition-all duration-500 ${hover ? 'w-full' : 'w-0'}`} />
+    </div>
   );
 }

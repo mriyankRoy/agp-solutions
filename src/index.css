@@ -1,4 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+@theme {
+  /* This automatically creates the 'font-roboto' utility class */
+  --font-roboto: "Roboto", ui-sans-serif, system-ui, sans-serif;
+}
+
 @import "tailwindcss";
+
 @keyframes pop {
   0% {
     opacity: 0;
