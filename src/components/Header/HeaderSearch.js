@@ -101,7 +101,7 @@ const HeaderSearch = () => {
                 onClick={() => handleSelect(item)}
                 className={`px-4 py-2.5 text-xs font-bold uppercase tracking-tight cursor-pointer transition ${
                   highlightedIndex === index
-                    ? "bg-[#BF092F] text-white"
+                    ? "bg-white text-[#44444E]"
                     : "text-[#44444E] hover:bg-gray-100"
                 }`}
               >
