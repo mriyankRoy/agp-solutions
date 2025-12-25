@@ -20,7 +20,7 @@ const CompanyVideoSection = ({
   const handleMouseMove = () => {
     setShowControls(true);
     if (timerRef.current) clearTimeout(timerRef.current);
-    
+
     // Only set timer to hide if the video is currently playing
     if (isPlaying) {
       timerRef.current = setTimeout(() => {
@@ -41,7 +41,9 @@ const CompanyVideoSection = ({
   }, [isPlaying]);
 
   const extractVideoId = (url) => {
-    const match = url.match(/(?:youtube\.com.*(?:\/|v=)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+    const match = url.match(
+      /(?:youtube\.com.*(?:\/|v=)|youtu\.be\/)([a-zA-Z0-9_-]+)/
+    );
     return match ? match[1] : null;
   };
 
@@ -57,13 +59,13 @@ const CompanyVideoSection = ({
     const onYouTubeReady = () => {
       playerRef.current = new window.YT.Player("yt-player", {
         videoId,
-        playerVars: { 
-          controls: 0, 
-          rel: 0, 
-          modestbranding: 1, 
-          iv_load_policy: 3, 
+        playerVars: {
+          controls: 0,
+          rel: 0,
+          modestbranding: 1,
+          iv_load_policy: 3,
           showinfo: 0,
-          disablekb: 1 
+          disablekb: 1,
         },
         events: {
           onReady: () => setIsReady(true),
@@ -98,47 +100,70 @@ const CompanyVideoSection = ({
 
   return (
     <section className="relative bg-white py-24 overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex items-center gap-4 mb-12">
-          <div className="h-8 w-1 bg-[#BF092F]" />
-          <div>
-            <div className="flex items-center gap-3 mb-1">
-              <Activity size={14} className="text-[#BF092F] animate-pulse" />
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">System Stream</span>
-            </div>
-            <h2 className="text-sm text-[#44444E] uppercase font-bold tracking-[0.4em]">{title}</h2>
+
+        {/* 🏗️ INDUSTRIAL HEADER: Exactly aligned with Product Registry header */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-8 w-1 bg-[#BF092F]" />
+            <Activity size={14} className="text-[#BF092F] animate-pulse" />
+            <h2 className="text-sm text-[#44444E] uppercase font-bold tracking-[0.4em]">
+              System Stream
+            </h2>
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <h3 className="text-3xl md:text-5xl font-semibold text-[#44444E] leading-tight uppercase tracking-tight">
+              Operational <br></br><span className="text-[#BF092F]">Excellence</span>
+            </h3>
+            <p className="max-w-md text-gray-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed pb-1 border-l-2 border-gray-100 pl-6 lg:ml-8">
+              Visualizing the future of power infrastructure and strategic assembly.
+            </p>
           </div>
         </div>
 
-        <div 
+        <div
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           className={`group relative w-full bg-black transition-all duration-500 overflow-hidden 
-            ${isFullscreen ? "rounded-0" : "rounded-2xl shadow-xl border border-gray-100"}
-            ${(!showControls && isPlaying) ? "cursor-none" : "cursor-default"}`}
+            ${
+              isFullscreen
+                ? "rounded-0"
+                : "rounded-2xl shadow-xl border border-gray-100"
+            }
+            ${!showControls && isPlaying ? "cursor-none" : "cursor-default"}`}
         >
           {/* CLOSE BUTTON (FULLSCREEN ONLY) */}
           {isFullscreen && (
             <button
               onClick={exitFullScreen}
               className={`absolute top-10 right-10 text-white/50 hover:text-[#BF092F] transition-all z-[110] 
-                ${showControls || !isPlaying ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+                ${
+                  showControls || !isPlaying
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 -translate-y-4 pointer-events-none"
+                }`}
             >
               <X size={40} className="hover:rotate-90 transition-transform" />
             </button>
           )}
 
-          <div className={`relative bg-gray-900 overflow-hidden ${isFullscreen ? "h-screen w-screen" : "aspect-video"}`}>
+          <div
+            className={`relative bg-gray-900 overflow-hidden ${
+              isFullscreen ? "h-screen w-screen" : "aspect-video"
+            }`}
+          >
             <div id="yt-player" className="w-full h-full pointer-events-none" />
-            
+
             {/* OVERLAY INTERFACE */}
-            <div 
+            <div
               className={`absolute inset-0 bg-black/30 transition-opacity duration-700 flex items-center justify-center
-              ${showControls || !isPlaying ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              ${
+                showControls || !isPlaying
+                  ? "opacity-100"
+                  : "opacity-0 pointer-events-none"
+              }`}
             >
               <button
                 onClick={togglePlayPause}
@@ -147,7 +172,10 @@ const CompanyVideoSection = ({
                 {isPlaying ? (
                   <Pause size={32} className="text-white fill-white" />
                 ) : (
-                  <Play size={32} className="text-white fill-white translate-x-1" />
+                  <Play
+                    size={32}
+                    className="text-white fill-white translate-x-1"
+                  />
                 )}
               </button>
             </div>
@@ -158,26 +186,38 @@ const CompanyVideoSection = ({
             <div className="p-8 bg-white border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-start gap-4">
                 <div className="mt-1 w-1 h-10 bg-[#BF092F]" />
-                <p className="text-[12px] text-gray-400 tracking-widest leading-relaxed max-w-xl uppercase font-medium">{tagline}</p>
+                <p className="text-[12px] text-gray-400 tracking-widest leading-relaxed max-w-xl uppercase font-medium">
+                  {tagline}
+                </p>
               </div>
 
               <div className="flex items-center gap-6">
-                 <div className="flex flex-col items-end">
-                    <span className="text-[10px] text-gray-300 font-bold uppercase tracking-widest mb-1">Status</span>
-                    <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-[#44444E]">
-                      <div className="w-2 h-2 rounded-full bg-[#BF092F] animate-pulse" /> Technical Live
-                    </div>
-                 </div>
-                 <div className="h-8 w-px bg-gray-100" />
-                 <button onClick={handleFullScreen} className="cursor-pointer flex items-center gap-2 text-[#BF092F] font-bold text-[11px] uppercase tracking-[0.2em] hover:scale-105 transition-transform">
-                    Full Screen <Maximize2 size={16} />
-                 </button>
+                <div className="flex flex-col items-end">
+                  <span className="text-[10px] text-gray-300 font-bold uppercase tracking-widest mb-1">
+                    Status
+                  </span>
+                  <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-[#44444E]">
+                    <div className="w-2 h-2 rounded-full bg-[#BF092F] animate-pulse" />{" "}
+                    Technical Live
+                  </div>
+                </div>
+                <div className="h-8 w-px bg-gray-100" />
+                <button
+                  onClick={handleFullScreen}
+                  className="cursor-pointer flex items-center gap-2 text-[#BF092F] font-bold text-[11px] uppercase tracking-[0.2em] hover:scale-105 transition-transform"
+                >
+                  Full Screen <Maximize2 size={16} />
+                </button>
               </div>
             </div>
           )}
 
           {!isFullscreen && (
-            <div className={`absolute bottom-0 left-0 h-1 bg-[#BF092F] transition-all duration-700 ${hover ? 'w-full' : 'w-0'}`} />
+            <div
+              className={`absolute bottom-0 left-0 h-1 bg-[#BF092F] transition-all duration-700 ${
+                hover ? "w-full" : "w-0"
+              }`}
+            />
           )}
         </div>
       </div>

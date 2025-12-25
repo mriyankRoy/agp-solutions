@@ -1,10 +1,10 @@
 import React from 'react'
-import GraphiteScrollingFeatures from './FacilitiesPage'
+import FacilitiesPage from './FacilitiesPage'
 
 const Facilities = () => {
   return (
     <div>
-        <GraphiteScrollingFeatures />
+        <FacilitiesPage />
     </div>
   )
 }
