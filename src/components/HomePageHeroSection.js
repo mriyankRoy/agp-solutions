@@ -17,7 +17,7 @@ const HomePageSection1 = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // --- CONFIGURATION PANEL (Adjust these values) ---
+  // --- CONFIGURATION PANEL ---
   const slantDegree = "110deg";   
   const firstGreyEnd = "60vw";    
   const redStripeEnd = "62.9vw";  
@@ -28,7 +28,7 @@ const HomePageSection1 = () => {
       <div className="pt-22 px-2 md:px-2 pb-12">
         <header className="relative min-h-[550px] md:h-[70vh] w-full flex items-center overflow-hidden rounded-2xl shadow-2xl bg-[#44444E]">
           
-          {/* LAYER 1: VIDEO (The Base) */}
+          {/* LAYER 1: VIDEO */}
           <div className="absolute inset-0 z-0">
             <iframe
               className="absolute top-1/2 left-1/2 w-[500%] h-[300%] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-110"
@@ -37,8 +37,7 @@ const HomePageSection1 = () => {
             />
           </div>
 
-          {/* LAYER 2: THE MULTI-STRIPE OVERLAY */}
-          {/* Updated with a vertical gradient to match ProductPage Hero exactly */}
+          {/* LAYER 2: THE MULTI-STRIPE OVERLAY (Solid Colors) */}
           <div 
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
@@ -53,10 +52,10 @@ const HomePageSection1 = () => {
             }}
           />
           
-          {/* LAYER 2.5: DEPTH GRADIENT (Matched to ProductPage) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-15 pointer-events-none" />
+          {/* LAYER 3: DEPTH GRADIENT (Moved to z-20 so it only affects content/video blend, not stripes) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-15 pointer-events-none" />
 
-          {/* LAYER 3: DECORATIVE GRID */}
+          {/* LAYER 4: DECORATIVE GRID */}
           <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
             <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse opacity-20" />
             <div className="absolute -top-20 -left-20 opacity-[0.03]">
@@ -64,13 +63,18 @@ const HomePageSection1 = () => {
             </div>
           </div>
 
-          {/* LAYER 4: CONTENT */}
+          {/* LAYER 5: CONTENT */}
           <div className="container mx-auto px-6 md:px-12 relative z-30">
             <div className="flex items-center gap-3 mb-8">
               <div className="bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg flex items-center gap-2">
                 <Activity size={14} className="animate-pulse" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em]">System_Live</span>
               </div>
+              {/* RESTORED: Exact Heavy Engineering Label */}
+              <div className="h-4 w-px bg-white/20 mx-2 hidden sm:block" />
+              <span className="text-white/40 text-[10px] uppercase tracking-[0.4em] font-medium hidden sm:block">
+                Heavy_Engineering_Systems
+              </span>
             </div>
 
             <div className="relative w-full h-[150px] sm:h-[200px] lg:h-[260px] flex items-center mb-6">
@@ -83,6 +87,7 @@ const HomePageSection1 = () => {
               ))}
             </div>
 
+            {/* RESTORED: Original Heavy Sentence with Bold and Italic */}
             <p className="text-white/60 text-lg md:text-xl tracking-wide leading-relaxed max-w-2xl mb-12 border-l-2 border-[#BF092F] pl-6 italic">
               Accessing the unified registry for <span className="text-white font-bold not-italic">high-performance power systems</span> and precision-engineered container solutions.
             </p>
