@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { ArrowRight, Zap, Activity, PackageSearch } from "lucide-react";
+import { ArrowRight, Zap, Activity, Globe } from "lucide-react";
 
 const heroSentences = [
   "Your Global Partner for Generator Needs.",
@@ -17,45 +17,54 @@ const HomePageSection1 = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const layoutAnchor = "55vw";
+  // --- CONFIGURATION PANEL (Adjust these values) ---
+  const slantDegree = "110deg";   
+  const firstGreyEnd = "60vw";    
+  const redStripeEnd = "62.9vw";  
+  const secondGreyEnd = "65.9vw"; 
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <div className="pt-22 px-2 md:px-2 pb-12">
         <header className="relative min-h-[550px] md:h-[70vh] w-full flex items-center overflow-hidden rounded-2xl shadow-2xl bg-[#44444E]">
           
-          {/* GRID & GHOST ICON */}
-          <div className="absolute inset-0 z-5 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse opacity-20" />
-            <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700 opacity-10" />
-            <div className="absolute -top-20 -left-20 opacity-[0.03]">
-               <PackageSearch size={600} className="text-white" />
-            </div>
-          </div>
-
-          {/* VIDEO BACKGROUND - INCREASED SLANT (from 15% to 25%) */}
-          <div 
-            className="absolute inset-0 right-0 z-0 overflow-hidden"
-            style={{ 
-              left: layoutAnchor, 
-              clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0% 100%)" 
-            }}
-          >
+          {/* LAYER 1: VIDEO (The Base) */}
+          <div className="absolute inset-0 z-0">
             <iframe
               className="absolute top-1/2 left-1/2 w-[500%] h-[300%] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-110"
               src="https://www.youtube.com/embed/TOJQkhzpLyQ?autoplay=1&mute=1&loop=1&playlist=TOJQkhzpLyQ&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
               allow="autoplay; encrypted-media"
-              title="Hero Video"
             />
-            <div className="absolute inset-0 bg-[#44444E]/40" />
           </div>
 
-         
+          {/* LAYER 2: THE MULTI-STRIPE OVERLAY */}
+          {/* Updated with a vertical gradient to match ProductPage Hero exactly */}
+          <div 
+            className="absolute inset-0 z-10 pointer-events-none"
+            style={{
+              background: `linear-gradient(${slantDegree}, 
+                #44444E ${firstGreyEnd}, 
+                #BF092F ${firstGreyEnd}, 
+                #BF092F ${redStripeEnd}, 
+                #44444E ${redStripeEnd},
+                #44444E ${secondGreyEnd},
+                transparent ${secondGreyEnd}
+              )`,
+            }}
+          />
+          
+          {/* LAYER 2.5: DEPTH GRADIENT (Matched to ProductPage) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-15 pointer-events-none" />
 
-          {/* GRADIENT */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-[#44444E]/40 to-transparent z-10 pointer-events-none" />
+          {/* LAYER 3: DECORATIVE GRID */}
+          <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse opacity-20" />
+            <div className="absolute -top-20 -left-20 opacity-[0.03]">
+               <Globe size={600} className="text-white" />
+            </div>
+          </div>
 
-          {/* CONTENT SECTION */}
+          {/* LAYER 4: CONTENT */}
           <div className="container mx-auto px-6 md:px-12 relative z-30">
             <div className="flex items-center gap-3 mb-8">
               <div className="bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg flex items-center gap-2">

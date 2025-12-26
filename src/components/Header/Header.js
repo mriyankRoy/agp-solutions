@@ -33,7 +33,7 @@ const Header = () => {
           className={`absolute inset-0 -z-10 transition-all duration-500 rounded-2xl shadow-2xl overflow-hidden
             ${isScrolled && !isHovered ? "opacity-75 backdrop-blur-md" : "opacity-100"}`}
           style={{
-            background: "linear-gradient(110deg, #BF092F 75vw, #44444E 75vw)",
+            background: "linear-gradient(110deg, #BF092F 64vw, #44444E 64vw)",
           }}
         />
 
