@@ -77,7 +77,7 @@ const HeaderSearch = () => {
             rounded-full border border-white/20 shadow-sm 
             focus:outline-none focus:ring-2 focus:ring-[#BF092F] 
             transition-all
-            w-28 lg:w-48 xl:w-90
+            w-28 lg:w-48 xl:w-90 
           "
           value={query}
           onChange={handleSearchChange}

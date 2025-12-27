@@ -52,7 +52,7 @@ const Header = () => {
             {/* Dropdowns now have a clear path to render downwards */}
             <nav className="hidden md:flex items-center justify-center gap-x-1 lg:gap-x-2">
               <Link to="/about" className={navLinkStyles}>
-                <span className="absolute inset-0 bg-white/10 rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out -z-10" />
+                <span className="absolute inset-0 bg-[#44444E] rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out -z-10" />
                 About
               </Link>
 
@@ -61,12 +61,12 @@ const Header = () => {
               <HeaderFacilitiesDropdown />
 
               <Link to="/careers" className={navLinkStyles}>
-                <span className="absolute inset-0 bg-white/10 rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out -z-10" />
+                <span className="absolute inset-0 bg-[#44444E] rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out -z-10" />
                 Career
               </Link>
 
               <Link to="/contact" className={navLinkStyles}>
-                <span className="absolute inset-0 bg-white/10 rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out -z-10" />
+                <span className="absolute inset-0 bg-[#44444E] rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out -z-10" />
                 Contact
               </Link>
             </nav>
