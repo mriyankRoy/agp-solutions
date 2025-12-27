@@ -29,7 +29,7 @@ export default function TrustedPartners() {
         </div>
 
         {/* 2. LOGO GRID CHASSIS (Synchronized Shadow and Border Radius) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           {partners.map((partner, index) => (
             <div
               key={index}
