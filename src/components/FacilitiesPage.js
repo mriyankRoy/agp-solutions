@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { facilities } from "../utils/facilities";
-import { ShieldCheck, ArrowRight, Activity, Crosshair, Box } from "lucide-react";
+import { ShieldCheck, Activity, Crosshair, Box, MapPin, Maximize, Zap, CheckCircle2, ChevronRight } from "lucide-react";
+import { Link } from "react-router";
 
 export default function FacilitiesPage() {
   const containerRef = useRef(null);
@@ -35,22 +36,22 @@ export default function FacilitiesPage() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         
-        {/* 🏗️ RESPONSIVE HEADER */}
+        {/* 🏗️ HEADER SECTION */}
         <div className="mb-10 md:mb-16">
-          <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-            <div className="h-6 md:h-8 w-1 bg-[#BF092F]" />
-            <Activity size={12} className="text-[#BF092F] animate-pulse" />
-            <h2 className="text-[10px] md:text-sm text-[#44444E] uppercase font-bold tracking-[0.3em] md:tracking-[0.4em]">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-8 w-1 bg-[#BF092F]" />
+            <Activity size={14} className="text-[#BF092F] animate-pulse" />
+            <h2 className="text-sm text-[#44444E] uppercase font-bold tracking-[0.4em]">
               Global Infrastructure
             </h2>
           </div>
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8">
-            <h3 className="text-2xl md:text-5xl font-semibold text-[#44444E] leading-tight uppercase tracking-tight">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <h3 className="text-3xl md:text-5xl font-semibold text-[#44444E] leading-tight uppercase tracking-tight">
               The <span className="text-[#BF092F]">Engine</span> <br className="hidden md:block" /> of Production
             </h3>
-            <p className="max-w-md text-gray-400 font-bold uppercase tracking-widest text-[8px] md:text-[10px] leading-relaxed pb-1 border-l-2 border-gray-100 pl-4 md:pl-6 lg:ml-8">
-              Snapshot // 2025.Q4 <br />
-              Deploying mission-critical enclosures from our ISO-certified global terminals.
+            <p className="max-w-md text-gray-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed pb-1 border-l-2 border-gray-100 pl-6 lg:ml-8">
+              Deployment Log // 2025.Q4 <br />
+              Precision manufacturing via ISO-certified high-capacity terminals.
             </p>
           </div>
         </div>
@@ -61,132 +62,168 @@ export default function FacilitiesPage() {
             
             <div className="flex flex-col md:flex-row gap-0 w-full shadow-2xl rounded-2xl md:rounded-[2rem] overflow-hidden border border-gray-100 bg-white h-full max-w-[1400px]">
               
-              {/* VIEWPORT: Full width on mobile, 1.6 flex on desktop */}
-              <div className="flex-[0.8] md:flex-[1.6] bg-[#1A1A1E] p-4 md:p-8 flex flex-col relative overflow-hidden">
-                <div className="absolute top-4 md:top-8 left-4 md:left-8 right-4 md:right-8 flex justify-between items-start z-30">
-                  <div className="flex flex-col gap-0.5">
+              {/* LEFT VIEWPORT */}
+              <div className="flex-[0.8] md:flex-[1.2] bg-[#1A1A1E] p-4 md:p-8 flex flex-col relative overflow-hidden">
+                <div className="absolute top-8 left-8 right-8 flex justify-between items-start z-30">
+                  <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
-                      <Activity size={10} className="text-[#BF092F] animate-pulse" />
-                      <span className="text-[8px] font-mono text-white/40 uppercase tracking-widest">Signal_Stable</span>
+                      <div className="w-2 h-2 rounded-full bg-[#BF092F] animate-ping" />
+                      <span className="text-[10px] font-mono text-white uppercase tracking-widest">Live_Terminal_Feed</span>
                     </div>
-                    <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-tighter">Terminal_0{activeIndex + 1}</span>
                   </div>
-                  <Crosshair size={20} className="text-white/10" />
+                  <Crosshair size={20} className="text-white/20" />
                 </div>
 
-                <div className="relative flex-grow bg-black rounded-xl md:rounded-2xl overflow-hidden border border-white/5">
+                <div className="relative flex-grow bg-black rounded-2xl overflow-hidden border border-white/5 group">
                   {facilities.map((c, i) => (
                     <div
                       key={i}
-                      className="absolute inset-0 bg-cover bg-center transition-all duration-[1s] ease-out"
+                      className="absolute inset-0 bg-cover bg-center transition-all duration-[1.2s] cubic-bezier(0.4, 0, 0.2, 1)"
                       style={{
                         opacity: i === activeIndex ? 1 : 0,
                         backgroundImage: `url(${c.facilityImg[0]})`,
-                        transform: i === activeIndex ? "scale(1)" : "scale(1.1)",
+                        transform: i === activeIndex ? "scale(1)" : "scale(1.15)",
                       }}
                     />
                   ))}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1E] via-transparent to-black/40" />
                 </div>
 
-                {/* Bottom Progress Rail */}
-                <div className="mt-4 md:mt-8 flex items-center gap-4 md:gap-6">
-                  <span className="text-[8px] md:text-[10px] font-mono text-white/20">0{activeIndex + 1}</span>
-                  <div className="flex-grow h-[2px] bg-white/5 relative">
+                <div className="mt-8 flex items-center gap-6">
+                  <span className="text-[10px] font-mono text-[#BF092F] font-bold">0{activeIndex + 1}</span>
+                  <div className="flex-grow h-[1px] bg-white/10 relative">
                     <div 
-                      className="absolute inset-y-0 left-0 bg-[#BF092F] transition-all duration-300 shadow-[0_0_10px_rgba(191,9,47,0.8)]"
+                      className="absolute inset-y-0 left-0 bg-[#BF092F] transition-all duration-300 shadow-[0_0_15px_#BF092F]"
                       style={{ width: `${progresses[activeIndex]}%` }}
                     />
                   </div>
-                  <span className="text-[8px] md:text-[10px] font-mono text-white/20">0{facilities.length}</span>
+                  <span className="text-[10px] font-mono text-white/20">0{facilities.length}</span>
                 </div>
               </div>
 
-              {/* INTERFACE: Full width on mobile, flex-1 on desktop */}
-              <div className="flex-1 flex flex-col bg-white overflow-hidden border-t md:border-t-0 md:border-l border-gray-100">
-                <div className="p-4 md:p-8 border-b border-gray-50 flex justify-between items-center bg-gray-50/30">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <Box size={14} className="text-[#BF092F]" />
-                    <span className="text-[8px] md:text-[10px] font-black text-[#44444E] uppercase tracking-[0.2em] md:tracking-[0.3em]">Network Directory</span>
+              {/* RIGHT INTERFACE */}
+              <div className="flex-1 flex flex-col bg-white overflow-hidden border-l border-gray-100">
+                <div className="p-6 md:p-8 border-b border-gray-50 flex justify-between items-center bg-gray-50/30">
+                  <div className="flex items-center gap-3">
+                    <Box size={16} className="text-[#BF092F]" />
+                    <span className="text-xs font-black text-[#44444E] uppercase tracking-[0.3em]">Facility Directory</span>
                   </div>
-                  <div className="px-2 md:px-3 py-1 bg-white border border-gray-100 rounded-full">
-                    <span className="text-[8px] font-bold text-gray-400 uppercase tracking-tighter">Node_Active</span>
+                  <div className="flex gap-1">
+                    {facilities.map((_, i) => (
+                      <div key={i} className={`h-1 w-4 rounded-full transition-all ${i === activeIndex ? "bg-[#BF092F]" : "bg-gray-200"}`} />
+                    ))}
                   </div>
                 </div>
                 
-                <div className="flex-grow flex flex-col justify-center px-2 md:px-4 py-2">
+                <div className="flex-grow flex flex-col px-4 md:px-8 py-4 overflow-y-auto custom-scrollbar">
                   {facilities.map((c, i) => {
                     const isActive = i === activeIndex;
                     const itemProgress = progresses[i] ?? 0;
                     return (
-                      <div
+                      <Link
                         key={i}
-                        className={`relative my-1 md:my-2 p-4 md:p-8 rounded-xl md:rounded-3xl transition-all duration-700 flex flex-col justify-center flex-1 ${
-                          isActive ? "bg-gray-50/80 shadow-sm border border-gray-100" : "opacity-20 grayscale"
+                        to={`/facilities/${c.id}`}
+                        className={`relative mb-6 p-6 md:p-8 pl-10 md:pl-12 rounded-3xl transition-all duration-500 flex flex-col border ${
+                          isActive 
+                            ? "bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] border-[#BF092F]/10 opacity-100" 
+                            : "opacity-30 grayscale blur-[1px] scale-[0.98]"
                         }`}
                       >
-                        {/* ⚡ VERTICAL PROGRESS BAR ⚡ */}
-                        <div className="absolute left-[8px] md:left-[12px] top-4 md:top-8 bottom-4 md:bottom-8 w-[2px] md:w-[3px]">
-                          <div className="absolute inset-0 bg-gray-100 rounded-full" />
+                        {/* 🚀 MODERN INDIVIDUAL VERTICAL PROGRESS 🚀 */}
+                        <div className="absolute left-4 md:left-6 top-8 bottom-8 w-[2px]">
+                          <div className="absolute inset-0 bg-gray-100/50 rounded-full" />
                           <div 
-                            className="absolute top-0 left-0 w-full rounded-full transition-all duration-300"
+                            className="absolute top-0 left-0 w-full rounded-full transition-all duration-150 ease-out"
                             style={{ 
                               height: `${itemProgress}%`,
                               background: `linear-gradient(to bottom, #BF092F, #ff4d6d)`,
+                              boxShadow: isActive ? '0 0 10px rgba(191,9,47,0.3)' : 'none'
                             }} 
                           >
                             {isActive && itemProgress > 0 && itemProgress < 100 && (
-                                <div className="absolute bottom-0 w-2 h-2 md:w-3 md:h-3 bg-white rounded-full -left-[3px] md:-left-[4.5px] border-2 border-[#BF092F] shadow-[0_0_8px_#BF092F] z-20" />
+                                <div className="absolute bottom-0 -left-[4px] w-[10px] h-[10px] bg-white border-[3px] border-[#BF092F] rounded-full shadow-[0_0_12px_#BF092F] z-20">
+                                    <div className="absolute inset-0 rounded-full bg-[#BF092F] animate-ping opacity-30" />
+                                </div>
                             )}
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between mb-1 md:mb-2 pl-4 md:pl-6">
-                          <span className={`text-[7px] md:text-[9px] font-black uppercase tracking-widest ${isActive ? "text-[#BF092F]" : "text-gray-900"}`}>
-                            Ref_0{i + 1}
+                        <div className="flex items-center justify-between mb-4">
+                          <span className={`text-[10px] font-mono font-bold px-3 py-1 rounded-full border ${isActive ? "text-[#BF092F] border-[#BF092F]/20 bg-[#BF092F]/5" : "text-gray-400 border-gray-100"}`}>
+                            {isActive ? "SYSTEM_ONLINE" : "STANDBY"}
                           </span>
+                          <span className="text-[10px] font-black text-gray-300">NODE_0{i + 1}</span>
                         </div>
                         
-                        <h4 className={`text-sm md:text-xl font-bold uppercase tracking-tight pl-4 md:pl-6 ${isActive ? "text-[#44444E]" : "text-gray-900"}`}>
+                        <h4 className="text-2xl font-bold text-[#44444E] uppercase tracking-tighter mb-2">
                           {c.title}
                         </h4>
 
-                        {isActive && (
-                          <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 pl-4 md:pl-6 mt-1 md:mt-0">
-                            <p className="hidden sm:block text-[11px] md:text-[12px] font-medium text-gray-500 line-clamp-2 md:line-clamp-none leading-relaxed mb-4 md:mb-8">
-                              {c.desc}
-                            </p>
-                            
-                            <div className="flex gap-2 md:gap-4 mb-4 md:mb-8">
-                              <div className="p-2 md:p-4 bg-white rounded-lg md:rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
-                                <span className="block text-[6px] md:text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Test</span>
-                                <span className="text-[8px] md:text-xs font-bold text-[#44444E]">FAT_CERT</span>
-                              </div>
-                              <div className="p-2 md:p-4 bg-white rounded-lg md:rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
-                                <span className="block text-[6px] md:text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Std</span>
-                                <span className="text-[8px] md:text-xs font-bold text-[#44444E]">ISO_9001</span>
-                              </div>
+                        <div className="flex items-center gap-2 text-gray-400 mb-6">
+                          <MapPin size={12} className="text-[#BF092F]" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest">{c.location}</span>
+                        </div>
+
+                        <div className={`grid grid-cols-2 gap-4 mb-6 transition-all duration-700 delay-100 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                          <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Maximize size={12} className="text-gray-400" />
+                              <span className="text-[8px] font-bold text-gray-400 uppercase">Total Area</span>
                             </div>
+                            <span className="text-xs font-black text-[#44444E]">{c.totalArea}</span>
+                          </div>
+                          <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Zap size={12} className="text-gray-400" />
+                              <span className="text-[8px] font-bold text-gray-400 uppercase">Capacity</span>
+                            </div>
+                            <span className="text-xs font-black text-[#44444E]">{c.productionCapacity}</span>
+                          </div>
+                        </div>
+
+                        {isActive && (
+                          <div className="space-y-2 mb-6 animate-in fade-in slide-in-from-left-4 duration-700">
+                            {c.highlights.slice(0, 3).map((text, idx) => (
+                              <div key={idx} className="flex items-center gap-3 text-gray-500">
+                                <CheckCircle2 size={12} className="text-[#BF092F] flex-shrink-0" />
+                                <span className="text-[10px] font-medium leading-tight">{text}</span>
+                              </div>
+                            ))}
                           </div>
                         )}
-                      </div>
+
+                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-50">
+                          <span className="text-[9px] font-black text-[#BF092F] uppercase tracking-[0.2em]">Explore Analytics</span>
+                          <ChevronRight size={16} className={`transition-transform duration-300 ${isActive ? "translate-x-0 text-[#BF092F]" : "-translate-x-4 opacity-0"}`} />
+                        </div>
+                      </Link>
                     );
                   })}
                 </div>
                 
-                <div className="p-4 md:p-8 bg-[#1A1A1E] text-white flex items-center justify-between">
+                <div className="p-6 bg-[#1A1A1E] text-white flex items-center justify-between">
                    <div className="flex items-center gap-2">
-                      <ShieldCheck size={12} className="text-[#BF092F]" />
-                      <span className="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-white/40">Verified</span>
+                      <ShieldCheck size={14} className="text-[#BF092F]" />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">Verified Infrastructure</span>
                    </div>
-                   <span className="text-[7px] md:text-[9px] font-mono text-white/20">AGP.SYS.04</span>
+                   <div className="flex items-center gap-4">
+                      <div className="h-1 w-8 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-[#BF092F] animate-progress" style={{ width: '65%' }} />
+                      </div>
+                      <span className="text-[10px] font-mono text-white/20 tracking-tighter">AGP.SYS.04</span>
+                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
+      `}</style>
     </section>
   );
 }

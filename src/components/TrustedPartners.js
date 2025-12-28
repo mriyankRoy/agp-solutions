@@ -5,9 +5,8 @@ import { Activity, ShieldCheck, Box, Zap } from "lucide-react";
 export default function TrustedPartners() {
   return (
     <section className="relative w-full py-24 bg-white overflow-hidden">
-      {/* --- ALIGNMENT CONTAINER (Matches Video/Product Container) --- */}
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* 🏗️ INDUSTRIAL HEADER: Exactly aligned with Product Registry header */}
+        {/* 🏗️ INDUSTRIAL HEADER */}
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-8 w-1 bg-[#BF092F]" />
@@ -28,52 +27,51 @@ export default function TrustedPartners() {
           </div>
         </div>
 
-        {/* 2. LOGO GRID CHASSIS (Synchronized Shadow and Border Radius) */}
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        {/* 2. LOGO GRID CHASSIS */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="group relative aspect-[3/2] bg-white border-r border-b border-gray-100 flex flex-col items-center justify-center p-8 transition-all duration-500 hover:bg-white hover:border-10 hover:border-gray-500 hover:rounded-2xl"
+              className="group relative aspect-[3/2] bg-white border-r border-b border-gray-100 flex flex-col items-center justify-center p-8 transition-all duration-500 hover:z-20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 cursor-crosshair overflow-hidden"
             >
+              {/* --- NEW MODERN HOVER LAYER (Dynamic Glow) --- */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#BF092F]/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
+              
               {/* Technical Cell Coordinates */}
-              <span className="absolute top-4 left-4 text-[8px] font-mono font-bold text-gray-300 group-hover:text-white/20 uppercase tracking-widest">
-                NODE_0{index + 1}
+              <span className="absolute top-4 left-4 text-[8px] font-mono font-bold text-gray-300 group-hover:text-[#44444E] transition-colors uppercase tracking-widest z-10">
+                PARTNER_0{index + 1}
               </span>
+              
               <Box
-                className="absolute top-4 right-4 text-gray-100 group-hover:text-[#BF092F]/40 transition-colors"
+                className="absolute top-4 right-4 text-gray-100 group-hover:text-[#BF092F] group-hover:rotate-12 transition-all duration-500 z-10"
                 size={14}
               />
 
-              {/* Logo - Synchronized Scaling and Grayscale */}
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                /* Added rounded-2xl here */
-                className="w-full max-h-12 md:max-h-16 object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-              />
+              {/* Logo - Synchronized Scaling */}
+              <div className="relative z-10 w-full flex justify-center items-center">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="w-full max-h-12 md:max-h-16 object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out"
+                />
+              </div>
 
               {/* Hover Metadata Display */}
-              <div className="absolute bottom-4 left-0 w-full px-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-300 text-center">
-                <span className="text-[9px] font-black text-[#BF092F] uppercase tracking-[0.3em]">
-                  Verified_Partner
-                </span>
+              <div className="absolute bottom-4 left-0 w-full px-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-500 text-center z-10">
+                <div className="flex items-center justify-center gap-1.5">
+                  <span className="h-px w-3 bg-[#BF092F]/30" />
+                  <span className="text-[9px] font-black text-[#BF092F] uppercase tracking-[0.3em]">
+                    Verified_Partner
+                  </span>
+                  <span className="h-px w-3 bg-[#BF092F]/30" />
+                </div>
               </div>
+
+              {/* Decorative Accent (Modern Line) */}
+              <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#BF092F] group-hover:w-full transition-all duration-500" />
             </div>
           ))}
-
-          {/* FILLER CELL - Technical Data / Supply Chain Status */}
-          {/* <div className="hidden lg:flex aspect-[3/2] bg-gray-50 border-b border-gray-100 items-center justify-center p-8">
-            <div className="text-center">
-              <Zap
-                size={20}
-                className="text-[#BF092F] mx-auto mb-3 opacity-30 animate-pulse"
-              />
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-tight">
-                Sync_Status: <br />
-                <span className="text-[#44444E]">Active_Supply</span>
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

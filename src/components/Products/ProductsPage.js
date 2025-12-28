@@ -116,9 +116,6 @@ const ProductPage = () => {
         <header className="shadow-xl relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl">
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
 
-          {/* <div className="absolute top-0 right-0 p-4 opacity-10 z-10">
-            <PackageSearch size={450} className="text-white" />
-          </div> */}
 
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse" />
