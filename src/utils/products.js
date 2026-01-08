@@ -733,7 +733,7 @@ export const products = [
         AGPPartNumber: "AGP-WIR-GRID-1G-WHI",
         Make: "MK Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767704778/jmxmgacj24kfedhyo45e.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767886334/K3631WHI_MK_Electric_01_vd1loo.webp",
         ],
         shortDescription:
           "1 Gang white moulded grid front plate for use with the MK Grid Plus modular system.",
@@ -775,7 +775,8 @@ export const products = [
         AGPPartNumber: "AGP-WIR-GRID-KEY-EMG",
         Make: "MK Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767705752/z5sxzlfdqihonqaiedwt.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767886597/K4899WHI_MK_Electric_01_dkdxux.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767886597/K4899WHI_MK_Electric_02_xklrsx.webp",
         ],
         shortDescription:
           "20A 2-Way Key Operated Grid Switch module, white, marked 'EMG LTG' for emergency lighting test circuits.",
@@ -1867,9 +1868,7 @@ export const products = [
         AGPPartNumber: "AGP-TEST-001",
         Make: "Flexbar",
         images: [
-          "https://www.flexbar.com/cdn/shop/products/17295_trans_1800x1800.jpg?v=1549385188",
-          "https://www.flexbar.com/cdn/shop/products/17295_trans_1800x1800.jpg?v=1549385188",
-          "https://www.flexbar.com/cdn/shop/products/17295_trans_1800x1800.jpg?v=1549385188",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767894202/17295_Flexbar_01_qfslef.webp",
         ],
         shortDescription:
           "Portable Quick-Check instrument for verifying metal hardness on-site.",
