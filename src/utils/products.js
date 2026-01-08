@@ -79,12 +79,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767102451/Gasmaster-Datasheet-12_2025_nzqots.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767913143/Datasheet_-_Gasmeter_GMS-4-xx-EUR-x_Crowcon_hlcxzw.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767102454/M070010-Gasmaster-III-Manual-Issue-2-UK_nmjcgs.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767913147/Manual_-_Gasmeter_GMS-4-xx-EUR-x_Crowcon_v6gwep.pdf",
           },
         ],
         details: {
@@ -127,12 +127,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767122046/Xgard-Datasheet-2025_Aug_aqwtwy.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767913567/Datasheet_-_Xgard_XG2-xx-xx-xx_Crowcon_ngocj4.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767123554/Manual-M071038-Xgard-Consolidated-Issue-1-June-18_tfnl8z.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767913567/Manual_-_Xgard_XG2-xx-xx-xx_Crowcon_jav1nn.pdf",
           },
         ],
         details: {
@@ -212,12 +212,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767218814/Datasheet_-_TH109-009t_kobbbs.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767912674/Datasheet_-_TH109-009_PECO_qhdidu.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767218814/Manual_-_TH109-009_jnggct.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767912679/Manual_-_TH109-009_PECO_ow9x8m.pdf",
           },
         ],
         details: {
@@ -272,8 +272,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767373873/Datasheet_-_0-605-53_Durite_l6nk8j.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767911942/Datasheet_-_0-605-53_Durite_uxfehd.pdf",
           },
         ],
         details: {
@@ -318,16 +318,16 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767375087/Datasheet_-_880175-0002_Littlefuse_peo0vz.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767911311/Datasheet_-_880175-0002_Littlefuse_smysfw.pdf",
           },
           {
             name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767375088/Manual_-_880175-0002_Littlefuse_z6cz4e.pdf",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767911321/Manual_-_880175-0002_Littlefuse_huzlt6.pdf",
           },
           {
-            name: "Installation Instruction",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767376084/Installation_Instruction_-_880175-0002_kcevua.pdf",
+            name: "Installation Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767911316/Installation_Instruction_-_880175-0002_Littlefuse_zr0frt.pdf",
           },
         ],
         details: {
@@ -362,12 +362,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767377220/Datasheet_-_C5N_Frico_vxjedg.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767911661/Datasheet_-_C5N_Frico_h4negs.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767377221/Manual_-_C5N_Frico_qb2yfh.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767911666/Manual_-_C5N_Frico_mcykbb.pdf",
           },
         ],
         details: {
@@ -406,8 +406,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767377919/Datasheet_-_EXN30T3H_Schneider_gfq7er.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767912286/Datasheet_-_EXN30T3H_Schneider_Electric_qznd9r.pdf",
+          },
+          {
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767912369/Manual_-_EXN30T3H_Schneider_Electric_a7fnb4.pdf",
           },
         ],
         details: {
@@ -448,8 +452,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643038/kwribxkcsbkmuuaq6mvx.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767908118/Datasheet_-_A9F55110_Schneider_Electric_mmlu4s.pdf",
           },
         ],
         details: {
@@ -477,44 +481,44 @@ export const products = [
       },
       {
         id: "SCHNEIDER-A9F53110",
-        name: "Acti9 iC60H 1P 10A B Miniature Circuit Breaker",
-        manufacturerPartNumber: "A9F553110",
+        name: "Acti9 iC60H MCB 1P 10A B 10kA",
+        manufacturerPartNumber: "A9F53110",
         AGPPartNumber: "AGP-ELEC-MCB-10A-B",
         Make: "Schneider Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878109/A9F553110_Schneider_Electric_01_e4un9m.webp",
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878109/A9F553110_Schneider_Electric_02_xkgjoq.webp",
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878111/A9F553110_Schneider_Electric_03_tkpnni.webp",
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878112/A9F553110_Schneider_Electric_04_rwhsk6.webp",
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878112/A9F553110_Schneider_Electric_05_uq6mtx.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767910203/A9F53110_Schneider_Electric_01_lnhcs3.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767910205/A9F53110_Schneider_Electric_02_bpb53l.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767910209/A9F53110_Schneider_Electric_03_mpetaw.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767910215/A9F53110_Schneider_Electric_04_zol5cq.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767910218/A9F53110_Schneider_Electric_05_flopsj.webp",
         ],
         shortDescription:
-          "10A Single Pole 10kA B-Curve MCB for circuit protection against short-circuit and overload currents.",
+          "10A Single Pole B-Curve Miniature Circuit Breaker (MCB) for standard residential and commercial protection.",
         description:
-          "The Acti9 iC60H is a multi-standard miniature circuit breaker with a B-curve tripping characteristic. It provides thermal-magnetic protection and is suitable for both AC and DC networks. Features include VisiTrip for fault indication and VisiSafe for guaranteed contact opening during maintenance. Designed for DIN rail mounting with double tunnel terminals for secure cabling.",
+          "The Acti9 iC60H (A9F53110) is a high-performance miniature circuit breaker providing essential protection against short-circuits and overload currents. This single-pole device features a B-curve tripping characteristic, making it ideal for residential and light commercial applications where inrush currents are low, such as lighting and domestic socket circuits. Equipped with VisiSafe for guaranteed contact opening and VisiTrip for rapid fault identification, it ensures high reliability and safety for both users and equipment.",
         uses: [
-          "Residential and commercial circuit protection",
-          "Protection of lighting and power circuits with low inrush currents",
-          "Control and isolation of electrical distribution systems",
-          "Suitable for AC and DC application environments",
+          "Protection of domestic and commercial lighting circuits",
+          "Standard power socket protection (low inrush loads)",
+          "Protection of persons against indirect contact in TN and IT systems",
+          "Suitable for environments requiring 10kA breaking capacity",
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643397/um2osdm5raby4sg0kajn.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767908125/Datasheet_-_A9F53110_Schneider_Electric_ynpdu7.pdf",
           },
         ],
         details: {
-          CurrentRating: "10A",
-          VoltageRating: "230V AC / 72V DC",
+          CurrentRating: "10A (at 30 °C)",
+          VoltageRating: "230/240V AC 50/60 Hz",
           ShortCircuitRating:
-            "10kA Icn (BS EN 60898-1) / 15kA Icu (BS EN 60947-2)",
-          TrippingCurve: "Type B (3 to 5 x In)",
-          NumberOfPoles: "1P (Single Pole)",
+            "10,000A Icn (EN/IEC 60898-1) / 15kA Icu (EN/IEC 60947-2)",
+          TrippingCurve: "Type B (4 x In +/- 20%)",
+          NumberOfPoles: "1P",
+          NumberofProtectedPoles: "1",
           NetworkType: "AC / DC",
           MountingMode: "Clip-on DIN Rail (35mm)",
-          ConnectionTerminals:
-            "Single terminal (Top or Bottom) 1..25 mm² rigid / 1..16 mm² flexible",
+          ConnectionTerminals: "Single terminal (Top or Bottom) 1…25 mm² rigid",
           TighteningTorque: "2 N.m",
           MechanicalDurability: "20,000 cycles",
           ElectricalDurability: "10,000 cycles",
@@ -551,8 +555,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643710/yhr47fary6ygxdttk2sg.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767908120/Datasheet_-_A9F53106_Schneider_Electric_zts7jn.pdf",
           },
         ],
         details: {
@@ -599,8 +603,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643955/orhfswh7ldhmz8wwalj7.png",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767907302/Datasheet_-_A9F53363_Schneider_Electric_sebsc3.pdf",
           },
         ],
         details: {
@@ -647,8 +651,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767644171/c3zbihpvpohfx18lppq3.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767907299/Datasheet_-_A9F53306_Schneider_Electric_r7fa6c.pdf",
           },
         ],
         details: {
@@ -695,12 +699,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767644418/x65vmzen1zxmm1mil8vd.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767907305/Datasheet_-_A9D31820_Schneider_Electric_w8ow42.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767644417/ulza8hrfuskss70opgty.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767906534/Manual_-_A9D12810_Schneider_Electric_m7zmye.pdf",
           },
         ],
         details: {
@@ -723,6 +727,58 @@ export const products = [
           Dimensions: "110mm (H) x 18mm (W) x 77.5mm (D)",
           Weight: "0.205 kg",
           Standards: "IEC 61009-2-2, IEC 61009-1, BS EN 61009-1",
+          Warranty: "18 Months",
+        },
+      },
+      {
+        id: "SCHNEIDER-A9D12810",
+        name: "Acti9 iC60H RCBO 1P+Ns 10A C 100mA 10kA Type A",
+        manufacturerPartNumber: "A9D12810",
+        AGPPartNumber: "AGP-ELEC-RCBO-10A-C-100",
+        Make: "Schneider Electric",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767879023/A9D31820_Schneider_Electric_01_ajex1k.webp",
+        ],
+        shortDescription:
+          "10A 1P+N C-Curve 100mA Type A RCBO providing combined protection against earth leakage, short-circuits, and overloads.",
+        description:
+          "The Acti9 iC60H (A9D12810) is a modular residual current breaker with overcurrent protection (RCBO). Rated at 10A with a C-tripping curve and a higher 100mA earth-leakage sensitivity, it is specifically designed for protection against indirect contact and to mitigate fire risks caused by leakage currents. It features VisiTrip for instant fault identification and VisiSafe for guaranteed contact opening during maintenance, ensuring high continuity of service and safety in demanding electrical environments.",
+        uses: [
+          "Protection of persons against electric shock (indirect contact)",
+          "Protection of equipment against electrical fires set by leakage currents",
+          "Combined protection of circuits against short-circuits and overloads",
+          "Ideal for commercial and industrial distribution in TN earthing systems",
+        ],
+        downloads: [
+          {
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767906533/Datasheet_-_A9D12810_Schneider_Electric_fa8fok.pdf",
+          },
+          {
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767906534/Manual_-_A9D12810_Schneider_Electric_m7zmye.pdf",
+          },
+        ],
+        details: {
+          CurrentRating: "10A (at 50 °C)",
+          VoltageRating: "230/240V AC 50/60 Hz",
+          ShortCircuitRating: "10,000A Icn (EN/IEC 61009-2-2)",
+          EarthLeakageSensitivity: "100 mA",
+          EarthLeakageClass: "Type A (Instantaneous)",
+          TrippingCurve: "Type C",
+          NumberOfPoles: "1P + Ns",
+          NeutralPosition: "Left",
+          MountingMode: "Clip-on DIN Rail (35mm)",
+          ConnectionTerminals:
+            "Screw clamp (Top: 1-25mm² rigid; Bottom: 1-16mm² rigid)",
+          TighteningTorque: "Top: 3.5 N.m / Bottom: 2 N.m",
+          MechanicalDurability: "20,000 cycles",
+          ElectricalDurability: "5,000 cycles",
+          IPRating: "IP20 (Terminals) / IP40 (Enclosure)",
+          OperatingTemperature: "-15°C to 60°C",
+          Dimensions: "110mm (H) x 18mm (W) x 77.5mm (D)",
+          Weight: "0.205 kg",
+          Standards: "EN/IEC 61009-2-2, EN/IEC 61009-1, BS EN 61009-1",
           Warranty: "18 Months",
         },
       },
@@ -932,20 +988,20 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767379486/Datasheet_-_RIS-STOP-2SF-R-AF_Risbridger_qy5hhw.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767900340/Datasheet_-_RIS-STOP-2SF-R-AF_Risbridger_c3knqt.pdf",
           },
           {
             name: "Installation Instruction",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767379498/Installation_Instruction_-_RIS-STOP-2SF-R-AF_Risbridger_kok3rl.pdf",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767900341/Installation_Instruction_-_RIS-STOP-2SF-R-AF_Risbridger_roh3lb.pdf",
           },
           {
             name: "Maintenance Instruction",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767379499/Maintenance_Instruction_-_RIS-STOP-2SF-R-AF_Risbridger_spjeys.pdf",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767900342/Maintenance_Instruction_-_RIS-STOP-2SF-R-AF_Risbridger_fsytki.pdf",
           },
           {
             name: "Adjustable Float Kit Installation",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767379486/Adjustable_Float_Kit_Instruction_-_RIS-STOP-2SF-R-AF_Risbridger_tqdom3.pdf",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767900338/Adjustable_Float_Kit_Instruction_-_RIS-STOP-2SF-R-AF_Risbridger_qfhke3.pdf",
           },
         ],
         details: {
@@ -986,8 +1042,8 @@ export const products = [
         // UPDATED: Replaced pdfLink with downloads array
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://elmactechnologies.com/wp-content/uploads/2021/07/ERB-Series-Datasheet-1.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767899820/Datasheet_-_ERB_Series_Elmac_it4ntw.pdf",
           },
         ],
         details: {
@@ -1020,8 +1076,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767467902/Datasheet_-_109037XX_Landon_Kingsway_xthmnn.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767899187/Datasheet_-_109037XX_Landon_Kingsway_fnmlyi.pdf",
+          },
+          {
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767899187/Datasheet_-_109037XX_Landon_Kingsway_fnmlyi.pdf",
           },
         ],
         details: {
@@ -1151,12 +1211,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767436583/Datasheet_-_197VA-50-AL_Ridart_miy6ef.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898698/Datasheet_-_197VA-50-AL_Ridart_mhy9op.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767436583/Manual_-_197VA-50-AL_Ridart_d5tybe.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898699/Manual_-_197VA-50-AL_Ridart_z3pafm.pdf",
           },
         ],
         details: {
@@ -1230,12 +1290,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767436583/Datasheet_-_197VA-50-AL_Ridart_miy6ef.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898698/Datasheet_-_197VA-50-AL_Ridart_mhy9op.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767436583/Manual_-_197VA-50-AL_Ridart_d5tybe.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898699/Manual_-_197VA-50-AL_Ridart_z3pafm.pdf",
           },
         ],
         details: {
@@ -1300,12 +1360,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767436583/Datasheet_-_197VA-50-AL_Ridart_miy6ef.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898698/Datasheet_-_197VA-50-AL_Ridart_mhy9op.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767436583/Manual_-_197VA-50-AL_Ridart_d5tybe.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898699/Manual_-_197VA-50-AL_Ridart_z3pafm.pdf",
           },
         ],
         details: {
@@ -1372,12 +1432,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767431076/Datasheet_-_SRFA-S2-R_Belimo_vh7khh.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767897854/Datasheet_-_SRFA-S2-R_Belimo_Automation_cbvvne.pdf",
           },
           {
-            name: "Manual",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767431081/Manual_-_SRFA-S2-R_Belimo_i5scsn.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767898127/Manual_-_SRFA-S2-R_Belimo_Automation_jrin3k.pdf",
           },
         ],
         details: {
@@ -1421,8 +1481,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767466073/Datasheet_-_LV8635_Leengate_oqqmj8.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767897558/Datasheet_-_LV8635_Leengate_Valves_idrtw0.pdf",
           },
         ],
         details: {
@@ -1480,7 +1540,7 @@ export const products = [
       {
         id: "LEENGATE-LV5556",
         name: "Ductile Iron Ball Valve - Flanged PN16 - Direct Mount",
-        manufacturerPartNumber: "LV 5556",
+        manufacturerPartNumber: "LV5556",
         AGPPartNumber: "AGP-MECH-010",
         Make: "Leengate",
         images: [
@@ -1498,8 +1558,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767466927/LV5556_Leengate_pfmqs0.png",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767897320/Datasheet_-_LV5556_Leengate_Valves_vqrrxs.pdf",
           },
         ],
         details: {
@@ -1596,40 +1656,84 @@ export const products = [
       "Heavy-duty hardware and safety components for constructing robust, secure, and certified generator enclosures and modular buildings.",
     items: [
       {
-        id: "ATEX-DAMPER",
-        name: "ATEX Zone 2 Gas Retention Damper",
-        manufacturerPartNumber: "Custom-ATEX-GRD",
-        AGPPartNumber: "AGP-ENCL-001",
-        Make: "Engineered Air Treatment",
+        id: "EAT-GAS-RETAIN-001",
+        name: "Gas Retention Damper (Low Leakage)",
+        manufacturerPartNumber: "Standard Gas Retention Series",
+        AGPPartNumber: "AGP-DAMP-001",
+        Make: "Engineered Air Treatment Ltd",
         images: [
-          "https://www.engineeredairtreatment.co.uk/wp-content/uploads/2020/10/damperopenclosed_1.gif",
-          "https://www.engineeredairtreatment.co.uk/wp-content/uploads/2020/10/damperopenclosed_1.gif",
-          "https://www.engineeredairtreatment.co.uk/wp-content/uploads/2020/10/damperopenclosed_1.gif",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767895270/Gas-retention-damper_Engineered_Air_Treatment_Ltd_01_mfsqwr.webp",
         ],
         shortDescription:
-          "Certified ATEX Zone 2 dampers for gas retention and hazardous area ventilation.",
+          "Low-leakage gas retention dampers designed for integrity testing and fire suppression systems.",
         description:
-          "These heavy-duty dampers are custom-engineered for ATEX Zone 2 hazardous environments. They provide precise airflow control for generator enclosures and feature gas retention capabilities to seal off the enclosure in case of an emergency shutdown or gas leak, preventing the spread of hazardous fumes.",
+          "Engineered Air Treatment Gas Retention Dampers (Low Leakage Dampers) are designed for environments where air or gas leakage is a critical concern[cite: 15, 16]. They are frequently used in fire suppression systems to maintain gas concentration or in cold air environments to prevent thermal loss[cite: 16]. The robust 2mm frame makes them suitable for both heavy-duty industrial assemblies and lighter HVAC installations[cite: 18].",
         uses: [
-          "Ventilation control in Oil & Gas generator enclosures",
-          "Emergency air shut-off for hazardous areas",
-          "Gas retention during fire suppression release",
-          "Offshore platform HVAC protection",
+          "Fire suppression system gas retention [cite: 16]",
+          "Cold air environment containment [cite: 16]",
+          "Integrity testing for sealed containers [cite: 26, 73]",
+          "Heavy-duty HVAC installations [cite: 18]",
         ],
-        // UPDATED: Replaced pdfLink with downloads array
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://engineeredairtreatment.co.uk/wp-content/uploads/2021/02/Gas-Retention-Dampers-v1.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767896143/Dataheet_-_Gas_Retention_Dampers_Engineered_Air_Treatment_Ltd_cayqxl.pdf",
           },
         ],
         details: {
-          ATEXZone: "Zone 2 (Gas)",
-          Function: "Gas Retention / Shut-off",
-          BladeOperation: "Opposed Blade (Low Leakage)",
-          Material: "Galvanized or Stainless Steel",
-          Actuation: "Pneumatic or Electric Actuator (Sold Separately)",
-          Certifications: "Ex II 3G",
+          Material: "Pre-Galvanised M.S. to BS EN 10346 2015 DX51D [cite: 32]",
+          BladeType:
+            "0.8mm 'Z' Type Double Skinned, Parallel Opening [cite: 32]",
+          LeakageClass:
+            "Class 2 Closed Blade / Class C Casing (BS EN 1751:1999) [cite: 25]",
+          TemperatureRange: "-30°C to +80°C [cite: 40]",
+          Actuator:
+            "Belimo SFA/SFA-S2 20Nm Spring Return (Standard) [cite: 91, 94]",
+          Maintenance: "Accessible mechanism for easy maintenance [cite: 13]",
+        },
+      },
+      {
+        id: "EAT-MOT-DAMP-002",
+        name: "Motorised Damper",
+        manufacturerPartNumber: "Standard Motorised Series",
+        AGPPartNumber: "AGP-DAMP-002",
+        Make: "Engineered Air Treatment Ltd",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767905667/Motorised_Dampers_Engineered_Air_Treatment_Ltd_01_z2gxyj.webp",
+        ],
+        shortDescription:
+          "High-performance motorized dampers designed to control airflows and protect against environmental ingress.",
+        description:
+          "Engineered Air Treatment Motorised Dampers are precision-built to control airflows through buildings and generator housings. They provide critical protection for containers against the ingress of water and dust while assisting with thermal insulation. Featuring robust 2mm frames, these dampers are versatile enough for heavy-duty industrial assemblies as well as standard HVAC installations.",
+        uses: [
+          "Building and generator housing airflow control",
+          "Water and dust ingress protection for containers",
+          "Thermal protection in cold environments",
+          "Industrial and commercial HVAC air distribution",
+        ],
+        downloads: [
+          {
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767905452/Datasheet_-_Motorised_Dampers_Engineered_Air_Treatment_Ltd_ngwacu.pdf",
+          },
+        ],
+        details: {
+          Casing:
+            "2mm Pre-Galvanised M.S. (BS EN 10346), fully welded with Silver QD8 finish",
+          Blades:
+            "1.2mm Pre-Galvanised M.S. 'Z' Type Double Skinned, Opposed Action (Standard)",
+          Seals: "Silicon Blade Seals and Side Shims for enhanced closure",
+          Actuator:
+            "Belimo SFA/SFA-S2 20Nm Spring Return (24-240V AC/DC, IP54)",
+          OperatingRange: "-30°C to +80°C (Standard)",
+          SpecialOptions:
+            "Low temperature designs for -60°C with heated blankets",
+          MaterialsOptional: "Stainless Steel (304/316), Zintec, Aluminium",
+          Hardware:
+            "Stainless Steel spindles, Phosphor Bronze bushes, BZP hardware",
+          Warranty: "2 Years on damper / 5 Years on Belimo actuators",
+          QualityStandards:
+            "ISO 9001:2015 certified with full material traceability",
         },
       },
       {
