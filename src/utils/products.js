@@ -431,7 +431,10 @@ export const products = [
         AGPPartNumber: "AGP-ELEC-MCB-10A-D",
         Make: "Schneider Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643039/r7svqgrlcw4jusciaoyb.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767877458/A9F55110_Schneider_Electric_01_ttiwkq.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767877456/A9F55110_Schneider_Electric_02_ilktzt.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767877456/A9F55110_Schneider_Electric_03_j88rm2.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767877457/A9F55110_Schneider_Electric_04_sxjf2h.webp",
         ],
         shortDescription:
           "High-performance 10A 1P 10kA Type D MCB for industrial and commercial circuit protection.",
@@ -479,7 +482,11 @@ export const products = [
         AGPPartNumber: "AGP-ELEC-MCB-10A-B",
         Make: "Schneider Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643396/lm4mefjlb681vs5x6x0u.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878109/A9F553110_Schneider_Electric_01_e4un9m.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878109/A9F553110_Schneider_Electric_02_xkgjoq.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878111/A9F553110_Schneider_Electric_03_tkpnni.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878112/A9F553110_Schneider_Electric_04_rwhsk6.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878112/A9F553110_Schneider_Electric_05_uq6mtx.webp",
         ],
         shortDescription:
           "10A Single Pole 10kA B-Curve MCB for circuit protection against short-circuit and overload currents.",
@@ -526,7 +533,11 @@ export const products = [
         AGPPartNumber: "AGP-ELEC-MCB-06A-B",
         Make: "Schneider Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767643710/uounngsz2cq9syfrwhmq.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878716/A9F53106_Schneider_Electric_01_t6lpqj.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878717/A9F53106_Schneider_Electric_02_fo4lks.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878718/A9F53106_Schneider_Electric_03_jtnatz.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878719/A9F53106_Schneider_Electric_04_ictub7.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767878719/A9F53106_Schneider_Electric_05_h3roaq.webp",
         ],
         shortDescription:
           "6A Single Pole 10kA B-Curve MCB for circuit protection against overloads and short circuits.",
@@ -670,7 +681,7 @@ export const products = [
         AGPPartNumber: "AGP-ELEC-RCBO-20A-B",
         Make: "Schneider Electric",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767644417/ity0vp93sgj7dtt7qh3f.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767879023/A9D31820_Schneider_Electric_01_ajex1k.webp",
         ],
         shortDescription:
           "20A 1P+N B-Curve 30mA Type A RCBO for combined earth leakage, short-circuit, and overload protection.",
@@ -1698,8 +1709,8 @@ export const products = [
         AGPPartNumber: "AGP-ENCL-004",
         Make: "Pommier",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767551948/qijbf4p5nksulu59od5z.png",
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767551947/sxdwo1rh7sxkycpxnzeh.jpg",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767874556/082005740_Pommier_01_be08u2.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767874557/082005740_Pommier_02_w2nb69.webp",
         ],
         shortDescription:
           "High-quality Grade 304 stainless steel bracket designed for secure bolt-on mounting in commercial vehicle opening systems.",
@@ -1735,7 +1746,7 @@ export const products = [
         AGPPartNumber: "AGP-ENCL-005",
         Make: "Pommier",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553068/a0lpyclzdlilv4hpmnhh.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767874555/082005792_Pommier_01_dv0nqg.webp",
         ],
         shortDescription:
           "Grade 304 stainless steel HM10 lock nut for commercial vehicle opening systems.",
@@ -1769,7 +1780,7 @@ export const products = [
         AGPPartNumber: "AGP-ENCL-006",
         Make: "Pommier",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553293/ftehenbplnnoosgp1cki.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767874555/082005780_Pommier_01_iyd3os.webp",
         ],
         shortDescription:
           "Grade 304 stainless steel hexagonal head hinge pin (HM10-125) for commercial vehicle door assemblies.",
@@ -1803,8 +1814,8 @@ export const products = [
         AGPPartNumber: "AGP-ENCL-007",
         Make: "Bloxwich",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553831/giq92uxefyg9o044o5dp.png",
-          "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553831/aowimk6ampdu92nt4hwc.png",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767876698/BCP20103E_Bloxwich_01_osc8dz.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767874557/BCP20103E_Bloxwich_02_dzw2sz.webp",
         ],
         shortDescription:
           "EPDM rubber gasket designed to prevent abrasion and galvanic corrosion on heavy-duty walk-in strikes.",
