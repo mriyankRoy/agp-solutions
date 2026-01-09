@@ -234,6 +234,637 @@ export const products = [
           Depth: "9.65 cm",
         },
       },
+      {
+        id: "DAYTON-804T16",
+        name: "Dayton Electric Wall & Ceiling Unit Heater (5kW)",
+        manufacturerPartNumber: "804T16",
+        AGPPartNumber: "AGP-HEAT-UNT-5KW",
+        Make: "Dayton",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/804T16_Dayton_Heater_01.webp",
+        ],
+        shortDescription:
+          "5kW 208V AC Fan-forced electric heater for wall or ceiling mounting in commercial and industrial spaces.",
+        description:
+          "The Dayton 804T16 is a high-performance, fan-forced electric unit heater designed for versatile installation in warehouses, workshops, and garages. Capable of being mounted on either a wall or ceiling, it provides a powerful 17,000 BtuH heating capacity. The unit features a robust steel housing with a beige powder-coated finish and includes adjustable louvers to direct airflow precisely where needed. Safety is prioritized with an automatic reset linear thermal protector and a totally enclosed heavy-duty motor.",
+        uses: [
+          "Commercial warehouse and workshop heating",
+          "Industrial garage and storage area climate control",
+          "Supplemental heating for large open buildings",
+          "Temporary heating for buildings under construction or repair",
+        ],
+        downloads: [
+          {
+            name: "Information & Spec Sheet",
+            url: "https://www.grainger.com/ecms/pdf/Dayton-Electric-Unit-Heaters-Datasheet.pdf",
+          },
+          {
+            name: "Installation & Maintenance Instructions",
+            url: "https://cloudfront.zoro.com/enhanced_pdf/ZAMnffSdw-wBXTOkWKFnPkUin8JCWQmp.PDF",
+          },
+        ],
+        details: {
+          WattageOutput: "5 kW",
+          HeatingCapacity: "17,000 BtuH",
+          Voltage: "208V AC",
+          Phase: "1 or 3 (Field Convertible)",
+          Amperage: "24 A",
+          AirFlow: "350 cfm",
+          AirTempRise: "45°F",
+          HorizontalAirThrow: "12 ft",
+          VerticalFloorCoverage: "18 ft",
+          MountingLocation: "Wall or Ceiling",
+          HousingMaterial: "Steel (Beige Powder Coated)",
+          ControlType: "Mechanical Selector Dial",
+          Frequency: "60 Hz",
+          Dimensions: '16" (H) x 14" (W) x 8.5" (D)',
+          Weight: "20.8 lbs",
+          Standards: "cULus Listed",
+          Warranty: "1 Year Parts / 5 Year Elements",
+        },
+      },
+      {
+        id: "PRECISION-ST168",
+        name: "Precision ST168 Lumatrol Swivel Mount Photocontrol (208V-277V)",
+        manufacturerPartNumber: "ST168",
+        AGPPartNumber: "AGP-ELEC-PHOTO-SWIV-208",
+        Make: "Precision Multiple Controls",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/ST168_Precision_Sensor_01.webp",
+        ],
+        shortDescription:
+          "208V-277V Swivel-mount photocell with 1800W Tungsten / 1100VA Ballast rating and 5-year warranty.",
+        description:
+          "The Precision ST168 (Lumatrol ST Series) is a commercial-grade, thermal-type photocontrol designed for high-voltage outdoor lighting systems. It features a weatherproof Lexan® housing and a broad-surface cadmium sulfide sensing element. The 180-degree swivel arm allows for precise directional aiming to avoid interference from other light sources. Equipped with a built-in 15-second time delay, it prevents accidental turn-off from lightning or vehicle headlights.",
+        uses: [
+          "Automated dusk-to-dawn control of LED, HID, and Induction lighting",
+          "Commercial parking lot and security area lighting",
+          "Outdoor wall packs and floodlight automation",
+          "Directional light sensing for complex building exteriors",
+        ],
+        downloads: [
+          {
+            name: "Technical Spec Sheet",
+            url: "https://www.1000bulbs.com/pdf/precision-st168-specs.pdf",
+          },
+          {
+            name: "Precision Product Catalog",
+            url: "https://litestoreusa.com/wp-content/uploads/2019/06/Precision-Multiple-Controls-Catalog.pdf",
+          },
+        ],
+        details: {
+          VoltageRating: "208V - 277V AC, 50/60 Hz",
+          TungstenRating: "1800 Watts",
+          BallastRating: "1100 VA",
+          Mounting: '1/2"-14 TPI Threaded Swivel Arm',
+          HousingMaterial: "Weatherproof Lexan® (Gray)",
+          SwitchType: "SPST-NC (Normally Closed at night)",
+          TurnOnLightLevel: "1 to 3 Foot-candles",
+          TurnOnOffRatio: "1:3",
+          TimeDelay: "Minimum 15 Seconds",
+          OperatingTemperature: "-40°C to 70°C (-40°F to 158°F)",
+          PowerConsumption: "Under 1 Watt (Average)",
+          WireLeads: "6-inch color-coded 18 AWG",
+          Dimensions: '2" (H) x 1.5" (W) x 1" (D)',
+          Standards: "UL Listed (US & Canada), CSA Certified",
+          Warranty: "5 Year Limited",
+        },
+      },
+      {
+        id: "HYTEK-OLE-T5020-KIT",
+        name: "O.L.E T5020 Tank Gauge 0.25% Kit (1m - 3m)",
+        manufacturerPartNumber: "T5020-KIT-1-3",
+        AGPPartNumber: "AGP-FUEL-GAUGE-T5020",
+        Make: "O.L.E (Offshore & Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/T5020_Tank_Gauge_Main.webp",
+        ],
+        shortDescription:
+          "High-accuracy (0.25%) electronic tank contents gauge with 4-20mA output and bundle alarm capabilities.",
+        description:
+          "The O.L.E T5020 is a premium electronic tank contents gauge designed for high-precision monitoring of fuel and oil tanks. This kit includes a hydrostatic pressure transmitter with 0.25% accuracy, suitable for tank depths between 1m and 3m. The digital display provides clear readings in Litres, Percent, or Millimetres. It features a built-in sounder, visual alarms, and a 4-20mA output for remote monitoring or BMS integration. The unit is housed in a weatherproof IP65 enclosure, making it suitable for both indoor and outdoor installations.",
+        uses: [
+          "Commercial and industrial fuel storage monitoring",
+          "Diesel and gas oil tank level measurement",
+          "AdBlue® and lubricant tank management",
+          "BMS integrated liquid level reporting",
+        ],
+        downloads: [
+          {
+            name: "Product Data Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2021/04/T5020-Data-Sheet.pdf",
+          },
+          {
+            name: "Installation Manual",
+            url: "https://hytekgb.com/wp-content/uploads/2021/04/T5020-Manual.pdf",
+          },
+        ],
+        details: {
+          Accuracy: "±0.25% of span",
+          TankDepthRange: "1.0m to 3.0m (Adjustable)",
+          SupplyVoltage: "100-240V AC / 24V DC Options",
+          DisplayType: "Backlit LCD (Ltrs, %, mm)",
+          OutputSignal: "4-20mA / Modbus RTU",
+          Alarms: "Low, High, and Bund Alarms (Visual & Audible)",
+          EnclosureRating: "IP65 Weatherproof",
+          ProbeMaterial: "Stainless Steel 316 / PVC Cable",
+          Connection: '1" BSP Male thread',
+          OperatingTemperature: "-10°C to +50°C",
+          Weight: "1.45 kg",
+          Warranty: "12 Months",
+        },
+      },
+      {
+        id: "HYTEK-OLE-T4020-01",
+        name: "Hytek O.L.E Programming Kit for T5020/Z5020 Gauges",
+        manufacturerPartNumber: "T4020-01",
+        AGPPartNumber: "AGP-FUEL-PROG-T4020",
+        Make: "O.L.E (Offshore & Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/T4020-01_Programming_Kit_Main.webp",
+        ],
+        shortDescription:
+          "USB programming and calibration kit for O.L.E T5020 and Z5020 electronic tank gauges.",
+        description:
+          "The Hytek T4020-01 is an essential tool for engineers installing or maintaining O.L.E T5020 and Z5020 series tank gauges. Since these gauges cannot be configured via the front panel, this kit provides the hardware and software required to set tank dimensions, calibrate capacity, and define alarm thresholds. The kit includes a high-quality USB-to-RS485 converter cable and access to the O.L.E configuration software, allowing for precise site-specific adjustments and field updates.",
+        uses: [
+          "On-site calibration of fuel tank capacities",
+          "Configuration of high, low, and bund alarm set-points",
+          "Inputting custom tank dimensions for non-standard shapes",
+          "Updating gauge settings for different liquid types (Diesel, AdBlue, Oil)",
+        ],
+        downloads: [
+          {
+            name: "Technical Instruction Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/t4020_01_s956_1_tech.pdf",
+          },
+          {
+            name: "Configuration software (T4020 Configurator)",
+            url: "https://hytekgb.com/technical-support/downloads/",
+          },
+        ],
+        details: {
+          CableType: "USB to RS485 / UART",
+          InterfaceIC: "FT232RQ UART",
+          Connection: "USB Type-A to 4-Way Terminal Connector",
+          Indicators: "2 x LED (Traffic Flow)",
+          DataTransferRate: "3 Mbaud",
+          OperatingSystem: "Windows Compatible (Auto-installing drivers)",
+          OperatingTemperature: "-40°C to +85°C",
+          Compliance: "RoHS, CE, FCC Certified",
+          ProtocolSupport: "Standard & Modbus RTU",
+          Compatibility: "O.L.E T5020, O.L.E Z5020 Series",
+          PowerSource: "USB Powered (No external PSU required)",
+          Warranty: "1 Year",
+        },
+      },
+      {
+        id: "FEL-VALVES-20-270-SERIES",
+        name: "FEL Valves Multi-Level Float Switch Assembly",
+        manufacturerPartNumber: "20-270",
+        AGPPartNumber: "AGP-FUEL-FLT-SW-01",
+        Make: "FEL Valves",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_Float_Switch_Assembly.webp",
+        ],
+        shortDescription:
+          "Customisable multi-point float switch assembly for high/low level fuel alarms and pump control.",
+        description:
+          "The FEL Valves 20-270 series provides robust, custom-manufactured liquid level sensing for commercial and industrial fuel tanks. Available with up to four independent float switch points, these assemblies are designed for high/low level alarms and indirect pump start/stop functions. Each unit is bespoke-built to specific depths using a heavy-duty stainless steel stem and a weatherproof IP67 terminal housing to ensure longevity in harsh environments.",
+        uses: [
+          "High and Low fuel level alarm indication",
+          "Indirect pump start and pump stop control",
+          "Bund leak detection (Ref 20-274)",
+          "Fuel reorder point notification",
+          "Overfill prevention system integration",
+        ],
+        downloads: [
+          {
+            name: "Information & Spec Sheet",
+            url: "https://www.felvalves.com/wp-content/uploads/2021/04/Float-Switches.pdf",
+          },
+        ],
+        details: {
+          SizeRange: "Bespoke depths up to 3000mm",
+          Configurations: "Single, Twin, or Four Float Switch points",
+          EndConnection: '1" BSPP or NPT Male Brass Process Connection',
+          BodyMaterial: "IP67 Cast Aluminium Terminal Housing",
+          StemMaterial: "316 Stainless Steel",
+          FloatMaterial: "NBR (Nitrile Butadiene Rubber)",
+          SwitchRating: "1.0 Amp 230V AC",
+          Accuracy: "+/- 5mm variance on switch depth",
+          TemperatureRange: "Standard fuel/oil operating temperatures",
+          SafetyCertifications: [
+            "IP67 Weatherproof Rating",
+            "Standard Make on Rise or Fall orientation",
+            "Back EMF protection available for inductive loads",
+          ],
+          CableEntry: "M20 Cable Gland",
+        },
+        sizingData: [
+          {
+            Model: "20-270 (Single)",
+            StandardDepth_mm: 200,
+            MaxDepth_mm: 3000,
+            Function: "High Fuel Level Indication",
+            Weight_Kg: "Varies by length",
+          },
+          {
+            Model: "20-270/2 (Twin)",
+            StandardDepth_mm: "User Specified",
+            MaxDepth_mm: 3000,
+            Function: "Pump Start/Stop or High/Low Alarm",
+            Weight_Kg: "Varies by length",
+          },
+          {
+            Model: "20-270/4 (Four)",
+            StandardDepth_mm: "User Specified",
+            MaxDepth_mm: 3000,
+            Function: "High-High, High, Low, Low-Low Alarms",
+            Weight_Kg: "Varies by length",
+          },
+        ],
+      },
+      {
+        id: "FEL-VALVES-SCREWED-FIRE-VALVE",
+        name: "FEL Valves Screwed Free Fall Fire Valve",
+        manufacturerPartNumber: "20-001 to 20-011",
+        AGPPartNumber: "AGP-FIRE-SCD-01",
+        Make: "FEL Valves",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_Screwed_Fire_Valve.webp",
+        ],
+        shortDescription:
+          "Compact, leak-proof positive action mechanism for 100% fuel shut-off or dump applications.",
+        description:
+          "The FEL range of screwed free fall fire valves provides a compact, positive action mechanism designed for 100% shut-off as an isolating valve or 100% opening as a fuel dump valve. These valves feature double Viton O-ring stem seals, making them ideal for vacuum pump suction lines and ensuring leak-proof operation in oil-fired plant rooms.",
+        uses: [
+          "Positive fuel isolation in fire emergencies",
+          "Fuel dump valve for emergency tank drainage",
+          "Vacuum pump suction line protection",
+          "Commercial and industrial oil-fired plant rooms",
+        ],
+        downloads: [
+          {
+            name: "Information & Spec Sheet",
+            url: "https://www.felvalves.com/wp-content/uploads/2021/04/20-001-20-011-Free-Fall-Fire-Valve-Screwed.pdf",
+          },
+        ],
+        details: {
+          SizeRange: '1/2" (15mm) to 2" (50mm)',
+          Bore: "Full Bore",
+          EndConnection: "Screwed (Threaded)",
+          BodyMaterial: "Ductile Iron GGG40 or Brass",
+          StemMaterial: "Brass or Stainless Steel",
+          SealMaterial: "Double Viton O-rings",
+          OperatingPressure: "Up to 14 bar",
+          SafetyCertifications: [
+            "100% Leak-proof Design",
+            "Suitable for Vacuum Suction Lines",
+            "Positive Mechanical Actuation",
+          ],
+          KitsAvailable:
+            "Standard kits include pulleys, SS cable, fusible links, and warning signs",
+        },
+        sizingData: [
+          {
+            Size: "1/2-inch",
+            Code: "20-001",
+            Dimension_C: 51.6,
+            Weight_Kg: 2.03,
+          },
+          { Size: "1-inch", Code: "20-005", Dimension_C: 65.5, Weight_Kg: 2.4 },
+          {
+            Size: "2-inch",
+            Code: "20-011",
+            Dimension_C: 101.4,
+            Weight_Kg: 6.8,
+          },
+        ],
+      },
+      {
+        id: "FEL-VALVES-20-B-RANGE",
+        name: "FEL Valves 'B' Range Flanged Fire Valve",
+        manufacturerPartNumber: "20-B Series",
+        AGPPartNumber: "AGP-FIRE-FLG-B",
+        Make: "FEL Valves",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_B_Range_Fire_Valve.webp",
+        ],
+        shortDescription:
+          "Heavy-duty flanged fire valve for diesel and gas, finished in high-visibility RAL 3000 Flame Red.",
+        description:
+          "The 20-B Range is a heavy-duty flanged free fall fire valve assembly designed for 100% shut-off in fuel isolating applications or 100% opening for fuel dump functions. The entire assembly—valve body, lever, and weight—is finished in RAL 3000 Flame Red for easy identification in emergencies. It is suitable for both horizontal and vertical pipework and features double Viton O-ring stem seals, making it ideal for vacuum pump suction lines.",
+        uses: [
+          "Bulk fuel storage isolation",
+          "Gas supply emergency shut-off",
+          "Automated fire suppression system integration",
+          "Large scale industrial boiler houses",
+        ],
+        downloads: [
+          {
+            name: "B Range Flanged Diesel/Gas Datasheet",
+            url: "https://www.felvalves.com/wp-content/uploads/2021/04/Flanged-For-Diesel.pdf",
+          },
+        ],
+        details: {
+          SizeRange: '1/2" (15mm) to 8" (200mm)',
+          EndConnection: "Flanged BS 4504 PN 16 / ANSI CL.150",
+          BodyMaterial: "EN GJS 400-15 Epoxy Coated Ductile Iron",
+          Ball_StemMaterial: "CuZn40Pb2 Chrome Plated Brass / Brass",
+          SeatMaterial: "Reinforced PTFE",
+          SealMaterial: "Double Viton O-rings",
+          OperatingPressure: "Up to 14 bar",
+          TemperatureRange: "-10°C to 150°C",
+          Finish: "RAL 3000 Flame Red",
+          SafetyFeatures: [
+            "100% Positive Shut-off",
+            "Mechanical or Electrical Actuation",
+            "ISO 5211 for Direct Mount",
+          ],
+          KitsAvailable:
+            "Supplied with Fire Valve Kits (Small, Medium, or Large)",
+        },
+        sizingData: [
+          {
+            Size: "1/2-inch (15mm)",
+            Length_A: 115,
+            Height_H: 84,
+            Weight_Kg: 2.6,
+            Kv: 22.3,
+          },
+          {
+            Size: "1-inch (25mm)",
+            Length_A: 125,
+            Height_H: 96,
+            Weight_Kg: 4.2,
+            Kv: 83.5,
+          },
+          {
+            Size: "2-inch (50mm)",
+            Length_A: 150,
+            Height_H: 135,
+            Weight_Kg: 9.0,
+            Kv: 435.0,
+          },
+          {
+            Size: "4-inch (100mm)",
+            Length_A: 190,
+            Height_H: 180,
+            Weight_Kg: 18.5,
+            Kv: 1508.0,
+          },
+          {
+            Size: "8-inch (200mm)",
+            Length_A: 400,
+            Height_H: 320,
+            Weight_Kg: 93.0,
+            Kv: 5957.0,
+          },
+        ],
+      },
+      {
+        id: "FEL-VALVES-20-G-RANGE",
+        name: "FEL Valves 'G' Range Flanged Gas Fire Valve",
+        manufacturerPartNumber: "20-G Series",
+        AGPPartNumber: "AGP-FIRE-FLG-G",
+        Make: "FEL Valves",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_G_Range_Fire_Valve.webp",
+        ],
+        shortDescription:
+          "High-visibility flanged fire valve specifically rated for gas applications up to 14 bar.",
+        description:
+          "The 20-G Range is a flanged free fall fire valve assembly designed for 100% shut-off in gas isolating applications or 100% opening for fuel dump functions. The entire assembly—valve, lever, and weight—is finished in RAL 3000 Flame Red for easy identification. It is suitable for both horizontal and vertical pipework and features double Viton O-ring stem seals, making it ideal for vacuum pump suction lines.",
+        uses: [
+          "Gas supply emergency shut-off",
+          "Emergency fuel dump valve",
+          "Vacuum pump suction line protection",
+          "Industrial and commercial gas-fired plant rooms",
+        ],
+        downloads: [
+          {
+            name: "G Range Flanged Gas Datasheet",
+            url: "https://www.felvalves.com/wp-content/uploads/2021/04/20-G-Range-%E2%80%93-Flanged-For-Gas.pdf",
+          },
+        ],
+        details: {
+          SizeRange: '1/2" (15mm) to 8" (200mm)',
+          EndConnection: "Flanged BS 4504 PN 16",
+          BodyMaterial: "EN GJS 400-15 Epoxy Coated Ductile Iron",
+          Ball_StemMaterial: "CuZn40Pb2 Brass / Chrome Plated Brass",
+          SeatMaterial: "Reinforced PTFE",
+          SealMaterial:
+            "NBR O-rings (Double Viton O-ring stem seals specified for suction)",
+          OperatingPressure: "Up to 14 bar (PN16 rated)",
+          TemperatureRange: "-10°C to 70°C",
+          Finish: "RAL 3000 Flame Red",
+          SafetyFeatures: [
+            "100% Positive Shut-off",
+            "Mechanical or Electrical Actuation",
+            "ISO 5211 for Direct Mount",
+          ],
+          KitsAvailable:
+            "Supplied with Fire Valve Kits (Small, Medium, or Large)",
+        },
+        sizingData: [
+          {
+            Size: "1/2-inch (15mm)",
+            Length_A: 115,
+            Height_H: 160,
+            Weight_Kg: 2.6,
+            Kv: 22.3,
+          },
+          {
+            Size: "1-inch (25mm)",
+            Length_A: 125,
+            Height_H: 170,
+            Weight_Kg: 4.2,
+            Kv: 83.5,
+          },
+          {
+            Size: "2-inch (50mm)",
+            Length_A: 150,
+            Height_H: 135,
+            Weight_Kg: 9.0,
+            Kv: 435.0,
+          },
+          {
+            Size: "4-inch (100mm)",
+            Length_A: 190,
+            Height_H: 180,
+            Weight_Kg: 18.5,
+            Kv: 1508.0,
+          },
+          {
+            Size: "8-inch (200mm)",
+            Length_A: 400,
+            Height_H: 320,
+            Weight_Kg: 93.0,
+            Kv: 5957.0,
+          },
+        ],
+      },
+      {
+        id: "FEL-VALVES-20-SS-RANGE",
+        name: "FEL Valves 'SS' Range Stainless Steel Fire Valve",
+        manufacturerPartNumber: "20-SS Series",
+        AGPPartNumber: "AGP-FIRE-FLG-SS",
+        Make: "FEL Valves",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_SS_Range_Fire_Valve.webp",
+        ],
+        shortDescription:
+          "All stainless steel flanged fire valve for corrosive environments and high-spec diesel systems.",
+        description:
+          "The 20-SS Range is a high-specification flanged free fall fire valve assembly constructed entirely from stainless steel (body and internals). It is designed for 100% positive shut-off in fuel isolating applications or 100% opening for fuel dump functions. Its superior corrosion resistance makes it the premier choice for marine, offshore, or high-spec industrial environments. The valve features double Viton O-ring stem seals, making it fully compatible with vacuum suction lines.",
+        uses: [
+          "Marine and offshore fuel systems",
+          "Chemical processing facilities",
+          "Mission-critical data centres",
+          "Aggressive or corrosive environmental installations",
+        ],
+        downloads: [
+          {
+            name: "SS Range Flanged Diesel Datasheet",
+            url: "https://www.felvalves.com/wp-content/uploads/2021/04/20-SS-Range-%E2%80%93-Free-Fall-Fire-Valve-FlangedFor-Diesel.pdf",
+          },
+        ],
+        details: {
+          SizeRange: '1/2" (15mm) to 8" (200mm)',
+          EndConnection: "Flanged BS 4504 PN 16 / ANSI CL.150",
+          BodyMaterial: "Stainless Steel",
+          Ball_StemMaterial: "Stainless Steel",
+          SeatMaterial: "Reinforced PTFE",
+          SealMaterial: "Double Viton O-rings",
+          OperatingPressure: "Up to 14 bar",
+          SafetyFeatures: [
+            "100% Positive Shut-off",
+            "Mechanical or Electrical Actuation",
+            "Corrosion Resistant Construction",
+            "Vacuum Pump Suction Line Ready",
+          ],
+          KitsAvailable:
+            "Supplied with Fire Valve Kits (Small, Medium, or Large)",
+        },
+        sizingData: [
+          {
+            Size: "1/2-inch (15mm)",
+            Length_A: 108,
+            Height_H: 165,
+            Weight_Kg: 3.3,
+            Kv: 50.0,
+          },
+          {
+            Size: "1-inch (25mm)",
+            Length_A: 127,
+            Height_H: 162,
+            Weight_Kg: 3.9,
+            Kv: 105.0,
+          },
+          {
+            Size: "2-inch (50mm)",
+            Length_A: 178,
+            Height_H: 203,
+            Weight_Kg: 5.5,
+            Kv: 310.0,
+          },
+          {
+            Size: "4-inch (100mm)",
+            Length_A: 229,
+            Height_H: 323,
+            Weight_Kg: 16.5,
+            Kv: 800.0,
+          },
+          {
+            Size: "8-inch (200mm)",
+            Length_A: 457,
+            Height_H: 460,
+            Weight_Kg: 82.0,
+            Kv: 3250.0,
+          },
+        ],
+      },
+      {
+        id: "FEL-VALVES-20-CS-RANGE",
+        name: "FEL Valves 'CS' Range Flanged Fire Valve",
+        manufacturerPartNumber: "20-CS Series",
+        AGPPartNumber: "AGP-FIRE-FLG-CS",
+        Make: "FEL Valves",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_CS_Range_Fire_Valve.webp",
+        ],
+        shortDescription:
+          "Standard ductile iron flanged fire valve for diesel fuel systems.",
+        description:
+          "The 20-CS Range is a flanged free fall fire valve assembly designed specifically for diesel applications. It provides 100% positive shut-off when used for isolation or 100% opening when used as a fuel dump valve. Constructed with a ductile iron body and the option of brass or stainless steel internals, it is suitable for both horizontal and vertical pipework. The inclusion of double Viton O-ring stem seals ensures the valve is leak-proof and ideal for vacuum pump suction lines.",
+        uses: [
+          "Diesel fuel line isolation",
+          "Emergency fuel dump systems",
+          "Vacuum pump suction line protection",
+          "Commercial and industrial generator fuel systems",
+        ],
+        downloads: [
+          {
+            name: "CS Range Flanged Diesel Datasheet",
+            url: "https://www.felvalves.com/wp-content/uploads/2021/04/20-CS-Range-%E2%80%93-Flanged-For-Diesel.pdf",
+          },
+        ],
+        details: {
+          SizeRange: '1/2" (15mm) to 8" (200mm)',
+          EndConnection: "Flanged BS 4504 PN 16 / ANSI CL.150",
+          BodyMaterial: "Ductile Iron GGG40",
+          Ball_StemMaterial: "Brass or Stainless Steel",
+          SeatMaterial: "Reinforced PTFE",
+          SealMaterial: "Double Viton O-rings",
+          OperatingPressure: "Up to 14 bar",
+          SafetyFeatures: [
+            "100% Positive Shut-off",
+            "Mechanical or Electrical Actuation",
+            "Vacuum Pump Suction Line Ready",
+            "Horizontal or Vertical Installation",
+          ],
+          KitsAvailable:
+            "Supplied with Fire Valve Kits (Small, Medium, or Large)",
+        },
+        sizingData: [
+          {
+            Size: "1/2-inch (15mm)",
+            Length_A: 108,
+            Height_H: 165,
+            Weight_Kg: 3.3,
+            Kv: 50.0,
+          },
+          {
+            Size: "1-inch (25mm)",
+            Length_A: 127,
+            Height_H: 162,
+            Weight_Kg: 3.9,
+            Kv: 105.0,
+          },
+          {
+            Size: "2-inch (50mm)",
+            Length_A: 178,
+            Height_H: 203,
+            Weight_Kg: 5.5,
+            Kv: 310.0,
+          },
+          {
+            Size: "4-inch (100mm)",
+            Length_A: 229,
+            Height_H: 323,
+            Weight_Kg: 16.5,
+            Kv: 800.0,
+          },
+          {
+            Size: "8-inch (200mm)",
+            Length_A: 457,
+            Height_H: 460,
+            Weight_Kg: 82.0,
+            Kv: 3250.0,
+          },
+        ],
+      },
     ],
   },
 
@@ -1638,6 +2269,228 @@ export const products = [
           },
         ],
       },
+      {
+        id: "AALBERTS-PEGLER-1059PT",
+        name: "Pegler 1059PT Brass Y-Pattern Strainer",
+        manufacturerPartNumber: "1059PT Series",
+        AGPPartNumber: "AGP-VALV-STR-1059PT",
+        Make: "Pegler (Aalberts IPS)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767963472/1059PT_Series_Pegler_Aalberts_integrated_piping_systems_01_s5y034.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1767963474/1059PT_Series_Pegler_Aalberts_integrated_piping_systems_02_wizntu.webp",
+        ],
+        shortDescription:
+          "PN20/PN16 Brass Y-pattern strainer with stainless steel mesh for protecting systems from debris.",
+        description:
+          "The Pegler 1059PT is a high-quality brass Y-pattern strainer designed to protect sensitive components like meters, pumps, and valves from waterborne contamination and debris. It features a robust forged brass body and a removable stainless steel filter element (0.75mm to 0.80mm mesh). Designed for use in potable water, heating, and chilled water systems, it offers a reliable metal-to-metal seal and a compact 45° angle design for efficient flow.",
+        uses: [
+          "Protection of pumps and meters from debris",
+          "Potable water distribution systems",
+          "Heating and chilled water systems",
+          "Commercial and industrial plumbing installations",
+        ],
+        downloads: [
+          {
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767963692/Datasheet_-_1059PT_Series_Pegler_Aalberts_integrated_piping_systems_znlrjs.pdf",
+          },
+          {
+            name: "Installation & Maintenance Instructions",
+            url: "https://aalberts-ips.co.uk/wp-content/uploads/2024/11/1059-PT_Manual.pdf",
+          },
+        ],
+        details: {
+          BodyMaterial: "Brass (CW617N)",
+          MeshMaterial: "Stainless Steel",
+          Sealing: "PTFE / Metal Sealing",
+          Connection: "Parallel Thread ISO 228 (BSPP)",
+          PressureRating: 'PN20 (1/2" to 2") / PN16 (2 1/2" to 4")',
+          TemperatureRange: "-10°C to 110°C (Standard) / 120°C (Peak)",
+          MeshSize: '0.75mm (up to 2") / 0.80mm (2 1/2" to 4")',
+          Standards: "ISO 228, BS 2779, WRAS Approved",
+          Warranty: "5 Years",
+        },
+        sizingData: [
+          {
+            Size: '1/2"',
+            PartNumber: "120011",
+            Length_L1: "58mm",
+            Weight_kg: 0.14,
+            Kv_Value: 3.8,
+          },
+          {
+            Size: '3/4"',
+            PartNumber: "120012",
+            Length_L1: "70mm",
+            Weight_kg: 0.2,
+            Kv_Value: 7.3,
+          },
+          {
+            Size: '1"',
+            PartNumber: "120013",
+            Length_L1: "87mm",
+            Weight_kg: 0.38,
+            Kv_Value: 11.0,
+          },
+          {
+            Size: '1 1/4"',
+            PartNumber: "120014",
+            Length_L1: "96mm",
+            Weight_kg: 0.56,
+            Kv_Value: 15.5,
+          },
+          {
+            Size: '1 1/2"',
+            PartNumber: "120015",
+            Length_L1: "106mm",
+            Weight_kg: 0.8,
+            Kv_Value: 25.0,
+          },
+          {
+            Size: '2"',
+            PartNumber: "120016",
+            Length_L1: "126mm",
+            Weight_kg: 1.1,
+            Kv_Value: 41.0,
+          },
+          {
+            Size: '2 1/2"',
+            PartNumber: "120017",
+            Length_L1: "150mm",
+            Weight_kg: 1.95,
+            Kv_Value: 68.0,
+          },
+          {
+            Size: '3"',
+            PartNumber: "120018",
+            Length_L1: "169mm",
+            Weight_kg: 3.05,
+            Kv_Value: 102.0,
+          },
+          {
+            Size: '4"',
+            PartNumber: "120019",
+            Length_L1: "219mm",
+            Weight_kg: 5.65,
+            Kv_Value: 175.0,
+          },
+        ],
+      },
+      {
+        id: "ITAP-108-YORK",
+        name: "Itap 108 YORK® Foot Valve",
+        manufacturerPartNumber: "108 Series",
+        AGPPartNumber: "AGP-VALV-FOOT-108",
+        Make: "Itap S.p.A.",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/Itap_108_York_Foot_Valve_Main.webp",
+        ],
+        shortDescription:
+          "Brass spring-loaded foot valve with stainless steel strainer for water, heating, and compressed air systems.",
+        description:
+          "The Itap Art. 108 YORK® is a high-quality foot valve designed for use with domestic water services, heating/air-conditioning plants, and compressed air systems. It combines the reliable YORK® spring-check mechanism with a polymer and stainless steel strainer to prevent debris from entering the pump suction line. It can be installed in any position (vertical, horizontal, or oblique) and features a robust brass body with a NBR washer for tight sealing.",
+        uses: [
+          "Pump suction line protection in water wells",
+          "Domestic water service distribution",
+          "Heating and air-conditioning systems",
+          "Compressed air systems",
+        ],
+        downloads: [
+          {
+            name: "Technical Datasheet",
+            url: "https://www.itap.it/cat_files/pdf/108_2794_ING_en.pdf",
+          },
+          {
+            name: "General Catalog - Check & Foot Valves",
+            url: "https://www.itap.it/cat_files/pdf/YORK_CHECK_AND_FOOT_VALVES_en.pdf",
+          },
+        ],
+        details: {
+          BodyMaterial: "Brass CW617N",
+          StrainerMaterial: "Polymer and Stainless Steel AISI 304",
+          SpringMaterial: "Stainless Steel AISI 302",
+          SealMaterial: "NBR (Nitrile Rubber)",
+          InternalPlate: "Polymer",
+          Threads: "ISO 228 (BSPP Parallel)",
+          OperatingTemperature: "-20°C to 100°C",
+          FiltrationDegree: '1200µm (3/8" to 2") / 2000µm (2 1/2" to 4")',
+          InstallationPosition: "Vertical, Horizontal, or Oblique",
+          Certifications: 'ACS (Sizes 3/8" to 2")',
+          Warranty: "2 Years",
+        },
+        sizingData: [
+          {
+            Size: '3/8"',
+            PartNumber: "1080038",
+            Pressure_Bar: 12,
+            Length_A: "69.5mm",
+            Diameter_B: "35mm",
+          },
+          {
+            Size: '1/2"',
+            PartNumber: "1080012",
+            Pressure_Bar: 12,
+            Length_A: "70mm",
+            Diameter_B: "35mm",
+          },
+          {
+            Size: '3/4"',
+            PartNumber: "1080034",
+            Pressure_Bar: 12,
+            Length_A: "82mm",
+            Diameter_B: "42mm",
+          },
+          {
+            Size: '1"',
+            PartNumber: "1080100",
+            Pressure_Bar: 12,
+            Length_A: "91.5mm",
+            Diameter_B: "48mm",
+          },
+          {
+            Size: '1 1/4"',
+            PartNumber: "1080114",
+            Pressure_Bar: 10,
+            Length_A: "108mm",
+            Diameter_B: "59.5mm",
+          },
+          {
+            Size: '1 1/2"',
+            PartNumber: "1080112",
+            Pressure_Bar: 10,
+            Length_A: "119mm",
+            Diameter_B: "70.5mm",
+          },
+          {
+            Size: '2"',
+            PartNumber: "1080200",
+            Pressure_Bar: 10,
+            Length_A: "136.5mm",
+            Diameter_B: "86mm",
+          },
+          {
+            Size: '2 1/2"',
+            PartNumber: "1080212",
+            Pressure_Bar: 6,
+            Length_A: "164.5mm",
+            Diameter_B: "103mm",
+          },
+          {
+            Size: '3"',
+            PartNumber: "1080300",
+            Pressure_Bar: 6,
+            Length_A: "184.5mm",
+            Diameter_B: "126mm",
+          },
+          {
+            Size: '4"',
+            PartNumber: "1080400",
+            Pressure_Bar: 6,
+            Length_A: "214.5mm",
+            Diameter_B: "154mm",
+          },
+        ],
+      },
     ],
   },
 
@@ -1776,6 +2629,51 @@ export const products = [
         },
       },
       {
+        id: "KASON-0481A00600",
+        name: "Kason 481A Safety-Glow Inside Release Handle",
+        manufacturerPartNumber: "0481A00600",
+        AGPPartNumber: "AGP-REFR-ISR-0481A",
+        Make: "Kason Industries",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/inside-release-handle-for-56-latch-0481a00600.webp",
+        ],
+        shortDescription:
+          'Safety-Glow inside release handle for Kason 56 series latches, featuring a 6" (152mm) steel rod.',
+        description:
+          "The Kason 481A (0481A00600) is a critical safety component designed for walk-in coolers and freezers. Specifically engineered to work with the Kason 56 and 5656 series Safeguard® latches, it allows personnel to release the latch from the inside, even if the door is cylinder-locked or padlocked on the exterior. This model features the 'Safety-Glow' plastic knob, which remains visible in the event of a power failure, and a durable kasonized steel rod and flange for high-use commercial environments. It is ADA compliant when paired with the appropriate latch.",
+        uses: [
+          "Emergency release for walk-in cooler and freezer doors",
+          "Pairing with Kason 56 and 5656 Safeguard® latches",
+          "Safety compliance for commercial kitchens and food storage",
+          "Internal door operation for insulated panels",
+        ],
+        downloads: [
+          {
+            name: "Installation Instructions (IS-0481)",
+            url: "https://www.kasonind.com/files/pdf/Kason_IS_0481_0482_0487_ISRHandles.pdf",
+          },
+          {
+            name: "Safeguard 56 Latch Spec Sheet",
+            url: "https://www.acedoors.co.nz/wp-content/uploads/kason-56-latch-spec-sheet.pdf",
+          },
+        ],
+        details: {
+          RodLength: '6" (152mm)',
+          MinimumDoorThickness: '2-1/2" (63.5mm)',
+          MaximumDoorThickness: 'Up to 5" (127mm)',
+          RodMaterial: "Kasonized Steel (Zinc Plated)",
+          KnobType: "Safety-Glow™ (Glow in the dark) Plastic",
+          CompatibleLatches: "Kason 56, 5656 Series",
+          Mounting: "(3) Holes for #10 (5.0mm) Screws",
+          OperatingTemperature: "-40°C to 65°C (-40°F to 150°F)",
+          ADACompliant: "Yes (when used with appropriate latch)",
+          DrillHoleSize: '3/4" (19.1mm) Diameter',
+          SafetyFeature: "Releases locked doors from inside",
+          Weight: "0.34 kg (0.76 lbs)",
+          Warranty: "1 Year",
+        },
+      },
+      {
         id: "POMMIER-082005700",
         name: "Stainless Steel Hinge with Self-Lubricating Bushes",
         manufacturerPartNumber: "082005700",
@@ -1797,8 +2695,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767549894/hsuwby84vgdl0f5tuu0q.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767962593/Datasheet_-_082005700_Pommier_rcygml.pdf",
           },
         ],
         details: {
@@ -1833,8 +2731,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767551709/rg39bwjzo5uskdvvtqkl.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767962092/Datasheet_-_082005740_Pommier_c2suce.pdf",
           },
         ],
         details: {
@@ -1868,8 +2766,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553068/yeprwv1clddjc8j14snt.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767962252/Datasheet_-_082005792_Pommier_ejkcak.pdf",
           },
         ],
         details: {
@@ -1903,8 +2801,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553292/juhjynwez3nbaxtnydoo.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767962253/Datasheet_-_082005780_Pommier_fuy9t7.pdf",
           },
         ],
         details: {
@@ -1938,8 +2836,8 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Datasheet",
-            url: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767553831/ydukrc9lzwtlq2rb9g0b.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767962253/Datasheet_-_BCP20103E_Bloxwich_wqrv4h.pdf",
           },
         ],
         details: {
