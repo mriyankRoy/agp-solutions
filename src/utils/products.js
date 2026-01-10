@@ -241,7 +241,12 @@ export const products = [
         AGPPartNumber: "AGP-HEAT-UNT-5KW",
         Make: "Dayton",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/804T16_Dayton_Heater_01.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768054802/804T16_Dayton_01_pvyjpp.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768054803/804T16_Dayton_02_pznuke.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768054807/804T16_Dayton_03_tzuaab.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768054810/804T16_Dayton_04_jvyt9l.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768054811/804T16_Dayton_05_mhjnqs.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768054818/804T16_Dayton_06_vypsl3.webp",
         ],
         shortDescription:
           "5kW 208V AC Fan-forced electric heater for wall or ceiling mounting in commercial and industrial spaces.",
