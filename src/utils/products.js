@@ -336,47 +336,141 @@ export const products = [
         },
       },
       {
-        id: "HYTEK-OLE-T5020-KIT",
-        name: "O.L.E T5020 Tank Gauge 0.25% Kit (1m - 3m)",
-        manufacturerPartNumber: "T5020-KIT-1-3",
-        AGPPartNumber: "AGP-FUEL-GAUGE-T5020",
+        id: "HYTEK-OLE-C2020-A-C23",
+        name: "O.L.E C2020 Tank Gauge Kit 0.6m - 3m",
+        manufacturerPartNumber: "C2020-A-C23",
+        AGPPartNumber: "AGP-FUEL-GAUGE-C2020-3M",
         Make: "O.L.E (Offshore & Line Equipment Ltd)",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/T5020_Tank_Gauge_Main.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158239/C2020_O.L.E_Offshore_Line_Equipment_Ltd_Hytek_01_jt5if4.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158241/C2020_O.L.E_Offshore_Line_Equipment_Ltd_Hytek_02_ssmiyo.webp",
         ],
         shortDescription:
-          "High-accuracy (0.25%) electronic tank contents gauge with 4-20mA output and bundle alarm capabilities.",
+          "Precision electronic tank gauge kit with 110dB high/low level alarms and +/-1% accuracy for tanks up to 3m high.",
         description:
-          "The O.L.E T5020 is a premium electronic tank contents gauge designed for high-precision monitoring of fuel and oil tanks. This kit includes a hydrostatic pressure transmitter with 0.25% accuracy, suitable for tank depths between 1m and 3m. The digital display provides clear readings in Litres, Percent, or Millimetres. It features a built-in sounder, visual alarms, and a 4-20mA output for remote monitoring or BMS integration. The unit is housed in a weatherproof IP65 enclosure, making it suitable for both indoor and outdoor installations.",
+          'The O.L.E C2020 is a high-accuracy electronic tank contents gauge designed for continuous monitoring of diesel, HVO, AdBlue®, and water tanks. This complete kit includes the weatherproof display unit, a high-precision pressure sensor (probe), and a 1" BSPT tank adaptor. The system provides a clear digital readout in litres and a percentage bar graph. It features integrated high and low-level audible alarms (110dB) with a flashing visual alert, making it ideal for environmental compliance and inventory management. The gauge is pre-configured for easy installation but allows for site-specific calibration via the front panel.',
         uses: [
-          "Commercial and industrial fuel storage monitoring",
-          "Diesel and gas oil tank level measurement",
-          "AdBlue® and lubricant tank management",
-          "BMS integrated liquid level reporting",
+          "Continuous level monitoring for commercial fuel tanks",
+          "Overfill prevention via integrated high-level alarm",
+          "Low-level notification for fuel reordering",
+          "Integration with Building Management Systems (BMS) via 4-20mA output",
         ],
         downloads: [
           {
-            name: "Product Data Sheet",
-            url: "https://hytekgb.com/wp-content/uploads/2021/04/T5020-Data-Sheet.pdf",
+            name: "C2020 Technical Data Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/hytek_c2020_sales_v3.pdf",
           },
           {
-            name: "Installation Manual",
-            url: "https://hytekgb.com/wp-content/uploads/2021/04/T5020-Manual.pdf",
+            name: "C2020 Installation & Setup Guide",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/c2020_s765_12_tech_2.pdf",
           },
         ],
         details: {
-          Accuracy: "±0.25% of span",
-          TankDepthRange: "1.0m to 3.0m (Adjustable)",
-          SupplyVoltage: "100-240V AC / 24V DC Options",
-          DisplayType: "Backlit LCD (Ltrs, %, mm)",
-          OutputSignal: "4-20mA / Modbus RTU",
-          Alarms: "Low, High, and Bund Alarms (Visual & Audible)",
-          EnclosureRating: "IP65 Weatherproof",
-          ProbeMaterial: "Stainless Steel 316 / PVC Cable",
-          Connection: '1" BSP Male thread',
+          TankHeightRange: "0.3m – 3.0m",
+          Accuracy: "+/- 1% of total tank capacity",
+          AlarmSounder: "110dB Internal Sounder (High & Low)",
+          Display: "Backlit LCD (Litres & % Bar)",
+          PowerSupply: "230V AC (110V & 24VDC options available)",
+          OutputSignal: "4-20mA (Standard)",
+          EnclosureRating: "IP55 Weatherproof",
+          ProbeFitting: '1" BSPT Male',
+          CableLength: "7m (Extendable up to 100m with shielded cable)",
+          CompatibleFluids:
+            "Diesel, HVO, Biodiesel (to B100), AdBlue®, Water, Antifreeze",
+          Compatibility:
+            "Suitable for all tank shapes (Rectangular, Cylindrical, Plastic, Steel)",
+          Warranty: "1 Year",
+        },
+      },
+      {
+        id: "HYTEK-OLE-C2020-A-C25",
+        name: "O.L.E C2020 Tank Gauge Kit 0.6m - 5m",
+        manufacturerPartNumber: "C2020-A-C25",
+        AGPPartNumber: "AGP-FUEL-GAUGE-C2020-5M",
+        Make: "O.L.E (Offshore & Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158239/C2020_O.L.E_Offshore_Line_Equipment_Ltd_Hytek_01_jt5if4.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158241/C2020_O.L.E_Offshore_Line_Equipment_Ltd_Hytek_02_ssmiyo.webp",
+        ],
+        shortDescription:
+          "Advanced electronic tank contents gauge for deep tanks up to 5m, featuring 4-20mA output and integrated high/low alarms.",
+        description:
+          "The O.L.E C2020-A-C25 is a heavy-duty electronic gauging system designed for larger storage tanks with depths between 0.6 and 5.0 metres. This kit utilizes a high-sensitivity hydrostatic pressure probe to provide accurate, real-time volume readings in litres and percentages. Housed in a durable IP55-rated enclosure, the display unit includes a 110dB alarm sounder for high and low level alerts, ensuring operational safety and environmental protection. It is a 'universal' gauge, compatible with various liquids and tank geometries, and comes standard with a 4-20mA output for remote monitoring or BMS integration.",
+        uses: [
+          "Inventory management for large-scale diesel and fuel oil storage",
+          "Deep tank monitoring (up to 5 metres)",
+          "Overfill prevention and dry-run protection via programmable alarms",
+          "Remote data logging using the integrated 4-20mA signal",
+        ],
+        downloads: [
+          {
+            name: "C2020 Technical Sales Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/hytek_c2020_sales_v3.pdf",
+          },
+          {
+            name: "C2020 Technical Installation Manual",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/c2020_s765_12_tech_2.pdf",
+          },
+        ],
+        details: {
+          TankHeightRange: "0.6m – 5.0m",
+          Accuracy: "+/- 1% of total tank capacity",
+          AlarmSounder: "110dB Internal Sounder & Visual LED Flash",
+          Display: "Backlit LCD (Litres, % Bar, and Alarm Status)",
+          PowerRequirement: "230V AC (Standard)",
+          SignalOutput: "4-20mA (Standard), RS485 (Optional)",
+          EnclosureProtection: "IP55 (Suitable for outdoor installation)",
+          ProbeFitting: '1" BSPT Male (Stainless Steel Probe Body)',
+          CompatibleFluids: "Diesel, HVO, Kerosene, Water, Waste Oil, AdBlue®",
+          Calibration: "Simple keypad setup for tank dimensions and density",
           OperatingTemperature: "-10°C to +50°C",
-          Weight: "1.45 kg",
-          Warranty: "12 Months",
+          Warranty: "1 Year",
+        },
+      },
+      {
+        id: "HYTEK-OLE-C2020-A-C27",
+        name: "O.L.E C2020 Tank Gauge Kit 5m - 10m",
+        manufacturerPartNumber: "C2020-A-C27",
+        AGPPartNumber: "AGP-FUEL-GAUGE-C2020-10M",
+        Make: "O.L.E (Offshore & Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158239/C2020_O.L.E_Offshore_Line_Equipment_Ltd_Hytek_01_jt5if4.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158241/C2020_O.L.E_Offshore_Line_Equipment_Ltd_Hytek_02_ssmiyo.webp",
+        ],
+        shortDescription:
+          "Heavy-duty electronic tank gauge kit for deep tanks (5m - 10m), accurate to +/-1% with integrated 110dB high/low alarms.",
+        description:
+          "The O.L.E C2020-A-C27 is a precision hydrostatic tank contents gauge designed for exceptionally deep storage tanks, ranging from 5 to 10 metres in height. Manufactured in the UK, this kit provides a continuous digital readout of tank volume in litres and a percentage bar graph. It features a high-sensitivity 10m-rated pressure sensor and a 110dB audible/visual alarm system for high and low level alerts. The unit is housed in an IP55 weatherproof enclosure and includes a 4-20mA output as standard, making it the ideal solution for large-scale industrial fuel, AdBlue®, and water storage monitoring.",
+        uses: [
+          "Monitoring ultra-deep storage tanks (up to 10m height)",
+          "Overfill prevention and low-level alerting for bulk fuel depots",
+          "Interfacing with BMS or remote monitoring systems via 4-20mA signal",
+          "Accurate gauging for large plastic or steel tanks in industrial environments",
+        ],
+        downloads: [
+          {
+            name: "C2020 Technical Data Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/hytek_c2020_sales_v3.pdf",
+          },
+          {
+            name: "C2020 Setup & Installation Manual",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/c2020_s765_12_tech_2.pdf",
+          },
+        ],
+        details: {
+          TankHeightRange: "5.0m – 10.0m",
+          Accuracy: "+/- 1% of tank capacity",
+          AlarmSounder: "110dB Internal Sounder & Flashing Visual Alert",
+          Display: "Backlit LCD (Litres & % Bar)",
+          PowerSupply: "230V AC (110V & 24VDC options available)",
+          OutputSignal: "4-20mA (Standard)",
+          EnclosureRating: "IP55 Weatherproof",
+          ProbeFitting: '1" BSPT Male',
+          ProbeCableLength: "10m (Standard, extendable up to 100m)",
+          CompatibleFluids: "Diesel, HVO, AdBlue®, Antifreeze, B100, Water",
+          OperatingTemperature: "-5°C to +50°C",
+          Weight: "2.1 kg",
+          Warranty: "1 Year",
         },
       },
       {
@@ -424,71 +518,47 @@ export const products = [
         },
       },
       {
-        id: "FEL-VALVES-20-270-SERIES",
-        name: "FEL Valves Multi-Level Float Switch Assembly",
-        manufacturerPartNumber: "20-270",
-        AGPPartNumber: "AGP-FUEL-FLT-SW-01",
-        Make: "FEL Valves",
+        id: "HYTEK-T4020-OJ",
+        name: "Probe/Tank Adaptor for O.L.E Gauges (Fits 30mm Hole)",
+        manufacturerPartNumber: "T4020-OJ",
+        AGPPartNumber: "AGP-FUEL-ADAPT-30MM",
+        Make: "O.L.E (Offshore & Line Equipment Ltd)",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_Float_Switch_Assembly.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768158636/T4020-OJ_O.L.E_Offshore_Line_Equipment_Ltd_Hyek_01_irqdfr.webp",
         ],
         shortDescription:
-          "Customisable multi-point float switch assembly for high/low level fuel alarms and pump control.",
+          "Compression-fit tank probe adaptor designed to provide a secure, weatherproof seal in 30mm holes on plastic fuel tanks.",
         description:
-          "The FEL Valves 20-270 series provides robust, custom-manufactured liquid level sensing for commercial and industrial fuel tanks. Available with up to four independent float switch points, these assemblies are designed for high/low level alarms and indirect pump start/stop functions. Each unit is bespoke-built to specific depths using a heavy-duty stainless steel stem and a weatherproof IP67 terminal housing to ensure longevity in harsh environments.",
+          'The Hytek T4020-OJ is a specialized tank probe adaptor designed specifically for installing O.L.E tank gauge probes into plastic storage tanks. Unlike standard 1" BSPT threaded fittings, this adaptor uses an expansion/compression mechanism to fit securely into a plain 30mm bored hole. It is engineered to create an IP65-rated seal, ensuring the tank remains weatherproof and the probe stays accurately positioned. This component is typically supplied as standard with O.L.E T5020 gauge kits but is available here as a replacement or for custom installations.',
         uses: [
-          "High and Low fuel level alarm indication",
-          "Indirect pump start and pump stop control",
-          "Bund leak detection (Ref 20-274)",
-          "Fuel reorder point notification",
-          "Overfill prevention system integration",
+          "Installing O.L.E tank gauge probes on plastic (polyethylene) tanks",
+          "Retrofitting electronic gauges to tanks without threaded ports",
+          "Creating a liquid-tight and weatherproof seal for hydrostatic sensors",
+          "Ensuring correct probe suspension height in varying tank depths",
         ],
         downloads: [
           {
-            name: "Information & Spec Sheet",
-            url: "https://www.felvalves.com/wp-content/uploads/2021/04/Float-Switches.pdf",
+            name: "C2020 Installation Guide (Fitting Instructions)",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/c2020_s765_12_tech_2.pdf",
+          },
+          {
+            name: "O.L.E Product Catalogue",
+            url: "https://hytekgb.com/wp-content/uploads/2025/05/HYTEK-Fuel-Tank-Equipment.pdf",
           },
         ],
         details: {
-          SizeRange: "Bespoke depths up to 3000mm",
-          Configurations: "Single, Twin, or Four Float Switch points",
-          EndConnection: '1" BSPP or NPT Male Brass Process Connection',
-          BodyMaterial: "IP67 Cast Aluminium Terminal Housing",
-          StemMaterial: "316 Stainless Steel",
-          FloatMaterial: "NBR (Nitrile Butadiene Rubber)",
-          SwitchRating: "1.0 Amp 230V AC",
-          Accuracy: "+/- 5mm variance on switch depth",
-          TemperatureRange: "Standard fuel/oil operating temperatures",
-          SafetyCertifications: [
-            "IP67 Weatherproof Rating",
-            "Standard Make on Rise or Fall orientation",
-            "Back EMF protection available for inductive loads",
-          ],
-          CableEntry: "M20 Cable Gland",
+          HoleSizeRequired: "30mm",
+          FittingType: "Expansion / Compression Fitting",
+          Material: "High-grade Plastic / Polymer",
+          SealRating: "IP65 Weatherproof",
+          CompatibleFluids:
+            "Diesel, HVO, AdBlue®, Antifreeze, Kerosene, Water, Petrol",
+          Compatibility: "O.L.E T5020, C2020, and Z2000 Series Probes",
+          Weight: "0.1 kg",
+          InstallationNote:
+            "Probe must be suspended 50mm from tank bottom before tightening",
+          Warranty: "1 Year",
         },
-        sizingData: [
-          {
-            Model: "20-270 (Single)",
-            StandardDepth_mm: 200,
-            MaxDepth_mm: 3000,
-            Function: "High Fuel Level Indication",
-            Weight_Kg: "Varies by length",
-          },
-          {
-            Model: "20-270/2 (Twin)",
-            StandardDepth_mm: "User Specified",
-            MaxDepth_mm: 3000,
-            Function: "Pump Start/Stop or High/Low Alarm",
-            Weight_Kg: "Varies by length",
-          },
-          {
-            Model: "20-270/4 (Four)",
-            StandardDepth_mm: "User Specified",
-            MaxDepth_mm: 3000,
-            Function: "High-High, High, Low, Low-Low Alarms",
-            Weight_Kg: "Varies by length",
-          },
-        ],
       },
       {
         id: "FEL-VALVES-SCREWED-FIRE-VALVE",
@@ -497,7 +567,7 @@ export const products = [
         AGPPartNumber: "AGP-FIRE-SCD-01",
         Make: "FEL Valves",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_Screwed_Fire_Valve.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155286/20-G_Series_FEL_Valves_pkz0bq.webp",
         ],
         shortDescription:
           "Compact, leak-proof positive action mechanism for 100% fuel shut-off or dump applications.",
@@ -554,7 +624,8 @@ export const products = [
         AGPPartNumber: "AGP-FIRE-FLG-B",
         Make: "FEL Valves",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_B_Range_Fire_Valve.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155605/Free_Fall_Fire_Valves_FEL_Valves_lryxkx.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155286/20-G_Series_FEL_Valves_pkz0bq.webp",
         ],
         shortDescription:
           "Heavy-duty flanged fire valve for diesel and gas, finished in high-visibility RAL 3000 Flame Red.",
@@ -635,7 +706,8 @@ export const products = [
         AGPPartNumber: "AGP-FIRE-FLG-G",
         Make: "FEL Valves",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_G_Range_Fire_Valve.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155605/Free_Fall_Fire_Valves_FEL_Valves_lryxkx.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155286/20-G_Series_FEL_Valves_pkz0bq.webp",
         ],
         shortDescription:
           "High-visibility flanged fire valve specifically rated for gas applications up to 14 bar.",
@@ -717,7 +789,8 @@ export const products = [
         AGPPartNumber: "AGP-FIRE-FLG-SS",
         Make: "FEL Valves",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_SS_Range_Fire_Valve.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155605/Free_Fall_Fire_Valves_FEL_Valves_lryxkx.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768154863/20-SS_Series_FEL_Valves_cedtgy.webp",
         ],
         shortDescription:
           "All stainless steel flanged fire valve for corrosive environments and high-spec diesel systems.",
@@ -797,7 +870,8 @@ export const products = [
         AGPPartNumber: "AGP-FIRE-FLG-CS",
         Make: "FEL Valves",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_CS_Range_Fire_Valve.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155605/Free_Fall_Fire_Valves_FEL_Valves_lryxkx.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768155286/20-G_Series_FEL_Valves_pkz0bq.webp",
         ],
         shortDescription:
           "Standard ductile iron flanged fire valve for diesel fuel systems.",
@@ -1502,7 +1576,7 @@ export const products = [
           {
             name: "Installation & Maintenance Instructions",
             url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1767906534/Manual_-_A9D12810_Schneider_Electric_m7zmye.pdf",
-          }
+          },
         ],
         details: {
           PolesDescription: "1P + N",
@@ -1535,7 +1609,11 @@ export const products = [
         AGPPartNumber: "AGP-SIG-XB7-GRN",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/uk/en/product/XB7EV03MP/monolithic-pilot-light-plastic-green-%C3%B822-integral-led-230240-v-ac/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768133639/XB7EV03MP_Schneider_Electric_01_y1in1e.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768133812/XB7EV03MP_Schneider_Electric_02_bapvdm.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768134643/XB7EV03MP_Schneider_Electric_03_piogtr.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768135030/XB7EV03MP_Schneider_Electric_04_q93m75.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768150925/XB7EV03MP_Schneider_Electric_05_tykf5j.webp",
         ],
         shortDescription:
           "22mm monolithic green pilot light with integral LED for 230-240V AC applications.",
@@ -1583,7 +1661,7 @@ export const products = [
         AGPPartNumber: "AGP-SIG-XB7-RED",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/us/en/product/XB7EV04MP3/pilot-light-harmony-xb7-round-22mm-red-integral-led-230-240v-faston-connectors/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768151473/XB7EV04MP3_Schneider_Electric_01_fctrle.webp",
         ],
         shortDescription:
           "22mm monolithic red pilot light with integral LED and Faston connectors for 230-240V AC.",
@@ -1625,61 +1703,14 @@ export const products = [
         },
       },
       {
-        id: "SCHNEIDER-XB7EV04MP",
-        name: "Schneider Electric Harmony XB7 Monolithic Red Pilot Light",
-        manufacturerPartNumber: "XB7EV04MP",
-        AGPPartNumber: "AGP-SIG-XB7-RED-SCREW",
-        Make: "Schneider Electric",
-        images: [
-          "https://www.se.com/uk/en/product/XB7EV04MP/monolithic-pilot-light-plastic-red-%C3%B822-integral-led-230240-v-ac/",
-        ],
-        shortDescription:
-          "22mm monolithic red pilot light with integral LED and screw clamp terminals for 230-240V AC.",
-        description:
-          "The Harmony XB7EV04MP is a compact, monolithic red pilot light designed for industrial signaling. It features a round, plain lens with an integral LED, providing a steady visual signal for power or fault status. Constructed with a double-insulated plastic bezel, it is engineered for 22mm panel cutouts and offers high resistance to chemicals and vibrations, making it suitable for demanding industrial environments.",
-        uses: [
-          "Fault or stop status indication",
-          "Power availability signaling in control panels",
-          "Automation system alarm monitoring",
-          "Process status notification in industrial plants",
-        ],
-        downloads: [
-          {
-            name: "Product Characteristics Sheet",
-            url: "https://www.se.com/uk/en/product/XB7EV04MP/monolithic-pilot-light-plastic-red-%C3%B822-integral-led-230240-v-ac/",
-          },
-        ],
-        details: {
-          MountingDiameter: "22.5 mm",
-          SupplyVoltage: "230...240 V AC (50/60 Hz)",
-          LightSource: "Integral LED (Steady signaling)",
-          LensColour: "Red",
-          BezelMaterial: "Plastic",
-          IPRating: "IP65 (Front face) / IP20 (Rear face)",
-          OperatingTemp: "-25°C to +70°C",
-          ServiceLife: "70,000 hours at 25°C",
-          CurrentConsumption: "16...20 mA",
-          Terminals: "Screw clamp terminals (≤ 2 x 1.5 mm² with cable end)",
-          TighteningTorque: "0.8...1.2 N.m",
-          Dimensions: "29 x 29 x 54 mm (H x W x D)",
-          Weight: "0.02 kg",
-          SafetyFeatures: [
-            "Vibrant red LED for high-visibility signaling",
-            "Robust IP65 protection against dust and water",
-            "Standard 22mm cutout for universal panel compatibility",
-            "Double insulated plastic bezel for enhanced safety",
-            "Vibration and impact resistant construction",
-          ],
-        },
-      },
-      {
         id: "SCHNEIDER-XB7EV05MP",
         name: "Schneider Electric Harmony XB7 Monolithic Yellow Pilot Light",
         manufacturerPartNumber: "XB7EV05MP",
         AGPPartNumber: "AGP-SIG-XB7-YEL",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/ae/en/product/XB7EV05MP/monolithic-pilot-light-plastic-yellow-%C3%B822-integral-led-230240-v-ac/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768151797/XB7EV05MP_Schneider_Electric_01_ko8ljs.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768151798/XB7EV05MP_Schneider_Electric_02_o4ujjt.webp",
         ],
         shortDescription:
           "22mm monolithic yellow pilot light with integral LED and screw clamp terminals for 230-240V AC.",
@@ -1727,7 +1758,7 @@ export const products = [
         AGPPartNumber: "AGP-RCBO-QO-16A-10MA",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/th/en/product/QO116C06RCBO10/residual-current-breaker-with-overcurrent-protection-rcbo-square-d-qovs-1p+ns-16a-c-curve-6000a-ac-type-10ma/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768152068/QO116C06RCBO10_Schneider_Electric_01_kpydlr.webp",
         ],
         shortDescription:
           "16A single-pole RCBO with 10mA sensitivity and C-curve trip characteristics for Square D QO systems.",
@@ -1775,7 +1806,7 @@ export const products = [
         AGPPartNumber: "AGP-RCBO-QO-20A-10MA",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/th/en/product/QO120C06RCBO10/residual-current-breaker-with-overcurrent-protection-rcbo-square-d-qovs-1p+ns-20a-c-curve-6000a-ac-type-10ma/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768152068/QO116C06RCBO10_Schneider_Electric_01_kpydlr.webp",
         ],
         shortDescription:
           "20A single-pole RCBO with high-sensitivity 10mA protection and C-curve trip characteristics for Square D QO systems.",
@@ -1823,7 +1854,7 @@ export const products = [
         AGPPartNumber: "AGP-RCBO-QO-32A-10MA",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/th/en/product/QO132C06RCBO10/residual-current-breaker-with-overcurrent-protection-rcbo-square-d-qovs-1p+ns-32a-c-curve-6000a-ac-type-10ma/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768152068/QO116C06RCBO10_Schneider_Electric_01_kpydlr.webp",
         ],
         shortDescription:
           "32A single-pole RCBO with high-sensitivity 10mA protection and C-curve trip characteristics for Square D QO systems.",
@@ -1871,7 +1902,7 @@ export const products = [
         AGPPartNumber: "AGP-RCBO-QO-40A-10MA",
         Make: "Schneider Electric",
         images: [
-          "https://www.se.com/th/en/product/QO140C06RCBO10/residual-current-breaker-with-overcurrent-protection-rcbo-square-d-qovs-1p+ns-40a-c-curve-6000a-ac-type-10ma/",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768152068/QO116C06RCBO10_Schneider_Electric_01_kpydlr.webp",
         ],
         shortDescription:
           "40A single-pole RCBO with high-sensitivity 10mA protection and C-curve trip characteristics for Square D QO systems.",
@@ -2086,7 +2117,7 @@ export const products = [
         AGPPartNumber: "AGP-BATT-WIBC200",
         Make: "Clarke",
         images: [
-          "https://www.machinemart.co.uk/images/library/product/large/06/060111520.jpg",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768153668/6261520_wibc200_Clarke_01_qz9v9b.webp",
         ],
         shortDescription:
           "Heavy-duty 12V/24V intelligent battery starter/charger with 200A boost and microprocessor control.",
@@ -2127,7 +2158,8 @@ export const products = [
         AGPPartNumber: "AGP-PWR-TRIO-20A",
         Make: "Phoenix Contact",
         images: [
-          "https://www.phoenixcontact.com/online/portal/gb?uri=pxc-oc-itemdetail:pid=2903151",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768153903/2903151_Phoenix_Contact_01_hq75ys.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768153902/2903151_Phoenix_Contact_02_uzmtgy.webp",
         ],
         shortDescription:
           "Primary-switched TRIO POWER supply unit with push-in connection, DIN rail mounting, 24V DC / 20A output.",
@@ -2971,7 +3003,7 @@ export const products = [
         AGPPartNumber: "AGP-VALV-FOOT-108",
         Make: "Itap S.p.A.",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/Itap_108_York_Foot_Valve_Main.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768154142/108_Series_Itap_01_clbhfd.webp",
         ],
         shortDescription:
           "Brass spring-loaded foot valve with stainless steel strainer for water, heating, and compressed air systems.",
@@ -3086,7 +3118,7 @@ export const products = [
         AGPPartNumber: "AGP-ACC-003",
         Make: "FEL Valves",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/FEL_Float_Switch_01.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768154293/20-270_Series_FEL_Valves_01_ubsv9l.webp",
         ],
         shortDescription:
           "Robust 1-4 float switch assemblies for high/low fuel level indication and pump control.",
@@ -3259,13 +3291,13 @@ export const products = [
         },
       },
       {
-        id: "KASON-0481A00600",
+        id: "KASON-0481A-00600",
         name: "Kason 481A Safety-Glow Inside Release Handle",
-        manufacturerPartNumber: "0481A00600",
+        manufacturerPartNumber: "0481A-00600",
         AGPPartNumber: "AGP-REFR-ISR-0481A",
         Make: "Kason Industries",
         images: [
-          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1/inside-release-handle-for-56-latch-0481a00600.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768166195/0481A-00600_Kason_01_p9et3v.webp",
         ],
         shortDescription:
           'Safety-Glow inside release handle for Kason 56 series latches, featuring a 6" (152mm) steel rod.',
