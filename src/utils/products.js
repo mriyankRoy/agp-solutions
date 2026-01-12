@@ -561,6 +561,138 @@ export const products = [
         },
       },
       {
+        id: "HYTEK-OLE-T5020-1A-3M",
+        name: "O.L.E T5020 Tank Gauge Kit 0.3m to 3m",
+        manufacturerPartNumber: "T5020-1A-3M",
+        AGPPartNumber: "AGP-FUEL-GAUGE-T5020-3M",
+        Make: "O.L.E (Offshore and Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768167655/T5020_O.L.E_Offshore_and_Line_Equipment_Ltd_Hytek_saikuu.webp",
+        ],
+        shortDescription:
+          "High precision electronic tank gauge kit for tanks up to 3m height, featuring 0.25 percent accuracy and Modbus RS485.",
+        description:
+          "The O.L.E T5020-1A-3M is an ultra-high accuracy hydrostatic tank contents gauge, designed and manufactured in the UK. Providing a continuous digital readout in litres and a percentage bar graph, it is accurate to within 0.25 percent of total tank capacity. This complete kit includes a weatherproof IP55/IP65 display unit, a high-precision pressure sensor, a 1 inch tank adaptor, and a junction box for extending the probe cable. The gauge features an integrated 90dB high level sounder and a dedicated low level alarm LED. It is equipped with 4-20mA and Modbus RS485 RTU outputs as standard for seamless connection to Building Management Systems (BMS).",
+        uses: [
+          "Ultra-accurate volume monitoring for diesel, HVO, and AdBlue tanks",
+          "Advanced BMS integration via Modbus RS485 or 4-20mA output",
+          "Leak detection and inventory control for smaller industrial tanks",
+          "Integrated overfill prevention and low level notification",
+        ],
+        downloads: [
+          {
+            name: "T5020 Technical Data Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/hytek_t5020_sales_v2.pdf",
+          },
+          {
+            name: "T5020 Setup and Installation Guide",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/T5020_s961_6_tech.pdf",
+          },
+        ],
+        details: {
+          TankHeightRange: "0.3m to 3.0m",
+          Accuracy: "0.25 percent",
+          AlarmSounder: "90dB Internal Sounder",
+          VisualAlert: "Low Level Alarm LED",
+          Display: "Backlit LCD (Litres, Percent Bar, Status)",
+          PowerSupply: "230V AC (110V and 24VDC options available)",
+          Communication: "4-20mA Output and Modbus RS485 RTU",
+          EnclosureRating: "IP55 Weatherproof",
+          ProbeFitting: "1 inch BSPT Male",
+          CableLength: "10m (Standard, extendable to 100m)",
+          CompatibleFluids: "Diesel, HVO, AdBlue, Antifreeze, B100, Water",
+          Warranty: "1 Year",
+        },
+      },
+      {
+        id: "HYTEK-OLE-T5020-1A-5M",
+        name: "O.L.E T5020 Tank Gauge Kit 3m to 5m",
+        manufacturerPartNumber: "T5020-1A-5M",
+        AGPPartNumber: "AGP-FUEL-GAUGE-T5020-5M",
+        Make: "O.L.E (Offshore and Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768167655/T5020_O.L.E_Offshore_and_Line_Equipment_Ltd_Hytek_saikuu.webp",
+        ],
+        shortDescription:
+          "Ultra high accuracy electronic tank gauge kit for tanks up to 5m featuring Modbus RS485 and integrated alarms.",
+        description:
+          "The O.L.E T5020-1A-5M is a premium hydrostatic tank contents gauge manufactured in the UK. Accurate to 0.25 percent of tank capacity, it provides continuous digital readouts in litres and a percentage bar graph. This kit includes a weatherproof display unit, pressure sensor, 1 inch tank adaptor, and a junction box. It features a 90dB high level sounder and low level alarm LED. Includes 4-20mA and Modbus RS485 outputs for BMS integration.",
+        uses: [
+          "Precision volume monitoring for diesel and AdBlue tanks",
+          "Advanced BMS integration via Modbus RS485",
+          "Leak detection and inventory management",
+          "Overfill prevention and low level alerting",
+        ],
+        downloads: [
+          {
+            name: "T5020 Technical Data Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/hytek_t5020_sales_v2.pdf",
+          },
+          {
+            name: "T5020 Installation Guide",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/T5020_s961_6_tech.pdf",
+          },
+        ],
+        details: {
+          TankHeightRange: "3.0m to 5.0m",
+          Accuracy: "0.25 percent",
+          AlarmSounder: "90dB Internal Sounder",
+          VisualAlert: "Low Level Alarm LED",
+          Display: "Backlit LCD",
+          PowerSupply: "230V AC",
+          Communication: "4-20mA Output and Modbus RS485 RTU",
+          EnclosureRating: "IP55 Weatherproof",
+          ProbeFitting: "1 inch BSPT Male",
+          CableLength: "10m",
+          CompatibleFluids: "Diesel, HVO, AdBlue, Antifreeze, Water",
+          Warranty: "1 Year",
+        },
+      },
+      {
+        id: "HYTEK-OLE-T5020-1A-10M",
+        name: "O.L.E T5020 Tank Gauge Kit 5m to 10m",
+        manufacturerPartNumber: "T5020-1A-10M",
+        AGPPartNumber: "AGP-FUEL-GAUGE-T5020-10M",
+        Make: "O.L.E (Offshore and Line Equipment Ltd)",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768168967/T5020-1A-10M_O.L.E_Offshore_and_Line_Equipment_Ltd_Hytek_rclp9o.webp",
+        ],
+        shortDescription:
+          "Ultra high accuracy electronic tank gauge kit for deep tanks up to 10m featuring Modbus RS485 and integrated alarms.",
+        description:
+          "The O.L.E T5020-1A-10M is a professional-grade hydrostatic tank contents gauge designed for exceptionally deep storage tanks. Manufactured in the UK, it offers a superior accuracy of 0.25 percent of total tank capacity. This system provides a continuous digital readout in litres and a percentage bar graph, making it ideal for large-scale industrial fuel, AdBlue, and water storage monitoring. The kit includes the electronic display unit, a high-precision pressure sensor, a 1 inch tank adaptor, and a junction box for cable extension. It features a 90dB high level sounder and a dedicated low level alarm LED, with 4-20mA and Modbus RS485 outputs included as standard.",
+        uses: [
+          "High precision monitoring for deep storage tanks up to 10m",
+          "Advanced BMS integration via Modbus RS485 or 4-20mA",
+          "Bulk fuel inventory management and leak detection",
+          "Industrial overfill prevention and low level notification",
+        ],
+        downloads: [
+          {
+            name: "T5020 Technical Data Sheet",
+            url: "https://hytekgb.com/wp-content/uploads/2024/11/hytek_t5020_sales_v2.pdf",
+          },
+          {
+            name: "T5020 Setup and Installation Guide",
+            url: "https://hytekgb.com/wp-content/uploads/2024/12/T5020_s961_6_tech.pdf",
+          },
+        ],
+        details: {
+          TankHeightRange: "5.0m to 10.0m",
+          Accuracy: "0.25 percent",
+          AlarmSounder: "90dB Internal Sounder",
+          VisualAlert: "Low Level Alarm LED",
+          Display: "Backlit LCD",
+          PowerSupply: "230V AC",
+          Communication: "4-20mA Output and Modbus RS485 RTU",
+          EnclosureRating: "IP55 Weatherproof",
+          ProbeFitting: "1 inch BSPT Male",
+          CableLength: "10m to 12.5m",
+          CompatibleFluids: "Diesel, HVO, AdBlue, Antifreeze, Water",
+          Warranty: "1 Year",
+        },
+      },
+      {
         id: "FEL-VALVES-SCREWED-FIRE-VALVE",
         name: "FEL Valves Screwed Free Fall Fire Valve",
         manufacturerPartNumber: "20-001 to 20-011",
@@ -3302,7 +3434,7 @@ export const products = [
         shortDescription:
           'Safety-Glow inside release handle for Kason 56 series latches, featuring a 6" (152mm) steel rod.',
         description:
-          "The Kason 481A (0481A00600) is a critical safety component designed for walk-in coolers and freezers. Specifically engineered to work with the Kason 56 and 5656 series Safeguard® latches, it allows personnel to release the latch from the inside, even if the door is cylinder-locked or padlocked on the exterior. This model features the 'Safety-Glow' plastic knob, which remains visible in the event of a power failure, and a durable kasonized steel rod and flange for high-use commercial environments. It is ADA compliant when paired with the appropriate latch.",
+          "The Kason 481A (0481A-00600) is a critical safety component designed for walk-in coolers and freezers. Specifically engineered to work with the Kason 56 and 5656 series Safeguard® latches, it allows personnel to release the latch from the inside, even if the door is cylinder-locked or padlocked on the exterior. This model features the 'Safety-Glow' plastic knob, which remains visible in the event of a power failure, and a durable kasonized steel rod and flange for high-use commercial environments. It is ADA compliant when paired with the appropriate latch.",
         uses: [
           "Emergency release for walk-in cooler and freezer doors",
           "Pairing with Kason 56 and 5656 Safeguard® latches",
