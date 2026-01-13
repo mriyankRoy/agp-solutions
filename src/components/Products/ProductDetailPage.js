@@ -282,6 +282,65 @@ const ProductDetailPage = () => {
           </div>
         </div>
 
+        {/* 🚀 NEW: PRODUCT RANGE SECTION */}
+        {product.productRange && product.productRange.length > 0 && (
+          <div className="mt-12 bg-gray-50 p-8 md:p-12 rounded-2xl border border-gray-100">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#44444E] mb-10 flex items-center gap-2">
+              <PackageSearch size={14} className="text-[#BF092F]" /> Available
+              Configurations & Range
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {product.productRange.map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-xl shadow-sm border-l-2 border-gray-200 hover:border-[#BF092F] transition-all group"
+                >
+                  <p className="text-[10px] font-black text-[#BF092F] uppercase tracking-widest mb-2 opacity-70 group-hover:opacity-100">
+                    {item.category}
+                  </p>
+                  <p className="text-sm font-bold text-[#44444E] leading-relaxed">
+                    {item.options}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 🏆 NEW: SUCCESS STORIES SECTION */}
+        {product.successStories && product.successStories.length > 0 && (
+          <div className="mt-12 bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <Target size={120} />
+            </div>
+
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#44444E] mb-10 flex items-center gap-2">
+              <Activity size={14} className="text-[#BF092F]" /> Proven Track
+              Record & Case Studies
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+              {product.successStories.map((story, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-8 hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-px bg-[#BF092F]" />
+                    <span className="text-[10px] font-black text-[#BF092F] uppercase tracking-widest">
+                      {story.client}
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold text-[#44444E] leading-relaxed">
+                    {story.project}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* DATA TABS */}
         <div className="mt-12 bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-xl">
           <div className="flex bg-gray-50 border-b border-gray-100">
