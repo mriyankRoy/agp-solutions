@@ -208,7 +208,7 @@ export default function ProjectsPage() {
                 <div className="p-8 border-b border-white/10">
                   <div className="flex items-center gap-3 mb-8">
                     <Filter size={16} className="text-[#BF092F]" />
-                    <h2 className="text-[12px] text-white tracking-[0.4em] uppercase font-bold">
+                    <h2 className="text-[12px] text-white tracking-[0.4em] uppercase">
                       Filter Logs
                     </h2>
                   </div>

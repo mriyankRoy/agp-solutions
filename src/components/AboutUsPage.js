@@ -106,7 +106,7 @@ export default function AboutUsPage() {
               <div className="p-8 border-b border-white/10">
                 <div className="flex items-center gap-3 mb-8">
                   <Info size={16} className="text-[#BF092F]" />
-                  <h2 className="text-[12px] text-white tracking-[0.4em] uppercase font-bold">Corporate Registry</h2>
+                  <h2 className="text-[12px] text-white tracking-[0.4em] uppercase">Corporate Registry</h2>
                 </div>
                 <ul className="space-y-2">
                   {sidebarLinks.map((link, idx) => (

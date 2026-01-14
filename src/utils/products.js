@@ -3153,12 +3153,12 @@ export const products = [
         ],
         downloads: [
           {
-            name: "Technical Datasheet",
-            url: "https://www.itap.it/cat_files/pdf/108_2794_ING_en.pdf",
+            name: "Information & Spec Sheet",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1768336794/Datasheet_-_108_Series_Itap_uggn1i.pdf",
           },
           {
-            name: "General Catalog - Check & Foot Valves",
-            url: "https://www.itap.it/cat_files/pdf/YORK_CHECK_AND_FOOT_VALVES_en.pdf",
+            name: "Installation & Maintenance Instructions",
+            url: "https://res.cloudinary.com/dc912sjxj/image/upload/q_auto/v1768336990/Manual_-_108_Series_Itap_cy9wjz.pdf",
           },
         ],
         details: {

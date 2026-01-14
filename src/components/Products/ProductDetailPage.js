@@ -479,19 +479,81 @@ const ProductDetailPage = () => {
 
       {/* MODAL */}
       {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          onClick={handleCloseModal}
-        >
-          <div className="absolute inset-0 bg-[#44444E]/95 backdrop-blur-sm" />
-          <button className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors">
-            <X size={32} />
-          </button>
-          <img
-            src={productImages[activeIndex]}
-            className="relative max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl bg-white p-4"
-            alt="enlarged"
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+          <div
+            className="absolute inset-0 bg-[#1A1A1E]/95 backdrop-blur-xl"
+            onClick={handleCloseModal}
           />
+
+          <button
+            onClick={handleCloseModal}
+            className="cursor-pointer absolute top-10 right-10 text-white/50 hover:text-[#BF092F] transition-all z-[110] group"
+          >
+            <X
+              size={40}
+              className="group-hover:rotate-90 transition-transform"
+            />
+          </button>
+
+          <div className="relative flex flex-col md:flex-row gap-6 items-center max-w-7xl w-full max-h-[90vh] z-[105]">
+            {/* Thumbnails inside Modal (Hidden on mobile for space) */}
+            <div className="hidden md:flex flex-col gap-2 overflow-y-auto max-h-[500px] p-2">
+              {productImages.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveIndex(i);
+                  }}
+                  className={`cursor-pointer w-16 h-16 border-2 transition-all rounded-lg overflow-hidden shrink-0 ${
+                    i === activeIndex
+                      ? "border-[#BF092F]"
+                      : "border-white/20 hover:border-white/50"
+                  }`}
+                >
+                  <img
+                    src={img}
+                    className="w-full h-full object-cover"
+                    alt="thumb"
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Main Modal Image & Nav */}
+            <div className="relative flex-grow flex items-center justify-center bg-white rounded-2xl p-4 md:p-8 shadow-2xl h-full overflow-hidden">
+              <img
+                src={productImages[activeIndex]}
+                className="max-w-full max-h-[70vh] object-contain"
+                alt="enlarged"
+              />
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrev();
+                }}
+                className="cursor-pointer absolute left-4 p-4 bg-[#44444E]/10 hover:bg-[#BF092F] text-[#44444E] hover:text-white rounded-full transition-all"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNext();
+                }}
+                className="cursor-pointer absolute right-4 p-4 bg-[#44444E]/10 hover:bg-[#BF092F] text-[#44444E] hover:text-white rounded-full transition-all"
+              >
+                <ChevronRight size={24} />
+              </button>
+
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#44444E] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                {activeIndex + 1} / {totalImages}
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
