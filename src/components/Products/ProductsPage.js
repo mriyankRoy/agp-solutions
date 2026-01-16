@@ -199,7 +199,7 @@ const ProductPage = () => {
               )}
             </nav>
             <div>
-              <h1 className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+              <h1 className={`font-semibold text-3xl md:text-5xl lg:text-5xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
                 {isGeneralOverview ? "Product" : currentCategory.category} <span className="text-[#BF092F]">{isGeneralOverview ? "Registry" : "Catalog"}</span>
               </h1>
               <p className="text-white/60 text-lg md:text-xl tracking-wide leading-relaxed mt-4 max-w-3xl">

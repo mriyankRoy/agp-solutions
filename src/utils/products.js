@@ -2246,6 +2246,48 @@ export const products = [
         },
       },
       {
+        id: "MK-K2140WHI",
+        name: "MK Logic Plus 1 Gang 32mm Surface Pattress Box",
+        manufacturerPartNumber: "K2140WHI",
+        AGPPartNumber: "AGP-WIR-SURF-1G-32-WHI",
+        Make: "MK Electric",
+        images: [
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768406678/K2140WHI_MK_Electric_01_ugdva9.webp",
+          "https://res.cloudinary.com/dc912sjxj/image/upload/b_white,f_auto,q_auto,c_pad,w_700,h_500/v1768406678/K2140WHI_MK_Electric_02_wwsjr1.webp",
+        ],
+        shortDescription:
+          "1 Gang 32mm deep surface mounting box with multiple knockouts, finished in antimicrobial white urea.",
+        description:
+          "The MK K2140WHI is a high-quality surface mounting pattress box designed specifically for the Logic Plus range. It features a 32mm depth, making it ideal for standard switch and socket installations where internal wall mounting is not possible. Like the rest of the range, it is molded from urea formaldehyde, offering inherent antimicrobial properties that resist the growth of MRSA and E. Coli. The box includes various cable entry knockouts and an earth terminal as standard.",
+        uses: [
+          "Surface mounted electrical installations",
+          "Retrofitting switches or sockets without wall chasing",
+          "Commercial and healthcare environments requiring hygienic surfaces",
+          "Standard power and lighting circuit terminations",
+        ],
+        downloads: [
+          {
+            name: "MK Logic Plus Technical Specs",
+            url: "https://www.mkelectric.com/en-gb/Products/WD/LogicPlus/MountingBoxes/SurfaceBoxes/Pages/K2140WHI.aspx",
+          },
+        ],
+        details: {
+          NumberofGangs: "1 Gang",
+          Depth: "32 mm",
+          Material: "Urea Formaldehyde (Antimicrobial)",
+          Colour: "White",
+          Finish: "Moulded White Gloss",
+          Knockouts: "6 x 20mm (Side/Bottom/Back)",
+          EarthTerminal: "Included",
+          FixingCentres: "60.3 mm",
+          Height: "86 mm",
+          Width: "86 mm",
+          Standards: "BS 5733",
+          OperatingTemperature: "-5°C to +40°C",
+          Warranty: "20 Years",
+        },
+      },
+      {
         id: "CLARKE-WIBC200-STARTER-CHARGER",
         name: "Clarke WIBC200 200A Battery Starter/Charger",
         manufacturerPartNumber: "6261520",

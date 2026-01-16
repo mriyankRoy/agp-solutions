@@ -21,8 +21,7 @@ export default function TrustedPartners() {
               <span className="text-[#BF092F]">Alliances</span>
             </h3>
             <p className="max-w-md text-gray-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed pb-1 border-l-2 border-gray-100 pl-6 lg:ml-8">
-              Standardized integration with world-class component manufacturers
-              and engineering specialists globally.
+              Our high-specification generator container and E-House (Electrical POD) solutions have been deployed in major industrial projects globally. We are proud to see our precision instruments installed in projects for world-class end-users.
             </p>
           </div>
         </div>
