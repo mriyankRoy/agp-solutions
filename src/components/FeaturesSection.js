@@ -14,8 +14,27 @@ export default function FeaturesSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
+
+  // Shared Animation Logic
+  const revealClass = (visible, delay = "duration-1000") =>
+    `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+    }`;
 
   return (
     <section
@@ -24,8 +43,8 @@ export default function FeaturesSection() {
     >
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         
-        {/* INDUSTRIAL HEADER */}
-        <div className="mb-16">
+        {/* 🏗️ INDUSTRIAL HEADER - Animated */}
+        <div className={`mb-16 ${revealClass(isVisible)}`}>
           <div className="flex items-center gap-4 mb-6">
             <div className="h-8 w-1 bg-[#BF092F]" />
             <Activity size={14} className="text-[#BF092F] animate-pulse" />
@@ -43,8 +62,8 @@ export default function FeaturesSection() {
           </div>
         </div>
 
-        {/* TECHNICAL METRICS STRIP */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mb-20 rounded-2xl overflow-hidden border border-gray-100 shadow-xl bg-white">
+        {/* TECHNICAL METRICS STRIP - Animated with delay */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-0 mb-20 rounded-2xl overflow-hidden border border-gray-100 shadow-xl bg-white ${revealClass(isVisible, "duration-[1200ms] delay-200")}`}>
           {[
             { value: "850+", label: "Units Delivered" },
             { value: "UAE", label: "Production Hubs" },
@@ -58,20 +77,20 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        {/* 🛠️ CATEGORIES GRID (Updated to map through products) */}
+        {/* 🛠️ CATEGORIES GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-20">
           {products.map((category, index) => (
             <FeatureCard
               key={index}
-              category={category} // Passing category instead of feature
+              category={category}
               index={index}
               isVisible={isVisible}
             />
           ))}
         </div>
 
-        {/* INDUSTRIAL CTA CHASSIS */}
-        <div className="relative group overflow-hidden rounded-2xl bg-[#44444E] p-10 md:p-14 shadow-2xl">
+        {/* INDUSTRIAL CTA CHASSIS - Animated with delay */}
+        <div className={`relative group overflow-hidden rounded-2xl bg-[#44444E] p-10 md:p-14 shadow-2xl ${revealClass(isVisible, "duration-[1200ms] delay-500")}`}>
           <ShieldCheck size={200} className="absolute -right-10 -bottom-10 text-white/5 rotate-12 transition-transform group-hover:rotate-0 duration-1000" />
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
@@ -102,14 +121,16 @@ export default function FeaturesSection() {
 function FeatureCard({ category, index, isVisible }) {
   const navigate = useNavigate();
   
+  // Staggered delay for each card
+  const delay = index * 100;
+
   return (
     <div
-      // 2. Updated navigation to use the category slug
       onClick={() => navigate(`/products?category=${category.slug}`)}
-      className={`group relative flex flex-col bg-white rounded-2xl shadow-xl border border-gray-100 cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`group relative flex flex-col bg-white rounded-2xl shadow-xl border border-gray-100 cursor-pointer overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-2xl hover:-translate-y-2 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="absolute top-4 right-4 z-20">
         <span className="text-[10px] font-mono font-bold text-gray-300 group-hover:text-[#BF092F] transition-colors tracking-widest uppercase">
@@ -119,7 +140,7 @@ function FeatureCard({ category, index, isVisible }) {
 
       <div className="h-56 relative overflow-hidden bg-gray-50">
         <img
-          src={category.image.url} // Using your products API image structure
+          src={category.image.url}
           alt={category.image.alt}
           className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-90"
         />

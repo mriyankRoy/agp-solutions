@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { skills } from "../../utils/skills";
 import {
   ShieldCheck,
   ArrowRight,
   Layers,
-  ShieldCheck,
 } from "lucide-react";
 import { useNavigate } from "react-router";
 import { CORE_TENETS } from "../../utils/constants";
@@ -13,6 +12,33 @@ export default function SkillsShowcase() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+  
+  // SCROLL ANIMATION LOGIC
+  const sectionRef = useRef(null);
+  const [hasRevealed, setHasRevealed] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRevealed(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Search-friendly reveal logic
+  const revealClass = (active, delay = "duration-1000") =>
+    `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      active ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+    }`;
 
   useEffect(() => {
     setImageLoaded(false);
@@ -61,10 +87,10 @@ export default function SkillsShowcase() {
   );
 
   return (
-    <section className="relative py-12 bg-transparent mt-20 pt-20 border-t border-gray-100">
+    <section ref={sectionRef} className="relative py-12 bg-transparent mt-20 pt-20 border-t border-gray-100">
       <div className="relative mx-auto w-full">
-        {/* --- HEADER SECTION: Matched to AboutUsPage Manifesto style --- */}
-        <div className="mb-12">
+        {/* --- HEADER SECTION --- */}
+        <div className={`mb-12 ${revealClass(hasRevealed)}`}>
           <div className="flex items-center gap-4 mb-6">
             <div className="h-8 w-1 bg-[#BF092F]" />
             <h2 className="text-sm text-[#44444E] uppercase font-bold tracking-wider">
@@ -79,7 +105,7 @@ export default function SkillsShowcase() {
         </div>
 
         {/* --- MAIN CHASSIS --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 shadow-2xl rounded-2xl overflow-hidden border border-gray-100 bg-[#44444E]">
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-0 shadow-2xl rounded-2xl overflow-hidden border border-gray-100 bg-[#44444E] ${revealClass(hasRevealed, "duration-1000 delay-200")}`}>
           {/* LEFT TERMINAL */}
           <div className="lg:col-span-3 bg-[#44444E] flex flex-col border-r border-white/5">
             <div className="p-6 border-b border-white/10 bg-black/20">
@@ -87,13 +113,12 @@ export default function SkillsShowcase() {
                 Module Index A
               </h4>
             </div>
-            {firstHalf.map((skill, index) => renderTab(skill, index, index))}
+            {firstHalf.map((skill, index) => renderTab(skill, index))}
           </div>
 
           {/* CENTER VIEWPORT */}
           <div className="lg:col-span-6 relative bg-white overflow-hidden">
             <div className="relative aspect-square md:aspect-video lg:aspect-auto lg:h-[600px] bg-[#1A1A1E]">
-              {/* Technical Dotted Overlay */}
               <div
                 className="absolute inset-0 z-10 opacity-20 pointer-events-none"
                 style={{
@@ -111,7 +136,6 @@ export default function SkillsShowcase() {
                 }`}
               />
 
-              {/* Info Overlay: Matched to AboutUs CTA/Manifesto design */}
               <div className="absolute bottom-0 left-0 right-0 z-20 p-8 md:p-10 bg-gradient-to-t from-black/95 via-black/70 to-transparent">
                 <div className="flex items-center gap-3 mb-4">
                   <Layers className="text-[#BF092F]" size={16} />
@@ -124,7 +148,6 @@ export default function SkillsShowcase() {
                 </p>
               </div>
 
-              {/* Progress Bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-white/10 z-30">
                 <div
                   className="h-full bg-[#BF092F] transition-all duration-700 ease-out"
@@ -141,11 +164,8 @@ export default function SkillsShowcase() {
                 Module Index B
               </h4>
             </div>
-            {secondHalf.map((skill, index) =>
-              renderTab(skill, index + 5, index + 5),
-            )}
+            {secondHalf.map((skill, index) => renderTab(skill, index + 5))}
 
-            {/* Technical Verification Footer */}
             <div className="mt-auto p-8 bg-black/30 border-t border-white/5">
               <div className="flex items-center gap-3 text-white/40 mb-3">
                 <ShieldCheck size={16} className="text-[#BF092F]" />
@@ -160,11 +180,14 @@ export default function SkillsShowcase() {
           </div>
         </div>
       </div>
+
+      {/* CORE TENETS - Staggered Reveal */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 mb-12">
         {CORE_TENETS.map((tenet, idx) => (
           <div
             key={idx}
-            className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hover:border-[#BF092F]/20 transition-all group"
+            className={`bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hover:border-[#BF092F]/20 transition-all group ${revealClass(hasRevealed)}`}
+            style={{ transitionDelay: `${idx * 150}ms` }}
           >
             <tenet.icon
               className="text-[#44444E] group-hover:text-[#BF092F] transition-colors mb-6"
@@ -179,7 +202,9 @@ export default function SkillsShowcase() {
           </div>
         ))}
       </div>
-      <div className="bg-[#44444E] p-12 rounded-2xl text-white relative overflow-hidden group">
+
+      {/* QUALITY PROVEN CTA */}
+      <div className={`bg-[#44444E] p-12 rounded-2xl text-white relative overflow-hidden group ${revealClass(hasRevealed, "duration-1000 delay-500")}`}>
         <ShieldCheck
           size={180}
           className="absolute -right-10 -bottom-10 text-white/5 rotate-12 transition-transform group-hover:rotate-0 duration-700"

@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { PRODUCT_SCOPE } from "../../utils/constants";
 
 const ProductScope = () => {
+  const sectionRef = useRef(null);
+  const [hasRevealed, setHasRevealed] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRevealed(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Search-friendly reveal logic
+  const revealClass = (active, delay = "duration-1000") =>
+    `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      active ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+    }`;
+
   return (
-    <div className="mt-20 pt-20 border-t border-gray-100 bg-white p-8 md:p-12 rounded-2xl shadow-xl border">
-      <div className="flex items-center justify-between mb-10">
+    <div 
+      ref={sectionRef}
+      className="mt-20 pt-20 border-t border-gray-100 bg-white p-8 md:p-12 rounded-2xl shadow-xl border"
+    >
+      {/* SECTION HEADER - Animated */}
+      <div className={`flex items-center justify-between mb-10 ${revealClass(hasRevealed)}`}>
         <div className="flex items-center gap-4">
           <div className="h-8 w-1 bg-[#BF092F]" />
           <h2 className="text-sm text-[#44444E] uppercase font-bold">
@@ -18,7 +48,8 @@ const ProductScope = () => {
         {PRODUCT_SCOPE.map((item, index) => (
           <div
             key={index}
-            className="group relative flex flex-col h-[500px] rounded-2xl overflow-hidden bg-white shadow-2xl transition-all duration-500 hover:-translate-y-3"
+            className={`group relative flex flex-col h-[500px] rounded-2xl overflow-hidden bg-white shadow-2xl transition-all duration-500 hover:-translate-y-3 ${revealClass(hasRevealed)}`}
+            style={{ transitionDelay: `${index * 150}ms` }}
           >
             <div className="relative h-[65%] overflow-hidden bg-[#44444E]">
               <img

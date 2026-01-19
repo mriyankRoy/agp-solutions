@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Activity, MapPin, Factory, Users, Warehouse } from "lucide-react";
 
 const ManufacturingScale = () => {
+  const sectionRef = useRef(null);
+  const [hasRevealed, setHasRevealed] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRevealed(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Search-friendly reveal logic: uses opacity and translate-y
+  // Browsers can find text in opacity-0 elements, making Cmd+F work perfectly.
+  const revealClass = (active, delay = "duration-1000") =>
+    `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      active ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+    }`;
+
   return (
-    <div className="mt-20 pt-20 border-t border-gray-100">
-      {/* Vertically centers the white cards against the dark card's natural height */}
+    <div 
+      ref={sectionRef}
+      className="mt-20 pt-20 border-t border-gray-100"
+    >
       <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center">
+        
         {/* LEFT COLUMN: THE DATA TERMINALS */}
         <div className="lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1">
-          {/* TOP ROW: DUAL STATS */}
+          {/* TOP ROW: DUAL STATS - Animated with staggered delays */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="group relative bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#BF092F]/20 transition-all duration-500 overflow-hidden">
+            <div className={`group relative bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#BF092F]/20 transition-all duration-500 overflow-hidden ${revealClass(hasRevealed, "duration-1000 delay-200")}`}>
               <div className="absolute top-0 right-0 p-4 text-gray-50 group-hover:text-[#BF092F]/5 transition-colors">
                 <MapPin size={80} />
               </div>
@@ -31,7 +61,7 @@ const ManufacturingScale = () => {
               </div>
             </div>
 
-            <div className="group relative bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#BF092F]/20 transition-all duration-500 overflow-hidden">
+            <div className={`group relative bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#BF092F]/20 transition-all duration-500 overflow-hidden ${revealClass(hasRevealed, "duration-1000 delay-300")}`}>
               <div className="absolute top-0 right-0 p-4 text-gray-50 group-hover:text-[#BF092F]/5 transition-colors">
                 <Factory size={80} />
               </div>
@@ -52,8 +82,8 @@ const ManufacturingScale = () => {
             </div>
           </div>
 
-          {/* BOTTOM ROW: FULL WIDTH WORKFORCE */}
-          <div className="group relative bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#BF092F]/20 transition-all duration-500 overflow-hidden">
+          {/* BOTTOM ROW: FULL WIDTH WORKFORCE - Animated with delay */}
+          <div className={`group relative bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#BF092F]/20 transition-all duration-500 overflow-hidden ${revealClass(hasRevealed, "duration-1000 delay-400")}`}>
             <div className="absolute top-0 right-0 p-8 text-gray-50 group-hover:text-[#BF092F]/5 transition-colors">
               <Users size={120} />
             </div>
@@ -88,10 +118,9 @@ const ManufacturingScale = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: THE CONCEPT BOX */}
-        <div className="lg:col-span-5 relative group order-1 lg:order-2 h-full">
+        {/* RIGHT COLUMN: THE CONCEPT BOX - Animated immediately */}
+        <div className={`lg:col-span-5 relative group order-1 lg:order-2 h-full ${revealClass(hasRevealed)}`}>
           <div className="absolute -inset-1 bg-gradient-to-r from-[#BF092F] to-[#44444E] rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-          {/* FIXED: Removed fixed min-height to restore original proportions */}
           <div className="relative h-full bg-[#44444E] p-10 rounded-2xl text-white shadow-2xl overflow-hidden flex flex-col justify-center">
             <Warehouse
               className="absolute -right-12 -bottom-12 text-white/5 group-hover:text-[#BF092F]/10 transition-colors duration-700"

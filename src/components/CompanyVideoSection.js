@@ -9,19 +9,43 @@ const CompanyVideoSection = ({
   const playerRef = useRef(null);
   const containerRef = useRef(null);
   const timerRef = useRef(null);
+  const sectionRef = useRef(null); // Reference for the scroll observer
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [hover, setHover] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isVisible, setIsVisible] = useState(false); // Scroll visibility state
+
+  // --- SCROLL ANIMATION LOGIC ---
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Shared Animation Classes
+  const revealClass = (visible, delay = "duration-1000") =>
+    `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+    }`;
 
   // --- AUTO-HIDE CURSOR & UI LOGIC ---
   const handleMouseMove = () => {
     setShowControls(true);
     if (timerRef.current) clearTimeout(timerRef.current);
-
-    // Only set timer to hide if the video is currently playing
     if (isPlaying) {
       timerRef.current = setTimeout(() => {
         setShowControls(false);
@@ -71,7 +95,7 @@ const CompanyVideoSection = ({
           onReady: () => setIsReady(true),
           onStateChange: (event) => {
             setIsPlaying(event.data === 1);
-            if (event.data !== 1) setShowControls(true); // Always show controls if paused/ended
+            if (event.data !== 1) setShowControls(true);
           },
         },
       });
@@ -99,11 +123,11 @@ const CompanyVideoSection = ({
   };
 
   return (
-    <section className="relative bg-white py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-white py-24 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
 
-        {/* 🏗️ INDUSTRIAL HEADER: Exactly aligned with Product Registry header */}
-        <div className="mb-16">
+        {/* 🏗️ INDUSTRIAL HEADER - Animated */}
+        <div className={`mb-16 ${revealClass(isVisible)}`}>
           <div className="flex items-center gap-4 mb-6">
             <div className="h-8 w-1 bg-[#BF092F]" />
             <Activity size={14} className="text-[#BF092F] animate-pulse" />
@@ -121,12 +145,14 @@ const CompanyVideoSection = ({
           </div>
         </div>
 
+        {/* VIDEO PLAYER CHASSIS - Animated with delay */}
         <div
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           className={`group relative w-full bg-black transition-all duration-500 overflow-hidden 
+            ${revealClass(isVisible, "duration-[1200ms] delay-300")}
             ${
               isFullscreen
                 ? "rounded-0"

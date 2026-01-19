@@ -1,23 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { partners } from "../utils/partners";
 import { Activity, ShieldCheck, Box, Zap } from "lucide-react";
 
 export default function TrustedPartners() {
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null); // Reference for the scroll observer
 
   useEffect(() => {
-    // Trigger animation on mount
-    setIsVisible(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 } // Triggers when 10% of the section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
-  // Shared Animation Logic (Matching previous components)
+  // Shared Animation Logic
   const revealClass = (visible, delay = "duration-1000") => 
     `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
       visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
     }`;
 
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
+    // Attached sectionRef here to detect when user scrolls to this section
+    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         
         {/* 🏗️ INDUSTRIAL HEADER */}
@@ -47,11 +61,10 @@ export default function TrustedPartners() {
               key={index}
               className="group relative aspect-[3/2] bg-white border-r border-b border-gray-100 flex flex-col items-center justify-center p-8 transition-all duration-500 hover:z-20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 cursor-crosshair overflow-hidden"
             >
-              {/* --- NEW MODERN HOVER LAYER (Dynamic Glow) --- */}
+              {/* Design elements remain exactly as they were */}
               <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#BF092F]/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
 
-              {/* Technical Cell Coordinates */}
               <span className="absolute top-4 left-4 text-[8px] font-mono font-bold text-gray-300 group-hover:text-[#44444E] transition-colors uppercase tracking-widest z-10">
                 PARTNER_0{index + 1}
               </span>
@@ -61,7 +74,6 @@ export default function TrustedPartners() {
                 size={14}
               />
 
-              {/* Logo - Synchronized Scaling */}
               <div className="relative z-10 w-full flex justify-center items-center">
                 <img
                   src={partner.logo}
@@ -70,7 +82,6 @@ export default function TrustedPartners() {
                 />
               </div>
 
-              {/* Hover Metadata Display */}
               <div className="absolute bottom-4 left-0 w-full px-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-500 text-center z-10">
                 <div className="flex items-center justify-center gap-1.5">
                   <span className="h-px w-3 bg-[#BF092F]/30" />
@@ -81,7 +92,6 @@ export default function TrustedPartners() {
                 </div>
               </div>
 
-              {/* Decorative Accent (Modern Line) */}
               <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#BF092F] group-hover:w-full transition-all duration-500" />
             </div>
           ))}

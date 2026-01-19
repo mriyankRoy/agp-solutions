@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { ExternalLink } from "lucide-react";
 
 const CorporateProfile = () => {
+  const sectionRef = useRef(null);
+  const [hasRevealed, setHasRevealed] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRevealed(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Search-friendly reveal logic
+  const revealClass = (active, delay = "duration-1000") =>
+    `transition-all ${delay} ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      active ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+    }`;
+
   return (
-    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100">
-      {/* Section Header */}
-      <div className="flex items-center gap-4 mb-8">
+    <div 
+      ref={sectionRef}
+      className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100"
+    >
+      {/* Section Header - Animated */}
+      <div className={`flex items-center gap-4 mb-8 ${revealClass(hasRevealed)}`}>
         <div className="h-8 w-1 bg-[#BF092F]" />
         <h2 className="text-sm text-[#44444E] uppercase font-bold">
           Corporate Identity & Strategy
@@ -13,14 +42,14 @@ const CorporateProfile = () => {
         <div className="hidden md:block h-px flex-grow ml-8 bg-gray-100" />
       </div>
 
-      <p className="text-3xl md:text-4xl font-semibold  text-[#44444E] leading-tight uppercase tracking-tight mb-8">
+      <p className={`text-3xl md:text-4xl font-semibold text-[#44444E] leading-tight uppercase tracking-tight mb-8 ${revealClass(hasRevealed, "duration-1000 delay-100")}`}>
         Bridging the Gap Between Engineering <br className="hidden md:block" />{" "}
         Excellence and Global Delivery.
       </p>
 
       {/* Main Profile Content */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start mb-16">
-        <div className="lg:col-span-2 space-y-6">
+        <div className={`lg:col-span-2 space-y-6 ${revealClass(hasRevealed, "duration-1000 delay-200")}`}>
           <div className="space-y-4 text-gray-500 leading-loose text-sm">
             <p>
               Art GenPower Solutions Limited is a premier provider of heavy
@@ -50,7 +79,8 @@ const CorporateProfile = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-3 grid grid-cols-2 gap-4">
+        {/* Image Grid - Animated with a staggered delay */}
+        <div className={`lg:col-span-3 grid grid-cols-2 gap-4 ${revealClass(hasRevealed, "duration-1000 delay-400")}`}>
           <div className="space-y-4">
             <img
               src="https://res.cloudinary.com/dc912sjxj/image/upload/v1767730365/Hamriyah_Facility_05_fyuzwt.webp"
