@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Mail,
   Phone,
@@ -14,9 +14,12 @@ import {
   X,
 } from "lucide-react";
 import { useNavigate } from "react-router";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 export default function ContactUsPage() {
   const navigate = useNavigate();
+  const captchaRef = useRef(null);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,6 +31,7 @@ export default function ContactUsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -39,14 +43,23 @@ export default function ContactUsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      alert("Please complete the security verification.");
+      return;
+    }
+
     setLoading(true);
 
     const object = {
       ...formData,
+      // Pass the token to Web3Forms
+      "h-captcha-response": captchaToken,
       access_key: "d6efad2a-df02-4c2c-8ce2-77e9b47e8082",
       subject: `New Contact Form Submission from ${formData.name}`,
       from_name: "Art Genpower Solutions Ltd"
     };
+    
     const json = JSON.stringify(object);
 
     try {
@@ -62,6 +75,8 @@ export default function ContactUsPage() {
 
       if (result.success) {
         setSubmitted(true);
+        setCaptchaToken(null);
+        if (captchaRef.current) captchaRef.current.resetCaptcha();
         setFormData({
           name: "",
           email: "",
@@ -71,7 +86,7 @@ export default function ContactUsPage() {
           message: "",
         });
       } else {
-        alert("Transmission failed. Please try again.");
+        alert(result.message || "Transmission failed. Please try again.");
       }
     } catch (error) {
       alert("Terminal error. Check your connection.");
@@ -122,39 +137,24 @@ export default function ContactUsPage() {
       <div className="pt-22 px-2 md:px-2">
         <header className="shadow-xl relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl">
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
-
-          {/* Animated Red Beams */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#BF092F] to-transparent animate-pulse" />
             <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse delay-700" />
           </div>
 
           <div className="container mx-auto px-4 md:px-6 relative z-20">
-            {/* 🧭 ENHANCED HIERARCHICAL BREADCRUMB */}
             <nav className="flex items-center flex-wrap gap-3 mb-6">
-              <button
-                onClick={() => navigate("/")}
-                className="cursor-pointer group flex items-center gap-1 text-white/50 hover:text-white transition-colors"
-              >
+              <button onClick={() => navigate("/")} className="cursor-pointer group flex items-center gap-1 text-white/50 hover:text-white transition-colors">
                 <Home size={14} />
                 <span className="text-[10px] md:text-xs tracking-widest uppercase">Home</span>
               </button>
-
               <span className="text-white/20 text-xs font-mono">{">"}</span>
-
-              {/* ACTIVE PAGE: RED PILL DESIGN */}
               <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 font-bold">
                 Contact Us
               </button>
             </nav>
 
-            <h1
-              className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-10 opacity-0"
-              }`}
-            >
+            <h1 className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
               Contact <span className="text-[#BF092F]">Us</span>
             </h1>
             <p className="text-white/60 text-lg md:text-xl tracking-wide leading-relaxed mt-2">
@@ -169,55 +169,23 @@ export default function ContactUsPage() {
         <div className="pt-30">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             {/* SIDEBAR */}
-            <aside
-              className={`lg:col-span-4 space-y-8 transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
+            <aside className={`lg:col-span-4 space-y-8 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
               <div className="rounded-2xl bg-[#44444E] shadow-2xl border-t-4 border-[#BF092F] overflow-hidden h-full">
                 <div className="p-8 border-b border-white/10">
-                  <h2 className="text-[12px] text-white tracking-[0.4em] mb-8 font-bold">
-                    TERMINAL INFO
-                  </h2>
+                  <h2 className="text-[12px] text-white tracking-[0.4em] mb-8 font-bold">TERMINAL INFO</h2>
                   <div className="space-y-8">
-                    <ContactRow
-                      icon={<Phone size={18} />}
-                      label="Direct Line"
-                      value="+44 7492 949230"
-                      href="tel:+447492949230"
-                    />
-                    <ContactRow
-                      icon={<Mail size={18} />}
-                      label="Enquiries"
-                      value="info@artgpower.co.uk"
-                      href="mailto:info@artgpower.co.uk"
-                    />
-                    <ContactRow
-                      icon={<MapPin size={18} />}
-                      label="Address"
-                      value="19 Pelham Court, Hemel Hempstead, HP2 4UW, UK"
-                    />
+                    <ContactRow icon={<Phone size={18} />} label="Direct Line" value="+44 7492 949230" href="tel:+447492949230" />
+                    <ContactRow icon={<Mail size={18} />} label="Enquiries" value="info@artgpower.co.uk" href="mailto:info@artgpower.co.uk" />
+                    <ContactRow icon={<MapPin size={18} />} label="Address" value="19 Pelham Court, Hemel Hempstead, HP2 4UW, UK" />
                   </div>
                 </div>
-
                 <div className="p-8 bg-black/20">
-                  <h3 className="text-[12px] text-white/40 uppercase tracking-[0.4em] mb-6 flex items-center gap-2">
-                    <Clock size={14} /> Operational Hours
-                  </h3>
+                  <h3 className="text-[12px] text-white/40 uppercase tracking-[0.4em] mb-6 flex items-center gap-2"><Clock size={14} /> Operational Hours</h3>
                   <div className="space-y-3">
-                    <div className="flex justify-between text-[11px] uppercase tracking-widest">
-                      <span className="text-white/50">Mon – Fri</span>
-                      <span className="text-white font-bold">09:00 – 17:00</span>
-                    </div>
-                    <div className="flex justify-between text-[11px] uppercase tracking-widest">
-                      <span className="text-white/50">Saturday</span>
-                      <span className="text-white font-bold">10:00 – 14:00</span>
-                    </div>
+                    <div className="flex justify-between text-[11px] uppercase tracking-widest"><span className="text-white/50">Mon – Fri</span><span className="text-white font-bold">09:00 – 17:00</span></div>
+                    <div className="flex justify-between text-[11px] uppercase tracking-widest"><span className="text-white/50">Saturday</span><span className="text-white font-bold">10:00 – 14:00</span></div>
                   </div>
                 </div>
-
                 <div className="p-6 flex gap-2">
                   <IconButton icon={<Linkedin size={18} />} />
                   <IconButton icon={<Facebook size={18} />} />
@@ -227,112 +195,55 @@ export default function ContactUsPage() {
             </aside>
 
             {/* RIGHT SECTION - The Form */}
-            <div
-              className={`lg:col-span-8 transition-all duration-1000 delay-500 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
+            <div className={`lg:col-span-8 transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
               <div className="bg-white px-4 md:px-8 py-10 md:py-12 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
-                <span className="absolute top-8 right-8 text-6xl font-black text-gray-50 select-none hidden md:block">
-                  FORM
-                </span>
-                <h2 className="tracking-widest border-l-4 border-[#BF092F] pl-4 mb-10 text-[#44444E] uppercase text-sm font-bold">
-                  Send Message
-                </h2>
+                <span className="absolute top-8 right-8 text-6xl font-black text-gray-50 select-none hidden md:block">FORM</span>
+                <h2 className="tracking-widest border-l-4 border-[#BF092F] pl-4 mb-10 text-[#44444E] uppercase text-sm font-bold">Send Message</h2>
 
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-8 relative z-10"
-                >
+                <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <Input
-                      label="Identity / Full Name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="J. Doe"
-                    />
-                    <Input
-                      label="Email Address"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="Contact@domain.com"
-                    />
+                    <Input label="Identity / Full Name" name="name" value={formData.name} onChange={handleChange} required placeholder="J. Doe" />
+                    <Input label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="Contact@domain.com" />
                   </div>
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <Input
-                      label="Phone Number"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+44 000 000"
-                    />
-                    <Input
-                      label="Corporate Entity"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Company LTD"
-                    />
+                    <Input label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} placeholder="+44 000 000" />
+                    <Input label="Corporate Entity" name="company" value={formData.company} onChange={handleChange} placeholder="Company LTD" />
                   </div>
-
                   <div>
-                    <label className="block text-[12px] text-[#44444E] uppercase tracking-[0.2em] mb-3 font-bold">
-                      Service Classification
-                    </label>
+                    <label className="block text-[12px] text-[#44444E] uppercase tracking-[0.2em] mb-3 font-bold">Service Classification</label>
                     <div className="relative">
-                      <select
-                        name="service"
-                        required
-                        value={formData.service}
-                        onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 tracking-widest focus:outline-none focus:border-[#BF092F] appearance-none cursor-pointer"
-                      >
+                      <select name="service" required value={formData.service} onChange={handleChange} className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 tracking-widest focus:outline-none focus:border-[#BF092F] appearance-none cursor-pointer">
                         <option value="">Select Project Scope</option>
-                        <option value="generator-packages">
-                          Generator Packages
-                        </option>
-                        <option value="electrical-accessories">
-                          Electrical Accessories
-                        </option>
-                        <option value="bespoke-engineering">
-                          Bespoke Turnkey Projects
-                        </option>
+                        <option value="generator-packages">Generator Packages</option>
+                        <option value="electrical-accessories">Electrical Accessories</option>
+                        <option value="bespoke-engineering">Bespoke Turnkey Projects</option>
                         <option value="others">Others</option>
                       </select>
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#44444E]">
-                        <ChevronLeft size={16} className="-rotate-90" />
-                      </div>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#44444E]"><ChevronLeft size={16} className="-rotate-90" /></div>
                     </div>
                   </div>
+                  <textarea rows={5} name="message" value={formData.message} onChange={handleChange} required placeholder="PROVIDE DETAILED TECHNICAL REQUIREMENTS..." className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 tracking-widest focus:outline-none focus:border-[#BF092F] resize-none" />
 
-                  <textarea
-                    rows={5}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="PROVIDE DETAILED TECHNICAL REQUIREMENTS..."
-                    className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 tracking-widest focus:outline-none focus:border-[#BF092F] resize-none"
-                  />
+                  {/* hCaptcha Widget Container */}
+                  <div className="py-2 relative z-[60]">
+                    <HCaptcha
+                      // Official Web3Forms sitekey for free users
+                      sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                      onVerify={(token) => setCaptchaToken(token)}
+                      onExpire={() => setCaptchaToken(null)}
+                      ref={captchaRef}
+                      theme="light"
+                      reCaptchaCompat={false}
+                    />
+                  </div>
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-4 px-10 py-4 bg-[#44444E] text-white uppercase tracking-[0.3em] hover:bg-[#BF092F] hover:shadow-2xl transition-all rounded-xl shadow-xl group font-bold"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-4 px-10 py-4 bg-[#44444E] text-white uppercase tracking-[0.3em] hover:bg-[#BF092F] hover:shadow-2xl transition-all rounded-xl shadow-xl group font-bold disabled:opacity-50"
                   >
                     {loading ? "Transmitting..." : "Send Message"}
-                    <Send
-                      size={16}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
+                    <Send size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </form>
               </div>
@@ -340,7 +251,6 @@ export default function ContactUsPage() {
           </div>
         </div>
       </main>
-
       <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
     </div>
   );
@@ -351,48 +261,24 @@ export default function ContactUsPage() {
 function ContactRow({ icon, label, value, href }) {
   return (
     <div className="flex gap-4 items-start group">
-      <div className="w-10 h-10 bg-white/10 text-[#BF092F] flex items-center justify-center shrink-0 rounded-lg border border-white/5 group-hover:bg-[#BF092F] group-hover:text-white transition-colors">
-        {icon}
-      </div>
+      <div className="w-10 h-10 bg-white/10 text-[#BF092F] flex items-center justify-center shrink-0 rounded-lg border border-white/5 group-hover:bg-[#BF092F] group-hover:text-white transition-colors">{icon}</div>
       <div>
-        <p className="text-[12px] text-white/30 uppercase tracking-[0.3em] mb-1 font-bold">
-          {label}
-        </p>
-        {href ? (
-          <a
-            href={href}
-            className="text-xs text-white uppercase tracking-widest hover:text-[#BF092F] transition-colors font-medium"
-          >
-            {value}
-          </a>
-        ) : (
-          <span className="text-xs text-white/80 uppercase tracking-widest leading-relaxed font-medium">
-            {value}
-          </span>
-        )}
+        <p className="text-[12px] text-white/30 uppercase tracking-[0.3em] mb-1 font-bold">{label}</p>
+        {href ? <a href={href} className="text-xs text-white uppercase tracking-widest hover:text-[#BF092F] transition-colors font-medium">{value}</a> : <span className="text-xs text-white/80 uppercase tracking-widest leading-relaxed font-medium">{value}</span>}
       </div>
     </div>
   );
 }
 
 function IconButton({ icon }) {
-  return (
-    <button className="w-12 h-12 flex items-center justify-center bg-white/5 text-white/40 border border-white/5 hover:bg-[#BF092F] hover:text-white transition-all rounded-lg">
-      {icon}
-    </button>
-  );
+  return <button className="w-12 h-12 flex items-center justify-center bg-white/5 text-white/40 border border-white/5 hover:bg-[#BF092F] hover:text-white transition-all rounded-lg">{icon}</button>;
 }
 
 function Input({ label, ...props }) {
   return (
     <div className="w-full">
-      <label className="block text-[12px] text-[#44444E] uppercase tracking-[0.2em] mb-2 font-bold">
-        {label}
-      </label>
-      <input
-        {...props}
-        className="w-full bg-gray-50 border-b-2 border-gray-200 py-3 tracking-widest focus:outline-none focus:border-[#BF092F] transition-colors"
-      />
+      <label className="block text-[12px] text-[#44444E] uppercase tracking-[0.2em] mb-2 font-bold">{label}</label>
+      <input {...props} className="w-full bg-gray-50 border-b-2 border-gray-200 py-3 tracking-widest focus:outline-none focus:border-[#BF092F] transition-colors" />
     </div>
   );
 }
