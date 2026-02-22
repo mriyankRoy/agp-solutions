@@ -14,8 +14,12 @@ import CareersPage from "./components/CareersPage";
 import ProjectsPage from "./components/Projects/ProjectsPage";
 import ProjectDetailPage from "./components/Projects/ProjectDetailPage";
 import AboutUsPage from "./components/About/AboutUsPage";
+import { inject } from "@vercel/analytics";
 
 const AppLayout = () => {
+  
+  inject();
+
   return (
     <div>
       <Header />
