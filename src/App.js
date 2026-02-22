@@ -14,7 +14,6 @@ import CareersPage from "./components/CareersPage";
 import ProjectsPage from "./components/Projects/ProjectsPage";
 import ProjectDetailPage from "./components/Projects/ProjectDetailPage";
 import AboutUsPage from "./components/About/AboutUsPage";
-import { SpeedInsights } from "@vercel/speed-insights";
 
 const AppLayout = () => {
   return (
@@ -23,7 +22,6 @@ const AppLayout = () => {
       <ScrollToTop />
       <main>
         <Outlet />
-        <SpeedInsights />
       </main>
       <Footer />
     </div>
