@@ -12,10 +12,10 @@ const CompanyVideoSection = ({
   tagline = "Visualizing the future of power infrastructure and strategic assembly.",
 }) => {
   // --- REFERENCES ---
-  const videoRef = useRef(null);      // Reference for HTML5 video element logic
-  const containerRef = useRef(null);  // Reference for Fullscreen requests
-  const timerRef = useRef(null);      // Reference for UI auto-hide timer
-  const sectionRef = useRef(null);    // Reference for scroll-trigger observer
+  const videoRef = useRef(null); // Reference for HTML5 video element logic
+  const containerRef = useRef(null); // Reference for Fullscreen requests
+  const timerRef = useRef(null); // Reference for UI auto-hide timer
+  const sectionRef = useRef(null); // Reference for scroll-trigger observer
 
   // --- STATE MANAGEMENT ---
   const [isPlaying, setIsPlaying] = useState(false);
@@ -31,7 +31,7 @@ const CompanyVideoSection = ({
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -62,7 +62,8 @@ const CompanyVideoSection = ({
   useEffect(() => {
     const handleFsChange = () => setIsFullscreen(!!document.fullscreenElement);
     document.addEventListener("fullscreenchange", handleFsChange);
-    return () => document.removeEventListener("fullscreenchange", handleFsChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFsChange);
   }, []);
 
   /**
@@ -99,9 +100,11 @@ const CompanyVideoSection = ({
   };
 
   return (
-    <section ref={sectionRef} className="relative bg-white py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative bg-white py-24 overflow-hidden"
+    >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-
         {/* --- 🏗️ INDUSTRIAL HEADER --- */}
         <div className={`mb-16 ${revealClass(isVisible)}`}>
           <div className="flex items-center gap-4 mb-6">
@@ -113,7 +116,8 @@ const CompanyVideoSection = ({
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <h3 className="text-3xl md:text-5xl font-semibold text-[#44444E] leading-tight uppercase tracking-tight">
-              Operational <br /><span className="text-[#BF092F]">Excellence</span>
+              Operational <br />
+              <span className="text-[#BF092F]">Excellence</span>
             </h3>
             <p className="max-w-md text-gray-400 font-bold uppercase tracking-widest text-[10px] leading-relaxed pb-1 border-l-2 border-gray-100 pl-6 lg:ml-8">
               {tagline}
@@ -143,7 +147,9 @@ const CompanyVideoSection = ({
             </button>
           )}
 
-          <div className={`relative bg-gray-900 overflow-hidden ${isFullscreen ? "h-screen w-screen" : "aspect-video"}`}>
+          <div
+            className={`relative bg-gray-900 overflow-hidden ${isFullscreen ? "h-screen w-screen" : "aspect-video"}`}
+          >
             {/* Native Video Engine */}
             <video
               ref={videoRef}
@@ -167,7 +173,10 @@ const CompanyVideoSection = ({
                 {isPlaying ? (
                   <Pause size={32} className="text-white fill-white" />
                 ) : (
-                  <Play size={32} className="text-white fill-white translate-x-1" />
+                  <Play
+                    size={32}
+                    className="text-white fill-white translate-x-1"
+                  />
                 )}
               </button>
             </div>
@@ -186,12 +195,6 @@ const CompanyVideoSection = ({
 
               {/* Status and Actions Side */}
               <div className="flex items-center gap-6">
-                <div className="flex flex-col items-end">
-                  <span className="text-[10px] text-gray-300 font-bold uppercase tracking-widest mb-1">Status</span>
-                  <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-[#44444E]">
-                    <div className="w-2 h-2 rounded-full bg-[#BF092F] animate-pulse" /> Technical Live
-                  </div>
-                </div>
                 <div className="h-8 w-px bg-gray-100" />
                 <button
                   onClick={handleFullScreen}
@@ -205,7 +208,9 @@ const CompanyVideoSection = ({
 
           {/* Bottom Accent Progress Decorator */}
           {!isFullscreen && (
-            <div className={`absolute bottom-0 left-0 h-1 bg-[#BF092F] transition-all duration-700 ${hover ? "w-full" : "w-0"}`} />
+            <div
+              className={`absolute bottom-0 left-0 h-1 bg-[#BF092F] transition-all duration-700 ${hover ? "w-full" : "w-0"}`}
+            />
           )}
         </div>
       </div>
