@@ -36,6 +36,7 @@ const AppLayout = () => {
 };
 
 const appRouter = createBrowserRouter([
+  // MAIN WEBSITE LAYOUT (With Header and Footer)
   {
     path: "/",
     element: <AppLayout />,
@@ -55,12 +56,13 @@ const appRouter = createBrowserRouter([
       { path: "/careers", element: <CareersPage /> },
       { path: "/projects", element: <ProjectsPage /> },
       { path: "/projects/:id", element: <ProjectDetailPage /> },
-      
-      /* NEW ROUTE: Digital Business Card
-         Share this via: yourdomain.com/me 
-      */
-      { path: "/me", element: <DigitalBusinessCard /> },
     ],
+  },
+  
+  // STANDALONE ROUTE (No Header, No Footer)
+  { 
+    path: "/me", 
+    element: <DigitalBusinessCard /> 
   },
 ]);
 
