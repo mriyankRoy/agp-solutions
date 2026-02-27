@@ -14,6 +14,7 @@ import CareersPage from "./components/CareersPage";
 import ProjectsPage from "./components/Projects/ProjectsPage";
 import ProjectDetailPage from "./components/Projects/ProjectDetailPage";
 import AboutUsPage from "./components/About/AboutUsPage";
+import DigitalBusinessCard from "./components/Me/DigitalBusinessCard"; // [NEW IMPORT]
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 import ErrorPage from "./components/ErrorPage";
@@ -43,16 +44,10 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/about", element: <AboutUsPage /> },
       { path: "/products", element: <ProductPage /> },
-      
-      /* MATCHING FIX: This route now perfectly matches the 
-         navigate(`/products/${slug}/${productNameEncoded}`) 
-         call in your ProductCard.js
-      */
       {
         path: "/products/:categorySlug/:productName",
         element: <ProductDetailPage />,
       },
-
       { path: "/contact", element: <ContactUsPage /> },
       { path: "/search/:query", element: <SearchResultsPage /> },
       { path: "/facilities", element: <FacilitiesPage /> },
@@ -60,6 +55,11 @@ const appRouter = createBrowserRouter([
       { path: "/careers", element: <CareersPage /> },
       { path: "/projects", element: <ProjectsPage /> },
       { path: "/projects/:id", element: <ProjectDetailPage /> },
+      
+      /* NEW ROUTE: Digital Business Card
+         Share this via: yourdomain.com/me 
+      */
+      { path: "/me", element: <DigitalBusinessCard /> },
     ],
   },
 ]);
