@@ -24,19 +24,21 @@ const DigitalBusinessCard = () => {
     linkedin: "linkedin.com/in/mriyankroy",
     whatsapp: "5434323444",
     profileImage: "https://media.licdn.com/dms/image/v2/C4D03AQGWl3hr_5Hgwg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1631744890167?e=2147483647&v=beta&t=HjNo8kXRIppSz5qOydFE14gMT9ojtfQ_hm6Tmuy3W6c",
+    // Integrated your PassKit ID into a smart link
+    passKitUrl: "https://pub1.pskt.io/7mSY3CFhheG8gxcFhlZtvm" 
   };
 
-  // 1. NATIVE SHARE (WhatsApp, Instagram, etc.)
+  // 1. NATIVE SHARE (Opens WhatsApp/Instagram/System Share)
   const handleNativeShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `${data.name} | Digital ID`,
-          text: `Scan or save my digital business card:`,
+          title: `${data.name} | Art G Power ID`,
+          text: `Check out my digital business card:`,
           url: currentUrl,
         });
       } catch (err) {
-        console.error(err);
+        console.log('Share failed:', err);
       }
     } else {
       navigator.clipboard.writeText(currentUrl);
@@ -44,19 +46,14 @@ const DigitalBusinessCard = () => {
     }
   };
 
-  // 2. GOOGLE WALLET (Using vCard pass-through)
+  // 2. UPDATED WALLET LOGIC (Opens PassKit Smart Pass)
   const handleGoogleWallet = () => {
-    // For production, use a service like vcardtowallet.com or passkit
-    // For now, we trigger the vCard download which Android identifies as a contact pass
-    handleSaveContact();
-    
-    // UI Feedback since Wallet API requires an Issuer ID
-    if (!navigator.userAgent.match(/Android/i)) {
-      alert("Google Wallet is optimized for Android devices. Saving contact file instead.");
-    }
+    // This will open the PassKit landing page which works for both 
+    // Apple Wallet and Google Wallet without certificate errors.
+    window.open(data.passKitUrl, '_blank');
   };
 
-  // 3. CONTACT FILE GENERATION
+  // 3. CONTACT FILE GENERATION (.vcf)
   const handleSaveContact = () => {
     const vcard = [
       "BEGIN:VCARD",
@@ -110,6 +107,7 @@ const DigitalBusinessCard = () => {
 
         {activeTab === 'card' ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full relative z-10">
+            
             {/* Action Bar */}
             <div className="p-8 pb-0 flex justify-between items-start">
                <div className="bg-white/5 p-2 rounded-lg border border-white/10 shadow-inner"><Cpu size={16} className="text-[#BF092F]" /></div>
@@ -126,7 +124,9 @@ const DigitalBusinessCard = () => {
               <div className="w-32 h-32 rounded-3xl overflow-hidden border-2 border-[#BF092F] shadow-[0_0_30px_rgba(191,9,47,0.2)] mx-auto bg-gray-800 mb-6">
                 <img src={data.profileImage} alt={data.name} className="w-full h-full object-cover" />
               </div>
-              <h1 className="text-3xl font-bold text-white tracking-tight leading-none">{data.name.split(' ')[0]} <span className="text-[#BF092F]">{data.name.split(' ')[1]}</span></h1>
+              <h1 className="text-3xl font-bold text-white tracking-tight leading-none">
+                {data.name.split(' ')[0]} <span className="text-[#BF092F]">{data.name.split(' ')[1]}</span>
+              </h1>
               <p className="text-white/40 text-[9px] font-bold uppercase tracking-[0.4em] mt-3">{data.role}</p>
             </div>
 
@@ -158,10 +158,15 @@ const DigitalBusinessCard = () => {
                 <Download size={16} /> Save to Contacts
               </button>
               
-              <button onClick={handleGoogleWallet} className="w-full flex items-center justify-center gap-3 py-3.5 bg-black text-white rounded-2xl text-[10px] font-bold uppercase tracking-[0.2em] border border-white/5 hover:border-white/20 transition-all active:scale-95 group">
-                <Wallet size={16} className="text-[#4285F4] group-hover:scale-110 transition-transform" /> Add to Wallet
+              <button 
+                onClick={handleGoogleWallet} 
+                className="w-full flex items-center justify-center gap-3 py-3.5 bg-black text-white rounded-2xl text-[10px] font-bold uppercase tracking-[0.2em] border border-white/5 hover:border-white/20 hover:bg-zinc-900 transition-all active:scale-95 group"
+              >
+                <Wallet size={16} className="text-[#4285F4] group-hover:scale-110 transition-transform" /> 
+                Add to Wallet
               </button>
             </div>
+
           </div>
         ) : (
           /* QR CODE PANEL */
@@ -176,13 +181,13 @@ const DigitalBusinessCard = () => {
               onClick={handleNativeShare} 
               className="mt-10 flex items-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full text-white/60 text-[10px] uppercase font-bold tracking-[0.2em] hover:bg-[#BF092F] hover:text-white hover:border-[#BF092F] transition-all active:scale-95"
             >
-              <Share2 size={14} /> Share Card
+              <Share2 size={14} /> Share Card Link
             </button>
           </div>
         )}
       </div>
 
-      {/* Footer Label */}
+      {/* Industrial Footer Branding */}
       <div className="mt-8 flex items-center gap-2 opacity-10">
         <ShieldCheck size={14} className="text-white" />
         <span className="text-[10px] text-white uppercase tracking-[0.4em]">Official AGP Industrial ID</span>
