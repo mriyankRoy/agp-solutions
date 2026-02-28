@@ -76,7 +76,7 @@ const Header = () => {
             <div className="flex justify-start items-center">
               <Link to="/" className="flex-shrink-0 group/logo">
                 <img
-                  src="https://res.cloudinary.com/dc912sjxj/image/upload/v1766520846/AGP_Logo_j44tzo.png"
+                  src="https://res.cloudinary.com/dc912sjxj/image/upload/v1772287992/Gemini_Generated_Image_tler0wtler0wtler-removebg-preview_zhmv2k.png"
                   alt="AGP Logo"
                   className="h-12 sm:h-14 md:h-16 w-auto transition-transform duration-500 group-hover/logo:scale-110"
                 />

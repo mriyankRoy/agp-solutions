@@ -14,7 +14,7 @@ import CareersPage from "./components/CareersPage";
 import ProjectsPage from "./components/Projects/ProjectsPage";
 import ProjectDetailPage from "./components/Projects/ProjectDetailPage";
 import AboutUsPage from "./components/About/AboutUsPage";
-import DigitalBusinessCard from "./components/Me/DigitalBusinessCard"; // [NEW IMPORT]
+import DigitalBusinessCard from "./components/People/DigitalBusinessCard";
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 import ErrorPage from "./components/ErrorPage";

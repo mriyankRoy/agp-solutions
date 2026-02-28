@@ -38,7 +38,7 @@ const Footer = () => {
             <div className="lg:col-span-4 flex flex-col items-start space-y-8">
               <Link to="/" className="group">
                 <img
-                  src="https://res.cloudinary.com/dc912sjxj/image/upload/v1766520846/AGP_Logo_j44tzo.png"
+                  src="https://res.cloudinary.com/dc912sjxj/image/upload/v1772287992/Gemini_Generated_Image_tler0wtler0wtler-removebg-preview_zhmv2k.png"
                   alt="AGP Logo"
                   className="h-14 md:h-18 w-auto transition-transform duration-500 group-hover:scale-105"
                 />
