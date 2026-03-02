@@ -7,7 +7,7 @@ export const employees = {
     phone: "+44 7492949230", // Placeholder - replace with actual
     email: "arunava@artgpower.co.uk",
     website: "https://www.artgpower.co.uk/",
-    linkedin: "https://www.linkedin.com/in/arunava-maity-6236a017/", // Placeholder - replace with actual
+    linkedin: "www.linkedin.com/in/arunava-maity-6236a017/", // Placeholder - replace with actual
     whatsapp: "447492949230", // Placeholder - replace with actual
     profileImage: "https://res.cloudinary.com/dc912sjxj/image/upload/v1772482777/Gemini_Generated_Image_d7pmp6d7pmp6d7pm_fmwpar.png", // Replace with his professional headshot
     bio: "MBA, PMP | 20+ Years Executive Experience in high-value power generation. Former leadership at Cummins, Caterpillar, AVK, and Kohler.",
