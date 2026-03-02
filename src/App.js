@@ -59,11 +59,13 @@ const appRouter = createBrowserRouter([
     ],
   },
   
-  // STANDALONE ROUTE (No Header, No Footer)
+  // UPDATED DYNAMIC ROUTE (No Header, No Footer)
+  // Adding ":username" allows URLs like /me/mriyank-roy or /me/bandana-art
   { 
-    path: "/me", 
+    path: "/people/:username", 
     element: <DigitalBusinessCard /> 
   },
+  
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

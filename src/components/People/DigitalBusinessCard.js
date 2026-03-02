@@ -1,59 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router'; 
 import { 
   Phone, Globe, Linkedin, Download, 
-  MessageSquare, Cpu, ShieldCheck, QrCode, User, Share2 
+  MessageSquare, Cpu, ShieldCheck, QrCode, User, Share2, Info
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-
-// 1. TEAM REGISTRY
-const teamData = {
-  "mriyank-roy": {
-    name: "Mriyank Roy",
-    role: "Web Designer",
-    company: "Art Genpower Solutions Ltd",
-    id: "REG-882-MR",
-    phone: "07429797992",
-    email: "mriyank@artgpower.co.uk",
-    website: "https://www.artgpower.co.uk/",
-    linkedin: "linkedin.com/in/mriyankroy",
-    whatsapp: "07429797992",
-    profileImage: "https://media.licdn.com/dms/image/v2/C4D03AQGWl3hr_5Hgwg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1631744890167?e=2147483647&v=beta&t=HjNo8kXRIppSz5qOydFE14gMT9ojtfQ_hm6Tmuy3W6c"
-  }
-};
+import { employees } from '../../utils/employees';
 
 const DigitalBusinessCard = () => {
-  const { username } = useParams();
+  const { username } = useParams(); 
   const [activeTab, setActiveTab] = useState('card');
   const [currentUrl, setCurrentUrl] = useState('');
 
-  const data = teamData[username] || teamData["mriyank-roy"];
+  const data = employees[username] || employees["mriyank-roy"];
 
   useEffect(() => {
-    setCurrentUrl(window.location.origin + window.location.pathname);
-  }, []);
+    setCurrentUrl(window.location.href);
+  }, [username]);
 
   const getBase64FromUrl = async (url) => {
     try {
-      const data = await fetch(url);
-      const blob = await data.blob();
+      const response = await fetch(url);
+      const blob = await response.blob();
       return new Promise((resolve) => {
         const reader = new FileReader();
         reader.readAsDataURL(blob); 
-        reader.onloadend = () => {
-          const base64data = reader.result.split(',')[1];
-          resolve(base64data);
-        }
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
       });
     } catch (err) {
-      console.warn("Photo embedding failed (CORS).");
       return null;
     }
   };
 
   const handleSaveContact = async () => {
     const photo = await getBase64FromUrl(data.profileImage);
-    
     const vcard = [
       "BEGIN:VCARD",
       "VERSION:3.0",
@@ -77,22 +57,6 @@ const DigitalBusinessCard = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  };
-
-  const handleNativeShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: `${data.name} | AGP ID`,
-          text: `Save my contact:`,
-          url: currentUrl,
-        });
-      } catch (err) { console.log(err); }
-    } else {
-      navigator.clipboard.writeText(currentUrl);
-      alert("Link copied!");
-    }
   };
 
   return (
@@ -115,8 +79,15 @@ const DigitalBusinessCard = () => {
       </div>
 
       {/* MAIN CARD CONTAINER */}
-      <div className="w-full max-w-md bg-[#44444E] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-t-4 border-[#BF092F] overflow-hidden relative min-h-[620px] flex flex-col border border-white/5">
+      <div className="w-full max-w-md bg-[#44444E] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-t-4 border-[#BF092F] overflow-hidden relative min-h-[700px] flex flex-col border border-white/5">
+        
+        {/* BACKGROUND TEXTURE & WATERMARK */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+        
+        {/* BIG WATERMARK LOGO */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0">
+          <img src="https://res.cloudinary.com/dc912sjxj/image/upload/v1772287992/Gemini_Generated_Image_tler0wtler0wtler-removebg-preview_zhmv2k.png" alt="Watermark" className="w-[80%] object-contain grayscale" />
+        </div>
 
         {activeTab === 'card' ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 flex flex-col h-full relative z-10">
@@ -124,7 +95,13 @@ const DigitalBusinessCard = () => {
                <div className="bg-white/5 p-2 rounded-lg border border-white/10 shadow-inner">
                  <Cpu size={16} className="text-[#BF092F]" />
                </div>
-               <button onClick={handleNativeShare} className="bg-white/5 p-2.5 rounded-lg border border-white/10 text-white/40 hover:text-white active:scale-90">
+               <button 
+                 onClick={() => {
+                   navigator.clipboard.writeText(currentUrl);
+                   alert("Link copied!");
+                 }} 
+                 className="bg-white/5 p-2.5 rounded-lg border border-white/10 text-white/40 hover:text-white active:scale-90"
+               >
                  <Share2 size={18} />
                </button>
             </div>
@@ -134,10 +111,25 @@ const DigitalBusinessCard = () => {
                 <img src={data.profileImage} alt={data.name} className="w-full h-full object-cover" />
               </div>
               <h1 className="text-3xl font-bold text-white tracking-tight leading-none">
-                {data.name.split(' ')[0]} <span className="text-[#BF092F]">{data.name.split(' ')[1]}</span>
+                {data.name.split(' ')[0]} <span className="text-[#BF092F]">{data.name.split(' ').slice(1).join(' ')}</span>
               </h1>
               <p className="text-white/40 text-[9px] font-bold uppercase tracking-[0.4em] mt-3">{data.role}</p>
             </div>
+
+            {/* BIO SECTION */}
+            {data.bio && (
+              <div className="px-8 py-2">
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10 relative overflow-hidden">
+                  <div className="flex items-center gap-2 mb-2 text-[#BF092F]">
+                    <Info size={14} />
+                    <span className="text-[8px] font-bold uppercase tracking-widest">Professional Profile</span>
+                  </div>
+                  <p className="text-white/60 text-[11px] leading-relaxed italic">
+                    {data.bio}
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div className="px-8 py-4 flex-grow">
               <div className="space-y-4 relative">
@@ -146,7 +138,7 @@ const DigitalBusinessCard = () => {
                   { icon: <Phone size={16} />, label: "Mobile", val: data.phone, link: `tel:${data.phone}` },
                   { icon: <MessageSquare size={16} />, label: "WhatsApp", val: "Instant Chat", link: `https://wa.me/${data.whatsapp}` },
                   { icon: <Globe size={16} />, label: "Portfolio", val: "artgpower.co.uk", link: data.website },
-                  { icon: <Linkedin size={16} />, label: "LinkedIn", val: "mriyankroy", link: `https://${data.linkedin}` }
+                  { icon: <Linkedin size={16} />, label: "LinkedIn", val: "View Profile", link: `https://${data.linkedin}` }
                 ].map((node, i) => (
                   <a href={node.link} target="_blank" rel="noreferrer" key={i} className="group flex items-center gap-6 relative pl-8 py-1 transition-all">
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-px bg-white/10 group-hover:bg-[#BF092F] transition-all" />
