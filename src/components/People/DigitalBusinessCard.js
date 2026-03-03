@@ -231,12 +231,12 @@ const DigitalBusinessCard = () => {
                     val: "artgpower.co.uk",
                     link: data.website,
                   },
-                  {
-                    icon: <Linkedin size={16} />,
-                    label: "LinkedIn",
-                    val: "View Profile",
-                    link: `https://${data.linkedin}`,
-                  },
+                  // {
+                  //   icon: <Linkedin size={16} />,
+                  //   label: "LinkedIn",
+                  //   val: "View Profile",
+                  //   link: `https://${data.linkedin}`,
+                  // },
                 ].map((node, i) => (
                   <a
                     href={node.link}
