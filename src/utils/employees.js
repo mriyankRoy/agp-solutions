@@ -11,7 +11,7 @@ export const employees = {
     whatsapp: "447492949230", // Placeholder - replace with actual
     profileImage:
       "https://res.cloudinary.com/dc912sjxj/image/upload/c_fill,g_face,w_400,h_400,f_auto,q_auto/v1772547762/maity-arunava_AGP_People_quyu6u.webp", // Replace with his professional headshot
-    bio: "MBA, PMP | 20+ Years Executive Experience in high-value power generation. Former leadership at Cummins, Caterpillar, AVK, and Kohler.",
+    bio: "Professional Profile Global Energy Executive (MBA, PMP) | Scaling High-Value Power Generation Projects.",
   },
   "m-lalan": {
     name: "M. Lalan",
@@ -24,7 +24,7 @@ export const employees = {
     linkedin: "https://www.linkedin.com/in/mlalan/", // Placeholder
     whatsapp: "447743977718", // Placeholder
     profileImage: "https://res.cloudinary.com/dc912sjxj/image/upload/c_fill,g_face,w_400,h_400,f_auto,q_auto/v1772547529/lalan-m_AGP_People_uztnoc.webp",
-    bio: "MBA | 25+ Years Executive Experience in energy, power generation, and grid automation. Global track record across Middle East & UK with leadership at Hitachi Energy, ABB, and International Power.",
+    bio: "MBA | Global energy leader delivering Net Zero value through strategic partnerships, cost focus, and UK operations.",
   },
   "mriyank-roy": {
     name: "Mriyank Roy",
