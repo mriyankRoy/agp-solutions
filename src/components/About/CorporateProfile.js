@@ -59,7 +59,7 @@ const CorporateProfile = () => {
               E-Houses, and fuel systems.
             </p>
             <p>
-              Headquartered in Hertfordshire, UK, with massive strategic
+              Headquartered in Leicester with massive strategic
               manufacturing operations in the UAE, we offer a unique value
               proposition: British engineering and commercial assurance combined
               with the scale and cost-efficiency of Middle Eastern

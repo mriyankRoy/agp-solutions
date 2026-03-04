@@ -103,7 +103,7 @@ const Footer = () => {
                 <div className="flex items-start gap-4 group">
                   <MapPin className="text-white/40 group-hover:text-white transition-colors shrink-0" size={16} />
                   <p className="text-[11px] font-bold text-white uppercase tracking-widest leading-relaxed">
-                    Greenside House, 50 Station Rd, <br /> London, N22 7DE, United Kingdom
+                    W3 Winchester Avenue, Blaby, <br /> Leicester, LE8 4GZ, United Kingdom
                   </p>
                 </div>
                 <div className="flex items-center gap-4 group">

@@ -106,7 +106,7 @@ const HybridModel = () => {
                   UK Commercial Leadership
                 </h5>
                 <p className="text-[11px] text-gray-500 font-bold uppercase leading-relaxed tracking-wider max-w-md">
-                  Our Hemel Hempstead headquarters drives project management,
+                  Our Leicester headquarters drives project management,
                   commercial strategy, and client support, ensuring you deal
                   with a
                   <span className="text-[#44444E]">

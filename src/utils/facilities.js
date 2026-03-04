@@ -1,7 +1,40 @@
 export const facilities = [
   {
+    id: "blaby-leicester",
+    title: "UK - Blaby Facility",
+    desc: "A modern, self-contained industrial hub newly constructed in 2021, featuring open-plan warehouse space and premium two-storey offices.",
+    location: "W3 Winchester Avenue, Blaby, Leicester, LE8 4GZ, UK",
+    totalArea: "6,210 sq.ft ",
+    productionCapacity:
+      "High-capacity industrial unit with 3-phase electricity and 5.5m eaves height ",
+    highlights: [
+      "Newly constructed modern unit (2021) ",
+      "Strategic location near M1/M69 motorway junctions [cite: 9, 17]",
+      "Climate-controlled two-storey office suites [cite: 25, 27]",
+      "Large secure concrete yard with electric roller shutter loading [cite: 11, 29]",
+      "Energy-efficient high-level LED lighting and gas blower heating [cite: 26, 27]",
+    ],
+    facilityImg: [
+      "https://res.cloudinary.com/dc912sjxj/image/upload/v1772459282/WhatsApp_Image_2026-02-27_at_8.52.53_PM_1_wsvtjc.jpg",
+      "https://res.cloudinary.com/dc912sjxj/image/upload/v1772459282/WhatsApp_Image_2026-02-27_at_8.52.50_PM_f5bbjb.jpg",
+      "https://res.cloudinary.com/dc912sjxj/image/upload/v1772459282/WhatsApp_Image_2026-02-27_at_8.52.50_PM_1_znftdd.jpg",
+    ],
+    capabilityImg: [
+      {
+        img: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767730372/Blaby_Capability_Power.webp",
+        title: "Industrial Power Systems",
+        desc: "Equipped with 3-phase electricity to support heavy-duty power solution assembly[cite: 26].",
+      },
+      {
+        img: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767730373/Blaby_Capability_Loading.webp",
+        title: "Secure Logistics & Loading",
+        desc: "Full-height electric roller shutter doors for seamless industrial equipment transport[cite: 29].",
+      },
+    ],
+  },
+  {
     id: "hamriyah",
-    title: "Hamriyah Facility",
+    title: "UAE - Hamriyah Facility",
     desc: "State-of-the-art manufacturing facility equipped with advanced machinery for precision engineering and metal fabrication.",
     location: "Hamriyah Free Zone, Sharjah",
     totalArea: "120,000 sq.ft",
@@ -41,7 +74,7 @@ export const facilities = [
   },
   {
     id: "sajja",
-    title: "Sajja Facility",
+    title: "UAE - Sajja Facility",
     desc: "Modern production center featuring cutting-edge technology for industrial solutions and high-quality manufacturing processes.",
     location: "Sajja Industrial Area, Sharjah",
     totalArea: "85,000 sq.ft",
@@ -81,39 +114,4 @@ export const facilities = [
       },
     ],
   },
-  {
-    id: "blaby-leicester",
-    title: "Blaby Facility",
-    desc: "A modern, self-contained industrial hub newly constructed in 2021, featuring open-plan warehouse space and premium two-storey offices.",
-    location:
-      "W3 Winchester Avenue, Blaby, Leicester, LE8 4GZ, UK",
-    totalArea: "6,210 sq.ft ",
-    productionCapacity:
-      "High-capacity industrial unit with 3-phase electricity and 5.5m eaves height ",
-    highlights: [
-      "Newly constructed modern unit (2021) ",
-      "Strategic location near M1/M69 motorway junctions [cite: 9, 17]",
-      "Climate-controlled two-storey office suites [cite: 25, 27]",
-      "Large secure concrete yard with electric roller shutter loading [cite: 11, 29]",
-      "Energy-efficient high-level LED lighting and gas blower heating [cite: 26, 27]",
-    ],
-    facilityImg: [
-      "https://res.cloudinary.com/dc912sjxj/image/upload/v1772459282/WhatsApp_Image_2026-02-27_at_8.52.53_PM_1_wsvtjc.jpg",
-      "https://res.cloudinary.com/dc912sjxj/image/upload/v1772459282/WhatsApp_Image_2026-02-27_at_8.52.50_PM_f5bbjb.jpg",
-      "https://res.cloudinary.com/dc912sjxj/image/upload/v1772459282/WhatsApp_Image_2026-02-27_at_8.52.50_PM_1_znftdd.jpg",
-    ],
-    capabilityImg: [
-      {
-        img: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767730372/Blaby_Capability_Power.webp",
-        title: "Industrial Power Systems",
-        desc: "Equipped with 3-phase electricity to support heavy-duty power solution assembly[cite: 26].",
-      },
-      {
-        img: "https://res.cloudinary.com/dc912sjxj/image/upload/v1767730373/Blaby_Capability_Loading.webp",
-        title: "Secure Logistics & Loading",
-        desc: "Full-height electric roller shutter doors for seamless industrial equipment transport[cite: 29].",
-      },
-    ],
-  },
- 
 ];
