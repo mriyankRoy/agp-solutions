@@ -13,9 +13,8 @@ export default function CareersPage() {
 
   return (
     <div className="min-h-screen bg-white text-[#44444E] font-sans selection:bg-[#BF092F] selection:text-white">
-      
       {/* 🏗️ FLOATING HERO SECTION */}
-      <div className="pt-22 px-2 md:px-2"> 
+      <div className="pt-22 px-2 md:px-2">
         <header className="relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl shadow-xl">
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
 
@@ -33,7 +32,9 @@ export default function CareersPage() {
                 className="cursor-pointer group flex items-center gap-1 text-white/50 hover:text-white transition-colors"
               >
                 <Home size={14} />
-                <span className="text-[10px] md:text-xs tracking-widest uppercase">Home</span>
+                <span className="text-[10px] md:text-xs tracking-widest uppercase">
+                  Home
+                </span>
               </button>
 
               <span className="text-white/20 text-xs font-mono">{">"}</span>
@@ -44,7 +45,9 @@ export default function CareersPage() {
               </button>
             </nav>
 
-            <h1 className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
+            <h1
+              className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+            >
               Join Our <span className="text-[#BF092F]">Team</span>
             </h1>
             <p className="text-white/60 text-lg md:text-xl tracking-wide leading-relaxed mt-2">
@@ -56,11 +59,12 @@ export default function CareersPage() {
 
       {/* 🏭 MAIN CONTENT AREA */}
       <main className="container mx-auto relative z-30 -translate-y-24">
-        <div className="pt-30"> 
+        <div className="pt-30">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            
             {/* Left: Mission Statement */}
-            <div className={`px-2 lg:col-span-7 space-y-8 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+            <div
+              className={`px-2 lg:col-span-7 space-y-8 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            >
               <div className="bg-white px-4 md:px-6 py-8 md:py-10 rounded-2xl shadow-xl border border-gray-100 h-full flex flex-col justify-center">
                 <h2 className="tracking-widest border-l-4 border-[#BF092F] pl-4 mb-8 text-[#44444E] font-bold text-sm uppercase">
                   OUR VISION
@@ -71,15 +75,17 @@ export default function CareersPage() {
                   infrastructure.
                 </p>
                 <p className="mt-6 text-gray-500 leading-relaxed text-sm">
-                  From experienced Project Engineers to emerging technical talent,
-                  we value precision, integrity, and an uncompromising commitment
-                  to quality.
+                  From experienced Project Engineers to emerging technical
+                  talent, we value precision, integrity, and an uncompromising
+                  commitment to quality.
                 </p>
               </div>
             </div>
 
             {/* Right: Application Card */}
-            <div className={`px-2 lg:col-span-5 transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+            <div
+              className={`px-2 lg:col-span-5 transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            >
               <div className="h-full bg-[#44444E] px-4 md:px-6 py-10 md:py-12 text-white rounded-2xl shadow-2xl relative overflow-hidden group flex flex-col justify-center">
                 <Briefcase className="absolute -right-10 -bottom-10 text-white/5 size-48 rotate-12 transition-transform group-hover:rotate-0 duration-700" />
                 <div className="relative z-10">
@@ -94,9 +100,12 @@ export default function CareersPage() {
                     <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] block mb-2">
                       Primary Recruitment Desk
                     </span>
-                    <a href="mailto:info@artgenpower.com" className="flex items-center gap-3 text-xl font-medium hover:text-[#BF092F] transition-colors">
+                    <a
+                      href="mailto:info@artgenpower.com"
+                      className="flex items-center gap-3 text-xl font-medium hover:text-[#BF092F] transition-colors"
+                    >
                       <Mail size={20} className="text-[#BF092F]" />
-                      info@artgenpower.com
+                      info@artgpower.co.uk
                     </a>
                   </div>
                 </div>
@@ -125,7 +134,9 @@ export default function CareersPage() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-200 pt-12 pb-12 px-4 md:px-6">
           <div className="px-2 rounded-2xl flex flex-col gap-3">
             <Briefcase className="text-[#BF092F]" size={32} />
-            <h3 className="text-xl text-[#44444E] font-bold uppercase tracking-tight">CAREER PATHS</h3>
+            <h3 className="text-xl text-[#44444E] font-bold uppercase tracking-tight">
+              CAREER PATHS
+            </h3>
             <p className="text-sm text-gray-500 leading-relaxed">
               We offer Project Engineer roles spanning electrical systems,
               mechanical design, and integrated power solutions.
