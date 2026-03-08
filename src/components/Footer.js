@@ -108,7 +108,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center gap-4 group">
                   <Mail className="text-white/40 group-hover:text-white transition-colors shrink-0" size={16} />
-                  <p className="text-[11px] font-bold text-white uppercase tracking-widest transition-colors group-hover:text-white break-all">info@artgpower.co.uk</p>
+                  <p className="text-[11px] font-bold text-white uppercase tracking-widest transition-colors group-hover:text-white break-all">bandana@artgpower.co.uk</p>
                 </div>
                 <div className="flex items-center gap-4 group">
                   <Phone className="text-white/40 group-hover:text-white transition-colors shrink-0" size={16} />

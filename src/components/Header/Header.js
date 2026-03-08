@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, Search, ArrowRight } from "lucide-react";
-import { Link, useNavigate } from "react-router"; // Added useNavigate for logic
+import { Link, useNavigate } from "react-router"; 
 import HeaderSearch from "./HeaderSearch";
 import HeaderFacilitiesDropdown from "./HeaderFacilitiesDropdown";
 import HeaderProjectsDropdown from "./HeaderProjectsDropdown";
@@ -15,7 +15,14 @@ const Header = () => {
   const navigate = useNavigate();
   const searchInputRef = useRef(null);
 
-  // --- LOGIC: CLOSE MENU & NAVIGATE ---
+  const navItems = [
+    { name: "About", path: "/about" },
+    { name: "Products", path: "/products" },
+    { name: "Projects", path: "/projects" },
+    { name: "Careers", path: "/careers" },
+    { name: "Contact", path: "/contact" }
+  ];
+
   const handleMobileNav = (path) => {
     setMobileMenuOpen(false);
     navigate(path);
@@ -24,13 +31,12 @@ const Header = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      setMobileMenuOpen(false); // Close menu on search
+      setMobileMenuOpen(false); 
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchQuery("");
     }
   };
 
-  // --- ACCESSIBILITY: FOCUS SEARCH ON OPEN ---
   useEffect(() => {
     if (mobileMenuOpen && searchInputRef.current) {
       setTimeout(() => searchInputRef.current.focus(), 300);
@@ -59,12 +65,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-[100] pt-1 px-2 transition-all duration-500">
-      <div
-        className="relative w-full mx-auto" 
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* DESKTOP BACKGROUND */}
+      <div className="relative w-full mx-auto" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <div
           className={`absolute inset-0 -z-10 transition-all duration-700 rounded-2xl shadow-2xl overflow-hidden
             ${isScrolled && !isHovered ? "opacity-90 backdrop-blur-xl" : "opacity-100"}`}
@@ -72,33 +73,46 @@ const Header = () => {
         />
 
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-[auto_1fr_auto] h-18 md:h-20 items-center gap-8">
+          {/* Responsive Grid: Logo | Name | Nav/Search */}
+          <div className="grid grid-cols-2 md:grid-cols-[auto_1fr_auto] h-18 md:h-20 items-center gap-4">
+            
+            {/* LOGO */}
             <div className="flex justify-start items-center">
               <Link to="/" className="flex-shrink-0 group/logo">
                 <img
                   src="https://res.cloudinary.com/dc912sjxj/image/upload/v1772287992/Gemini_Generated_Image_tler0wtler0wtler-removebg-preview_zhmv2k.png"
                   alt="AGP Logo"
-                  className="h-12 sm:h-14 md:h-16 w-auto transition-transform duration-500 group-hover/logo:scale-110"
+                  className="h-10 sm:h-12 md:h-16 w-auto transition-transform duration-500 group-hover/logo:scale-110"
                 />
               </Link>
             </div>
 
-            <nav className="hidden md:flex items-center justify-center gap-x-1 lg:gap-x-2">
-              <Link to="/about" className={navLinkStyles}><HoverEffect /><span>About</span></Link>
-              <HeaderProductsDropDown />
-              <HeaderProjectsDropdown />
-              <HeaderFacilitiesDropdown />
-              <Link to="/careers" className={navLinkStyles}><HoverEffect /><span>Career</span></Link>
-              <Link to="/contact" className={navLinkStyles}><HoverEffect /><span>Contact</span></Link>
-            </nav>
-
-            <div className="hidden md:flex items-center justify-end pl-6 border-l border-white/10">
-              <HeaderSearch />
+            {/* COMPANY NAME: Centered on mobile, Left-Aligned on Desktop */}
+            <div className="flex flex-col justify-center border-l border-white/10 pl-6">
+              <span className="text-white text-[10px] md:text-[14px] font-black tracking-[0.2em] uppercase whitespace-nowrap">
+                Art Genpower
+              </span>
+              <span className="text-white/60 text-[7px] md:text-[9px] font-bold tracking-[0.3em] uppercase whitespace-nowrap pt-0.5">
+                Solutions Ltd.
+              </span>
             </div>
 
-            <div className="md:hidden flex items-center justify-end">
-              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white p-2 z-[110] relative">
-                {mobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
+            {/* DESKTOP NAV / MOBILE BUTTON */}
+            <div className="flex items-center justify-end">
+              <nav className="hidden md:flex items-center justify-end gap-x-2">
+                <Link to="/about" className={navLinkStyles}><HoverEffect /><span>About</span></Link>
+                <HeaderProductsDropDown />
+                <HeaderProjectsDropdown />
+                <HeaderFacilitiesDropdown />
+                <Link to="/careers" className={navLinkStyles}><HoverEffect /><span>Career</span></Link>
+                <Link to="/contact" className={navLinkStyles}><HoverEffect /><span>Contact</span></Link>
+                <div className="pl-4 border-l border-white/10">
+                  <HeaderSearch />
+                </div>
+              </nav>
+
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white p-2 z-[110] relative md:hidden">
+                {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
           </div>
@@ -108,10 +122,7 @@ const Header = () => {
       {/* MOBILE MENU OVERLAY */}
       <div className={`fixed inset-0 bg-[#44444E] z-[105] transition-all duration-500 ease-in-out md:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
         <div className="absolute top-0 right-0 w-1.5 h-full bg-[#BF092F]" />
-
         <div className="flex flex-col h-full pt-32 px-10">
-          
-          {/* FUNCTIONAL SEARCH */}
           <form onSubmit={handleSearchSubmit} className="relative mb-12">
             <p className="text-[#BF092F] text-[10px] font-black tracking-[0.4em] mb-4 uppercase">System Search</p>
             <div className="relative group">
@@ -129,16 +140,9 @@ const Header = () => {
             </div>
           </form>
 
-          {/* NAVIGATION LINKS */}
           <nav className="flex flex-col space-y-6">
             <p className="text-[#BF092F] text-[10px] font-black tracking-[0.4em] mb-2 uppercase">Menu</p>
-            {[
-              { name: "About", path: "/about" },
-              { name: "Products", path: "/products" },
-              { name: "Projects", path: "/projects" },
-              { name: "Careers", path: "/careers" },
-              { name: "Contact", path: "/contact" }
-            ].map((item) => (
+            {navItems?.map((item) => (
               <button
                 key={item.name}
                 onClick={() => handleMobileNav(item.path)}
