@@ -27,7 +27,7 @@ const HeaderProductsDropDown = () => {
       {/* --- TRIGGER --- */}
       <button
         onClick={() => navigate("/products")}
-        className="relative cursor-pointer inline-flex items-center tracking-widest text-white hover:text-white transition-all duration-300 px-2 py-2 text-[12px] lg:text-[13px] whitespace-nowrap group"
+        className="relative cursor-pointer inline-flex items-center tracking-widest text-white uppercase font-medium hover:text-white transition-all duration-300 px-2 py-2 text-[12px] lg:text-[13px] whitespace-nowrap group"
       >
         <HoverEffect />
         <span className="absolute inset-0 bg-[#BF092F]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-20" />
@@ -76,7 +76,7 @@ const HeaderProductsDropDown = () => {
                       <h4 className="text-2xl text-[#44444E] tracking-tight">
                         {currentCategory.category}
                       </h4>
-                      <p className="text-[10px] text-[#CF0F0F]  tracking-[0.3em] mt-1 flex items-center gap-2">
+                      <p className="text-[12px] text-[#CF0F0F]  tracking-widest mt-1 flex items-center gap-2">
                         {hasSubCategories ? (
                           <Layers size={12} />
                         ) : (
@@ -85,7 +85,7 @@ const HeaderProductsDropDown = () => {
                         {displayTitle}
                       </p>
                     </div>
-                    <span className="text-4xl  text-gray-50  select-none leading-none">
+                    <span className="text-4xl font-black text-gray-50 uppercase select-none leading-none">
                       {hasSubCategories ? "TYPE" : "UNIT"}
                     </span>
                   </div>
@@ -102,7 +102,7 @@ const HeaderProductsDropDown = () => {
                               className="group/link flex items-center justify-between p-4 bg-gray-50 border border-transparent hover:border-[#CF0F0F] hover:bg-white transition-all duration-300 rounded-lg"
                             >
                               <div className="flex flex-col">
-                                <span className="text-[11px]  text-[#44444E] tracking-wide group-hover/link:text-[#CF0F0F] ">
+                                <span className="text-xs  text-[#44444E] tracking-wide group-hover/link:text-[#CF0F0F] font-medium">
                                   {sub.name}
                                 </span>
                                 <span className="text-[9px] text-gray-400 tracking-tighter">
@@ -140,7 +140,7 @@ const HeaderProductsDropDown = () => {
                       onClick={() =>
                         navigate(`/products?category=${currentCategory.slug}`)
                       }
-                      className="cursor-pointer flex items-center gap-2 text-[11px] tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors"
+                      className="cursor-pointer mt-auto pt-6 flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-[#44444E] hover:text-[#CF0F0F] transition-colors uppercase"
                     >
                       View All {currentCategory.category}{" "}
                       <ArrowRight size={12} />
