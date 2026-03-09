@@ -51,63 +51,40 @@ const SearchResultsPage = () => {
   };
 
   const BoxedPagination = () => {
-    // Define how many buttons to show at once (adjust as needed)
-    const displayLimit = 4;
-    const [startIndex, setStartIndex] = useState(0);
+  // Calculations based on parent state
+  const startRange = (currentPage - 1) * itemsPerPage + 1;
+  const endRange = Math.min(currentPage * itemsPerPage, results.length);
+  const totalItems = results.length;
 
-    const handlePrev = () => {
-      if (startIndex > 0) setStartIndex(startIndex - 1);
-    };
-
-    const handleNext = () => {
-      if (startIndex + displayLimit < totalPages) setStartIndex(startIndex + 1);
-    };
-
-    return (
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => {
-            handlePageChange(currentPage - 1);
-            if (currentPage - 1 <= startIndex && startIndex > 0)
-              setStartIndex(startIndex - 1);
-          }}
-          disabled={currentPage === 1}
-          className="p-2.5 cursor-pointer rounded-xl border border-gray-200 text-[#44444E] disabled:opacity-20 hover:border-[#BF092F] transition-all"
-        >
-          <ChevronLeft size={16} />
-        </button>
-
-        <div className="flex items-center gap-1.5">
-          {[...Array(totalPages)]
-            .slice(startIndex, startIndex + displayLimit)
-            .map((_, i) => {
-              const pageNumber = startIndex + i + 1;
-              return (
-                <button
-                  key={pageNumber}
-                  onClick={() => handlePageChange(pageNumber)}
-                  className={`w-9 h-9 rounded-lg text-[10px] font-bold transition-all ${currentPage === pageNumber ? "bg-[#BF092F] text-white shadow-lg" : "bg-gray-50 text-gray-400 hover:bg-gray-100"}`}
-                >
-                  {String(pageNumber).padStart(2, "0")}
-                </button>
-              );
-            })}
+  return (
+    <div className="flex items-center gap-4 md:gap-6">
+      {/* Visibility: Removed hidden sm:flex to ensure text is visible */}
+      
+      <div className="flex items-center gap-3">
+        {/* Visibility: Changed hidden to block for mobile visibility */}
+        <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+          Page {currentPage} of {totalPages}
+        </span>
+        <div className="flex gap-1">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="p-1.5 cursor-pointer rounded-lg border border-gray-100 text-[#44444E] disabled:opacity-20 hover:bg-gray-50 hover:border-[#BF092F] hover:text-[#BF092F] transition-all"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="p-1.5 cursor-pointer rounded-lg border border-gray-100 text-[#44444E] disabled:opacity-20 hover:bg-gray-50 hover:border-[#BF092F] hover:text-[#BF092F] transition-all"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
-
-        <button
-          onClick={() => {
-            handlePageChange(currentPage + 1);
-            if (currentPage + 1 > startIndex + displayLimit)
-              setStartIndex(startIndex + 1);
-          }}
-          disabled={currentPage === totalPages}
-          className="p-2.5 cursor-pointer rounded-xl border border-gray-200 text-[#44444E] disabled:opacity-20 hover:border-[#BF092F] transition-all"
-        >
-          <ChevronRight size={16} />
-        </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   return (
     <div className="min-h-screen bg-white text-[#44444E] font-sans selection:bg-[#BF092F] selection:text-white">
