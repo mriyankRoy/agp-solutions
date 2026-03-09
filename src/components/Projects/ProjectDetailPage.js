@@ -153,24 +153,39 @@ export default function ProjectDetailPage() {
         <header className="shadow-xl relative h-[28vh] min-h-[300px] w-full flex items-center bg-[#44444E] overflow-hidden rounded-2xl">
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
           <div className="container mx-auto px-4 md:px-6 relative z-20">
-            <nav className="flex items-center flex-wrap gap-3 mb-6">
-              <button onClick={() => navigate("/")} className="cursor-pointer group flex items-center gap-1 text-white/50 hover:text-white transition-colors">
-                <Home size={14} />
-                <span className="text-[10px] md:text-xs tracking-widest uppercase">Home</span>
-              </button>
-              <span className="text-white/20 text-xs font-mono">{">"}</span>
-              <button onClick={() => navigate("/projects")} className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors">
-                Project Registry
-              </button>
-              <span className="text-white/20 text-xs font-mono">{">"}</span>
-              <button onClick={() => navigate(`/projects?type=${project.type}`)} className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors">
-                {project.type}
-              </button>
-              <span className="text-white/20 text-xs font-mono">{">"}</span>
-              <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20">
-                {project.name}
-              </button>
-            </nav>
+            <nav className="flex items-center gap-2 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide pb-2">
+  <button 
+    onClick={() => navigate("/")} 
+    className="flex items-center gap-1.5 text-white/50 hover:text-white transition-colors px-2 py-1"
+  >
+    <Home size={12} />
+    <span className="text-[9px] tracking-widest uppercase font-bold">Home</span>
+  </button>
+  
+  <span className="text-white/20 text-[9px]">/</span>
+  
+  <button 
+    onClick={() => navigate("/projects")} 
+    className="text-[9px] tracking-widest uppercase text-white/50 hover:text-white transition-colors px-2 py-1"
+  >
+    Registry
+  </button>
+  
+  <span className="text-white/20 text-[9px]">/</span>
+  
+  <button 
+    onClick={() => navigate(`/projects?type=${project.type}`)} 
+    className="text-[9px] tracking-widest uppercase text-white/50 hover:text-white transition-colors px-2 py-1"
+  >
+    {project.type}
+  </button>
+  
+  <span className="text-white/20 text-[9px]">/</span>
+  
+  <span className="text-[9px] tracking-widest uppercase bg-[#BF092F] text-white px-3 py-1 rounded-full font-bold">
+    {project.name.length > 20 ? `${project.name.substring(0, 20)}...` : project.name}
+  </span>
+</nav>
             <h1 className={`font-semibold text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-[-0.02em] max-w-4xl transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
               {project.name}
             </h1>
@@ -256,5 +271,6 @@ export default function ProjectDetailPage() {
       </main>
       <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
     </div>
+    
   );
 }

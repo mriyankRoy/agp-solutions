@@ -99,32 +99,44 @@ const ProductDetailPage = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
 
           <div className="container mx-auto px-4 md:px-6 relative z-20">
-            <nav className="flex items-center flex-wrap gap-3 mb-6">
+            <nav className="flex items-center gap-2 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide pb-2 scroll-smooth">
               <button
                 onClick={() => navigate("/")}
-                className="group flex items-center gap-1 text-white/50 hover:text-white transition-colors"
+                className="group flex items-center gap-1 text-white/50 hover:text-white transition-colors px-2"
               >
-                <Home size={14} />
-                <span className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase">
+                <Home size={12} />
+                <span className="text-[10px] md:text-xs tracking-widest uppercase font-bold">
                   Home
                 </span>
               </button>
-              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              <span className="text-white/20 text-xs font-mono select-none">
+                {">"}
+              </span>
+
               <button
                 onClick={() => navigate("/products")}
-                className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors px-2"
               >
                 Product Categories
               </button>
-              <span className="text-white/20 text-xs font-mono">{">"}</span>
+
+              <span className="text-white/20 text-xs font-mono select-none">
+                {">"}
+              </span>
+
               <button
                 onClick={() => navigate(`/products?category=${categorySlug}`)}
-                className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                className="cursor-pointer text-[10px] md:text-xs tracking-widest uppercase text-white/50 hover:text-white transition-colors px-2"
               >
                 {category.category || category.name}
               </button>
-              <span className="text-white/20 text-xs font-mono">{">"}</span>
-              <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20">
+
+              <span className="text-white/20 text-xs font-mono select-none">
+                {">"}
+              </span>
+
+              <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 flex-shrink-0">
                 {product.name}
               </button>
             </nav>
