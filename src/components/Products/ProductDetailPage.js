@@ -19,7 +19,8 @@ const TAB_DETAILS = "details";
 const TAB_DOWNLOADS = "downloads";
 
 const ProductDetailPage = () => {
-  const { categorySlug, productName } = useParams();
+  // UPDATED: Now destructuring 'id' instead of 'productName'
+  const { categorySlug, id } = useParams();
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -29,35 +30,32 @@ const ProductDetailPage = () => {
   useEffect(() => {
     setIsVisible(true);
     window.scrollTo(0, 0);
-  }, [productName]);
+  }, [id]); // Dependency updated to 'id'
 
   useEffect(() => {
     setActiveIndex(0);
-  }, [productName]);
+  }, [id]); // Dependency updated to 'id'
 
   const handleCloseModal = () => setIsModalOpen(false);
   const handleOpenModal = () => setIsModalOpen(true);
 
-  // --- RECURSIVE LOOKUP FUNCTIONALITY ---
+  // --- UPDATED LOOKUP LOGIC ---
   const getProductData = () => {
-    const decodedName = decodeURIComponent(productName);
-    
     for (const cat of products) {
-      // 1. Check if the product is in the top-level category items
-      const topLevelProduct = cat.items?.find((item) => item.name === decodedName);
-      if (topLevelProduct && cat.slug === categorySlug) {
-        return { category: cat, product: topLevelProduct };
-      }
-
-      // 2. Check if the product is inside any subcategories
+      // 1. Check if the product is inside any subcategories
       if (cat.subCategories) {
         for (const sub of cat.subCategories) {
-          const subProduct = sub.items?.find((item) => item.name === decodedName);
-          // Check if this subcategory matches our current URL slug
+          const subProduct = sub.items?.find((item) => item.id === id);
           if (subProduct && sub.slug === categorySlug) {
             return { category: sub, product: subProduct };
           }
         }
+      }
+      
+      // 2. Check if the product is in the top-level category items
+      const topLevelProduct = cat.items?.find((item) => item.id === id);
+      if (topLevelProduct && cat.slug === categorySlug) {
+        return { category: cat, product: topLevelProduct };
       }
     }
     return { category: null, product: null };
@@ -246,7 +244,6 @@ const ProductDetailPage = () => {
 
       <div className="fixed inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
-      {/* MODAL (Kept Exactly Same) */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
           <div className="absolute inset-0 bg-[#1A1A1E]/95 backdrop-blur-xl" onClick={handleCloseModal} />

@@ -15,19 +15,27 @@ const SearchResultsPage = () => {
     window.scrollTo(0, 0);
   }, [query]);
 
-  // Flatten products and filter
-  const allItems = products.flatMap((category) =>
-    category.items.map((item) => ({
+  // Robust flattening to handle both direct and parent/sub-category structures
+  const allItems = products.flatMap((category) => {
+    if (category.type === "parent" && category.subCategories) {
+      return category.subCategories.flatMap((sub) =>
+        (sub.items || []).map((item) => ({
+          ...item,
+          categorySlug: sub.slug,
+        }))
+      );
+    }
+    return (category.items || []).map((item) => ({
       ...item,
       categorySlug: category.slug,
-    }))
-  );
+    }));
+  });
 
   const results = allItems.filter((item) => {
     const searchTerm = decodedQuery.toLowerCase();
     return (
-      item.name.toLowerCase().includes(searchTerm) ||
-      item.manufacturerPartNumber.toLowerCase().includes(searchTerm)
+      item.name?.toLowerCase().includes(searchTerm) ||
+      item.manufacturerPartNumber?.toLowerCase().includes(searchTerm)
     );
   });
 
@@ -71,7 +79,6 @@ const SearchResultsPage = () => {
 
               <span className="text-white/20 text-xs font-mono">{">"}</span>
 
-              {/* ACTIVE PAGE: RED PILL DESIGN */}
               <button className="text-[10px] md:text-xs tracking-widest uppercase bg-[#BF092F] text-white px-4 py-1.5 rounded-2xl shadow-lg shadow-[#BF092F]/20 font-bold">
                 Search Results
               </button>
@@ -134,7 +141,7 @@ const SearchResultsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {results.map((item, idx) => (
                 <div
-                  key={idx}
+                  key={item.id || idx}
                   className="transition-all duration-500 hover:-translate-y-2"
                 >
                   <ProductCard

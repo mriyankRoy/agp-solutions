@@ -7,11 +7,9 @@ const ProductCard = ({ product, categorySlug }) => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    // We use the current categorySlug (which might be the subcategory slug now)
+    // ROUTING FIX: Uses ID to match /products/:category/:id
     const slug = categorySlug || "item";
-    const productNameEncoded = encodeURIComponent(product.name);
-    
-    navigate(`/products/${slug}/${productNameEncoded}`);
+    navigate(`/products/${slug}/${product.id}`);
   };
 
   const getOptimizedUrl = (url) => {

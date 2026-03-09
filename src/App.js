@@ -96,7 +96,7 @@ const AppLayout = () => {
 
 /**
  * Router Configuration
- * Nested structure allows Root logic to run on all paths while 
+ * Nested structure allows Root logic to run on all paths while
  * AppLayout only wraps standard company pages.
  */
 const appRouter = createBrowserRouter([
@@ -112,8 +112,9 @@ const appRouter = createBrowserRouter([
           { path: "/", element: <HomePage /> },
           { path: "/about", element: <AboutUsPage /> },
           { path: "/products", element: <ProductPage /> },
+          // Inside your appRouter configuration
           {
-            path: "/products/:categorySlug/:productName",
+            path: "/products/:categorySlug/:id", // Updated from :productName to :id
             element: <ProductDetailPage />,
           },
           { path: "/contact", element: <ContactUsPage /> },
