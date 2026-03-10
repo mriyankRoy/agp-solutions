@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { products } from "../../utils/products";
 import { useNavigate } from "react-router";
 
@@ -7,6 +7,22 @@ const MobileHeaderSearch = ({ onSelect }) => {
   const [results, setResults] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const navigate = useNavigate();
+  const searchRef = useRef(null); // Reference for the search container
+
+  // Close results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setResults([]);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -49,7 +65,6 @@ const MobileHeaderSearch = ({ onSelect }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      // If an item is highlighted, select it; otherwise, perform search
       if (activeIndex >= 0 && results.length > 0) {
         handleSelect(results[activeIndex]);
       } else {
@@ -65,7 +80,7 @@ const MobileHeaderSearch = ({ onSelect }) => {
   };
 
   return (
-    <div className="relative w-full">
+    <div ref={searchRef} className="relative w-full">
       <input
         type="text"
         value={query}
