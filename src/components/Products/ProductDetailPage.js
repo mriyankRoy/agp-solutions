@@ -99,7 +99,8 @@ const ProductDetailPage = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
 
           <div className="container mx-auto px-4 md:px-6 relative z-20">
-            <nav className="flex items-center gap-2 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide pb-2 scroll-smooth">
+            {/* 🧭 NAVIGATION: Added 'hidden md:flex' to hide on mobile */}
+            <nav className="hidden md:flex items-center gap-2 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide pb-2 scroll-smooth">
               <button
                 onClick={() => navigate("/")}
                 className="group flex items-center gap-1 text-white/50 hover:text-white transition-colors px-2"
