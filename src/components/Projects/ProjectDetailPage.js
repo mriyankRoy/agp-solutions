@@ -359,31 +359,76 @@ export default function ProjectDetailPage() {
               </div>
             </div>
 
-            <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100">
-              <div className="flex items-center justify-between mb-12 border-b border-gray-100 pb-8">
-                <h2 className="border-l-4 border-[#BF092F] pl-4 text-[#44444E] uppercase text-sm font-bold">
-                  Field Documentation
-                </h2>
-                <span className="text-xs font-mono text-gray-400 uppercase tracking-widest font-bold">
-                  Images: {project.imageUrls.length}
-                </span>
+            {/* 📸 ENHANCED FIELD DOCUMENTATION (Matched to Product Style & Matte Finished) */}
+            <div className="bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 flex flex-col gap-4">
+              <div className="flex items-center justify-between px-4 pt-4 mb-2">
+                <div className="flex items-center gap-3">
+                  <div className="h-6 w-1 bg-[#BF092F]" />
+                  <h2 className="text-[#44444E] uppercase text-[12px] font-black tracking-widest">
+                    Field Documentation
+                  </h2>
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {project.imageUrls.map((url, i) => (
-                  <div
-                    key={i}
-                    className="group relative h-72 rounded-2xl overflow-hidden border border-gray-100 cursor-pointer"
-                    onClick={() => openLightbox(i)}
+
+              {/* MAIN VIEWPORT: Large Scale Display */}
+              <div
+                className="relative bg-[#f8f8f8] overflow-hidden group flex items-center justify-center cursor-zoom-in rounded-xl h-[400px] md:h-[600px] border border-gray-100"
+                onClick={() => openLightbox(currentIndex)}
+              >
+                <div className="rounded-xl">
+                  <img
+                    src={project.imageUrls[currentIndex]}
+                    className="rounded-2xl max-h-full max-w-full object-contain p-4 md:p-7 transition-all duration-700 group-hover:scale-105 filter sepia-[0.2] brightness-[0.9] contrast-[1.05] group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
+                    alt="Technical Field View"
+                  />
+                </div>
+
+                {/* Navigation Controls */}
+                <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      showPrev();
+                    }}
+                    className="pointer-events-auto cursor-pointer p-4 bg-white/90 text-[#44444E] hover:bg-[#BF092F] hover:text-white shadow-xl rounded-full transition-all -translate-x-10 group-hover:translate-x-0 opacity-0 group-hover:opacity-100"
                   >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      showNext();
+                    }}
+                    className="pointer-events-auto cursor-pointer p-4 bg-white/90 text-[#44444E] hover:bg-[#BF092F] hover:text-white shadow-xl rounded-full transition-all translate-x-10 group-hover:translate-x-0 opacity-0 group-hover:opacity-100"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+              </div>
+
+              {/* THUMBNAIL TRACK */}
+              <div className="flex gap-3 overflow-x-auto p-2 bg-gray-50 rounded-xl scrollbar-hide">
+                {project.imageUrls.map((url, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentIndex(i)}
+                    className={`cursor-pointer flex-shrink-0 w-20 h-20 border-2 transition-all rounded-lg overflow-hidden relative ${
+                      i === currentIndex
+                        ? "border-[#BF092F] ring-4 ring-[#BF092F]/10"
+                        : "border-transparent opacity-70 hover:opacity-100"
+                    }`}
+                  >
+                    {/* Thumbnails share the same tint until selected or hovered */}
                     <img
                       src={url}
-                      alt="Field view"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
+                      className={`rounded-lg w-full h-full object-cover transition-all filter ${
+                        i === currentIndex
+                          ? "sepia-0 brightness-100"
+                          : "sepia-[0.3] brightness-[0.85]"
+                      } hover:sepia-0 hover:brightness-100`}
+                      alt="thumb"
                     />
-                    <div className="absolute inset-0 bg-[#44444E]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <Maximize2 className="text-white" size={32} />
-                    </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
