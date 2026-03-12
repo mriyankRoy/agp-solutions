@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/welcome-to-http-artgpower-co-uk",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/defaultsite/:path*",
       "destination": "/",
       "permanent": true
