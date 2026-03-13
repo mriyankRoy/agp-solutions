@@ -136,7 +136,7 @@ const HeaderProductsDropDown = () => {
                   onClick={() => navigate(hasSubCategories ? `/products?category=${activeSubOrItem?.slug}` : `/products/${currentCategory.slug}/${activeSubOrItem?.id}`)}
                   className="cursor-pointer w-full py-3 bg-[#44444E] text-white text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-[#BF092F] transition-colors flex items-center justify-center gap-2 group/btn"
                 >
-                  View Full Specs
+                  View Full Details
                   <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
