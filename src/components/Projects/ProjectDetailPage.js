@@ -103,70 +103,75 @@ export default function ProjectDetailPage() {
 
   return (
     <div className="min-h-screen bg-white text-[#44444E] font-sans selection:bg-[#BF092F] selection:text-white">
-      {/* 🔍 ENHANCED LIGHTBOX */}
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#1A1A1E]/95 backdrop-blur-xl p-4"
-          onClick={closeLightbox}
-        >
-          <button
-            onClick={closeLightbox}
-            className="cursor-pointer absolute top-10 right-10 text-white/50 hover:text-[#BF092F] transition-all z-[110] group"
-          >
-            <X
-              size={40}
-              className="group-hover:rotate-90 transition-transform"
-            />
-          </button>
+ {/* 🔍 ENHANCED LIGHTBOX */}
+{/* 🔍 ENHANCED LIGHTBOX */}
+{lightboxOpen && (
+  <div
+    className="fixed inset-0 z-[100] flex items-center justify-center bg-[#1A1A1E]/95 backdrop-blur-xl p-4"
+    onClick={closeLightbox}
+  >
+    <button
+      onClick={closeLightbox}
+      className="cursor-pointer absolute top-10 right-10 text-white/50 hover:text-[#BF092F] transition-all z-[110] group"
+    >
+      <X size={40} className="group-hover:rotate-90 transition-transform" />
+    </button>
 
-          <div
-            className="max-w-7xl w-full flex flex-col items-center gap-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative flex items-center justify-center group px-16 md:px-24">
-              <button
-                onClick={showPrev}
-                className="cursor-pointer absolute left-0 text-white/20 hover:text-[#BF092F] transition-all p-2 z-[110] hover:scale-110"
-              >
-                <ChevronLeft size={60} strokeWidth={1} />
-              </button>
-              <div className="relative border border-white/10 shadow-2xl rounded-2xl overflow-hidden">
-                <img
-                  src={project.imageUrls[currentIndex]}
-                  className="max-h-[65vh] w-auto block select-none"
-                  alt="Technical View"
-                />
-              </div>
-              <button
-                onClick={showNext}
-                className="cursor-pointer absolute right-0 text-white/20 hover:text-[#BF092F] transition-all p-2 z-[110] hover:scale-110"
-              >
-                <ChevronRight size={60} strokeWidth={1} />
-              </button>
+    {/* CONTAINER: flex-col, gap-2 for mobile tightness, gap-6 for desktop */}
+    <div
+      className="max-w-7xl w-full flex flex-col items-center gap-2 md:gap-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* IMAGE AREA: Restored original side-arrow structure */}
+      <div className="relative flex items-center justify-center group px-0 md:px-24">
+        <button
+          onClick={showPrev}
+          className="cursor-pointer absolute left-0 text-white/20 hover:text-[#BF092F] transition-all p-2 z-[110] hover:scale-110"
+        >
+          <ChevronLeft size={60} strokeWidth={1} />
+        </button>
+        
+        <div className="relative border border-white/10 shadow-2xl rounded-2xl overflow-hidden">
+          <img
+            src={project.imageUrls[currentIndex]}
+            // max-h-[70vh] on mobile gives image space, original max-h-[65vh] for desktop
+            className="max-h-[70vh] md:max-h-[65vh] w-auto block select-none"
+            alt="Technical View"
+          />
+        </div>
+
+        <button
+          onClick={showNext}
+          className="cursor-pointer absolute right-0 text-white/20 hover:text-[#BF092F] transition-all p-2 z-[110] hover:scale-110"
+        >
+          <ChevronRight size={60} strokeWidth={1} />
+        </button>
+      </div>
+
+      {/* TEXT SECTION: Mobile tight, Desktop original */}
+      <div className="w-full max-w-4xl bg-[#44444E] border border-white/10 p-3 md:p-6 rounded-2xl shadow-2xl shrink-0">
+        <div className="flex items-start justify-between gap-4 md:gap-8">
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-1 md:mb-2">
+              <div className="h-4 w-1 bg-[#BF092F]" />
+              <h4 className="text-white font-black uppercase tracking-widest text-[10px] md:text-sm">
+                Field Documentation View
+              </h4>
             </div>
-            <div className="w-full max-w-4xl bg-[#44444E] border border-white/10 p-6 rounded-2xl shadow-2xl">
-              <div className="flex items-start justify-between gap-8">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="h-4 w-1 bg-[#BF092F]" />
-                    <h4 className="text-white font-black uppercase tracking-widest text-sm">
-                      Field Documentation View
-                    </h4>
-                  </div>
-                  <p className="text-white/60 leading-relaxed">
-                    Project: {project.name}
-                  </p>
-                </div>
-                <div className="text-right shrink-0">
-                  <span className="text-white/40 text-[12px] tracking-tighter">
-                    {currentIndex + 1} / {project.imageUrls.length}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <p className="text-white/60 leading-relaxed text-[11px] md:text-base">
+              Project: {project.name}
+            </p>
+          </div>
+          <div className="text-right shrink-0">
+            <span className="text-white/40 text-[10px] md:text-[12px] tracking-tighter">
+              {currentIndex + 1} / {project.imageUrls.length}
+            </span>
           </div>
         </div>
-      )}
+      </div>
+    </div>
+  </div>
+)}
 
       {/* 🏗️ HERO SECTION */}
       <div className="pt-22 px-2 md:px-2">
@@ -375,10 +380,10 @@ export default function ProjectDetailPage() {
                 className="relative bg-[#f8f8f8] overflow-hidden group flex items-center justify-center cursor-zoom-in rounded-xl h-[400px] md:h-[600px] border border-gray-100"
                 onClick={() => openLightbox(currentIndex)}
               >
-                <div className="rounded-lg overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center p-2 md:p-14">
                   <img
                     src={project.imageUrls[currentIndex]}
-                    className="rounded-lg max-h-full max-w-full object-contain p-4 md:p-14 transition-all duration-700 group-hover:scale-105 filter sepia-[0.2] brightness-[0.9] contrast-[1.05] group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
+                    className="max-h-full max-w-full object-contain transition-all duration-700 group-hover:scale-105 filter sepia-[0.2] brightness-[0.9] contrast-[1.05] group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
                     alt="Technical Field View"
                   />
                 </div>
@@ -390,7 +395,8 @@ export default function ProjectDetailPage() {
                       e.stopPropagation();
                       showPrev();
                     }}
-                    className="pointer-events-auto cursor-pointer p-4 bg-white/90 text-[#44444E] hover:bg-[#BF092F] hover:text-white shadow-xl rounded-full transition-all -translate-x-10 group-hover:translate-x-0 opacity-0 group-hover:opacity-100"
+                    className="pointer-events-auto cursor-pointer p-3 bg-white/90 shadow-xl rounded-full transition-all 
+             opacity-100 md:opacity-0 md:group-hover:opacity-100 hover:bg-[#BF092F] hover:text-white"
                   >
                     <ChevronLeft size={24} />
                   </button>
@@ -399,7 +405,8 @@ export default function ProjectDetailPage() {
                       e.stopPropagation();
                       showNext();
                     }}
-                    className="pointer-events-auto cursor-pointer p-4 bg-white/90 text-[#44444E] hover:bg-[#BF092F] hover:text-white shadow-xl rounded-full transition-all translate-x-10 group-hover:translate-x-0 opacity-0 group-hover:opacity-100"
+                    className="pointer-events-auto cursor-pointer p-3 bg-white/90 shadow-xl rounded-full transition-all 
+             opacity-100 md:opacity-0 md:group-hover:opacity-100 hover:bg-[#BF092F] hover:text-white"
                   >
                     <ChevronRight size={24} />
                   </button>

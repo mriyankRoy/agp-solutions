@@ -1,14 +1,14 @@
 export const partners = [
   {
-    name: "ADNOC",
+    name: "Abu Dhabi National Oil Company",
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767802477/ADNOC_Logo_gayuva.webp",
   },
   {
-    name: "EXPRO",
+    name: "Expro International Group Ltd",
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767806822/EXPRO_Logo_wtcooi.webp",
   },
   {
-    name: "Cummins",
+    name: "Cummins Inc",
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767806818/Cummins_Logo_fbae83.webp",
   },
   {
@@ -24,7 +24,7 @@ export const partners = [
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767802586/Al-Bahar_CAT_Logo_wufxhq.webp",
   },
   {
-    name: "Olayan Energy",
+    name: "Olayan Energy Ltd",
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767806843/Olayan_Energy_Logo_nx4lba.webp",
   },
   {
@@ -44,7 +44,7 @@ export const partners = [
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767806823/Energia_Logo_wxbwml.webp",
   },
   {
-    name: "Peax",
+    name: "Peax Equipment Rental",
     logo: "https://res.cloudinary.com/dc912sjxj/image/upload/f_auto,q_auto,e_trim,w_400,h_200,c_lpad,b_transparent/v1767806876/Peax_Logo_q2cn8s.webp",
   },
   {
