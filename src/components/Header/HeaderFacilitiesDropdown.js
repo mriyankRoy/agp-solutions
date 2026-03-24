@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { facilities } from "../../utils/facilities";
 import { useNavigate } from "react-router";
-import { Link } from "react-router"; // Use Link for SEO crawler optimization
+import { Link } from "react-router"; 
 
 const HeaderFacilitiesDropdown = () => {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ const HeaderFacilitiesDropdown = () => {
 
   return (
     <div className="relative group">
-      {/* TRIGGER: Changed to Link for SEO to allow Google to index the /facilities path */}
       <Link
         to="/facilities"
         aria-haspopup="true"
@@ -36,7 +35,7 @@ const HeaderFacilitiesDropdown = () => {
         <ChevronDown className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180 ml-1" aria-hidden="true" />
       </Link>
 
-      {/* DROPDOWN CONTAINER */}
+      {/* DROPDOWN CONTAINER - Restored to smaller 550px width */}
       <div 
         className="absolute left-0 top-full pt-2 w-[550px] opacity-0 translate-y-1 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-500 z-50"
         role="menu"
@@ -46,71 +45,44 @@ const HeaderFacilitiesDropdown = () => {
           
           <div className="grid grid-cols-[240px_1fr]">
             
-            {/* 1. LEFT: LIST */}
-            <nav className="relative p-6 bg-white border-r border-[#44444E]/10" aria-label="Global Infrastructure Locations">
-              <h4 className="text-[10px] text-[#BF092F] font-bold tracking-[0.2em] uppercase mb-6 flex items-center gap-2">
-                <Building2 size={12} aria-hidden="true" />
-                Infrastructure Hubs
-              </h4>
-
-              <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
-                <ul className="flex flex-col gap-1 pb-6" role="list">
-                  {facilities.map((f) => (
-                    <li key={f.id} role="none">
-                      {/* Using Link instead of button for crawler path discovery */}
-                      <Link
-                        to={`/facilities/${f.id}`}
-                        onMouseEnter={() => setActiveFacilityId(f.id)}
-                        className={`group flex items-center justify-between p-3 rounded-lg transition-all text-left ${
-                          activeFacilityId === f.id
-                            ? "bg-[#BF092F]/5 shadow-sm"
-                            : "hover:bg-[#44444E]/5"
-                        }`}
-                        title={`Explore our ${f.name || f.title} facility in ${f.location}`}
-                      >
-                        <div className="flex flex-col">
-                          <span
-                            className={`text-[11px] uppercase tracking-wide transition-colors ${
-                              activeFacilityId === f.id
-                                ? "text-[#BF092F] font-bold"
-                                : "text-[#44444E]"
-                            }`}
-                          >
-                            {f.name || f.title}
-                          </span>
-                          <span className="text-[9px] text-gray-400 mt-0.5 font-medium">
-                            {f.location}
-                          </span>
-                        </div>
-                        <ArrowRight
-                          size={12}
-                          className={
-                            activeFacilityId === f.id
-                              ? "text-[#BF092F] translate-x-0 opacity-100"
-                              : "opacity-0 -translate-x-2"
-                          }
-                          aria-hidden="true"
-                        />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" aria-hidden="true" />
+            {/* 1. LEFT: DARK SIDEBAR (Matched to Products styling) */}
+            <nav className="bg-[#44444E] py-6 overflow-y-auto max-h-[400px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" aria-label="Global Infrastructure Locations">
+               
+              {facilities.map((f) => (
+                <Link
+                  key={f.id}
+                  to={`/facilities/${f.id}`}
+                  onMouseEnter={() => setActiveFacilityId(f.id)}
+                  className={`cursor-pointer w-full px-6 py-3 text-left transition-all relative block ${
+                    activeFacilityId === f.id
+                      ? "bg-white text-[#44444E]"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  <div className="flex flex-col">
+                    <span className="text-[11px] tracking-widest uppercase leading-tight font-medium">
+                      {f.name || f.title}
+                    </span>
+                    <span className={`text-[9px] mt-1 ${activeFacilityId === f.id ? "text-gray-400" : "text-white/40"}`}>
+                      {f.location}
+                    </span>
+                  </div>
+                  {activeFacilityId === f.id && (
+                    <div className="absolute right-0 top-0 h-full w-1 bg-[#BF092F]" />
+                  )}
+                </Link>
+              ))}
             </nav>
 
-            {/* 2. RIGHT: PREVIEW PANEL */}
+            {/* 2. RIGHT: PREVIEW PANEL (White/Gray area) */}
             <aside className="p-6 flex flex-col justify-center bg-gray-50/30" aria-live="polite">
               {currentFacility && (
                 <div className="animate-fadeIn space-y-4">
                   <div className="aspect-video rounded-xl overflow-hidden border border-[#44444E]/10 bg-white shadow-md">
                     <img
                       src={currentFacility.facilityImg?.[0] || "/default-facility.jpg"}
-                      // SEO: Dynamic Alt text with keywords
-                      alt={`Arc Engineering ${currentFacility.title} facility located in ${currentFacility.location} - Specialized Power Solutions Manufacturing`}
+                      alt={`Arc Engineering ${currentFacility.title} facility`}
                       loading="lazy"
-                      width="300"
-                      height="168"
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                     />
                   </div>
@@ -122,8 +94,8 @@ const HeaderFacilitiesDropdown = () => {
                     <h5 className="text-[13px] text-[#44444E] font-bold uppercase leading-tight">
                       {currentFacility.title}
                     </h5>
-                    <p className="text-[10px] text-gray-500 line-clamp-2 leading-relaxed font-medium italic">
-                      Specialized <strong>engineering facility</strong> located in {currentFacility.location} for mission-critical power equipment.
+                    <p className="text-[10px] text-gray-500 line-clamp-2 leading-relaxed italic">
+                      Specialized engineering facility in {currentFacility.location}.
                     </p>
                   </div>
 
@@ -131,7 +103,7 @@ const HeaderFacilitiesDropdown = () => {
                     to={`/facilities/${currentFacility.id}`}
                     className="cursor-pointer w-full py-3 bg-[#44444E] text-white text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-[#BF092F] transition-colors flex items-center justify-center gap-2 group/btn"
                   >
-                    View Hub Specifications
+                    View Specifications
                     <ArrowRight
                       size={12}
                       className="group-hover/btn:translate-x-1 transition-transform"
