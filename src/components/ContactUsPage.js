@@ -312,8 +312,7 @@ export default function ContactUsPage() {
                     <ContactRow
                       icon={<MapPin size={18} />}
                       label="Address"
-                      value="W3 Winchester Avenue, Blaby,
-Leicester, LE8 4GZ, United Kingdom"
+                      value="Greenside House, 50 Station Rd, London N22 7DE"
                     />
                   </div>
                 </div>
