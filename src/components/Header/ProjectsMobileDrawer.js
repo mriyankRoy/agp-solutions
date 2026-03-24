@@ -155,7 +155,7 @@ const ProjectsMobileDrawer = ({ isOpen, onClose, onCloseAll }) => {
         <footer className="mt-auto py-10 flex flex-col items-center gap-4 border-t border-white/5 bg-[#44444E]/90 backdrop-blur-md">
           <div className="w-12 h-[1px] bg-[#BF092F]/30" aria-hidden="true" />
           <p className="text-white text-[9px] font-black tracking-[0.5em] uppercase opacity-40">
-            Arc Engineering Solutions Ltd.
+            Art Genpower Solutions Ltd.
           </p>
         </footer>
       </div>

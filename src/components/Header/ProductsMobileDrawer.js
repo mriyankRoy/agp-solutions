@@ -149,7 +149,7 @@ const ProductsMobileDrawer = ({ isOpen, onClose, onCloseAll }) => {
         <footer className="mt-auto py-10 flex flex-col items-center gap-4 border-t border-white/5 bg-[#44444E]/80 backdrop-blur-md">
           <div className="w-12 h-[1px] bg-[#BF092F]/50" aria-hidden="true" />
           <p className="text-white text-[10px] font-bold tracking-[0.4em] uppercase">
-            Arc Engineering Solutions Ltd.
+            Art Genpower Solutions Ltd.
           </p>
         </footer>
       </div>
