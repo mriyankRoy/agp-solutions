@@ -6,17 +6,20 @@ import HeaderFacilitiesDropdown from "./HeaderFacilitiesDropdown";
 import HeaderProjectsDropdown from "./HeaderProjectsDropdown";
 import HeaderProductsDropDown from "./HeaderProductsDropDown";
 import MobileHeaderSearch from "./MobileHeaderSearch";
-import ProductsMobileDrawer from "./ProductsMobileDrawer"; // Import the new drawer
+import ProductsMobileDrawer from "./ProductsMobileDrawer"; 
+import ProjectsMobileDrawer from "./ProjectsMobileDrawer"; 
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isProductsDrawerOpen, setIsProductsDrawerOpen] = useState(false);
+  const [isProjectsDrawerOpen, setIsProjectsDrawerOpen] = useState(false);
+
   const navigate = useNavigate();
 
   const navItems = [
     { name: "About", path: "/about" },
-    { name: "Products", isDrawer: true }, // Special flag for the drawer
-    { name: "Projects", path: "/projects" },
+    { name: "Products", isDrawer: true }, 
+    { name: "Projects", isDrawer: true }, 
     { name: "Facilities", path: "/facilities" },
     { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" },
@@ -29,7 +32,9 @@ const Header = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
+    // Assuming searchQuery state exists in your context or logic; 
+    // keeping this as per your provided snippet.
+    if (typeof searchQuery !== 'undefined' && searchQuery.trim()) {
       setMobileMenuOpen(false);
       navigate(`/search/${encodeURIComponent(searchQuery)}`);
       setSearchQuery("");
@@ -52,7 +57,6 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-[100] pt-1 px-2">
-      {/* Opaque Header Container */}
       <div className="relative w-full mx-auto">
         <div
           className="absolute inset-0 -z-10 rounded-2xl shadow-2xl overflow-hidden"
@@ -73,10 +77,6 @@ const Header = () => {
                   alt="AGP Logo"
                   className="h-10 sm:h-12 md:h-16 w-auto transition-transform duration-500 group-hover/logo:scale-110"
                 />
-                {/* <div className="hidden md:flex flex-col border-l border-white/10 pl-4 ml-4">
-                  <span className="text-white text-[10px] font-black tracking-[0.2em] uppercase whitespace-nowrap">Art Genpower</span>
-                  <span className="text-white/60 text-[6px] font-bold tracking-[0.3em] uppercase">Solutions Ltd.</span>
-                </div> */}
               </Link>
             </div>
 
@@ -122,7 +122,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Modern, Opaque, Scrollable Mobile Menu */}
       <div
         className={`fixed inset-0 z-[105] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
       >
@@ -137,12 +136,15 @@ const Header = () => {
 
           <nav className="flex flex-col gap-2 max-w-sm mx-auto w-full">
             {navItems?.map((item) => {
-              // If it's the products item, use the drawer trigger
-              if (item.name === "Products") {
+              // Handle Drawer items (Products & Projects)
+              if (item.isDrawer) {
                 return (
                   <button
-                    key="Products"
-                    onClick={() => setIsProductsDrawerOpen(true)}
+                    key={item.name}
+                    onClick={() => {
+                      if (item.name === "Products") setIsProductsDrawerOpen(true);
+                      if (item.name === "Projects") setIsProjectsDrawerOpen(true);
+                    }}
                     className="group flex items-center justify-between py-4 border-b border-white/5 hover:border-[#BF092F]/50 transition-all"
                   >
                     <span className="text-white/80 group-hover:text-white text-xl uppercase tracking-[0.2em]">
@@ -153,6 +155,7 @@ const Header = () => {
                 );
               }
 
+              // Handle Standard Path items
               return (
                 <button
                   key={item.name}
@@ -170,10 +173,19 @@ const Header = () => {
 
           <ProductsMobileDrawer
             isOpen={isProductsDrawerOpen}
-            onClose={() => setIsProductsDrawerOpen(false)} // Closes drawer
+            onClose={() => setIsProductsDrawerOpen(false)}
             onCloseAll={() => {
               setIsProductsDrawerOpen(false);
-              setMobileMenuOpen(false); // 3. Also closes the main menu
+              setMobileMenuOpen(false);
+            }}
+          />
+
+          <ProjectsMobileDrawer
+            isOpen={isProjectsDrawerOpen}
+            onClose={() => setIsProjectsDrawerOpen(false)}
+            onCloseAll={() => {
+              setIsProjectsDrawerOpen(false);
+              setMobileMenuOpen(false);
             }}
           />
 
@@ -183,7 +195,6 @@ const Header = () => {
               Art Genpower Solutions Ltd.
             </p>
           </div>
-          
         </div>
       </div>
     </header>
